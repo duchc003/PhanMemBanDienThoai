@@ -38,7 +38,7 @@ public class khuyenMaiRepository {
                         rs.getString(9)));
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            Logger.getLogger(khuyenMaiRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listKMViewModel;
     }
@@ -66,31 +66,8 @@ public class khuyenMaiRepository {
         }
         return listKMV;
     }
-    
-    public List<KhuyenMai> getAllKhuyenMai() {
-        List<KhuyenMai> listkm = new ArrayList<>();
-        String sql = "select * from KhuyenMai";
-        ResultSet rs = JDBCHelper.executeQuery(sql);
-        try {
-            while (rs.next()) {
-                listkm.add(new KhuyenMai(
-                        rs.getInt(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getFloat(6),
-                        rs.getString(7),
-                        rs.getString(8),
-                        rs.getString(9)));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(khuyenMaiRepository.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return listkm;
-    }
 
-    public int addKhuyenMai(KhuyenMai km) {
+    public int addKhuyenMai(KhuyenMaiViewModel km) {
         int row = 0;
         String sql = "insert into KhuyenMai(MaKM,ten,NgayBD,NgayKT,GiamGia,HinhThuc,TrangThai,Mota) values(?,?,?,?,?,?,?,?)";
         row = JDBCHelper.executeUpdate(sql,
@@ -112,7 +89,7 @@ public class khuyenMaiRepository {
         return row;
     }
 
-    public int updateKhuyenmai(KhuyenMai km, String maKM) {
+    public int updateKhuyenmai(KhuyenMaiViewModel km, String maKM) {
         int row = 0;
         String sql = "UPDATE KhuyenMai\n"
                 + "SET ten =?, NgayBD = ?, NgayKT =?,GiamGia =?,HinhThuc=?,TrangThai =?,Mota =?\n"
@@ -120,6 +97,4 @@ public class khuyenMaiRepository {
         row = JDBCHelper.executeUpdate(sql, km.getTen(), km.getNgayBD(), km.getNgayKT(), km.getGiamGia(), km.getHinhThuc(), km.getTrangThai(), km.getMoTa(), km.getMaKM());
         return row;
     }
-
-    
 }

@@ -20,7 +20,7 @@ public interface SanPhamService {
     
    public String addSP(SanPham SP);
     
-   public String deleteSP(String ma );
+   public String deleteSP(int ma );
     
    public String updateSP(SanPham SP, int ma);
     

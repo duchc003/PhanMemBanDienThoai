@@ -26,7 +26,6 @@ public class ConnectDB {
      * @return Connection
      */
     public static Connection getConnection() {
-
         // Create a variable for the connection string.
         String connectionUrl = "jdbc:sqlserver://" + HOSTNAME + ":" + PORT + ";"
                 + "databaseName=" + DBNAME + ";encrypt=true;trustServerCertificate=true;";

@@ -137,13 +137,20 @@ public class SanPhamRepository {
         int check = 0;
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             check = ps.executeUpdate();
+            ps.setObject(1, SP.getIdKM());
+            ps.setObject(2, SP.getIdPK());
+            ps.setObject(3, SP.getIdHang());
+            ps.setObject(4, SP.getMa());
+            ps.setObject(5, SP.getTen());
+            ps.setObject(6, SP.getMaIMEI());
+            ps.setObject(7, viTri);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return check > 0;
     }
 
-    public boolean delete(String ma) {
+    public boolean delete(int ma) { 
         String query = "DELETE FROM [dbo].[SanPham]\n"
                 + "      WHERE ID = ?";
         int check = 0;

@@ -1,4 +1,3 @@
-
 package service.impl;
 
 import java.util.ArrayList;
@@ -10,11 +9,11 @@ import model.SanPham;
 import repository.SanPhamRepository;
 import service.SanPhamService;
 import viewmodel.SanPhamViewModel;
+
 public class SanPhamImpl implements SanPhamService {
 
     SanPhamRepository SP = new SanPhamRepository();
-    SanPham sanPham = new SanPham();
-    
+
     @Override
     public ArrayList<SanPhamViewModel> getAll() {
         return SP.all();
@@ -23,15 +22,6 @@ public class SanPhamImpl implements SanPhamService {
     @Override
     public String addSP(SanPham SP) {
         boolean add = this.SP.add(SP);
-
-        if (sanPham.getMaIMEI() == null) {
-        return "không được để trống";
-        }
-
-        if (sanPham.getTen() == null) {
-        return "không được để trống";
-        }
-        
         if (add) {
             return "Thanh cong";
         } else {
@@ -40,7 +30,7 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
-    public String deleteSP(String ma) {
+    public String deleteSP(int ma) {
         boolean delete = SP.delete(ma);
         if (delete) {
             return "Thanh cong";
@@ -48,8 +38,6 @@ public class SanPhamImpl implements SanPhamService {
             return "That bai";
         }
     }
-
-
 
     @Override
     public SanPham getOne(String maSP) {
@@ -73,10 +61,10 @@ public class SanPhamImpl implements SanPhamService {
 
     @Override
     public String updateSP(SanPham SP, int ma) {
-         boolean update = this.SP.update(SP, ma);
-        if(update){
+        boolean update = this.SP.update(SP, ma);
+        if (update) {
             return "Update thanh cong";
-        }else{
+        } else {
             return "Update that bai";
         }
     }
