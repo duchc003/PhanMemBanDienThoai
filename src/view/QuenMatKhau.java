@@ -29,10 +29,10 @@ import viewmodel.QuenMatKhauModel;
  */
 public class QuenMatKhau extends javax.swing.JFrame {
 
-    private QuenMatKhauServiceImpl quenMatKhauServices = new QuenMatKhauServiceImpl();
-    List<QuenMatKhauModel> lists = new ArrayList<>();
-    private Random rd = new Random();
-    private int maXacNhan = rd.nextInt(999999);
+//    private QuenMatKhauServiceImpl quenMatKhauServices = new QuenMatKhauServiceImpl();
+//    List<QuenMatKhauModel> lists = new ArrayList<>();
+//    private Random rd = new Random();
+//    private int maXacNhan = rd.nextInt(999999);
 
     public QuenMatKhau() {
         initComponents();
