@@ -22,34 +22,34 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class BanHangView extends javax.swing.JInternalFrame {
 
-//    private final Dimension ds = new Dimension(250, 150);
-//    private final Dimension cs = WebcamResolution.VGA.getSize();
-//    private final Webcam wCam = Webcam.getDefault();
-//    private final WebcamPanel wCamPanel = new WebcamPanel(wCam, ds, false);
+    private final Dimension ds = new Dimension(250, 150);
+    private final Dimension cs = WebcamResolution.VGA.getSize();
+    private final Webcam wCam = Webcam.getDefault();
+    private final WebcamPanel wCamPanel = new WebcamPanel(wCam, ds, false);
 
     public BanHangView() {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
-//        wCam.setViewSize(cs);
-//        wCamPanel.setFillArea(true);
-//        lblCamera.setLayout(new FlowLayout());
-//        lblCamera.add(wCamPanel);
-//        initWebcam();
+        wCam.setViewSize(cs);
+        wCamPanel.setFillArea(true);
+        lblCamera.setLayout(new FlowLayout());
+        lblCamera.add(wCamPanel);
+        initWebcam();
         
     }
 
-//    private void initWebcam() {
-//        Thread t = new Thread() {
-//            @Override
-//            public void run() {
-//                wCamPanel.start();
-//            }
-//        };
-//        t.setDaemon(true);
-//        t.start();
-//    }
+    private void initWebcam() {
+        Thread t = new Thread() {
+            @Override
+            public void run() {
+                wCamPanel.start();
+            }
+        };
+        t.setDaemon(true);
+        t.start();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
