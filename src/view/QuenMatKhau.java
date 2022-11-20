@@ -33,7 +33,7 @@ public class QuenMatKhau extends javax.swing.JFrame {
     List<QuenMatKhauModel> lists = new ArrayList<>();
     private Random rd = new Random();
     private int maXacNhan = rd.nextInt(999999);
-    //nam
+    //namnam
 
     public QuenMatKhau() {
         initComponents();
