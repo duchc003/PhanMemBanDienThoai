@@ -86,7 +86,7 @@ public class SanPhamViewModel {
 
     public Object[] todataRow() {
         return new Object[]{
-            id, idKM, idPK, idHang, ten, ma, maIMEI
+            id, idKM, idPK, idHang,  ma, ten,maIMEI
         };
     }
 }

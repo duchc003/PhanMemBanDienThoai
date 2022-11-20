@@ -17,16 +17,21 @@ import viewmodel.KhuyenMaiViewModel;
  */
 public class khuyenMaiServicesImpl implements khuyenMaiServices {
 
-    private khuyenMaiRepository khuyenMaiRepository = new khuyenMaiRepository();
+    private final khuyenMaiRepository KhuyenMaiViewModelReprository = new khuyenMaiRepository();
 
     @Override
-    public List<KhuyenMai> getAllKhuyenMai() {
-        return khuyenMaiRepository.getAllKhuyenMai();
+    public List<KhuyenMaiViewModel> getAllKhuyenMaiViewModel() {
+        return KhuyenMaiViewModelReprository.getAllKhuyenMaiViewModel();
     }
 
     @Override
-    public String addKhuyenMai(KhuyenMai km) {
-        int addkhuyenMai = khuyenMaiRepository.addKhuyenMai(km);
+    public List<KhuyenMaiViewModel> timKiemViewModel(String maKM) {
+        return KhuyenMaiViewModelReprository.timKiemKhuyenMai(maKM);
+    }
+
+    @Override
+    public String addKhuyenMai(KhuyenMaiViewModel km) {
+        int addkhuyenMai = KhuyenMaiViewModelReprository.addKhuyenMai(km);
         if (addkhuyenMai > 0) {
             return "Thêm thành công!";
 
@@ -37,33 +42,23 @@ public class khuyenMaiServicesImpl implements khuyenMaiServices {
 
     @Override
     public String deleteKhuyenMai(String maKM) {
-        int deleteKhuyenmai = khuyenMaiRepository.deleteKhuyenMai(maKM);
-        if (deleteKhuyenmai > 0) {
-            return "Xóa thành công";
-
+        int delete = KhuyenMaiViewModelReprository.deleteKhuyenMai(maKM);
+        if (delete > 0) {
+            return "Xóa thành công !";
         } else {
-            return "Xóa không thành công";
+            return "Xóa không thành công ";
         }
     }
 
     @Override
-    public String updateKhuyenmai(KhuyenMai km, String maKM) {
-        int update = khuyenMaiRepository.updateKhuyenmai(km, maKM);
+    public String updateKhuyenmai(KhuyenMaiViewModel km, String maKM) {
+        int update = KhuyenMaiViewModelReprository.updateKhuyenmai(km, maKM);
         if (update > 0) {
-            return "Update thành công !";
+            return "Update thành công ";
+
         } else {
-            return "Update Thất Bại !";
+            return "Update thất bại ";
         }
-    }
-
-    @Override
-    public List<KhuyenMaiViewModel> getAllKhuyenMaiViewModel() {
-        return khuyenMaiRepository.getAllKhuyenMaiViewModel();
-    }
-
-    @Override
-    public List<KhuyenMaiViewModel> timKiemViewModel(String maKM) {
-        return khuyenMaiRepository.timKiemKhuyenMai(maKM);
     }
 
 }

@@ -111,7 +111,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         fillCt(listCt);
         //5 sản phẩm
         tblSanPham.setModel(dtm);
-        Object[] SanPham = {"ID", "ID Khuyến mãi", "ID Phụ Kiện", "ID Hãng", "Tên SP", "Mã SP", "Mã IMEI"};
+        Object[] SanPham = {"ID", "ID Khuyến mãi", "ID Phụ Kiện", "ID Hãng", "Mã SP", "Tên SP", "Mã IMEI"};
         dtm.setColumnIdentifiers(SanPham);
         showDataTable(SP.getAll());
         // cbb chitietsp
@@ -155,13 +155,13 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
     private void getID(List<SanPham> list) {
         for (SanPham sanPham : list) {
-            box2.addElement(sanPham.getId());
+            box22.addElement(sanPham.getId());
         }
     }
 
     private void getIDNCC(List<NhaCungCap> list) {
         for (NhaCungCap nhaCungCap : list) {
-            box1.addElement(nhaCungCap.getId());
+            box11.addElement(nhaCungCap.getId());
         }
     }
 
@@ -327,12 +327,12 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
     private SanPham getDataSanPham() {
         return new SanPham(
-                Integer.parseInt(txtIDSanPHam.getText()),
+                0,
                 (int) cbbKHUYENMAI.getSelectedItem(),
-                (int) cbbHANG.getSelectedItem(),
                 (int) cbbPHUKIEN.getSelectedItem(),
-                txtTENSANPHAM.getText(),
+                (int) cbbHANG.getSelectedItem(),
                 txtMASANPHAM.getText(),
+                txtTENSANPHAM.getText(),            
                 txtMAIMEI.getText());
     }
 
@@ -1699,10 +1699,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnXoaCtActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        int row = tblSanPham.getSelectedRow();
-        SanPhamViewModel sp = Spview.get(row);
-        String ma = txtMAIMEI.getText();
-        String id = sp.getMa();
+        int ma = Integer.parseInt(txtIDSanPHam.getText());
         JOptionPane.showMessageDialog(this, SP.deleteSP(ma));
         Spview = SP.getAll();
         showDataTable(Spview);

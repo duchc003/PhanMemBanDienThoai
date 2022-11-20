@@ -19,12 +19,10 @@ public interface khuyenMaiServices {
 
     List<KhuyenMaiViewModel> timKiemViewModel(String maKM);
 
-    List<KhuyenMai> getAllKhuyenMai();
-
-    String addKhuyenMai(KhuyenMai km);
+    String addKhuyenMai(KhuyenMaiViewModel km);
 
     String deleteKhuyenMai(String maKM);
 
-    String updateKhuyenmai(KhuyenMai km, String maKM);
+    String updateKhuyenmai(KhuyenMaiViewModel km, String maKM);
 
 }
