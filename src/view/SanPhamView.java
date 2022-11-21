@@ -33,12 +33,14 @@ import service.impl.ChiTietSpImpl;
 import service.impl.HangSPImpl;
 import service.impl.NhaCungCapImpl;
 import service.impl.PhuKienImpl;
+import service.impl.SanPhamHetHangServiceImpl;
 import service.impl.SanPhamImpl;
 import util.MsgBox;
 import viewmodel.ChiTietSPView;
 import viewmodel.HangSPViewmodel;
 import viewmodel.NhaCungCapViewModel;
 import viewmodel.PhuKienViewmodel;
+import viewmodel.SanPhamHetHang;
 import viewmodel.SanPhamViewModel;
 
 /**
@@ -47,6 +49,7 @@ import viewmodel.SanPhamViewModel;
  */
 public class SanPhamView extends javax.swing.JInternalFrame {
 
+    private List<SanPhamHetHang> spHetHang = new ArrayList<>();
     private List<SanPhamViewModel> Spview = new ArrayList<>();
     private List<HangSPViewmodel> lists = new ArrayList<>();
     private List<SanPham> listSp = new ArrayList<>();
@@ -54,6 +57,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private List<NhaCungCapViewModel> listncc = new ArrayList<>();
     private List<PhuKienViewmodel> listpk = new ArrayList<>();
     private List<ChiTietSPView> listCt = new ArrayList<>();
+    private SanPhamHetHangServiceImpl implHetHang = new SanPhamHetHangServiceImpl();
     private HangSPService hsps = new HangSPImpl();
     private SanPhamImpl SP = new SanPhamImpl();
     private NhaCungCapService nccs = new NhaCungCapImpl();
@@ -63,6 +67,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private DefaultTableModel dtmPk = new DefaultTableModel();
     private DefaultTableModel dtmCT = new DefaultTableModel();
     private DefaultTableModel dtm = new DefaultTableModel();
+    private DefaultTableModel dtmHetHang = new DefaultTableModel();
     private DefaultComboBoxModel box11 = new DefaultComboBoxModel();
     private DefaultComboBoxModel box22 = new DefaultComboBoxModel();
     private DefaultComboBoxModel box1 = new DefaultComboBoxModel();
@@ -126,6 +131,18 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         cbbHang(SP.getID());
         cbbKM(SP.getKM());
         cbbPK(SP.getPK());
+        
+        tblHetHang.setModel(dtmHetHang);
+        dtmHetHang.setColumnIdentifiers(new Object[] {"ID","Mã","Tên","Số Lượng","Ram","Xuất Xứ","Camera","Màn Hình","Bộ Nhớ","Màu Sắc","Trạng Thái"});
+        spHetHang = implHetHang.getALL();
+        showTTableHetHang(spHetHang);
+    }
+    
+    private void showTTableHetHang(List<SanPhamHetHang> list){
+        dtmHetHang.setRowCount(0);
+        for (SanPhamHetHang sanPhamHetHang : list) {
+            dtmHetHang.addRow(sanPhamHetHang.toDataRow());
+        }
     }
 
     private void showDataTable(List<SanPhamViewModel> lists) {
@@ -466,7 +483,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         jLabel16 = new javax.swing.JLabel();
         jButton17 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        tblHetHang = new javax.swing.JTable();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1526,7 +1543,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/curve-arrow.png"))); // NOI18N
         jButton17.setText("Khôi Phục");
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        tblHetHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1537,7 +1554,12 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane5.setViewportView(jTable5);
+        tblHetHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblHetHangMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tblHetHang);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1757,6 +1779,10 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         cbbPHUKIEN.setSelectedItem(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void tblHetHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHetHangMouseClicked
+        
+    }//GEN-LAST:event_tblHetHangMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
@@ -1851,13 +1877,13 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JLabel lblAnh;
     private javax.swing.JRadioButton rdoConHang;
     private javax.swing.JRadioButton rdoHetHang;
     private javax.swing.JTable tblCt;
     private javax.swing.JTable tblHangSP;
+    private javax.swing.JTable tblHetHang;
     private javax.swing.JTable tblNhaCungCap;
     private javax.swing.JTable tblPhuKien;
     private javax.swing.JTable tblSanPham;
