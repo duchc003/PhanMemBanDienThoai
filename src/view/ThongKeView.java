@@ -95,27 +95,20 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(222, 220));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Tổng đơn hàng");
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Thành Công :");
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Bị Hủy :");
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("0");
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("0");
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/trolley.png"))); // NOI18N
 
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Đơn hàng");
 
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -178,25 +171,18 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(220, 220));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Tổng doanh thu ngày");
 
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Thành Công :");
 
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Bị Hủy :");
 
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("0");
 
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("0");
 
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Tiền :");
 
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("0");
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/money-bag.png"))); // NOI18N
@@ -260,25 +246,18 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jPanel4.setPreferredSize(new java.awt.Dimension(220, 220));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Tổng doanh thu tháng");
 
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Tiền :");
 
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("0");
 
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Thành Công :");
 
-        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setText("0");
 
-        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("Bị Hủy :");
 
-        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("0");
 
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/money-bag.png"))); // NOI18N
@@ -340,25 +319,18 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jPanel5.setPreferredSize(new java.awt.Dimension(220, 220));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Tổng doanh thu năm");
 
-        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setText("Tiền :");
 
-        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
         jLabel29.setText("0");
 
-        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("Thành Công :");
 
-        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("0");
 
-        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
         jLabel32.setText("Bị Hủy :");
 
-        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
         jLabel33.setText("0");
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/money-bag.png"))); // NOI18N
@@ -416,10 +388,8 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Từ ngày");
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Đến ngày");
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));
@@ -439,7 +409,6 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setBackground(new java.awt.Color(51, 255, 51));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/export.png"))); // NOI18N
         jButton1.setText("Xuất thống kê sản phẩm ");
 
@@ -449,7 +418,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1143, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(37, Short.MAX_VALUE))
@@ -470,11 +439,9 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton1.setText("Bảng");
 
         buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton2.setText("Biểu đồ");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -491,7 +458,6 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTable2);
 
         jButton2.setBackground(new java.awt.Color(0, 255, 0));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/export.png"))); // NOI18N
         jButton2.setText("Xuất thống kê doanh thu");
 
