@@ -17,19 +17,25 @@ public class SanPhamHetHangServiceImpl implements SanPhamHetHangService{
 
     private SanPhamHetHangRepo impl = new SanPhamHetHangRepo();
     
-//    @Override
-//    public List<SanPhamHetHang> getALL() {
-//        return impl.getALL();
-//    }
-
     @Override
-    public List<SanPhamHetHang> getALL(List<SanPhamHetHang> list, String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<SanPhamHetHang> getALL() {
+        return impl.getALL();
     }
 
     @Override
-    public List<SanPhamHetHang> getALL() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<SanPhamHetHang> getALL(List<SanPhamHetHang> list, String id) {
+        list = impl.search(id);
+        return list;
+    }
+
+    @Override
+    public String update(SanPhamHetHang sp, int ma) {
+        boolean update = impl.updateSanPham(sp, ma);
+        if (update) {
+            return "Khôi Phục Sản Phẩm thành công";
+        } else {
+            return "Khôi phục thất bại";
+        }
     }
     
 }

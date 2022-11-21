@@ -131,14 +131,14 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         cbbHang(SP.getID());
         cbbKM(SP.getKM());
         cbbPK(SP.getPK());
-        
+
         tblHetHang.setModel(dtmHetHang);
-        dtmHetHang.setColumnIdentifiers(new Object[] {"ID","Mã","Tên","Số Lượng","Ram","Xuất Xứ","Camera","Màn Hình","Bộ Nhớ","Màu Sắc","Trạng Thái"});
+        dtmHetHang.setColumnIdentifiers(new Object[]{"ID", "Mã", "Tên Sản Phẩm", "Tên Hãng", "Số Lượng", "Ram", "Xuất Xứ", "Camera", "Màn Hình", "Bộ Nhớ", "Màu Sắc", "Trạng Thái"});
         spHetHang = implHetHang.getALL();
         showTTableHetHang(spHetHang);
     }
-    
-    private void showTTableHetHang(List<SanPhamHetHang> list){
+
+    private void showTTableHetHang(List<SanPhamHetHang> list) {
         dtmHetHang.setRowCount(0);
         for (SanPhamHetHang sanPhamHetHang : list) {
             dtmHetHang.addRow(sanPhamHetHang.toDataRow());
@@ -349,7 +349,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                 (int) cbbPHUKIEN.getSelectedItem(),
                 (int) cbbHANG.getSelectedItem(),
                 txtMASANPHAM.getText(),
-                txtTENSANPHAM.getText(),            
+                txtTENSANPHAM.getText(),
                 txtMAIMEI.getText());
     }
 
@@ -479,9 +479,9 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         rdoHetHang = new javax.swing.JRadioButton();
         txtTenAnh = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
-        jTextField13 = new javax.swing.JTextField();
+        txtTimKiem = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jButton17 = new javax.swing.JButton();
+        btnKhoiPhuc = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblHetHang = new javax.swing.JTable();
 
@@ -1536,12 +1536,23 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
         jPanel7.setBackground(new java.awt.Color(0, 204, 255));
 
+        txtTimKiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTimKiemCaretUpdate(evt);
+            }
+        });
+
         jLabel16.setText("Tìm kiếm");
 
-        jButton17.setBackground(new java.awt.Color(51, 255, 51));
-        jButton17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/curve-arrow.png"))); // NOI18N
-        jButton17.setText("Khôi Phục");
+        btnKhoiPhuc.setBackground(new java.awt.Color(51, 255, 51));
+        btnKhoiPhuc.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnKhoiPhuc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/curve-arrow.png"))); // NOI18N
+        btnKhoiPhuc.setText("Khôi Phục");
+        btnKhoiPhuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKhoiPhucActionPerformed(evt);
+            }
+        });
 
         tblHetHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1571,9 +1582,9 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addGap(38, 38, 38)
-                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 953, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 953, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton17))
+                        .addComponent(btnKhoiPhuc))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1253, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
@@ -1582,9 +1593,9 @@ public class SanPhamView extends javax.swing.JInternalFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
-                    .addComponent(jButton17))
+                    .addComponent(btnKhoiPhuc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
@@ -1780,14 +1791,32 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tblHetHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHetHangMouseClicked
-        
+
     }//GEN-LAST:event_tblHetHangMouseClicked
+
+    private void txtTimKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemCaretUpdate
+        String ma = txtTimKiem.getText();
+        List<SanPhamHetHang> listHetHang = implHetHang.getALL(spHetHang, ma);
+        showTTableHetHang(listHetHang);
+    }//GEN-LAST:event_txtTimKiemCaretUpdate
+
+    private void btnKhoiPhucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucActionPerformed
+        int index = tblHetHang.getSelectedRow();
+        SanPhamHetHang sp = spHetHang.get(index);
+        int id = sp.getId();
+        String soLuong = JOptionPane.showInputDialog("Số Lượng", "0");
+        SanPhamHetHang spUpdate = new SanPhamHetHang(Integer.parseInt(soLuong), "Còn Hàng");
+        MsgBox.alert(this, implHetHang.update(spUpdate, id));
+        spHetHang = implHetHang.getALL();
+        showTTableHetHang(spHetHang);
+    }//GEN-LAST:event_btnKhoiPhucActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnClearCt;
     private javax.swing.JButton btnClearPK;
+    private javax.swing.JButton btnKhoiPhuc;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnSuaCt;
     private javax.swing.JButton btnSuaPK;
@@ -1814,7 +1843,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1877,7 +1905,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField13;
     private javax.swing.JLabel lblAnh;
     private javax.swing.JRadioButton rdoConHang;
     private javax.swing.JRadioButton rdoHetHang;
@@ -1907,6 +1934,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTenHangSp;
     private javax.swing.JTextField txtTenNhaCungCap;
     private javax.swing.JTextField txtTenPhuKien;
+    private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 private Icon getHinhAnh(String hinhAnh) {
         return new ImageIcon(path + hinhAnh);

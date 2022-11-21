@@ -16,4 +16,6 @@ public interface SanPhamHetHangService {
     List<SanPhamHetHang> getALL();
 
     List<SanPhamHetHang> getALL(List<SanPhamHetHang> list, String id);
+    
+    String update(SanPhamHetHang sp,int ma);
 }

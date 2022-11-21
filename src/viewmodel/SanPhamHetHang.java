@@ -41,6 +41,11 @@ public class SanPhamHetHang {
         this.trangThaiString = trangThaiString;
     }
 
+    public SanPhamHetHang(int soLuong, String trangThaiString) {
+        this.soLuong = soLuong;
+        this.trangThaiString = trangThaiString;
+    }
+
     public int getId() {
         return id;
     }

@@ -12,9 +12,20 @@ import java.awt.FlowLayout;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
+import model.HoaDon;
+import service.HoaDonServices;
+import service.SanPhamFormBanHangServices;
+import service.impl.HoaDonServicesImpl;
+import service.impl.SanPhamFormBanHangServicesImpl;
+import viewmodel.HoaDonViewModel;
+import viewmodel.SanPhamFormBanHangViewModel;
 
 /**
  *
@@ -22,34 +33,38 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class BanHangView extends javax.swing.JInternalFrame {
 
-    private final Dimension ds = new Dimension(250, 150);
-    private final Dimension cs = WebcamResolution.VGA.getSize();
-    private final Webcam wCam = Webcam.getDefault();
-    private final WebcamPanel wCamPanel = new WebcamPanel(wCam, ds, false);
+//    private final Dimension ds = new Dimension(250, 150);
+//    private final Dimension cs = WebcamResolution.VGA.getSize();
+//    private final Webcam wCam = Webcam.getDefault();
+//    private final WebcamPanel wCamPanel = new WebcamPanel(wCam, ds, false);
+    private HoaDonServices hoaDonServices = new HoaDonServicesImpl();
+    private SanPhamFormBanHangServices sanPhamFormBanHangServices = new SanPhamFormBanHangServicesImpl();
 
     public BanHangView() {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
-        wCam.setViewSize(cs);
-        wCamPanel.setFillArea(true);
-        lblCamera.setLayout(new FlowLayout());
-        lblCamera.add(wCamPanel);
-        initWebcam();
-        
+//        wCam.setViewSize(cs);
+//        wCamPanel.setFillArea(true);
+//        lblCamera.setLayout(new FlowLayout());
+//        lblCamera.add(wCamPanel);
+//        initWebcam();
+        loadHoaDon();
+        loadSanPham();
+
     }
 
-    private void initWebcam() {
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                wCamPanel.start();
-            }
-        };
-        t.setDaemon(true);
-        t.start();
-    }
+//    private void initWebcam() {
+//        Thread t = new Thread() {
+//            @Override
+//            public void run() {
+//                wCamPanel.start();
+//            }
+//        };
+//        t.setDaemon(true);
+//        t.start();
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,7 +78,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblHoaDon = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -73,9 +88,9 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblSanPham = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
-        jTextField11 = new javax.swing.JTextField();
+        txtTimKiem = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel8 = new javax.swing.JPanel();
@@ -138,7 +153,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -146,10 +161,10 @@ public class BanHangView extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "STT", "Mã Hóa Đơn", "Ngày Tạo", "Trạng thái"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblHoaDon);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 450, 140));
 
@@ -157,6 +172,11 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/invoice.png"))); // NOI18N
         jButton1.setText("Tạo hóa Đơn");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 500, 220));
@@ -167,13 +187,13 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "STT", "Mã Sản Phẩm", "Tên Sản Phẩm", "Số Lượng", "Đơn giá", "Thành Tiền"
             }
         ));
         jScrollPane3.setViewportView(jTable3);
@@ -212,18 +232,18 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jPanel6.setForeground(new java.awt.Color(51, 255, 255));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "STT", "Mã Sản Phẩm", "Tên Sản Phẩm", "Số Lượng", "Hãng", "Giá Bán", "Xuất Xứ"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblSanPham);
 
         jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 700, 200));
 
@@ -232,7 +252,13 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add.png"))); // NOI18N
         jButton6.setText("Thêm");
         jPanel6.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
-        jPanel6.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 310, -1));
+
+        txtTimKiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTimKiemCaretUpdate(evt);
+            }
+        });
+        jPanel6.add(txtTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 310, -1));
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -520,6 +546,48 @@ public class BanHangView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField14ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        addHoaDon();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtTimKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemCaretUpdate
+     searchByMa();
+         
+    }//GEN-LAST:event_txtTimKiemCaretUpdate
+    private void loadHoaDon() {
+        List<HoaDonViewModel> list = hoaDonServices.getAll();
+        DefaultTableModel tblModel = new DefaultTableModel();
+
+        tblModel = (DefaultTableModel) tblHoaDon.getModel();
+        tblModel.setRowCount(0);
+
+        int i = 1;
+        for (HoaDonViewModel hd : list) {
+            tblModel.addRow(new Object[]{
+                i++,
+                hd.getMaHD(),
+                hd.getNgayTao(),
+                hd.getTrangThai()
+            });
+        }
+    }
+
+    private void addHoaDon() {
+        HoaDon hoaDon = new HoaDon();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        String dateTT = df.format(date);
+        Random rd = new Random();
+
+        hoaDon.setMaHD("HD" + rd.nextInt(999999));
+        hoaDon.setNgayTao(dateTT);
+        hoaDon.setTrangThai("Chờ Thanh Toán");
+
+        JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon));
+        loadHoaDon();
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -572,14 +640,11 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
@@ -589,6 +654,47 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JPanel lblCamera;
+    private javax.swing.JTable tblHoaDon;
+    private javax.swing.JTable tblSanPham;
+    private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
+
+    private void loadSanPham() {
+        DefaultTableModel tblModel1 = new DefaultTableModel();
+        tblModel1 = (DefaultTableModel) tblSanPham.getModel();
+        tblModel1.setRowCount(0);
+        List<SanPhamFormBanHangViewModel> sp = sanPhamFormBanHangServices.getAll();
+        int i = 1;
+        for (SanPhamFormBanHangViewModel spp : sp) {
+            tblModel1.addRow(new Object[]{
+                i++,
+                spp.getMaSp(),
+                spp.getTenSp(),
+                spp.getSoLuong(),
+                spp.getHang(),
+                spp.getGiaBan(),
+                spp.getXuatXu()
+            });
+        }
+    }
+
+    private void searchByMa() {
+              DefaultTableModel tblModel2 = new DefaultTableModel();
+        tblModel2 = (DefaultTableModel) tblSanPham.getModel();
+        tblModel2.setRowCount(0);
+        List<SanPhamFormBanHangViewModel> sp = sanPhamFormBanHangServices.Search(txtTimKiem.getText());
+        int i = 1;
+        for (SanPhamFormBanHangViewModel spp : sp) {
+            tblModel2.addRow(new Object[]{
+                i++,
+                spp.getMaSp(),
+                spp.getTenSp(),
+                spp.getSoLuong(),
+                spp.getHang(),
+                spp.getGiaBan(),
+                spp.getXuatXu()
+            });
+        }
+    }
 
 }
