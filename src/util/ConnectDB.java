@@ -18,7 +18,11 @@ public class ConnectDB {
     public static final String PORT = "1433";
     public static final String DBNAME = "QuanLyCuaHangBanDienThoai";
     public static final String USERNAME = "sa";
+<<<<<<< HEAD
     public static final String PASSWORD = "huy180803";
+=======
+    public static final String PASSWORD = "15012003";
+>>>>>>> 77f34ad9124592ba40003ffbe109873ea2bd7d35
 
     /**
      * Get connection to MSSQL Server
