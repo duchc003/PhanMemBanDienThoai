@@ -220,12 +220,11 @@ public class QuenMatKhau extends javax.swing.JFrame {
             }
             String email = lists.get(0).toString();
 
-            final String username = "duchcph22577@fpt.edu.vn";
-            final String password = "congduc003";
+            final String username = "huyhmph22668@fpt.edu.vn";
+            final String password = "huy180803";
             Properties prop = new Properties();
             prop.setProperty("mail.smtp.host", "smtp.gmail.com");
             prop.setProperty("mail.smtp.port", "587");
-            prop.setProperty("mail.smtp.port", "465");
             prop.setProperty("mail.smtp.starttls.enable", "true");
             prop.setProperty("mail.smtp.auth", "true");
 
@@ -237,7 +236,7 @@ public class QuenMatKhau extends javax.swing.JFrame {
             });
             try {
                 Message message = new MimeMessage(session);
-                message.setFrom(new InternetAddress("duchcph22577@fpt.edu.vn"));
+                message.setFrom(new InternetAddress("huyhmph22668@fpt.edu.vn"));
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
                 message.setSubject("Mã xác nhận");
                 message.setText("Mã xác nhận của bạn là : " + maXacNhan
