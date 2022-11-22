@@ -65,11 +65,11 @@ public class SanPhamFormBanHangRespository {
     }
 
     public List<SanPhamFormBanHangViewModel> searchHangSPs(String tenHang) {
-        String query = "SELECT dbo.SanPham.MaSP, dbo.SanPham.TenSp, dbo.ChiTietSanPham.SoLuong, dbo.HangSanPham.TenHangSP, dbo.ChiTietSanPham.GiaBan, dbo.ChiTietSanPham.XuatXu\n"
-                + "FROM     dbo.ChiTietSanPham INNER JOIN\n"
-                + "dbo.HangSanPham ON dbo.ChiTietSanPham.ID = dbo.HangSanPham.ID INNER JOIN\n"
-                + "dbo.SanPham ON dbo.ChiTietSanPham.IDSP = dbo.SanPham.ID AND dbo.HangSanPham.ID = dbo.SanPham.IDHang\n"
-                + "where dbo.HangSanPham.TenHangSP like ?";
+        String query = "SELECT MaSP,TenSp,ChiTietSanPham.SoLuong,HangSanPham.TenHangSP,ChiTietSanPham.GiaBan,ChiTietSanPham.XuatXu FROM ChiTietSanPham join SanPham\n"
+                + "on ChiTietSanPham.IDSP =  SanPham.ID\n"
+                + "join HangSanPham\n"
+                + "on SanPham.IDHang = HangSanPham.ID\n"
+                + "where HangSanPham.TenHangSP like ?";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ps.setObject(1, "%" + tenHang + "%");
             List<SanPhamFormBanHangViewModel> list = new ArrayList<>();

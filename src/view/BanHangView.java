@@ -158,7 +158,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         cbbTenHang = new javax.swing.JComboBox<>();
-        jButton10 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -333,7 +332,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jPanel9.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 410, -1, -1));
 
         jTextField1.setEnabled(false);
-        jPanel9.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 407, 240, -1));
+        jPanel9.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 240, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -539,7 +538,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/trash.png"))); // NOI18N
         jButton9.setText("Xóa");
-        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 250, -1, -1));
+        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 240, -1, -1));
 
         jLabel17.setBackground(new java.awt.Color(0, 0, 0));
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -556,17 +555,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
                 cbbTenHangItemStateChanged(evt);
             }
         });
-        jPanel1.add(cbbTenHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 490, 150, -1));
-
-        jButton10.setBackground(new java.awt.Color(51, 255, 51));
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/magnifying-glass.png"))); // NOI18N
-        jButton10.setText("Tìm");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 470, -1, -1));
+        jPanel1.add(cbbTenHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 490, 180, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -604,14 +593,10 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTimKiemCaretUpdate
 
     private void cbbTenHangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbTenHangItemStateChanged
-        
-    }//GEN-LAST:event_cbbTenHangItemStateChanged
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         String tenHagString = (String) cbbTenHang.getSelectedItem();
         List<SanPhamFormBanHangViewModel> list = sanPhamFormBanHangServices.searchTenHang(lst, tenHagString);
         loadSanPham(list);
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_cbbTenHangItemStateChanged
     private void loadHoaDon() {
         List<HoaDonViewModel> list = hoaDonServices.getAll();
         DefaultTableModel tblModel = new DefaultTableModel();
@@ -650,7 +635,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbbTenHang;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
