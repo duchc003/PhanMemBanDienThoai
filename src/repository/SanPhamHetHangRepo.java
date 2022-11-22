@@ -94,6 +94,7 @@ public class SanPhamHetHangRepo {
             ps.setObject(1, sp.getSoLuong());
             ps.setObject(2, sp.getTrangThaiString());
             ps.setObject(3, id);
+            check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }

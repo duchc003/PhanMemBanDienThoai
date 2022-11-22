@@ -27,10 +27,11 @@ public class HoaDonRespository {
         }
         return hoaDonViewModels;
     }
-    public int addHoaDon(HoaDon hoaDon){
-        int row =0;
-        String sql =  " INSERT INTO HoaDon(MaHD,NgayTao,TrangThai) VALUES (?,?,?)";
-        row = JDBCHelper.executeUpdate(sql, hoaDon.getMaHD(),hoaDon.getNgayTao(),hoaDon.getTrangThai());
+
+    public int addHoaDon(HoaDon hoaDon) {
+        int row = 0;
+        String sql = " INSERT INTO HoaDon(MaHD,NgayTao,TrangThai) VALUES (?,?,?)";
+        row = JDBCHelper.executeUpdate(sql, hoaDon.getMaHD(), hoaDon.getNgayTao(), hoaDon.getTrangThai());
         return row;
     }
 }
