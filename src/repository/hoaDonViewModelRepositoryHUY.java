@@ -18,15 +18,16 @@ import viewmodel.hoaDonViewModelHUY;
  * @author Banh Chung Ran
  */
 public class hoaDonViewModelRepositoryHUY {
- public List<hoaDonViewModelHUY> getAllHoaDonViewModel() {
+
+    public List<hoaDonViewModelHUY> getAllHoaDonViewModel() {
         List<hoaDonViewModelHUY> listHD = new ArrayList<>();
         String sql = "select HoaDon.MaHD,KhachHang.HoVaTen,HoaDonChiTiet.SoLuong,HoaDonChiTiet.ThanhTien,TenHTTT,TenHTGH,TrangThai from\n"
                 + "HoaDon join KhachHang on KhachHang.ID = HoaDon.ID join HinhThucGiaoHang on HinhThucGiaoHang.ID = HoaDon.IDHinhTGH join HinhThucThanhToan on HinhThucThanhToan.ID = HoaDon.IDHinhTTT join HoaDonChiTiet \n"
                 + "on HoaDon.ID = HoaDonChiTiet.IDHoaDon join SanPham on SanPham.ID = HoaDonChiTiet.IDSP";
         ResultSet rs = JDBCHelper.executeQuery(sql);
-     try {
-         while (rs.next()) {
-              listHD.add(new hoaDonViewModelHUY(
+        try {
+            while (rs.next()) {
+                listHD.add(new hoaDonViewModelHUY(
                         rs.getString(1),
                         rs.getString(2),
                         rs.getInt(3),
@@ -34,10 +35,10 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7)));
-         }
-     } catch (SQLException ex) {
-         Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
-     }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return listHD;
     }
@@ -49,9 +50,9 @@ public class hoaDonViewModelRepositoryHUY {
                 + "on HoaDon.ID = HoaDonChiTiet.IDHoaDon join SanPham on SanPham.ID = HoaDonChiTiet.IDSP\n"
                 + "where MaHD = ?";
         ResultSet rs = JDBCHelper.executeQuery(sql, maHD);
-     try {
-         while (rs.next()) {
-              timKiem.add(new hoaDonViewModelHUY(
+        try {
+            while (rs.next()) {
+                timKiem.add(new hoaDonViewModelHUY(
                         rs.getString(1),
                         rs.getString(2),
                         rs.getInt(3),
@@ -59,11 +60,11 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7)));
-         }
-     } catch (SQLException ex) {
-         Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
-     }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return timKiem;
-    }   
+    }
 }
