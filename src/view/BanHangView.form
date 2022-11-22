@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -85,10 +85,10 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
-                        <Column editable="true" title="STT" type="java.lang.Object"/>
-                        <Column editable="true" title="M&#xe3; H&#xf3;a &#x110;&#x1a1;n" type="java.lang.Object"/>
-                        <Column editable="true" title="Ng&#xe0;y T&#x1ea1;o" type="java.lang.Object"/>
-                        <Column editable="true" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -125,7 +125,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btnTaoHoaDon">
+            <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="ff" red="66" type="rgb"/>
@@ -139,27 +139,11 @@
                 <Property name="text" type="java.lang.String" value="T&#x1ea1;o h&#xf3;a &#x110;&#x1a1;n"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaoHoaDonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="330" y="10" width="-1" height="40"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel16">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="12" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="H&#xf3;a &#x110;&#x1a1;n"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="20" y="20" width="-1" height="20"/>
+                  <AbsoluteConstraints x="20" y="10" width="-1" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -178,7 +162,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="40" y="290" width="740" height="160"/>
+              <AbsoluteConstraints x="40" y="320" width="740" height="160"/>
             </Constraint>
           </Constraints>
 
@@ -201,22 +185,16 @@
                 <Component class="javax.swing.JTable" name="tblGioHang">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="6" rowCount="4">
-                        <Column editable="true" title="STT" type="java.lang.Object"/>
-                        <Column editable="true" title="M&#xe3; S&#x1ea3;n Ph&#x1ea9;m" type="java.lang.Object"/>
-                        <Column editable="true" title="T&#xea;n S&#x1ea3;n Ph&#x1ea9;m" type="java.lang.Object"/>
-                        <Column editable="true" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
-                        <Column editable="true" title="&#x110;&#x1a1;n gi&#xe1;" type="java.lang.Object"/>
-                        <Column editable="true" title="Th&#xe0;nh Ti&#x1ec1;n" type="java.lang.Object"/>
+                      <Table columnCount="5" rowCount="4">
+                        <Column editable="false" title="STT" type="java.lang.String"/>
+                        <Column editable="false" title="M&#xe3;" type="java.lang.String"/>
+                        <Column editable="false" title="T&#xea;n" type="java.lang.String"/>
+                        <Column editable="true" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng " type="java.lang.Integer"/>
+                        <Column editable="false" title="Th&#xe0;nh Ti&#xea;n" type="java.lang.Float"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -354,13 +332,13 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="7" rowCount="4">
-                        <Column editable="true" title="STT" type="java.lang.Object"/>
-                        <Column editable="true" title="M&#xe3; S&#x1ea3;n Ph&#x1ea9;m" type="java.lang.Object"/>
-                        <Column editable="true" title="T&#xea;n S&#x1ea3;n Ph&#x1ea9;m" type="java.lang.Object"/>
-                        <Column editable="true" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
-                        <Column editable="true" title="H&#xe3;ng" type="java.lang.Object"/>
-                        <Column editable="true" title="Gi&#xe1; B&#xe1;n" type="java.lang.Object"/>
-                        <Column editable="true" title="Xu&#x1ea5;t X&#x1ee9;" type="java.lang.Object"/>
+                        <Column editable="false" title="STT" type="java.lang.String"/>
+                        <Column editable="false" title="M&#xe3; S&#x1ea3;n Ph&#x1ea9;m" type="java.lang.String"/>
+                        <Column editable="false" title="T&#xea;n S&#x1ea3;n Ph&#x1ea9;m" type="java.lang.String"/>
+                        <Column editable="false" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng" type="java.lang.Integer"/>
+                        <Column editable="false" title="H&#xe3;ng SP" type="java.lang.String"/>
+                        <Column editable="false" title="Gi&#xe1; B&#xe1;n" type="java.lang.Float"/>
+                        <Column editable="false" title="Xu&#x1ea5;t X&#x1ee9;" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -406,10 +384,13 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblSanPhamMouseEntered"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btnAddGH">
+            <Component class="javax.swing.JButton" name="jButton6">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="ff" red="66" type="rgb"/>
@@ -423,7 +404,7 @@
                 <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddGHActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -563,9 +544,6 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtMaHD">
                       <Properties>
-                        <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Constraints>
@@ -584,12 +562,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtTienKhachDua">
-                      <Properties>
-                        <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                      </Properties>
+                    <Component class="javax.swing.JTextField" name="jTextField8">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="110" y="310" width="240" height="-1"/>
@@ -616,7 +589,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="cboGiamGia">
+                    <Component class="javax.swing.JComboBox" name="jComboBox1">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="0"/>
@@ -651,16 +624,13 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtTienThua">
+                    <Component class="javax.swing.JTextField" name="jTextField1">
                       <Properties>
-                        <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="110" y="410" width="240" height="-1"/>
+                          <AbsoluteConstraints x="110" y="407" width="240" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -676,7 +646,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="txtMoTa">
+                        <Component class="javax.swing.JTextArea" name="jTextArea1">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
@@ -694,7 +664,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnHuyDon">
+                    <Component class="javax.swing.JButton" name="jButton5">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="ff" red="66" type="rgb"/>
@@ -716,12 +686,7 @@
                     <Component class="javax.swing.JComboBox" name="jComboBox3">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="4">
-                            <StringItem index="0" value="T&#x1ea1;i Qu&#x1ea7;y"/>
-                            <StringItem index="1" value="Chuy&#x1ec3;n Kho&#x1ea3;n"/>
-                            <StringItem index="2" value="Qu&#x1eb9;t Th&#x1ebb;"/>
-                            <StringItem index="3" value="Qu&#xe9;t M&#xe3;"/>
-                          </StringArray>
+                          <StringArray count="0"/>
                         </Property>
                       </Properties>
                       <AuxValues>
@@ -733,7 +698,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnThanhToan">
+                    <Component class="javax.swing.JButton" name="jButton4">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="ff" red="66" type="rgb"/>
@@ -745,7 +710,6 @@
                           <Image iconType="3" name="/image/pay.png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Thanh To&#xe1;n"/>
-                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -755,9 +719,6 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtNgayTao">
                       <Properties>
-                        <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Constraints>
@@ -776,11 +737,8 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtTongTien">
+                    <Component class="javax.swing.JTextField" name="jTextField12">
                       <Properties>
-                        <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Constraints>
@@ -789,7 +747,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="cboBH">
+                    <Component class="javax.swing.JComboBox" name="jComboBox7">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="4">
@@ -852,13 +810,13 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="17" pref="17" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="jComboBox4" min="-2" pref="204" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jButton8" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1108,7 +1066,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btnXoaGH">
+        <Component class="javax.swing.JButton" name="jButton9">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="ff" red="66" type="rgb"/>
@@ -1122,40 +1080,8 @@
             <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaGHActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
           </Events>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="670" y="240" width="-1" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel17">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="S&#x1ea3;n Ph&#x1ea9;m"/>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="40" y="500" width="-1" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel18">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Gi&#x1ecf; H&#xe0;ng"/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="40" y="270" width="-1" height="-1"/>
@@ -1176,7 +1102,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="600" y="490" width="180" height="-1"/>
+              <AbsoluteConstraints x="622" y="490" width="160" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
