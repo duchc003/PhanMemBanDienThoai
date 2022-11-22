@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/C:/Users/HieuIT/OneDrive/Documents/QuanLyCuaHangDienThoai/src/service/impl/TraHangImpl.java</file>
+            <file>file:/C:/Users/HieuIT/OneDrive/Documents/QuanLyCuaHangDienThoai/src/service/TraHangService.java</file>
+            <file>file:/C:/Users/HieuIT/OneDrive/Documents/QuanLyCuaHangDienThoai/src/Application.java</file>
+            <file>file:/C:/Users/HieuIT/OneDrive/Documents/QuanLyCuaHangDienThoai/src/view/TraHangView.java</file>
+            <file>file:/C:/Users/HieuIT/OneDrive/Documents/QuanLyCuaHangDienThoai/src/repository/TraHangReposotory.java</file>
+            <file>file:/C:/Users/HieuIT/OneDrive/Documents/QuanLyCuaHangDienThoai/src/viewmodel/TraHangViewmodel.java</file>
+        </group>
+>>>>>>> 7b38b1c9ba69e499eda12bf120b1e858dea3013b
     </open-files>
 </project-private>
