@@ -234,7 +234,7 @@ public class DangKiView extends javax.swing.JFrame {
             message.setText("Tài khoản của Bạn là : " + txtTaiKhoan.getText() + ""
                     + "\n \n Mật khẩu của bạn là : " + txtMK.getText());
             Transport.send(message);
-           // JOptionPane.showMessageDialog(this, "đã gửi tài khoản và mật khẩu tới email" + txtEmail.getText());
+            // JOptionPane.showMessageDialog(this, "đã gửi tài khoản và mật khẩu tới email" + txtEmail.getText());
         } catch (MessagingException e) {
             e.printStackTrace();
         }

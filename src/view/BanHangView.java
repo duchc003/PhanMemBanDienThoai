@@ -831,12 +831,9 @@ public class BanHangView extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon));
 //        loadHoaDon();
     }
-<<<<<<< HEAD
-}
-=======
 
     private void loadHoaDon() {
-               List<HoaDonViewModel> list = hoaDonServices.getAll();
+        List<HoaDonViewModel> list = hoaDonServices.getAll();
         DefaultTableModel tblModel = new DefaultTableModel();
 
         tblModel = (DefaultTableModel) tblHoaDon.getModel();
@@ -853,4 +850,3 @@ public class BanHangView extends javax.swing.JInternalFrame {
         }
     }
 }
->>>>>>> 62c8d8a69c2c59167d20b180256a89b11290a368
