@@ -28,6 +28,7 @@ import service.SanPhamFormBanHangServices;
 import service.impl.HoaDonServicesImpl;
 import service.impl.SanPhamFormBanHangServicesImpl;
 import viewmodel.GioHangViewModel;
+import viewmodel.HoaDonViewModel;
 import viewmodel.SanPhamFormBanHangViewModel;
 
 /**
@@ -58,7 +59,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
 //        lblCamera.add(wCamPanel);
 //        initWebcam();
 
-//        loadHoaDon();
+        loadHoaDon();
         lst = sanPhamFormBanHangServices.getAll();
         loadSanPham(lst);
         cbbTenHang(sanPhamFormBanHangServices.getTenHangSPs());
@@ -829,5 +830,23 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
         JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon));
 //        loadHoaDon();
+    }
+
+    private void loadHoaDon() {
+               List<HoaDonViewModel> list = hoaDonServices.getAll();
+        DefaultTableModel tblModel = new DefaultTableModel();
+
+        tblModel = (DefaultTableModel) tblHoaDon.getModel();
+        tblModel.setRowCount(0);
+
+        int i = 1;
+        for (HoaDonViewModel hd : list) {
+            tblModel.addRow(new Object[]{
+                i++,
+                hd.getMaHD(),
+                hd.getNgayTao(),
+                hd.getTrangThai()
+            });
+        }
     }
 }
