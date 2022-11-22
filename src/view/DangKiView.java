@@ -4,21 +4,36 @@
  */
 package view;
 
+import java.awt.Color;
+import java.util.Properties;
+import java.util.regex.Pattern;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
+import javax.swing.border.Border;
+import model.NhanVien;
+import service.DangKiServices;
+import service.impl.DangKiServicesImpl;
+
 /**
  *
  * @author ASUS
  */
-public class DangKiView extends javax.swing.JFrame{
+public class DangKiView extends javax.swing.JFrame {
 
-    
+    private DangKiServices dks = new DangKiServicesImpl();
 
     public DangKiView() {
         initComponents();
-        
+        setLocationRelativeTo(null);
+
     }
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,80 +46,135 @@ public class DangKiView extends javax.swing.JFrame{
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        btnDangKi = new javax.swing.JButton();
+        txtTaiKhoan = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtMK = new javax.swing.JPasswordField();
+        txtNhapLaiMK = new javax.swing.JPasswordField();
+        lblEmail = new javax.swing.JLabel();
+        lblTaiKhoan = new javax.swing.JLabel();
+        lblMK = new javax.swing.JLabel();
+        lblNhaplai = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 255));
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nhập tài khoản");
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nhập Mật khẩu");
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nhập lại mật khẩu");
 
-        jButton1.setBackground(new java.awt.Color(51, 255, 51));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/registered.png"))); // NOI18N
-        jButton1.setText("Đăng Kí");
+        btnDangKi.setBackground(new java.awt.Color(51, 255, 51));
+        btnDangKi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDangKi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/registered.png"))); // NOI18N
+        btnDangKi.setText("Đăng Kí");
+        btnDangKi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangKiActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        txtTaiKhoan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTaiKhoanMouseClicked(evt);
+            }
+        });
+        txtTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTaiKhoanActionPerformed(evt);
+            }
+        });
+
+        txtEmail.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtEmailCaretUpdate(evt);
+            }
+        });
+        txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtEmailMouseClicked(evt);
+            }
+        });
+
         jLabel4.setText("Nhập email");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("ĐĂNG KÍ TÀI KHOẢN MỚI");
+
+        lblEmail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(131, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(124, 124, 124))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                    .addComponent(txtTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(btnDangKi))
+                    .addComponent(txtMK)
+                    .addComponent(txtNhapLaiMK)
+                    .addComponent(lblTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(lblMK, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(lblNhaplai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(13, 13, 13)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 13, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lblTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 13, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(48, 48, 48)
+                    .addComponent(jLabel2)
+                    .addComponent(txtMK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addComponent(lblMK, javax.swing.GroupLayout.DEFAULT_SIZE, 13, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(47, 47, 47)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(45, 45, 45)
-                .addComponent(jButton1)
-                .addGap(20, 20, 20))
+                    .addComponent(jLabel3)
+                    .addComponent(txtNhapLaiMK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addComponent(lblNhaplai, javax.swing.GroupLayout.DEFAULT_SIZE, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDangKi)
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -132,6 +202,70 @@ public class DangKiView extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnDangKiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKiActionPerformed
+        if (validateForm()) {
+            NhanVien nv = new NhanVien();
+            nv.setEmail(txtEmail.getText());
+            nv.setTaiKhoan(txtTaiKhoan.getText());
+            nv.setMatKhau(txtMK.getText());
+            JOptionPane.showMessageDialog(this, dks.addAccount(nv));
+        }
+        //gui email
+
+        final String username = "hieunmph22569@fpt.edu.vn";
+        final String password = "15012003";
+        Properties prop = new Properties();
+        prop.setProperty("mail.smtp.host", "smtp.gmail.com");
+        prop.setProperty("mail.smtp.port", "587");
+        prop.setProperty("mail.smtp.starttls.enable", "true");
+        prop.setProperty("mail.smtp.auth", "true");
+
+        Session session = Session.getInstance(prop,
+                new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("hieunmph22569@fpt.edu.vn"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(txtEmail.getText()));
+            message.setSubject("Tài khoản của Bạn");
+            message.setText("Tài khoản của Bạn là : " + txtTaiKhoan.getText() + ""
+                    + "\n \n Mật khẩu của bạn là : " + txtMK.getText());
+            Transport.send(message);
+           // JOptionPane.showMessageDialog(this, "đã gửi tài khoản và mật khẩu tới email" + txtEmail.getText());
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        //dong email
+
+    }//GEN-LAST:event_btnDangKiActionPerformed
+
+    private void txtEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseClicked
+        txtEmail.setBackground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailMouseClicked
+
+    private void txtTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTaiKhoanActionPerformed
+
+    }//GEN-LAST:event_txtTaiKhoanActionPerformed
+
+    private void txtTaiKhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTaiKhoanMouseClicked
+        txtTaiKhoan.setBackground(Color.white);
+    }//GEN-LAST:event_txtTaiKhoanMouseClicked
+
+    private void txtEmailCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtEmailCaretUpdate
+        Pattern p = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+        if (!p.matcher(txtEmail.getText()).find()) {
+
+            lblEmail.setText("email sai định dạng");
+            lblEmail.setForeground(Color.red);
+        } else {
+            lblEmail.setText("");
+
+        }
+    }//GEN-LAST:event_txtEmailCaretUpdate
+
     /**
      * @param args the command line arguments
      */
@@ -158,6 +292,7 @@ public class DangKiView extends javax.swing.JFrame{
             java.util.logging.Logger.getLogger(DangKiView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -168,17 +303,61 @@ public class DangKiView extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnDangKi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblMK;
+    private javax.swing.JLabel lblNhaplai;
+    private javax.swing.JLabel lblTaiKhoan;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JPasswordField txtMK;
+    private javax.swing.JPasswordField txtNhapLaiMK;
+    private javax.swing.JTextField txtTaiKhoan;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validateForm() {
+        Color color = new Color(255, 192, 203);
+        if (txtEmail.getText().isEmpty()) {
+
+            txtEmail.setBackground(color);
+
+            JOptionPane.showMessageDialog(this, "Phải nhập email");
+            return false;
+        }
+        if (txtTaiKhoan.getText().isEmpty()) {
+
+            txtTaiKhoan.setBackground(color);
+            JOptionPane.showMessageDialog(this, "Phải Nhập Tài Khoản");
+            return false;
+        }
+        if (txtMK.getText().isEmpty()) {
+
+            txtMK.setBackground(color);
+            JOptionPane.showMessageDialog(this, "Phải nhập mật khẩu");
+            return false;
+        }
+        if (txtNhapLaiMK.getText().isEmpty()) {
+
+            txtNhapLaiMK.setBackground(color);
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập lại mật khẩu");
+            return false;
+        }
+        if (txtMK.getText().equals(txtNhapLaiMK.getText()) == false) {
+            JOptionPane.showMessageDialog(this, "Mật Khẩu nhập lại không khớp");
+            return false;
+        }
+        Pattern p = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+        if (!p.matcher(txtEmail.getText()).find()) {
+            JOptionPane.showMessageDialog(this, "email sai định dạng ");
+            return false;
+        }
+        return true;
+    }
 
 }
