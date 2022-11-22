@@ -23,10 +23,10 @@ public class TraHangReposotory {
                 + "FROM            dbo.HoaDon INNER JOIN\n"
                 + "                         dbo.HoaDonChiTiet ON dbo.HoaDon.ID = dbo.HoaDonChiTiet.IDHoaDon INNER JOIN\n"
                 + "                         dbo.KhachHang ON dbo.HoaDon.IDKhachHang = dbo.KhachHang.ID";
-        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);){
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
             ResultSet rs = ps.executeQuery();
             List<TraHangViewmodel> list = new ArrayList<>();
-            while (rs.next()) {                
+            while (rs.next()) {
                 list.add(new TraHangViewmodel(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getFloat(5)));
             }
             return list;

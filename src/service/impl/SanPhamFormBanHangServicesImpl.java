@@ -5,6 +5,7 @@
 package service.impl;
 
 import java.util.List;
+import model.HangSP;
 import repository.SanPhamFormBanHangRespository;
 import service.SanPhamFormBanHangServices;
 import viewmodel.SanPhamFormBanHangViewModel;
@@ -24,6 +25,17 @@ public class SanPhamFormBanHangServicesImpl implements SanPhamFormBanHangService
     @Override
     public List<SanPhamFormBanHangViewModel> Search(String ma) {
      return sanPhamFormBanHangRespository.Search(ma);
+    }
+
+    @Override
+    public List<HangSP> getTenHangSPs() {
+        return sanPhamFormBanHangRespository.getALLHang();
+    }
+
+    @Override
+    public List<SanPhamFormBanHangViewModel> searchTenHang(List<SanPhamFormBanHangViewModel> lst, String ma) {
+        lst = sanPhamFormBanHangRespository.searchHangSPs(ma);
+        return lst;
     }
     
 }
