@@ -79,7 +79,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "                        ", "Tại Quầy", "Khác" }));
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 150, 180, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "                                ", "Đã Thanh Toán", "Đã Hủy", "Chờ Thanh Toán" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "                                        ", "Đã Thanh Toán", "Đã Hủy", "Chờ Thanh Toán", "Đang Giao Hàng", "Giao Hàng Thành Công" }));
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 180, -1));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "                                  ", "Tiền Mặt", "Quẹt Thẻ", "Chuyển Khoản", "Quét Mã" }));
