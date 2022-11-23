@@ -16,14 +16,30 @@ import util.MsgBox;
 public class DashBoard extends javax.swing.JFrame {
 
     private Color defaultColor, clickColor;
-    
+
     public DashBoard() {
         initComponents();
         setTitle("Quản Lý Cửa Hàng Bán Điện Thoại");
-//        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
-//            txtNhanVien.setText("Hoàng Công Đức");
-//            txtVaiTro.setText("Quản Lý");
-//        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            txtNhanVien.setText("Hoàng Công Đức");
+            txtVaiTro.setText("Quản Lý");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("namndph")) {
+            txtNhanVien.setText("Nguyễn Đức Nam");
+            txtVaiTro.setText("Nhân Viên");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("hieunvph")) {
+            txtNhanVien.setText("Nguyễn Minh Hiếu");
+            txtVaiTro.setText("Nhân Viên");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("huybqph")) {
+            txtNhanVien.setText("Bùi Quang Huy");
+            txtVaiTro.setText("Nhân Viên");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("huyhmph")) {
+            txtNhanVien.setText("Hoàng Minh Huy");
+            txtVaiTro.setText("Nhân Viên");
+        }
         BanHangView banHangView = new BanHangView();
         jDesktopPane1.add(banHangView).setVisible(true);
     }
@@ -498,7 +514,10 @@ public class DashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_lblHoaDonMouseClicked
 
     private void lblThoatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblThoatMouseClicked
-        System.exit(0);
+        if (MsgBox.confirm(this, "Bạn có muốn thoát không")) {
+            this.dispose();
+            new DangNhapView().setVisible(true);
+        }
     }//GEN-LAST:event_lblThoatMouseClicked
 
     private void lblBanHangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBanHangMousePressed
