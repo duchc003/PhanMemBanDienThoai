@@ -5,6 +5,8 @@
 package view;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.regex.Pattern;
 import javax.mail.Authenticator;
@@ -19,7 +21,10 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import model.NhanVien;
 import service.DangKiServices;
+import service.NhanVienService;
 import service.impl.DangKiServicesImpl;
+import service.impl.NhanVienImpl;
+import viewmodel.NhanVienViewmodel;
 
 /**
  *
@@ -27,7 +32,9 @@ import service.impl.DangKiServicesImpl;
  */
 public class DangKiView extends javax.swing.JFrame {
 
+    private NhanVienService nhanVienService = new NhanVienImpl();
     private DangKiServices dks = new DangKiServicesImpl();
+    private List<NhanVienViewmodel> nv = new ArrayList<>();
 
     public DangKiView() {
         initComponents();
@@ -108,6 +115,18 @@ public class DangKiView extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("ĐĂNG KÍ TÀI KHOẢN MỚI");
+
+        txtMK.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtMKCaretUpdate(evt);
+            }
+        });
+
+        txtNhapLaiMK.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtNhapLaiMKCaretUpdate(evt);
+            }
+        });
 
         lblEmail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
@@ -204,41 +223,51 @@ public class DangKiView extends javax.swing.JFrame {
 
     private void btnDangKiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKiActionPerformed
         if (validateForm()) {
-            NhanVien nv = new NhanVien();
-            nv.setEmail(txtEmail.getText());
-            nv.setTaiKhoan(txtTaiKhoan.getText());
-            nv.setMatKhau(txtMK.getText());
-            JOptionPane.showMessageDialog(this, dks.addAccount(nv));
-        }
-        //gui email
+            if (validatePass() == false) {
 
-        final String username = "cuahangdienthoaipoly@gmail.com";
-        final String password = "sizpciyelmjqhbud";
-        Properties prop = new Properties();
-        prop.setProperty("mail.smtp.host", "smtp.gmail.com");
-        prop.setProperty("mail.smtp.port", "587");
-        prop.setProperty("mail.smtp.starttls.enable", "true");
-        prop.setProperty("mail.smtp.auth", "true");
-
-        Session session = Session.getInstance(prop,
-                new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
+                return;
             }
-        });
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("cuahangdienthoaipoly@gmail.com"));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(txtEmail.getText()));
-            message.setSubject("Tài khoản của Bạn");
-            message.setText("Tài khoản của Bạn là : " + txtTaiKhoan.getText() + ""
-                    + "\n \n Mật khẩu của bạn là : " + txtMK.getText());
-            Transport.send(message);
-            // JOptionPane.showMessageDialog(this, "đã gửi tài khoản và mật khẩu tới email" + txtEmail.getText());
-        } catch (MessagingException e) {
-            e.printStackTrace();
+            nv = dks.getEmail(txtEmail.getText());
+            if (nv.size() > 0) {
+                String taikhoan = txtTaiKhoan.getText();
+                String matkhau = txtMK.getText();
+                String email = txtEmail.getText();
+
+                JOptionPane.showMessageDialog(this, dks.addAccount(taikhoan, matkhau, email));
+                //gui email
+                final String username = "cuahangdienthoaipoly@gmail.com";
+                final String password = "sizpciyelmjqhbud";
+                Properties prop = new Properties();
+                prop.setProperty("mail.smtp.host", "smtp.gmail.com");
+                prop.setProperty("mail.smtp.port", "587");
+                prop.setProperty("mail.smtp.starttls.enable", "true");
+                prop.setProperty("mail.smtp.auth", "true");
+
+                Session session = Session.getInstance(prop,
+                        new Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+                try {
+                    Message message = new MimeMessage(session);
+                    message.setFrom(new InternetAddress("cuahangdienthoaipoly@gmail.com"));
+                    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(txtEmail.getText()));
+                    message.setSubject("Tài khoản của Bạn");
+                    message.setText("Tài khoản của Bạn là : " + txtTaiKhoan.getText() + ""
+                            + "\n \n Mật khẩu của bạn là : " + txtMK.getText());
+                    Transport.send(message);
+                    // JOptionPane.showMessageDialog(this, "đã gửi tài khoản và mật khẩu tới email" + txtEmail.getText());
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                }
+                //dong email 
+            } else {
+                JOptionPane.showMessageDialog(this, "Email không tồn tại trong hệ thống");
+                return;
+            }
+
         }
-        //dong email
 
     }//GEN-LAST:event_btnDangKiActionPerformed
 
@@ -260,11 +289,36 @@ public class DangKiView extends javax.swing.JFrame {
 
             lblEmail.setText("email sai định dạng");
             lblEmail.setForeground(Color.red);
+
         } else {
+
             lblEmail.setText("");
 
         }
     }//GEN-LAST:event_txtEmailCaretUpdate
+
+    private void txtMKCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtMKCaretUpdate
+              Pattern p = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+        if (p.matcher(txtMK.getText()).find() == true) {
+            lblMK.setText("Mật khẩu mạnh");
+            lblMK.setForeground(Color.green);
+           
+        }
+        if (p.matcher(txtMK.getText()).find() == false) {
+            lblMK.setText("Mật khẩu yếu");
+            lblMK.setForeground(Color.red);
+        }
+    }//GEN-LAST:event_txtMKCaretUpdate
+
+    private void txtNhapLaiMKCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNhapLaiMKCaretUpdate
+                   if (txtMK.getText().equals(txtNhapLaiMK.getText())) {
+            lblNhaplai.setText("Khớp");
+            lblNhaplai.setForeground(Color.green);
+        } else {
+            lblNhaplai.setText("Không khớp");
+            lblNhaplai.setForeground(Color.red);
+        }
+    }//GEN-LAST:event_txtNhapLaiMKCaretUpdate
 
     /**
      * @param args the command line arguments
@@ -359,5 +413,12 @@ public class DangKiView extends javax.swing.JFrame {
         }
         return true;
     }
-
+        private boolean validatePass() {
+        Pattern p = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+        if (p.matcher(txtMK.getText()).find() == false) {
+            JOptionPane.showMessageDialog(this, " Mật khẩu tối thiểu tám ký tự \n Ít nhất một chữ cái viết hoa\n Một chữ cái viết thường \n Một số và một ký tự đặc biệt!");
+            return false;
+        }
+        return true;
+    }
 }

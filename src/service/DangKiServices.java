@@ -4,8 +4,11 @@
  */
 package service;
 
+import java.util.List;
 import model.NhanVien;
+import viewmodel.NhanVienViewmodel;
 
 public interface DangKiServices {
-    String addAccount(NhanVien nv);
+    String addAccount(String taikhoan,String matkhau,String email);
+    List<NhanVienViewmodel> getEmail(String email);
 }
