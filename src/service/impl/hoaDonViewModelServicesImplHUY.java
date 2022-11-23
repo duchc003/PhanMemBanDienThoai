@@ -25,5 +25,21 @@ public class hoaDonViewModelServicesImplHUY implements hoaDonViewModelServicesHU
     public List<hoaDonViewModelHUY> timKiemHoaDonViewModelHUY(String maHD) {
        return hoaDonViewModelRepositoryHUY.timKiemHoaDonViewModel(maHD);
     }
+
+    @Override
+    public List<hoaDonViewModelHUY> timKiemCombobox(String trangThai) {
+        return hoaDonViewModelRepositoryHUY.timKiemCombobox(trangThai);
+    }
+
+    @Override
+    public List<hoaDonViewModelHUY> timKiemCombobox1(String TenHTTT) {
+        return hoaDonViewModelRepositoryHUY.timKiemCombobox1(TenHTTT);
+        
+    }
+
+    @Override
+    public List<hoaDonViewModelHUY> timKiemCombobox2(String TenHTGH) {
+        return hoaDonViewModelRepositoryHUY.timKiemCombobox2(TenHTGH);
+    }
    
 }

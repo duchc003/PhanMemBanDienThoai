@@ -20,6 +20,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
      * Creates new form HoaDonView
      */
     private final hoaDonViewModelServicesImplHUY hoaViewModelServicesImplHUY = new hoaDonViewModelServicesImplHUY();
+
     public HoaDonView() {
         initComponents();
         initComponents();
@@ -43,9 +44,9 @@ public class HoaDonView extends javax.swing.JInternalFrame {
         txt_timKiem = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cbo_HTGH = new javax.swing.JComboBox<>();
+        cbo_trangThai = new javax.swing.JComboBox<>();
+        cbo_HTTT = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
@@ -76,14 +77,34 @@ public class HoaDonView extends javax.swing.JInternalFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 330, 1270, 460));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tại Quầy", "Khác" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 150, 180, -1));
+        cbo_HTGH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tại Quầy", "Khác" }));
+        cbo_HTGH.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbo_HTGHItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(cbo_HTGH, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 150, 180, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đã Thanh Toán", "Đã Hủy", "Chờ Thanh Toán", "Đang Giao Hàng", "Giao Hàng Thành Công" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 180, -1));
+        cbo_trangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đã Thanh Toán", "Đã Hủy", "Chờ Thanh Toán", "Đang Giao Hàng", "Giao Hàng Thành Công" }));
+        cbo_trangThai.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbo_trangThaiItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(cbo_trangThai, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 180, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiền Mặt", "Quẹt Thẻ", "Chuyển Khoản", "Quét Mã" }));
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 150, 180, -1));
+        cbo_HTTT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiền Mặt", "Quẹt Thẻ", "Chuyển Khoản", "Quét Mã" }));
+        cbo_HTTT.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbo_HTTTItemStateChanged(evt);
+            }
+        });
+        cbo_HTTT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_HTTTActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cbo_HTTT, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 150, 180, -1));
 
         jButton1.setBackground(new java.awt.Color(51, 255, 51));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -115,26 +136,250 @@ public class HoaDonView extends javax.swing.JInternalFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemHoaDonViewModelHUY(maHD);
-         for (hoaDonViewModelHUY hd : list) {
-        model.addRow(new Object[]{
-             hd.getMaHD(),
-            hd.getHoVaTen(),
-            hd.getSoLuong(),
-            hd.getThanhTien(),
-            hd.getTenHTTT(),
-            hd.getTenHTGH(),
-            hd.getTrangThai()
-                        
-        });
-         }
+        for (hoaDonViewModelHUY hd : list) {
+            model.addRow(new Object[]{
+                hd.getMaHD(),
+                hd.getHoVaTen(),
+                hd.getSoLuong(),
+                hd.getThanhTien(),
+                hd.getTenHTTT(),
+                hd.getTenHTGH(),
+                hd.getTrangThai()
+
+            });
+        }
     }//GEN-LAST:event_txt_timKiemCaretUpdate
+
+    private void cbo_trangThaiItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_trangThaiItemStateChanged
+        // TODO add your handling code here:
+        if (cbo_trangThai.getSelectedIndex() == 0) {
+            String tranThai = cbo_trangThai.getSelectedItem().toString();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            for (hoaDonViewModelHUY hd : list) {
+                model.addRow(new Object[]{
+                    hd.getMaHD(),
+                    hd.getHoVaTen(),
+                    hd.getSoLuong(),
+                    hd.getThanhTien(),
+                    hd.getTenHTTT(),
+                    hd.getTenHTGH(),
+                    hd.getTrangThai()
+
+                });
+                return;
+            }
+        }
+        if (cbo_trangThai.getSelectedIndex() == 1) {
+            String tranThai = cbo_trangThai.getSelectedItem().toString();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            for (hoaDonViewModelHUY hd : list) {
+                model.addRow(new Object[]{
+                    hd.getMaHD(),
+                    hd.getHoVaTen(),
+                    hd.getSoLuong(),
+                    hd.getThanhTien(),
+                    hd.getTenHTTT(),
+                    hd.getTenHTGH(),
+                    hd.getTrangThai()
+
+                });
+                    return;
+            }
+        }
+        if (cbo_trangThai.getSelectedIndex() == 2) {
+            String tranThai = cbo_trangThai.getSelectedItem().toString();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            for (hoaDonViewModelHUY hd : list) {
+                model.addRow(new Object[]{
+                    hd.getMaHD(),
+                    hd.getHoVaTen(),
+                    hd.getSoLuong(),
+                    hd.getThanhTien(),
+                    hd.getTenHTTT(),
+                    hd.getTenHTGH(),
+                    hd.getTrangThai()
+
+                });
+                    return;
+            }
+        }
+        if (cbo_trangThai.getSelectedIndex() == 3) {
+            String tranThai = cbo_trangThai.getSelectedItem().toString();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            for (hoaDonViewModelHUY hd : list) {
+                model.addRow(new Object[]{
+                    hd.getMaHD(),
+                    hd.getHoVaTen(),
+                    hd.getSoLuong(),
+                    hd.getThanhTien(),
+                    hd.getTenHTTT(),
+                    hd.getTenHTGH(),
+                    hd.getTrangThai()
+
+                });
+                    return;
+            }
+        }
+          if (cbo_trangThai.getSelectedIndex() == 4) {
+            String tranThai = cbo_trangThai.getSelectedItem().toString();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            for (hoaDonViewModelHUY hd : list) {
+                model.addRow(new Object[]{
+                    hd.getMaHD(),
+                    hd.getHoVaTen(),
+                    hd.getSoLuong(),
+                    hd.getThanhTien(),
+                    hd.getTenHTTT(),
+                    hd.getTenHTGH(),
+                    hd.getTrangThai()
+
+                });
+                    return;
+            }
+        }
+    }//GEN-LAST:event_cbo_trangThaiItemStateChanged
+
+    private void cbo_HTTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_HTTTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbo_HTTTActionPerformed
+
+    private void cbo_HTTTItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_HTTTItemStateChanged
+          if (cbo_HTTT.getSelectedIndex() == 0) {
+            String tranThai = cbo_trangThai.getSelectedItem().toString();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            for (hoaDonViewModelHUY hd : list) {
+                model.addRow(new Object[]{
+                    hd.getMaHD(),
+                    hd.getHoVaTen(),
+                    hd.getSoLuong(),
+                    hd.getThanhTien(),
+                    hd.getTenHTTT(),
+                    hd.getTenHTGH(),
+                    hd.getTrangThai()
+
+                });
+                    return;
+            }
+        }
+            if (cbo_trangThai.getSelectedIndex() == 1) {
+            String tranThai = cbo_trangThai.getSelectedItem().toString();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            for (hoaDonViewModelHUY hd : list) {
+                model.addRow(new Object[]{
+                    hd.getMaHD(),
+                    hd.getHoVaTen(),
+                    hd.getSoLuong(),
+                    hd.getThanhTien(),
+                    hd.getTenHTTT(),
+                    hd.getTenHTGH(),
+                    hd.getTrangThai()
+
+                });
+                    return;
+            }
+        }
+              if (cbo_trangThai.getSelectedIndex() == 2) {
+            String tranThai = cbo_trangThai.getSelectedItem().toString();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            for (hoaDonViewModelHUY hd : list) {
+                model.addRow(new Object[]{
+                    hd.getMaHD(),
+                    hd.getHoVaTen(),
+                    hd.getSoLuong(),
+                    hd.getThanhTien(),
+                    hd.getTenHTTT(),
+                    hd.getTenHTGH(),
+                    hd.getTrangThai()
+
+                });
+                    return;
+            }
+        }
+                if (cbo_trangThai.getSelectedIndex() == 3) {
+            String tranThai = cbo_trangThai.getSelectedItem().toString();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            for (hoaDonViewModelHUY hd : list) {
+                model.addRow(new Object[]{
+                    hd.getMaHD(),
+                    hd.getHoVaTen(),
+                    hd.getSoLuong(),
+                    hd.getThanhTien(),
+                    hd.getTenHTTT(),
+                    hd.getTenHTGH(),
+                    hd.getTrangThai()
+
+                });
+                    return;
+            }
+        }
+    }//GEN-LAST:event_cbo_HTTTItemStateChanged
+
+    private void cbo_HTGHItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_HTGHItemStateChanged
+        // TODO add your handling code here:
+            if (cbo_HTGH.getSelectedIndex() == 0) {
+            String tranThai = cbo_trangThai.getSelectedItem().toString();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            for (hoaDonViewModelHUY hd : list) {
+                model.addRow(new Object[]{
+                    hd.getMaHD(),
+                    hd.getHoVaTen(),
+                    hd.getSoLuong(),
+                    hd.getThanhTien(),
+                    hd.getTenHTTT(),
+                    hd.getTenHTGH(),
+                    hd.getTrangThai()
+
+                });
+                    return;
+            }
+        }
+                        if (cbo_HTGH.getSelectedIndex() == 1) {
+            String tranThai = cbo_trangThai.getSelectedItem().toString();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            for (hoaDonViewModelHUY hd : list) {
+                model.addRow(new Object[]{
+                    hd.getMaHD(),
+                    hd.getHoVaTen(),
+                    hd.getSoLuong(),
+                    hd.getThanhTien(),
+                    hd.getTenHTTT(),
+                    hd.getTenHTGH(),
+                    hd.getTrangThai()
+
+                });
+                    return;
+            }
+        }
+    }//GEN-LAST:event_cbo_HTGHItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbo_HTGH;
+    private javax.swing.JComboBox<String> cbo_HTTT;
+    private javax.swing.JComboBox<String> cbo_trangThai;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -142,24 +387,22 @@ public class HoaDonView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_timKiem;
     // End of variables declaration//GEN-END:variables
 
+    private void loadtable() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.getAllhoaDonViewModelHUY();
+        for (hoaDonViewModelHUY hd : list) {
+            model.addRow(new Object[]{
+                hd.getMaHD(),
+                hd.getHoVaTen(),
+                hd.getSoLuong(),
+                hd.getThanhTien(),
+                hd.getTenHTTT(),
+                hd.getTenHTGH(),
+                hd.getTrangThai()
 
-private void loadtable(){
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0);
-    List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.getAllhoaDonViewModelHUY();
-    for (hoaDonViewModelHUY hd : list) {
-        model.addRow(new Object[]{
-             hd.getMaHD(),
-            hd.getHoVaTen(),
-            hd.getSoLuong(),
-            hd.getThanhTien(),
-            hd.getTenHTTT(),
-            hd.getTenHTGH(),
-            hd.getTrangThai()
-                        
-        });
+            });
+        }
+
     }
-            
-            
-}
 }
