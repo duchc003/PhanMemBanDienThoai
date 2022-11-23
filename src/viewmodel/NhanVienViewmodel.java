@@ -28,6 +28,10 @@ public class NhanVienViewmodel {
         this.sdt = sdt;
         this.email = email;
     }
+     public NhanVienViewmodel(String email) {
+   
+        this.email = email;
+    }
 
     public String getMaNV() {
         return maNV;

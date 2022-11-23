@@ -4,19 +4,41 @@
  */
 package repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-import model.NhanVien;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import util.JDBCHelper;
+import viewmodel.NhanVienViewmodel;
 
 /**
  *
  * @author Admin
  */
 public class DangKiRespository {
-    public int addAccount(NhanVien nv){
-        int row=0;
-        String sql ="INSERT INTO NhanVien(Email,TaiKhoan,MatKhau) values(?,?,?)";
-        row = JDBCHelper.executeUpdate(sql, nv.getEmail(),nv.getTaiKhoan(),nv.getMatKhau());
+
+    public int addAccount(String taikhoan, String matkhau, String email) {
+        int row = 0;
+        String sql = "UPDATE NhanVien SET TaiKhoan =? ,MatKhau=?\n"
+                + "WHERE Email = ?";
+        row = JDBCHelper.executeUpdate(sql, taikhoan, matkhau, email);
         return row;
+    }
+
+    public List<NhanVienViewmodel> getEmail(String email) {
+        List<NhanVienViewmodel> nv = new ArrayList<>();
+        String sql = "SELECT Email FROM NHANVIEN WHERE Email= ?";
+        ResultSet rs = JDBCHelper.executeQuery(sql, email);
+        try {
+            while (rs.next()) {
+                nv.add(new NhanVienViewmodel(rs.getString(1)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DangKiRespository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nv;
     }
 }
