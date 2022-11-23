@@ -16,14 +16,14 @@ import util.MsgBox;
  * @author ASUS
  */
 public class DangNhapView extends javax.swing.JFrame {
-    
+
     private DangNhapServiceImpl dangNhapServiceImpl = new DangNhapServiceImpl();
-    
+
     public DangNhapView() {
         initComponents();
         setLocationRelativeTo(null);
     }
-    
+
     private void dangNhap() {
         String taiKhoan = txtDangNhap.getText();
         String matKhau = txtPass.getText();
@@ -36,7 +36,7 @@ public class DangNhapView extends javax.swing.JFrame {
             MsgBox.alert(this, "Đăng nhập thành công");
             new DashBoard().setVisible(true);
             this.dispose();
-        }else{
+        } else {
             MsgBox.alert(this, "Tài khoản hoặc mật khẩu không đúng");
         }
     }
@@ -73,23 +73,28 @@ public class DangNhapView extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Đăng Nhập");
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Mật Khẩu");
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Quên Mật Khẩu ?");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Đăng Kí");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Đổi Mật Khẩu");
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -99,7 +104,6 @@ public class DangNhapView extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(51, 255, 51));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/user.png"))); // NOI18N
         jButton1.setText("Đăng Nhập");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +114,6 @@ public class DangNhapView extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(51, 255, 51));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/user.png"))); // NOI18N
         jButton2.setText("Thoát");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +225,16 @@ public class DangNhapView extends javax.swing.JFrame {
         new DoiMatKhauView().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        new QuenMatKhau().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        new DangKiView().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
 
     /**
      * @param args the command line arguments
