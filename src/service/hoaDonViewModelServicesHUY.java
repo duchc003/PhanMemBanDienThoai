@@ -12,7 +12,14 @@ import viewmodel.hoaDonViewModelHUY;
  * @author Banh Chung Ran
  */
 public interface hoaDonViewModelServicesHUY {
+
     List<hoaDonViewModelHUY> getAllhoaDonViewModelHUY();
-    
+
     List<hoaDonViewModelHUY> timKiemHoaDonViewModelHUY(String maHD);
+
+    List<hoaDonViewModelHUY> timKiemCombobox(String trangThai);
+    
+    List<hoaDonViewModelHUY> timKiemCombobox1(String TenHTTT);
+    
+    List<hoaDonViewModelHUY> timKiemCombobox2(String TenHTGH);
 }

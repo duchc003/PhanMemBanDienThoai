@@ -67,4 +67,77 @@ public class hoaDonViewModelRepositoryHUY {
 
         return timKiem;
     }
+    public List<hoaDonViewModelHUY> timKiemCombobox(String trangThai){
+        List<hoaDonViewModelHUY> listtimKiem = new ArrayList<>();
+        String sql ="select HoaDon.MaHD,KhachHang.HoVaTen,HoaDonChiTiet.SoLuong,HoaDonChiTiet.ThanhTien,TenHTTT,TenHTGH,TrangThai from\n"
+                + "HoaDon join KhachHang on KhachHang.ID = HoaDon.ID join HinhThucGiaoHang on HinhThucGiaoHang.ID = HoaDon.IDHinhTGH join HinhThucThanhToan on HinhThucThanhToan.ID = HoaDon.IDHinhTTT join HoaDonChiTiet \n"
+                + "on HoaDon.ID = HoaDonChiTiet.IDHoaDon join SanPham on SanPham.ID = HoaDonChiTiet.IDSP\n"
+                + "where TrangThai = ?";
+        ResultSet rs= JDBCHelper.executeQuery(sql, trangThai);
+        try {
+            while (rs.next()) {
+                listtimKiem.add(new hoaDonViewModelHUY(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getInt(3),
+                        rs.getDouble(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7)));
+           
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listtimKiem;
+    }
+     public List<hoaDonViewModelHUY> timKiemCombobox1(String TenHTTT){
+        List<hoaDonViewModelHUY> listtimKiem = new ArrayList<>();
+        String sql ="select HoaDon.MaHD,KhachHang.HoVaTen,HoaDonChiTiet.SoLuong,HoaDonChiTiet.ThanhTien,TenHTTT,TenHTGH,TrangThai from\n"
+                + "HoaDon join KhachHang on KhachHang.ID = HoaDon.ID join HinhThucGiaoHang on HinhThucGiaoHang.ID = HoaDon.IDHinhTGH join HinhThucThanhToan on HinhThucThanhToan.ID = HoaDon.IDHinhTTT join HoaDonChiTiet \n"
+                + "on HoaDon.ID = HoaDonChiTiet.IDHoaDon join SanPham on SanPham.ID = HoaDonChiTiet.IDSP\n"
+                + "where TenHTTT = ?";
+        ResultSet rs= JDBCHelper.executeQuery(sql, TenHTTT);
+        try {
+            while (rs.next()) {
+                listtimKiem.add(new hoaDonViewModelHUY(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getInt(3),
+                        rs.getDouble(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7)));
+           
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listtimKiem;
+    }
+    
+       public List<hoaDonViewModelHUY> timKiemCombobox2(String TenHTGH){
+        List<hoaDonViewModelHUY> listtimKiem = new ArrayList<>();
+        String sql ="select HoaDon.MaHD,KhachHang.HoVaTen,HoaDonChiTiet.SoLuong,HoaDonChiTiet.ThanhTien,TenHTTT,TenHTGH,TrangThai from\n"
+                + "HoaDon join KhachHang on KhachHang.ID = HoaDon.ID join HinhThucGiaoHang on HinhThucGiaoHang.ID = HoaDon.IDHinhTGH join HinhThucThanhToan on HinhThucThanhToan.ID = HoaDon.IDHinhTTT join HoaDonChiTiet \n"
+                + "on HoaDon.ID = HoaDonChiTiet.IDHoaDon join SanPham on SanPham.ID = HoaDonChiTiet.IDSP\n"
+                + "where TenHTTT = ?";
+        ResultSet rs= JDBCHelper.executeQuery(sql, TenHTGH);
+        try {
+            while (rs.next()) {
+                listtimKiem.add(new hoaDonViewModelHUY(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getInt(3),
+                        rs.getDouble(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7)));
+           
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listtimKiem;
+    }
 }
