@@ -829,7 +829,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         hoaDon.setTrangThai("Chờ Thanh Toán");
 
         JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon));
-//        loadHoaDon();
+        loadHoaDon();
     }
 
     private void loadHoaDon() {
