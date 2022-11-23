@@ -4,10 +4,20 @@
  */
 package view;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
+import javax.swing.JFileChooser;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import service.impl.hoaDonViewModelServicesImplHUY;
+import util.MsgBox;
 import viewmodel.hoaDonViewModelHUY;
 
 /**
@@ -43,7 +53,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         txt_timKiem = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblHoaDon = new javax.swing.JTable();
         cbo_HTGH = new javax.swing.JComboBox<>();
         cbo_trangThai = new javax.swing.JComboBox<>();
         cbo_HTTT = new javax.swing.JComboBox<>();
@@ -62,7 +72,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
         });
         jPanel1.add(txt_timKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 940, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -73,7 +83,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                 "MaHD", "Tên Khách Hàng", "Số lượng", "Thành Tiền", "tên  HTTT", "Tên HTGH", "Trạng Thái"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblHoaDon);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 330, 1270, 460));
 
@@ -110,7 +120,12 @@ public class HoaDonView extends javax.swing.JInternalFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/export.png"))); // NOI18N
         jButton1.setText("Xuất");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 270, -1, -1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 260, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,7 +148,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
             return;
         }
         String maHD = txt_timKiem.getText();
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
         model.setRowCount(0);
         List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemHoaDonViewModelHUY(maHD);
         for (hoaDonViewModelHUY hd : list) {
@@ -154,7 +169,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (cbo_trangThai.getSelectedIndex() == 0) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
             List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
             for (hoaDonViewModelHUY hd : list) {
@@ -173,7 +188,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
         }
         if (cbo_trangThai.getSelectedIndex() == 1) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
             List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
             for (hoaDonViewModelHUY hd : list) {
@@ -187,12 +202,12 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                    return;
+                return;
             }
         }
         if (cbo_trangThai.getSelectedIndex() == 2) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
             List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
             for (hoaDonViewModelHUY hd : list) {
@@ -206,12 +221,12 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                    return;
+                return;
             }
         }
         if (cbo_trangThai.getSelectedIndex() == 3) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
             List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
             for (hoaDonViewModelHUY hd : list) {
@@ -225,12 +240,12 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                    return;
+                return;
             }
         }
-          if (cbo_trangThai.getSelectedIndex() == 4) {
+        if (cbo_trangThai.getSelectedIndex() == 4) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
             List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
             for (hoaDonViewModelHUY hd : list) {
@@ -244,7 +259,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                    return;
+                return;
             }
         }
     }//GEN-LAST:event_cbo_trangThaiItemStateChanged
@@ -254,9 +269,9 @@ public class HoaDonView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbo_HTTTActionPerformed
 
     private void cbo_HTTTItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_HTTTItemStateChanged
-          if (cbo_HTTT.getSelectedIndex() == 0) {
+        if (cbo_HTTT.getSelectedIndex() == 0) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
             List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
             for (hoaDonViewModelHUY hd : list) {
@@ -270,12 +285,12 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                    return;
+                return;
             }
         }
-            if (cbo_trangThai.getSelectedIndex() == 1) {
+        if (cbo_trangThai.getSelectedIndex() == 1) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
             List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
             for (hoaDonViewModelHUY hd : list) {
@@ -289,12 +304,12 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                    return;
+                return;
             }
         }
-              if (cbo_trangThai.getSelectedIndex() == 2) {
+        if (cbo_trangThai.getSelectedIndex() == 2) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
             List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
             for (hoaDonViewModelHUY hd : list) {
@@ -308,12 +323,12 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                    return;
+                return;
             }
         }
-                if (cbo_trangThai.getSelectedIndex() == 3) {
+        if (cbo_trangThai.getSelectedIndex() == 3) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
             List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
             for (hoaDonViewModelHUY hd : list) {
@@ -327,16 +342,16 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                    return;
+                return;
             }
         }
     }//GEN-LAST:event_cbo_HTTTItemStateChanged
 
     private void cbo_HTGHItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_HTGHItemStateChanged
         // TODO add your handling code here:
-            if (cbo_HTGH.getSelectedIndex() == 0) {
+        if (cbo_HTGH.getSelectedIndex() == 0) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
             List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
             for (hoaDonViewModelHUY hd : list) {
@@ -350,12 +365,12 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                    return;
+                return;
             }
         }
-                        if (cbo_HTGH.getSelectedIndex() == 1) {
+        if (cbo_HTGH.getSelectedIndex() == 1) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
             List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
             for (hoaDonViewModelHUY hd : list) {
@@ -369,10 +384,14 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                    return;
+                return;
             }
         }
     }//GEN-LAST:event_cbo_HTGHItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        xuatExcel();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -383,12 +402,59 @@ public class HoaDonView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblHoaDon;
     private javax.swing.JTextField txt_timKiem;
     // End of variables declaration//GEN-END:variables
 
+    private void openFile(String file) {
+        try {
+            File path = new File(file);
+            Desktop.getDesktop().open(path);
+        } catch (IOException ioe) {
+            System.out.println(ioe);
+        }
+    }
+    
+    private void xuatExcel() {
+        DefaultTableModel model = (DefaultTableModel) this.tblHoaDon.getModel();
+        JFileChooser jfc = new JFileChooser("documents");
+        int result = jfc.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            try {
+                File newFile = jfc.getSelectedFile();
+                newFile = new File(newFile.toString() + ".xlsx");
+                XSSFWorkbook xwb = new XSSFWorkbook();
+                XSSFSheet Diemsheep = xwb.createSheet("Thống kê Hóa Đơn");
+                XSSFRow row = Diemsheep.createRow((short) 0);
+                XSSFCell h;
+                for (int i = 0; i < model.getColumnCount(); i++) {
+                    h = row.createCell((short) i);
+                    h.setCellValue(model.getColumnName(i));
+                }
+
+                XSSFRow row1;
+                XSSFCell a1;
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    row1 = Diemsheep.createRow((short) i + 1);
+                    for (int j = 0; j < model.getColumnCount(); j++) {
+                        a1 = row1.createCell((short) j);
+                        a1.setCellValue(model.getValueAt(i, j).toString());
+                    }
+                }
+                FileOutputStream file = new FileOutputStream(newFile.getAbsoluteFile().getPath());
+                xwb.write(file);
+                xwb.close();
+                file.close();
+                MsgBox.alert(this, "Xuất tệp thành công");
+                openFile(newFile.toString());
+            } catch (Exception e) {
+                MsgBox.alert(this, "Xuất tệp thất bại");
+            }
+        }
+    }
+
     private void loadtable() {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
         model.setRowCount(0);
         List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.getAllhoaDonViewModelHUY();
         for (hoaDonViewModelHUY hd : list) {
