@@ -4,7 +4,27 @@
  */
 package view;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
+import model.SanPham;
+import viewmodel.SanPhamViewModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import service.impl.SanPhamImpl;
 
 /**
  *
@@ -12,16 +32,29 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class ThongKeView extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ThongKeView
-     */
+    private DefaultTableModel dtm = new DefaultTableModel();
+    private SanPhamImpl SP = new SanPhamImpl();
+    private SanPham sanPham = new SanPham();
+
     public ThongKeView() {
         initComponents();
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
+        tblXuatHoaDon.setModel(dtm);
+        Object[] SanPham = {"ID", "ID Khuyến mãi", "ID Phụ Kiện", "ID Hãng", "Mã SP", "Tên SP", "Mã IMEI"};
+        dtm.setColumnIdentifiers(SanPham);
+        showDataTable(SP.getAll());
     }
+
+    private void showDataTable(List<SanPhamViewModel> lists) {
+        dtm.setRowCount(0);
+        for (SanPhamViewModel sv : lists) {
+            dtm.addRow(sv.todataRow());
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,7 +108,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblXuatHoaDon = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -395,7 +428,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblXuatHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -406,11 +439,16 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblXuatHoaDon);
 
         jButton1.setBackground(new java.awt.Color(51, 255, 51));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/export.png"))); // NOI18N
         jButton1.setText("Xuất thống kê sản phẩm ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -568,6 +606,83 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+//        try {
+//            XSSFWorkbook wordkbook = new XSSFWorkbook();
+//            XSSFSheet sheet = wordkbook.createSheet("danhsach");
+//            XSSFRow row = null;
+//            Cell cell = null;
+//            row = sheet.createRow(2);
+//            cell = row.createCell(0, CellType.STRING);
+//            cell.setCellValue("DANH SACH GIA SACH");
+//
+//            row = sheet.createRow(3);
+//            cell = row.createCell(0, CellType.STRING);
+//            cell.setCellValue("ID");
+//
+//            cell = row.createCell(1, CellType.STRING);
+//            cell.setCellValue("ID Khuyến mãi");
+//
+//            cell = row.createCell(2, CellType.STRING);
+//            cell.setCellValue("ID Phụ Kiện");
+//
+//            cell = row.createCell(3, CellType.STRING);
+//            cell.setCellValue("ID Hãng");
+//            cell = row.createCell(4, CellType.STRING);
+//            cell.setCellValue("Mã SP");
+//            cell = row.createCell(5, CellType.STRING);
+//            cell.setCellValue("Tên SP");
+//            cell = row.createCell(6, CellType.STRING);
+//            cell.setCellValue("Mã IMEI");
+//
+//            for (int i = 0; i < arr.size(); i++) {
+////                SanPham book =arr.get(i);
+//                row = sheet.createRow(4 + i);
+//
+//                cell = row.createCell(0, CellType.STRING);
+//                cell.setCellValue(i + 1);
+//
+//                cell = row.createCell(1, CellType.STRING);
+//                cell.setCellValue(arr.get(i).getId());
+//
+//                cell = row.createCell(2, CellType.STRING);
+//                cell.setCellValue(arr.get(i).getIdKM());
+//
+//                cell = row.createCell(3, CellType.STRING);
+//                cell.setCellValue(arr.get(i).getIdPK());
+//
+//                cell = row.createCell(4, CellType.STRING);
+//                cell.setCellValue(arr.get(i).getIdHang());
+//
+//                cell = row.createCell(5, CellType.STRING);
+//                cell.setCellValue(arr.get(i).getMa() + "");
+//
+//                cell = row.createCell(6, CellType.STRING);
+//                cell.setCellValue(arr.get(i).getTen() + "");
+//
+////                cell = row.createCell(7, CellType.STRING);
+////                cell.setCellValue(arr.get(i).getMaIMEI() + "");
+//            }
+//            File f = new File("D://danhsach.xlsx");
+//            try {
+//                FileOutputStream fis = new FileOutputStream(f);
+//                wordkbook.write(fis);
+//                fis.close();
+//            } catch (FileNotFoundException ex) {
+//                ex.printStackTrace();
+//
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            }
+//
+//            JOptionPane.showMessageDialog(this, "in thanh cong D:\\danhsach");
+//
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//            JOptionPane.showMessageDialog(this, "Loi mo file");
+//        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -622,7 +737,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable tblXuatHoaDon;
     // End of variables declaration//GEN-END:variables
 }
