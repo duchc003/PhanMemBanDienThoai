@@ -20,7 +20,7 @@ public class DashBoard extends javax.swing.JFrame {
     public DashBoard() {
         initComponents();
         setTitle("Quản Lý Cửa Hàng Bán Điện Thoại");
-        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("alo")) {
             txtNhanVien.setText("Hoàng Công Đức");
             txtVaiTro.setText("Quản Lý");
         }
@@ -98,12 +98,10 @@ public class DashBoard extends javax.swing.JFrame {
 
         txtNhanVien.setBackground(new java.awt.Color(0, 0, 0));
         txtNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtNhanVien.setForeground(new java.awt.Color(0, 0, 0));
         txtNhanVien.setText("Tên Nhân Viên");
 
         txtVaiTro.setBackground(new java.awt.Color(0, 0, 0));
         txtVaiTro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtVaiTro.setForeground(new java.awt.Color(0, 0, 0));
         txtVaiTro.setText("Vai Trò");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -140,10 +138,8 @@ public class DashBoard extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(0, 204, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.setForeground(new java.awt.Color(0, 0, 0));
 
         lblBanHang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblBanHang.setForeground(new java.awt.Color(0, 0, 0));
         lblBanHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/personal.png"))); // NOI18N
         lblBanHang.setText("      Bán Hàng");
         lblBanHang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -174,7 +170,6 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lblSanPham.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblSanPham.setForeground(new java.awt.Color(0, 0, 0));
         lblSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/smartphone.png"))); // NOI18N
         lblSanPham.setText("      Sản Phẩm");
         lblSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -203,7 +198,6 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lblKhachHang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblKhachHang.setForeground(new java.awt.Color(0, 0, 0));
         lblKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/rating.png"))); // NOI18N
         lblKhachHang.setText("      Khách Hàng");
         lblKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -234,7 +228,6 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lblNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblNhanVien.setForeground(new java.awt.Color(0, 0, 0));
         lblNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/housekeeper.png"))); // NOI18N
         lblNhanVien.setText("      Nhân Viên");
         lblNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -263,7 +256,6 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lblHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblHoaDon.setForeground(new java.awt.Color(0, 0, 0));
         lblHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/receipt.png"))); // NOI18N
         lblHoaDon.setText("      Hóa Đơn");
         lblHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -292,7 +284,6 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel9.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lblBaoHanh.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblBaoHanh.setForeground(new java.awt.Color(0, 0, 0));
         lblBaoHanh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/insurance.png"))); // NOI18N
         lblBaoHanh.setText("      Bảo hành");
         lblBaoHanh.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -312,7 +303,7 @@ public class DashBoard extends javax.swing.JFrame {
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblBaoHanh, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+            .addComponent(lblBaoHanh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         );
 
         jPanel2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 220, 60));
@@ -322,7 +313,6 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel10.setForeground(new java.awt.Color(255, 255, 204));
 
         lblKhuyenMai.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblKhuyenMai.setForeground(new java.awt.Color(0, 0, 0));
         lblKhuyenMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/tag.png"))); // NOI18N
         lblKhuyenMai.setText("     Khuyến mãi");
         lblKhuyenMai.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -351,7 +341,6 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lblTraHang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblTraHang.setForeground(new java.awt.Color(0, 0, 0));
         lblTraHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/product-return.png"))); // NOI18N
         lblTraHang.setText("     Trả hàng");
         lblTraHang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -380,7 +369,6 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lblThongKe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblThongKe.setForeground(new java.awt.Color(0, 0, 0));
         lblThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/pie-chart.png"))); // NOI18N
         lblThongKe.setText("     Thống kê");
         lblThongKe.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -411,7 +399,6 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel13.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lblThoat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblThoat.setForeground(new java.awt.Color(0, 0, 0));
         lblThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/emergency-exit.png"))); // NOI18N
         lblThoat.setText("      Thoát");
         lblThoat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -495,7 +482,7 @@ public class DashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_lblNhanVienMouseClicked
 
     private void lblThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblThongKeMouseClicked
-        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("alo")) {
             ThongKeView thongKeView = new ThongKeView();
             jDesktopPane1.add(thongKeView).setVisible(true);
         } else {
