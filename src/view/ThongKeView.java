@@ -71,12 +71,12 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         }
     }
 
-    private void showDataTable2(List<ThongKeDoanhThuViewModel> listt) {
-        dtmDoanhThu.setRowCount(0);
-        for (ThongKeDoanhThuViewModel thongKeDoanhThuViewModel : listt) {
-            dtmDoanhThu.addRow(thongKeDoanhThuViewModel.toDatarow());
-        }
-    }
+//    private void showDataTable2(List<ThongKeDoanhThuViewModel> listt) {
+//        dtmDoanhThu.setRowCount(0);
+//        for (ThongKeDoanhThuViewModel thongKeDoanhThuViewModel : listt) {
+//            dtmDoanhThu.addRow(thongKeDoanhThuViewModel.toDatarow());
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
