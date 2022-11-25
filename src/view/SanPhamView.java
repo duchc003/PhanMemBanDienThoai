@@ -477,7 +477,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         jLabel33 = new javax.swing.JLabel();
         rdoConHang = new javax.swing.JRadioButton();
         rdoHetHang = new javax.swing.JRadioButton();
-        txtTenAnh = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         txtTimKiem = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -1443,8 +1442,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                            .addComponent(txtTenAnh))
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
                         .addGap(84, 84, 84)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnClearCt)
@@ -1503,10 +1501,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel21)
                             .addComponent(txtGiaNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel27)
-                            .addComponent(cbbBoNho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtTenAnh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cbbBoNho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(1, 1, 1)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -1930,7 +1925,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtMaPhuKien;
     private javax.swing.JTextField txtSOLuong;
     private javax.swing.JTextField txtTENSANPHAM;
-    private javax.swing.JTextField txtTenAnh;
     private javax.swing.JTextField txtTenHangSp;
     private javax.swing.JTextField txtTenNhaCungCap;
     private javax.swing.JTextField txtTenPhuKien;

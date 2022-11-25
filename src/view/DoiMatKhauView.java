@@ -195,7 +195,7 @@ public class DoiMatKhauView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (MsgBox.confirm(this, "Bạn muốn hủy bỏ đổi mật khẩu")) {
-            System.exit(0); 
+            this.dispose();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
