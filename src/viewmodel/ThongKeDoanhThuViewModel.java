@@ -10,11 +10,11 @@ package viewmodel;
  */
 public class ThongKeDoanhThuViewModel {
 
-    String MaHD;
-    int SoLuong;
-    float GiaNhap;
-    float giaBan;
-    float doanhThu;
+    private String MaHD;
+    private int SoLuong;
+    private float GiaNhap;
+    private float giaBan;
+    private float doanhThu;
 
     public ThongKeDoanhThuViewModel() {
     }

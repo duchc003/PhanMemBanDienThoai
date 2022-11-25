@@ -1,11 +1,11 @@
-
 package viewmodel;
 
 public class ThongkeSanPhamViewModel {
-    String MaSp;
-    String TenSP;
-    int SoLuong;
-    String TrangThai;
+
+    private String MaSp;
+    private String TenSP;
+    private int SoLuong;
+    private String TrangThai;
 
     public ThongkeSanPhamViewModel() {
     }
@@ -53,8 +53,8 @@ public class ThongkeSanPhamViewModel {
     public String toString() {
         return "ThongkeSanPhamViewModel{" + "MaSp=" + MaSp + ", TenSP=" + TenSP + ", SoLuong=" + SoLuong + ", TrangThai=" + TrangThai + '}';
     }
-    
-   public Object[]toDatarow(){
-    return new Object[]{MaSp,TenSP,SoLuong,TrangThai};
-}
+
+    public Object[] toDatarow() {
+        return new Object[]{MaSp, TenSP, SoLuong, TrangThai};
+    }
 }

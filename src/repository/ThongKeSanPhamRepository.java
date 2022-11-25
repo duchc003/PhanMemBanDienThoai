@@ -42,7 +42,7 @@ public class ThongKeSanPhamRepository {
 
     public List<ThongKeDoanhThuViewModel> getall() {
         List<ThongKeDoanhThuViewModel> listt = new ArrayList<>();
-        String query = "SELECT dbo.HoaDon.MaHD, dbo.HoaDonChiTiet.SoLuong, dbo.ChiTietSanPham.GiaNhap, dbo.ChiTietSanPham.GiaBan, dbo.HoaDonChiTiet.ThanhTien\n"
+        String query = "SELECT dbo.HoaDon.MaHD, dbo.HoaDonChiTiet.SoLuong, dbo.ChiTietSanPham.GiaNhap, dbo.ChiTietSanPham.GiaBan, dbo.HoaDon.TongTien\n"
                 + "FROM     dbo.ChiTietSanPham INNER JOIN\n"
                 + "                  dbo.HoaDonChiTiet ON dbo.ChiTietSanPham.ID = dbo.HoaDonChiTiet.ID INNER JOIN\n"
                 + "                  dbo.HoaDon ON dbo.HoaDonChiTiet.IDHoaDon = dbo.HoaDon.ID";
