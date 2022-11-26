@@ -86,7 +86,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         lblIdKH.setText(String.valueOf(kh.getId()));
 
     }
-    
+
     private void cbbTenHang(List<HangSP> list) {
         cbbTenHang.setModel(dcbm);
         for (HangSP hangSP : list) {
@@ -947,7 +947,10 @@ public class BanHangView extends javax.swing.JInternalFrame {
                 i++,
                 hd.getMaHD(),
                 hd.getNgayTao(),
-                hd.trangThaiHoaDon()
+                hd.getTrangThai() == 1 ? "Đã Thanh Toán"
+                : hd.getTrangThai() == 2 ? "Đã Hủy"
+                : hd.getTrangThai() == 3 ? "Giao Hàng Thành Công"
+                : hd.getTrangThai() == 4 ? "Đang Giao Hàng" : "Giao Hàng Thất Bại"
             });
         }
     }

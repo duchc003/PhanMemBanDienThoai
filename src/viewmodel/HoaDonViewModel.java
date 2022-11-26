@@ -4,12 +4,12 @@ public class HoaDonViewModel {
 
     private String maHD;
     private String ngayTao;
-    private String trangThai;
+    private int trangThai;
 
     public HoaDonViewModel() {
     }
 
-    public HoaDonViewModel(String maHD, String ngayTao, String trangThai) {
+    public HoaDonViewModel(String maHD, String ngayTao, int trangThai) {
         this.maHD = maHD;
         this.ngayTao = ngayTao;
         this.trangThai = trangThai;
@@ -31,30 +31,12 @@ public class HoaDonViewModel {
         this.ngayTao = ngayTao;
     }
 
-    public String getTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
 
-    public String trangThaiHoaDon() {
-        if (getTrangThai() == "1") {
-            return "Đã Thanh Toán";
-        }
-        if (getTrangThai() == "2") {
-            return "Đã Hủy";
-        }
-        if (getTrangThai() == "3") {
-            return "Giao Hàng Thành Công";
-        }
-        if (getTrangThai() == "4") {
-            return "Đang Giao Hàng";
-        }
-        if (getTrangThai() == "5") {
-            return "Giao Hàng Thất Bại";
-        }
-        return null;
-    }
 }

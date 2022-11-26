@@ -522,7 +522,10 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                 hd.getTongTien(),
                 hd.getTenHTTT(),
                 hd.getTenHTGH(),
-                hd.getTrangThai()
+                hd.getTrangThai() == 1 ? "Đã Thanh Toán"
+                : hd.getTrangThai() == 2 ? "Đã Hủy"
+                : hd.getTrangThai() == 3 ? "Giao Hàng Thành Công"
+                : hd.getTrangThai() == 4 ? "Đang Giao Hàng" : "Giao Hàng Thất Bại"
 
             });
         }

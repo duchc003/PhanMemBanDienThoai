@@ -38,7 +38,7 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getDouble(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getString(8)));
+                        rs.getInt(8)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
@@ -67,7 +67,7 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getDouble(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getString(8)));
+                        rs.getInt(8)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,7 +96,7 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getDouble(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getString(8)));
+                        rs.getInt(8)));
 
             }
         } catch (SQLException ex) {
@@ -125,7 +125,7 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getDouble(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getString(8)));
+                        rs.getInt(8)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
@@ -153,7 +153,7 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getDouble(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getString(8)));
+                        rs.getInt(8)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);

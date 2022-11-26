@@ -20,7 +20,7 @@ public class HoaDonRespository {
             while (rs.next()) {
                 hoaDonViewModels.add(new HoaDonViewModel(rs.getString(1),
                         rs.getString(2),
-                        rs.getString(3)));
+                        rs.getInt(3)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(HoaDonRespository.class.getName()).log(Level.SEVERE, null, ex);

@@ -13,6 +13,8 @@ import viewmodel.HoaDonViewModel;
  * @author Admin
  */
 public interface HoaDonServices {
+
     List<HoaDonViewModel> getAll();
+
     String addHoaDon(HoaDon hoaDon);
 }
