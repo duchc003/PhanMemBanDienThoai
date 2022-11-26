@@ -41,7 +41,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private DefaultComboBoxModel dcbm1 = new DefaultComboBoxModel();
     private List<SanPhamFormBanHangViewModel> lst = new ArrayList<>();
     private List<GioHangViewModel> gioHangViewModels = new ArrayList<>();
-
+    double v1 = 1000000000;
+        DecimalFormat df = new DecimalFormat("#");
     public BanHangView() {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -149,7 +150,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jLabel14 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jComboBox3 = new javax.swing.JComboBox<>();
-        jButton4 = new javax.swing.JButton();
+        btnThanhToan = new javax.swing.JButton();
         txtNgayTao = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtTongTien = new javax.swing.JTextField();
@@ -404,6 +405,12 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Ngày Tạo");
 
+        txtTienKhachDua.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTienKhachDuaCaretUpdate(evt);
+            }
+        });
+
         jLabel9.setText("Giảm giá %");
 
         jLabel10.setText("Tiền khách");
@@ -426,10 +433,11 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiền Mặt", "Chuyển Khoản", "Quẹt khẻ", "Quét Mã" }));
 
-        jButton4.setBackground(new java.awt.Color(102, 255, 102));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/pay.png"))); // NOI18N
-        jButton4.setText("Thanh Toán");
+        btnThanhToan.setBackground(new java.awt.Color(102, 255, 102));
+        btnThanhToan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnThanhToan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/pay.png"))); // NOI18N
+        btnThanhToan.setText("Thanh Toán");
+        btnThanhToan.setEnabled(false);
 
         txtNgayTao.setEnabled(false);
 
@@ -457,7 +465,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(133, 133, 133))
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
@@ -567,7 +575,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5))
                 .addGap(31, 31, 31)
-                .addComponent(jButton4)
+                .addComponent(btnThanhToan)
                 .addGap(26, 26, 26))
         );
 
@@ -809,14 +817,28 @@ loadTien();
 
     }//GEN-LAST:event_tblGioHangMouseClicked
 
+    private void txtTienKhachDuaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTienKhachDuaCaretUpdate
+         if(txtTienKhachDua.getText().isEmpty()){
+            return;
+        }
+        double tien = Double.valueOf(txtTienKhachDua.getText());
+       
+        if(Double.valueOf(txtTienKhachDua.getText())-Double.valueOf(txtTongTien.getText())>=0){
+            btnThanhToan.setEnabled(true);
+        }else{
+             btnThanhToan.setEnabled(false);
+        }
+        txtTienThua.setText(df.format(Double.valueOf(txtTienKhachDua.getText())-Double.valueOf(txtTongTien.getText()))+"");
+    }//GEN-LAST:event_txtTienKhachDuaCaretUpdate
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnThanhToan;
     private javax.swing.JComboBox<String> cbbKhachHang;
     private javax.swing.JComboBox<String> cbbTenHang;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -942,7 +964,7 @@ loadTien();
                 gh.get(i).getTen(),
                 gh.get(i).getSoLuong(),
                 gh.get(i).getDonGia(),
-                gh.get(i).thanhTien()
+             gh.get(i).thanhTien()
             });
 
         }
@@ -991,8 +1013,7 @@ loadTien();
         for (int i = 0; i < tblGioHang.getRowCount(); i++) {
             tien += Double.valueOf(tblGioHang.getValueAt(i, 4).toString());
         }
-           double v1 = 1000000000;
-        DecimalFormat df = new DecimalFormat("#");
+       
        
         txtTongTien.setText(df.format(tien)+"");
     }
