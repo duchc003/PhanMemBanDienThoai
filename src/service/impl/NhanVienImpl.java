@@ -34,16 +34,6 @@ public class NhanVienImpl implements NhanVienService {
     }
 
     @Override
-    public String xoa(String maNV) {
-        boolean xoa = NhanVienRepository.xoa(maNV);
-        if (xoa) {
-            return "Xóa thành công";
-        } else {
-            return "Xóa thất bại";
-        }
-    }
-
-    @Override
     public ArrayList<NhanVienViewmodel> getOne(String maNV) {
         return NhanVienRepository.getOne(maNV);
     }

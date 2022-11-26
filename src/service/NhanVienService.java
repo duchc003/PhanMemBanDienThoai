@@ -17,8 +17,6 @@ public interface NhanVienService {
 
     String add(NhanVienViewmodel nv);
 
-    String xoa(String maNV);
-
     ArrayList<NhanVienViewmodel> getOne(String maNV);
 
     String sua(String maNV, NhanVienViewmodel nv);
