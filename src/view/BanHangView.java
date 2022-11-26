@@ -868,15 +868,18 @@ public class BanHangView extends javax.swing.JInternalFrame {
         tblModel1.setRowCount(0);
         int i = 1;
         for (SanPhamFormBanHangViewModel spp : lst) {
-            tblModel1.addRow(new Object[]{
-                i++,
-                spp.getMaSp(),
-                spp.getTenSp(),
-                spp.getSoLuong(),
-                spp.getHang(),
-                spp.getGiaBan(),
-                spp.getXuatXu()
-            });
+            if (spp.getSoLuong() > 0) {
+                tblModel1.addRow(new Object[]{
+                    i++,
+                    spp.getMaSp(),
+                    spp.getTenSp(),
+                    spp.getSoLuong(),
+                    spp.getHang(),
+                    spp.getGiaBan(),
+                    spp.getXuatXu()
+                });
+            }
+
         }
     }
 
