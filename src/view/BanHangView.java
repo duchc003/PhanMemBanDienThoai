@@ -23,10 +23,13 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import model.HangSP;
 import model.HoaDon;
+import model.KhachHang;
 import service.HoaDonServices;
 import service.SanPhamFormBanHangServices;
 import service.impl.HoaDonServicesImpl;
+import service.impl.KhachHangCbbImpl;
 import service.impl.SanPhamFormBanHangServicesImpl;
+import util.Auth;
 import viewmodel.GioHangViewModel;
 import viewmodel.HoaDonViewModel;
 import viewmodel.SanPhamFormBanHangViewModel;
@@ -43,16 +46,48 @@ public class BanHangView extends javax.swing.JInternalFrame {
 //    private final WebcamPanel wCamPanel = new WebcamPanel(wCam, ds, false);
     private DefaultTableModel tblModel1 = new DefaultTableModel();
     private HoaDonServices hoaDonServices = new HoaDonServicesImpl();
+    private KhachHangCbbImpl impl = new KhachHangCbbImpl();
     private SanPhamFormBanHangServices sanPhamFormBanHangServices = new SanPhamFormBanHangServicesImpl();
     private DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
+    private DefaultComboBoxModel dcbm1 = new DefaultComboBoxModel();
     private List<SanPhamFormBanHangViewModel> lst = new ArrayList<>();
-    List<GioHangViewModel> gioHangViewModels = new ArrayList<>();
+    private List<GioHangViewModel> gioHangViewModels = new ArrayList<>();
 
     public BanHangView() {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            lblNhanVien.setText("Hoàng Công Đức");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("namndph22694")) {
+            lblNhanVien.setText("Nguyễn Đức Nam");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("hieunmph22569")) {
+            lblNhanVien.setText("Nguyễn Minh Hiếu");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("huybqph22581")) {
+            lblNhanVien.setText("Bùi Quang Huy");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("huyhmph22668")) {
+            lblNhanVien.setText("Hoàng Minh Huy");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            lblNV.setText("Hoàng Công Đức");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("namndph22694")) {
+            lblNV.setText("Nguyễn Đức Nam");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("hieunmph22569")) {
+            lblNV.setText("Nguyễn Minh Hiếu");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("huybqph22581")) {
+            lblNV.setText("Bùi Quang Huy");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("huyhmph22668")) {
+            lblNV.setText("Hoàng Minh Huy");
+        }
 //        wCam.setViewSize(cs);
 //        wCamPanel.setFillArea(true);
 //        lblCamera.setLayout(new FlowLayout());
@@ -63,6 +98,9 @@ public class BanHangView extends javax.swing.JInternalFrame {
         lst = sanPhamFormBanHangServices.getAll();
         loadSanPham(lst);
         cbbTenHang(sanPhamFormBanHangServices.getTenHangSPs());
+        cbbTenKhachHang(impl.getALL());
+        KhachHang kh = impl.getOne(cbbKhachHang.getSelectedItem().toString());
+        lblIdKH.setText(String.valueOf(kh.getId()));
 
     }
 
@@ -80,6 +118,13 @@ public class BanHangView extends javax.swing.JInternalFrame {
         cbbTenHang.setModel(dcbm);
         for (HangSP hangSP : list) {
             dcbm.addElement(hangSP.getTen());
+        }
+    }
+
+    private void cbbTenKhachHang(List<KhachHang> list) {
+        cbbKhachHang.setModel(dcbm1);
+        for (KhachHang khachHang : list) {
+            dcbm1.addElement(khachHang.getHoVaTen());
         }
     }
 
@@ -112,7 +157,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbbKhachHang = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtMaHD = new javax.swing.JTextField();
@@ -132,16 +177,17 @@ public class BanHangView extends javax.swing.JInternalFrame {
         txtNgayTao = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jTextField12 = new javax.swing.JTextField();
-        txtMaHD1 = new javax.swing.JTextField();
+        txtKhachHang = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        lblNhanVien = new javax.swing.JLabel();
+        lblIdKH = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jComboBox6 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
+        lblNV = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -348,6 +394,12 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jPanel9.setBackground(new java.awt.Color(0, 204, 255));
         jPanel9.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        cbbKhachHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbKhachHangActionPerformed(evt);
+            }
+        });
+
         jButton3.setBackground(new java.awt.Color(102, 255, 102));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add.png"))); // NOI18N
@@ -397,11 +449,19 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
         jTextField12.setEnabled(false);
 
+        txtKhachHang.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtKhachHangCaretUpdate(evt);
+            }
+        });
+
         jLabel16.setText("Tìm Khách");
 
-        jLabel12.setText("Tên Nhân Viên");
+        jLabel12.setText("Tên Nhân Viên:");
 
-        jLabel22.setText("jLabel18");
+        lblNhanVien.setText("jLabel18");
+
+        lblIdKH.setText("jLabel22");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -413,21 +473,17 @@ public class BanHangView extends javax.swing.JInternalFrame {
                 .addGap(133, 133, 133))
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                    .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                                .addComponent(jButton3))
-                            .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                                 .addComponent(txtMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,8 +491,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel12))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtMaHD1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(txtKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                    .addComponent(lblNhanVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel8)
@@ -464,7 +520,13 @@ public class BanHangView extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(70, 70, 70)))
+                        .addGap(70, 70, 70))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(cbbKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblIdKH, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3)))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -473,14 +535,16 @@ public class BanHangView extends javax.swing.JInternalFrame {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel22))
+                    .addComponent(lblNhanVien))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(txtMaHD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cbbKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblIdKH))
                     .addComponent(jButton3))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -553,8 +617,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jLabel25.setText("Tên Nhân Viên");
         jPanel7.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 23, 92, -1));
 
-        jLabel26.setText("jLabel24");
-        jPanel7.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 23, 289, -1));
+        lblNV.setText("jLabel24");
+        jPanel7.add(lblNV, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 23, 260, -1));
 
         jLabel2.setText("Mã Hóa Đơn");
         jPanel7.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 65, -1, -1));
@@ -715,8 +779,21 @@ public class BanHangView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tblSanPhamMouseEntered
 
+    private void cbbKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbKhachHangActionPerformed
+        KhachHang kh = impl.getOne(cbbKhachHang.getSelectedItem().toString());
+        lblIdKH.setText(String.valueOf(kh.getId()));
+    }//GEN-LAST:event_cbbKhachHangActionPerformed
+
+    private void txtKhachHangCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtKhachHangCaretUpdate
+        String sdt = txtKhachHang.getText();
+        List<KhachHang> list = new ArrayList<>();
+        list = impl.getSeach(sdt, list);
+        cbbTenKhachHang(list);
+    }//GEN-LAST:event_txtKhachHangCaretUpdate
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbbKhachHang;
     private javax.swing.JComboBox<String> cbbTenHang;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -727,7 +804,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox6;
@@ -745,9 +821,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -783,11 +857,14 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JPanel lblCamera;
+    private javax.swing.JLabel lblIdKH;
+    private javax.swing.JLabel lblNV;
+    private javax.swing.JLabel lblNhanVien;
     private javax.swing.JTable tblGioHang;
     private javax.swing.JTable tblHoaDon;
     private javax.swing.JTable tblSanPham;
+    private javax.swing.JTextField txtKhachHang;
     private javax.swing.JTextField txtMaHD;
-    private javax.swing.JTextField txtMaHD1;
     private javax.swing.JTextField txtNgayTao;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables

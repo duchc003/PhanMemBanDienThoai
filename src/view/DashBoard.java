@@ -20,7 +20,7 @@ public class DashBoard extends javax.swing.JFrame {
     public DashBoard() {
         initComponents();
         setTitle("Quản Lý Cửa Hàng Bán Điện Thoại");
-        if (Auth.user.getTaiKhoan().equalsIgnoreCase("alo")) {
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
             txtNhanVien.setText("Hoàng Công Đức");
             txtVaiTro.setText("Quản Lý");
         }

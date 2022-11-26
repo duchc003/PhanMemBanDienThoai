@@ -35,6 +35,11 @@ public class KhachHang {
         this.moTa = moTa;
     }
 
+    public KhachHang(int id, String hoVaTen) {
+        this.id = id;
+        this.hoVaTen = hoVaTen;
+    }
+
     public int getId() {
         return id;
     }
