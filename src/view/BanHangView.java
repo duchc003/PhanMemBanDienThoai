@@ -716,8 +716,9 @@ public class BanHangView extends javax.swing.JInternalFrame {
           JOptionPane.showMessageDialog(this, "Bạn đã nhập quá số lượng\n Vui lòng nhập lại");
           return;
       }
+        
       tblGioHang.setValueAt(Integer.parseInt(tblGioHang.getValueAt(row, 3).toString())-Integer.parseInt(soluong), row, 3);
-    
+    tblSanPham.setValueAt(Integer.parseInt(tblSanPham.getValueAt(row, 3).toString())+Integer.parseInt(soluong), row, 3);
        if(Integer.parseInt(tblGioHang.getValueAt(row, 3).toString())-Integer.parseInt(soluong)<=0){
            gioHangViewModels.remove(row);
            loadGioHang();
@@ -743,7 +744,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
         }
         //Giảm số lượng sản phẩm được chọn
-
+        tblSanPham.setValueAt(Integer.parseInt(tblSanPham.getValueAt(row, 3).toString())-Integer.parseInt(choice), row, 3);
+        
         String ma = tblSanPham.getValueAt(row, 1).toString();
         String ten = tblSanPham.getValueAt(row, 2).toString();
         double dongia = Double.parseDouble(tblSanPham.getValueAt(row, 5).toString());
@@ -950,7 +952,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
         hoaDon.setMaHD("HD" + rd.nextInt(999999));
         hoaDon.setNgayTao(dateTT);
-        hoaDon.setTrangThai("Chờ Thanh Toán");
+        hoaDon.setTrangThai("0");
 
         JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon));
         loadHoaDon();
@@ -969,10 +971,11 @@ public class BanHangView extends javax.swing.JInternalFrame {
                 i++,
                 hd.getMaHD(),
                 hd.getNgayTao(),
-                hd.getTrangThai() == 1 ? "Đã Thanh Toán"
-                : hd.getTrangThai() == 2 ? "Đã Hủy"
-                : hd.getTrangThai() == 3 ? "Giao Hàng Thành Công"
-                : hd.getTrangThai() == 4 ? "Đang Giao Hàng" : "Giao Hàng Thất Bại"
+                hd.getTrangThai().equals("1")? "Đã Thanh Toán"
+                        : hd.getTrangThai().equals("0")? "Chờ Thanh Toán"
+                : hd.getTrangThai().equals("2")? "Đã Hủy"
+                : hd.getTrangThai().equals("3")? "Thanh toán thành công"
+                : "Đang Giao Hàng"
             });
         }
     }
