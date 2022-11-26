@@ -18,4 +18,6 @@ public interface KhachHangServices {
     String addKH(KhachHang kh);
     String deleteKH(String ma );
     String updateKH(KhachHang kh);
+     List<KhachHangViewModel> searchKH(String ma);
+    
 }

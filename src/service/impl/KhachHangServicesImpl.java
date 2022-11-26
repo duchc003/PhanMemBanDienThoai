@@ -52,5 +52,10 @@ public class KhachHangServicesImpl implements KhachHangServices{
            return "Thất bại";
        }
     }
+
+    @Override
+    public List<KhachHangViewModel> searchKH(String ma) {
+        return khachHangRespository.searchKH(ma);
+    }
   
 }

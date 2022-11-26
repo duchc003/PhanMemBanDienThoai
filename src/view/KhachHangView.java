@@ -29,7 +29,7 @@ public class KhachHangView extends javax.swing.JInternalFrame {
     private DateUtil ut = new DateUtil();
     private String pattern = "yyyy/MM/dd";
     private SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-    
+
     public KhachHangView() {
         initComponents();
         initComponents();
@@ -38,7 +38,7 @@ public class KhachHangView extends javax.swing.JInternalFrame {
         ui.setNorthPane(null);
         loadData();
     }
-    
+
     private void loadData() {
         DefaultTableModel tblModel = new DefaultTableModel();
         tblModel = (DefaultTableModel) tblKhachHang.getModel();
@@ -125,15 +125,15 @@ public class KhachHangView extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        btnThem = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtGhiChu = new javax.swing.JTextArea();
         lblngaysinh = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtTimKiem = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        btnThem1 = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1281, 805));
@@ -207,15 +207,15 @@ public class KhachHangView extends javax.swing.JInternalFrame {
         jLabel7.setText("Giới Tính");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 720, -1, -1));
 
-        btnThem.setBackground(new java.awt.Color(51, 255, 51));
-        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/magnifying-glass.png"))); // NOI18N
-        btnThem.setText("Tìm");
-        btnThem.addActionListener(new java.awt.event.ActionListener() {
+        btnSearch.setBackground(new java.awt.Color(51, 255, 51));
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/magnifying-glass.png"))); // NOI18N
+        btnSearch.setText("Tìm");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemActionPerformed(evt);
+                btnSearchActionPerformed(evt);
             }
         });
-        jPanel1.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 420, 100, -1));
+        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 420, 100, -1));
 
         btnSua.setBackground(new java.awt.Color(51, 255, 51));
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/system-update.png"))); // NOI18N
@@ -245,21 +245,21 @@ public class KhachHangView extends javax.swing.JInternalFrame {
 
         lblngaysinh.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         lblngaysinh.setForeground(new java.awt.Color(0, 255, 153));
-        jPanel1.add(lblngaysinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 540, 475, 20));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, 610, -1));
+        jPanel1.add(lblngaysinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 680, 300, 20));
+        jPanel1.add(txtTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, 610, -1));
 
         jLabel8.setText("Mã KH");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, -1, -1));
 
-        btnThem1.setBackground(new java.awt.Color(51, 255, 51));
-        btnThem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add.png"))); // NOI18N
-        btnThem1.setText("Thêm");
-        btnThem1.addActionListener(new java.awt.event.ActionListener() {
+        btnThem.setBackground(new java.awt.Color(51, 255, 51));
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add.png"))); // NOI18N
+        btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThem1ActionPerformed(evt);
+                btnThemActionPerformed(evt);
             }
         });
-        jPanel1.add(btnThem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 500, -1, -1));
+        jPanel1.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 500, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -296,7 +296,7 @@ public class KhachHangView extends javax.swing.JInternalFrame {
             loadData();
             clearForm();
         }
-        if (luachon == JOptionPane.NO_OPTION){
+        if (luachon == JOptionPane.NO_OPTION) {
             JOptionPane.showMessageDialog(this, "đã hủy");
         }
 
@@ -319,6 +319,41 @@ public class KhachHangView extends javax.swing.JInternalFrame {
             lblngaysinh.setText("");
         }
     }//GEN-LAST:event_txtNgaySinhCaretUpdate
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String ma = txtTimKiem.getText();
+        lists = khachHangServices.searchKH(ma);
+        DefaultTableModel tblModel = new DefaultTableModel();
+        tblModel = (DefaultTableModel) tblKhachHang.getModel();
+        tblModel.setRowCount(0);
+        for (KhachHangViewModel kh : lists) {
+            tblModel.addRow(new Object[]{
+                kh.getMa(),
+                kh.getHoVaTen(),
+                kh.getGioiTinh(),
+                kh.getNgaySinh(),
+                kh.getSoDienThoai(),
+                kh.getDiaChi(),
+                kh.getMoTa()
+            });
+        }
+
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void tblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangMouseClicked
+        int row = tblKhachHang.getSelectedRow();
+        txtMaKH.setText(tblKhachHang.getValueAt(row, 0).toString());
+        txtTen.setText(tblKhachHang.getValueAt(row, 1).toString());
+        if (tblKhachHang.getValueAt(row, 2).toString().equalsIgnoreCase("nam")) {
+            rdoNam.setSelected(true);
+        } else {
+            rdoNu.setSelected(true);
+        }
+        txtNgaySinh.setText(tblKhachHang.getValueAt(row, 3).toString());
+        txtSoDT.setText(tblKhachHang.getValueAt(row, 4).toString());
+        txtDiaChi.setText(tblKhachHang.getValueAt(row, 5).toString());
+        txtGhiChu.setText(tblKhachHang.getValueAt(row, 6).toString());
+    }//GEN-LAST:event_tblKhachHangMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         if (validateForm() == true) {
@@ -348,31 +383,12 @@ public class KhachHangView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
-    private void tblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangMouseClicked
-        int row = tblKhachHang.getSelectedRow();
-        txtMaKH.setText(tblKhachHang.getValueAt(row, 0).toString());
-        txtTen.setText(tblKhachHang.getValueAt(row, 1).toString());
-        if (tblKhachHang.getValueAt(row, 2).toString().equalsIgnoreCase("nam")) {
-            rdoNam.setSelected(true);
-        } else {
-            rdoNu.setSelected(true);
-        }
-        txtNgaySinh.setText(tblKhachHang.getValueAt(row, 3).toString());
-        txtSoDT.setText(tblKhachHang.getValueAt(row, 4).toString());
-        txtDiaChi.setText(tblKhachHang.getValueAt(row, 5).toString());
-        txtGhiChu.setText(tblKhachHang.getValueAt(row, 6).toString());
-    }//GEN-LAST:event_tblKhachHangMouseClicked
-
-    private void btnThem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnThem1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
-    private javax.swing.JButton btnThem1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -385,7 +401,6 @@ public class KhachHangView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblngaysinh;
     private javax.swing.JRadioButton rdoNam;
     private javax.swing.JRadioButton rdoNu;
@@ -396,5 +411,6 @@ public class KhachHangView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNgaySinh;
     private javax.swing.JTextField txtSoDT;
     private javax.swing.JTextField txtTen;
+    private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 }
