@@ -38,7 +38,8 @@ public class ChiTietSanPhamRepo {
                 + "      ,[Barcode]\n"
                 + "      ,[TrangThai]\n"
                 + "      ,[MoTa]\n"
-                + "  FROM [dbo].[ChiTietSanPham]";
+                + "  FROM [dbo].[ChiTietSanPham]\n"
+                + "  where TrangThai = 'Còn Hàng'";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             List<ChiTietSPView> list = new ArrayList<>();
             ResultSet rs = ps.executeQuery();

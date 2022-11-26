@@ -22,7 +22,6 @@ public class SanPhamRepository {
                 + "      ,[IDHang]\n"
                 + "      ,[MaSP]\n"
                 + "      ,[TenSp]\n"
-                + "      ,[MaIMEI]\n"
                 + "  FROM [dbo].[SanPham] ";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
@@ -34,8 +33,6 @@ public class SanPhamRepository {
                 sanphamViewModel.setIdHang(rs.getInt(4));
                 sanphamViewModel.setMa(rs.getString(5));
                 sanphamViewModel.setTen(rs.getString(6));
-                sanphamViewModel.setMaIMEI(rs.getString(7));
-
                 lists.add(sanphamViewModel);
             }
 
