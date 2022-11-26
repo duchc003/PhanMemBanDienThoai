@@ -33,16 +33,6 @@ public class NhaCungCapImpl implements NhaCungCapService {
     }
 
     @Override
-    public String xoa(int id) {
-        boolean xoa = nhaCungCapRepository.xoa(id);
-        if (xoa) {
-            return "Xóa thành công";
-        } else {
-            return "Xóa thất bại";
-        }
-    }
-
-    @Override
     public String sua(int id, NhaCungCapViewModel ncc) {
         boolean sua = nhaCungCapRepository.sua(id, ncc);
         if (sua) {

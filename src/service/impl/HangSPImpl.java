@@ -33,16 +33,6 @@ public class HangSPImpl implements HangSPService {
     }
 
     @Override
-    public String xoa(int id) {
-        boolean xoa = HangSPRepository.xoa(id);
-        if (xoa) {
-            return "Xóa thành công";
-        } else {
-            return "Xóa thất bại";
-        }
-    }
-
-    @Override
     public String sua(int id, HangSPViewmodel h) {
         boolean sua = HangSPRepository.sua(id, h);
         if (sua) {

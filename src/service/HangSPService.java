@@ -17,7 +17,5 @@ public interface HangSPService {
 
     String add(HangSPViewmodel h);
 
-    String xoa(int id);
-
     String sua(int id, HangSPViewmodel h);
 }

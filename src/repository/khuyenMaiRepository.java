@@ -82,13 +82,6 @@ public class khuyenMaiRepository {
         return row;
     }
 
-    public int deleteKhuyenMai(String maKH) {
-        int row = 0;
-        String sql = "delete from KhuyenMai where MaKM =?";
-        row = JDBCHelper.executeUpdate(sql, maKH);
-        return row;
-    }
-
     public int updateKhuyenmai(KhuyenMaiViewModel km, String maKM) {
         int row = 0;
         String sql = "UPDATE KhuyenMai\n"

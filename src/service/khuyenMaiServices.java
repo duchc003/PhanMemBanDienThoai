@@ -21,8 +21,6 @@ public interface khuyenMaiServices {
 
     String addKhuyenMai(KhuyenMaiViewModel km);
 
-    String deleteKhuyenMai(String maKM);
-
     String updateKhuyenmai(KhuyenMaiViewModel km, String maKM);
 
 }

@@ -1,10 +1,10 @@
-
 package viewmodel;
 
 public class HoaDonViewModel {
-   private String maHD;
-   private String ngayTao;
-   private String trangThai;
+
+    private String maHD;
+    private String ngayTao;
+    private String trangThai;
 
     public HoaDonViewModel() {
     }
@@ -38,5 +38,23 @@ public class HoaDonViewModel {
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
-   
+
+    public String trangThaiHoaDon() {
+        if (getTrangThai() == "1") {
+            return "Đã Thanh Toán";
+        }
+        if (getTrangThai() == "2") {
+            return "Đã Hủy";
+        }
+        if (getTrangThai() == "3") {
+            return "Giao Hàng Thành Công";
+        }
+        if (getTrangThai() == "4") {
+            return "Đang Giao Hàng";
+        }
+        if (getTrangThai() == "5") {
+            return "Giao Hàng Thất Bại";
+        }
+        return null;
+    }
 }

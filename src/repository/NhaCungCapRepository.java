@@ -70,16 +70,4 @@ public class NhaCungCapRepository {
         return check > 0;
     }
 
-    public boolean xoa(int id) {
-        String query = "DELETE FROM [dbo].[NhaCungCap]\n"
-                + "      WHERE ID = ?";
-        int check = 0;
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
-            ps.setObject(1, id);
-            check = ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return check > 0;
-    }
 }

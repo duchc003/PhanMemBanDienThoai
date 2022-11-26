@@ -26,5 +26,4 @@ public interface ChiTietSpService {
     
     String update(int id,ChiTietSP sp);
     
-    String delete(int id);
 }

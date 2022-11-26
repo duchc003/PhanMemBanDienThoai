@@ -4,14 +4,6 @@
  */
 package view;
 
-import com.github.sarxos.webcam.Webcam;
-import com.github.sarxos.webcam.WebcamPanel;
-import com.github.sarxos.webcam.WebcamResolution;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.HeadlessException;
-import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,10 +32,6 @@ import viewmodel.SanPhamFormBanHangViewModel;
  */
 public class BanHangView extends javax.swing.JInternalFrame {
 
-//    private final Dimension ds = new Dimension(250, 150);
-//    private final Dimension cs = WebcamResolution.VGA.getSize();
-//    private final Webcam wCam = Webcam.getDefault();
-//    private final WebcamPanel wCamPanel = new WebcamPanel(wCam, ds, false);
     private DefaultTableModel tblModel1 = new DefaultTableModel();
     private HoaDonServices hoaDonServices = new HoaDonServicesImpl();
     private KhachHangCbbImpl impl = new KhachHangCbbImpl();
@@ -88,11 +76,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
         if (Auth.user.getTaiKhoan().equalsIgnoreCase("huyhmph22668")) {
             lblNV.setText("Hoàng Minh Huy");
         }
-//        wCam.setViewSize(cs);
-//        wCamPanel.setFillArea(true);
-//        lblCamera.setLayout(new FlowLayout());
-//        lblCamera.add(wCamPanel);
-//        initWebcam();
 
         loadHoaDon();
         lst = sanPhamFormBanHangServices.getAll();
@@ -103,17 +86,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         lblIdKH.setText(String.valueOf(kh.getId()));
 
     }
-
-//    private void initWebcam() {
-//        Thread t = new Thread() {
-//            @Override
-//            public void run() {
-//                wCamPanel.start();
-//            }
-//        };
-//        t.setDaemon(true);
-//        t.start();
-//    }
+    
     private void cbbTenHang(List<HangSP> list) {
         cbbTenHang.setModel(dcbm);
         for (HangSP hangSP : list) {
@@ -974,7 +947,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
                 i++,
                 hd.getMaHD(),
                 hd.getNgayTao(),
-                hd.getTrangThai()
+                hd.trangThaiHoaDon()
             });
         }
     }

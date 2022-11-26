@@ -41,16 +41,6 @@ public class khuyenMaiServicesImpl implements khuyenMaiServices {
     }
 
     @Override
-    public String deleteKhuyenMai(String maKM) {
-        int delete = KhuyenMaiViewModelReprository.deleteKhuyenMai(maKM);
-        if (delete > 0) {
-            return "Xóa thành công !";
-        } else {
-            return "Xóa không thành công ";
-        }
-    }
-
-    @Override
     public String updateKhuyenmai(KhuyenMaiViewModel km, String maKM) {
         int update = KhuyenMaiViewModelReprository.updateKhuyenmai(km, maKM);
         if (update > 0) {

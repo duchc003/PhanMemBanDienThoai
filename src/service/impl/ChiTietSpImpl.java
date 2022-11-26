@@ -46,16 +46,6 @@ public class ChiTietSpImpl implements ChiTietSpService {
     }
 
     @Override
-    public String delete(int id) {
-        boolean delete = impl.xoa(id);
-        if (delete) {
-            return "Delete thành công";
-        } else {
-            return "delete thất bại";
-        }
-    }
-
-    @Override
     public List<SanPham> getALLSP() {
         return impl.getIDSP();
     }

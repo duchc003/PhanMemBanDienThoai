@@ -29,16 +29,6 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
-    public String deleteSP(int ma) {
-        boolean delete = SP.delete(ma);
-        if (delete) {
-            return "Thanh cong";
-        } else {
-            return "That bai";
-        }
-    }
-
-    @Override
     public SanPham getOne(String maSP) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

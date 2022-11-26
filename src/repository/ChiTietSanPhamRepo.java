@@ -190,19 +190,6 @@ public class ChiTietSanPhamRepo {
         return check > 0;
     }
 
-    public boolean xoa(int id) {
-        String query = "DELETE FROM [dbo].[ChiTietSanPham]\n"
-                + "      WHERE ID = ?";
-        int check = 0;
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
-            ps.setObject(1, id);
-            check = ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return check > 0;
-    }
-
     public static void main(String[] args) {
         System.out.println(new ChiTietSanPhamRepo().getALL());
     }

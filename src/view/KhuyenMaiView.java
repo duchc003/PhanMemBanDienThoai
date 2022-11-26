@@ -28,9 +28,6 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
         loadTable();
-        cbo_ht.addItem("Giảm giá sản phẩm");
-        cbo_ht.addItem("Miễn phí vận chuyển");
-        cbo_ht.addItem("Tiền Mặt");
     }
 
 
@@ -70,7 +67,6 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         btnTimKiem = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
-        btnXoa = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
@@ -87,7 +83,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Ngày Kết Thúc");
 
-        cbo_ht.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Giảm Giá Sản Phẩm", "Miễn Phí Vận Chuyển" }));
+        cbo_ht.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Giảm Giá %", "Giảm Giá Tiền" }));
 
         jLabel5.setText("Hình Thức Giảm Giá");
 
@@ -235,16 +231,6 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
             }
         });
 
-        btnXoa.setBackground(new java.awt.Color(51, 255, 51));
-        btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/trash.png"))); // NOI18N
-        btnXoa.setText("Xóa");
-        btnXoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaActionPerformed(evt);
-            }
-        });
-
         btnClear.setBackground(new java.awt.Color(51, 255, 51));
         btnClear.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/dust.png"))); // NOI18N
@@ -275,13 +261,12 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
                                 .addGap(36, 36, 36)
                                 .addComponent(btnTimKiem)
                                 .addGap(70, 70, 70)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(38, 38, 38)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnClear)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnThem)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -296,11 +281,9 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
                     .addComponent(btnTimKiem)
                     .addComponent(btnThem)
                     .addComponent(btnSua))
-                .addGap(56, 56, 56)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnXoa)
-                    .addComponent(btnClear))
-                .addGap(30, 30, 30)
+                .addGap(46, 46, 46)
+                .addComponent(btnClear)
+                .addGap(40, 40, 40)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
         );
@@ -325,10 +308,10 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         txt_tenKM.setText((String) tbl_khuyenMai.getValueAt(row, 2));
         txt_ngayBD.setText(tbl_khuyenMai.getValueAt(row, 3).toString());
         txt_ngayKT.setText(tbl_khuyenMai.getValueAt(row, 4).toString());
-        if (tbl_khuyenMai.getValueAt(row, 5).toString().equalsIgnoreCase("Giảm Giá Sản Phẩm")) {
+        if (tbl_khuyenMai.getValueAt(row, 5).toString().equalsIgnoreCase("Giảm Giá %")) {
             cbo_ht.setSelectedIndex(0);
         }
-        if (tbl_khuyenMai.getValueAt(row, 5).toString().equalsIgnoreCase("Miễn Phí Vận Chuyển")) {
+        if (tbl_khuyenMai.getValueAt(row, 5).toString().equalsIgnoreCase("Giảm Giá Tiền")) {
             cbo_ht.setSelectedIndex(1);
         } else {
             cbo_ht.setSelectedIndex(2);
@@ -379,18 +362,12 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         cleaForm();
     }//GEN-LAST:event_btnClearActionPerformed
 
-    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        deleteKhuyenMai();
-        cleaForm();
-    }//GEN-LAST:event_btnXoaActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
-    private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cbo_ht;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -452,15 +429,6 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         km.setMoTa(txt_moTa.getText());
 
         return km;
-    }
-
-    private void deleteKhuyenMai() {
-        int row = tbl_khuyenMai.getSelectedRow();
-        String maKM = (String) tbl_khuyenMai.getValueAt(row, 1);
-
-        JOptionPane.showMessageDialog(this, impl.deleteKhuyenMai(maKM));
-        loadTable();
-
     }
 
     private void updateKhuyenMai() {

@@ -127,17 +127,4 @@ public class SanPhamRepository {
         }
         return check > 0;
     }
-
-    public boolean delete(int ma) { 
-        String query = "DELETE FROM [dbo].[SanPham]\n"
-                + "      WHERE ID = ?";
-        int check = 0;
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
-            ps.setObject(1, ma);
-            check = ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return check > 0;
-    }
 }

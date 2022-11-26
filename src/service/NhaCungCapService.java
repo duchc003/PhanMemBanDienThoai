@@ -16,7 +16,5 @@ public interface NhaCungCapService {
 
     String add(NhaCungCapViewModel ncc);
 
-    String xoa(int id);
-
     String sua(int id, NhaCungCapViewModel ncc);
 }
