@@ -325,7 +325,7 @@ public class NhanVienView extends javax.swing.JInternalFrame {
                                             .addComponent(rdoHoatDong))
                                         .addGap(0, 0, Short.MAX_VALUE)))
                                 .addGap(113, 113, 113)))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
