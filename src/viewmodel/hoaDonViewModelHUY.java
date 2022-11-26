@@ -11,8 +11,9 @@ package viewmodel;
 public class hoaDonViewModelHUY {
     private String maHD;
     private String hoVaTen;
+    private String tenKhachHang;
     private int soLuong;
-    private Double thanhTien;
+    private Double tongTien;
     private String tenHTTT;
     private String tenHTGH;
     private String trangThai;
@@ -20,11 +21,12 @@ public class hoaDonViewModelHUY {
     public hoaDonViewModelHUY() {
     }
 
-    public hoaDonViewModelHUY(String maHD, String hoVaTen, int soLuong, Double thanhTien, String tenHTTT, String tenHTGH, String trangThai) {
+    public hoaDonViewModelHUY(String maHD, String hoVaTen, String tenKhachHang, int soLuong, Double tongTien, String tenHTTT, String tenHTGH, String trangThai) {
         this.maHD = maHD;
         this.hoVaTen = hoVaTen;
+        this.tenKhachHang = tenKhachHang;
         this.soLuong = soLuong;
-        this.thanhTien = thanhTien;
+        this.tongTien = tongTien;
         this.tenHTTT = tenHTTT;
         this.tenHTGH = tenHTGH;
         this.trangThai = trangThai;
@@ -46,6 +48,14 @@ public class hoaDonViewModelHUY {
         this.hoVaTen = hoVaTen;
     }
 
+    public String getTenKhachHang() {
+        return tenKhachHang;
+    }
+
+    public void setTenKhachHang(String tenKhachHang) {
+        this.tenKhachHang = tenKhachHang;
+    }
+
     public int getSoLuong() {
         return soLuong;
     }
@@ -54,12 +64,12 @@ public class hoaDonViewModelHUY {
         this.soLuong = soLuong;
     }
 
-    public Double getThanhTien() {
-        return thanhTien;
+    public Double getTongTien() {
+        return tongTien;
     }
 
-    public void setThanhTien(Double thanhTien) {
-        this.thanhTien = thanhTien;
+    public void setTongTien(Double tongTien) {
+        this.tongTien = tongTien;
     }
 
     public String getTenHTTT() {
@@ -85,6 +95,7 @@ public class hoaDonViewModelHUY {
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
+
     
     
 }
