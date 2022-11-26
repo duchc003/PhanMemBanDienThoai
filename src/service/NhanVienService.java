@@ -18,6 +18,10 @@ public interface NhanVienService {
     String add(NhanVienViewmodel nv);
 
     ArrayList<NhanVienViewmodel> getOne(String maNV);
+    
+    ArrayList<NhanVienViewmodel> getOneTen(String hoVaten);
+    
+    ArrayList<NhanVienViewmodel> getOneSdt(String sdt);
 
     String sua(String maNV, NhanVienViewmodel nv);
 }

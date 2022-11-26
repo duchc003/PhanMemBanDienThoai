@@ -93,6 +93,54 @@ public class NhanVienRepository {
         return listkh;
     }
 
+    public ArrayList<NhanVienViewmodel> getOneTen(String hoVaten) {
+        ArrayList< NhanVienViewmodel> listhovaten = new ArrayList<>();
+        String query = "SELECT [MaNV]\n"
+                + "      ,[HoVaTen]\n"
+                + "      ,[DiaChi]\n"
+                + "      ,[GioiTinh]\n"
+                + "      ,[SDT]\n"
+                + "      ,[Email]\n"
+                + "      ,[VaiTro]\n"
+                + "      ,[TrangThai]\n"
+                + "  FROM [dbo].[NhanVien] where [HoVaTen] = ?";
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, hoVaten);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                NhanVienViewmodel nv = new NhanVienViewmodel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getString(8));
+                listhovaten.add(nv);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listhovaten;
+    }
+
+    public ArrayList<NhanVienViewmodel> getOneSdt(String sdt) {
+        ArrayList< NhanVienViewmodel> listSdt = new ArrayList<>();
+        String query = "SELECT [MaNV]\n"
+                + "      ,[HoVaTen]\n"
+                + "      ,[DiaChi]\n"
+                + "      ,[GioiTinh]\n"
+                + "      ,[SDT]\n"
+                + "      ,[Email]\n"
+                + "      ,[VaiTro]\n"
+                + "      ,[TrangThai]\n"
+                + "  FROM [dbo].[NhanVien] where [SDT] = ?";
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, sdt);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                NhanVienViewmodel nv = new NhanVienViewmodel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getString(8));
+                listSdt.add(nv);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listSdt;
+    }
+
     public boolean sua(String maNV, NhanVienViewmodel nv) {
         String query = "UPDATE [dbo].[NhanVien]\n"
                 + "   SET [MaNV] = ?\n"
