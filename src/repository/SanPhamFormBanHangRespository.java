@@ -18,9 +18,9 @@ public class SanPhamFormBanHangRespository {
     public List<SanPhamFormBanHangViewModel> getAll() {
         List<SanPhamFormBanHangViewModel> list = new ArrayList<>();
         String sql = "SELECT MaSP,TenSp,ChiTietSanPham.SoLuong,HangSanPham.TenHangSP,ChiTietSanPham.GiaBan,ChiTietSanPham.XuatXu FROM ChiTietSanPham join SanPham \n"
-                + "on ChiTietSanPham.IDSP =  SanPham.ID \n"
-                + "join HangSanPham \n"
-                + "on SanPham.IDHang = HangSanPham.ID";
+                + "               on ChiTietSanPham.IDSP =  SanPham.ID \n"
+                + "                join HangSanPham \n"
+                + "             on SanPham.IDHang = HangSanPham.ID where SoLuong>0";
         ResultSet rs = JDBCHelper.executeQuery(sql);
         try {
             while (rs.next()) {

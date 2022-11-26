@@ -28,7 +28,7 @@ public class KhachHangRespository {
 
     public int addKH(KhachHang kh) {
         int row = 0;
-        String sql = "INSERT INTO KhachHang VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO KhachHang(MaKH,HoVaTen,GioiTinh,NgaySinh,SoDienThoai,DiaChi,MoTa) VALUES(?,?,?,?,?,?,?)";
         row = JDBCHelper.executeUpdate(sql, kh.getMa(), kh.getHoVaTen(), kh.getGioiTinh(), kh.getNgaySinh(), kh.getSoDienThoai(), kh.getDiaChi(), kh.getMoTa());
         return row;
     }

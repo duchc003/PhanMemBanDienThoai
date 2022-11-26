@@ -134,6 +134,7 @@ public class KhachHangView extends javax.swing.JInternalFrame {
         txtTimKiem = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnThem = new javax.swing.JButton();
+        lblsdt = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1281, 805));
@@ -177,6 +178,7 @@ public class KhachHangView extends javax.swing.JInternalFrame {
         jPanel1.add(txtTen, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 580, 199, -1));
 
         buttonGroup1.add(rdoNam);
+        rdoNam.setSelected(true);
         rdoNam.setText("Nam");
         jPanel1.add(rdoNam, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 720, -1, -1));
 
@@ -184,6 +186,12 @@ public class KhachHangView extends javax.swing.JInternalFrame {
         rdoNu.setText("Nữ");
         jPanel1.add(rdoNu, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 720, -1, -1));
         jPanel1.add(txtDiaChi, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 510, 230, -1));
+
+        txtSoDT.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtSoDTCaretUpdate(evt);
+            }
+        });
         jPanel1.add(txtSoDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 580, 230, -1));
 
         jLabel1.setText("Tìm Kiếm");
@@ -260,6 +268,10 @@ public class KhachHangView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 500, -1, -1));
+
+        lblsdt.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        lblsdt.setForeground(new java.awt.Color(0, 255, 153));
+        jPanel1.add(lblsdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 300, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -356,13 +368,15 @@ public class KhachHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+           //regex matkhau ^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$
         if (validateForm() == true) {
-
+            //validate ngaysinh
             Pattern p2 = Pattern.compile("^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$");//Năm bắt đầu từ 1900 đến dưới 3000-tháng từ 1 đến 12 -ngày từ 1 đến 31
             if (p2.matcher(txtNgaySinh.getText()).find() == false) {
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập ngày sinh hợp lệ\n Định dạng yyyy/MM/dd \n Năm(1900-2999)\n Tháng (1-12) \n Ngày (1-31)");
                 return;
             }
+    
             KhachHang kh = new KhachHang();
             kh.setMa(txtMaKH.getText());
             kh.setHoVaTen(txtTen.getText());
@@ -375,13 +389,26 @@ public class KhachHangView extends javax.swing.JInternalFrame {
             kh.setSoDienThoai(txtSoDT.getText());
             kh.setDiaChi(txtDiaChi.getText());
             kh.setMoTa(txtGhiChu.getText());
+            
             JOptionPane.showMessageDialog(this, khachHangServices.addKH(kh));
             loadData();
+            
             clearForm();
         } else {
             return;
         }
     }//GEN-LAST:event_btnThemActionPerformed
+
+    private void txtSoDTCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSoDTCaretUpdate
+        
+         Pattern p = Pattern.compile("0\\d{9,10}");
+         if(p.matcher(txtSoDT.getText()).find()==false){
+             lblsdt.setText("sai định dạng !");
+             lblsdt.setBackground(Color.red);
+         }else{
+             lblsdt.setText("");
+         }
+    }//GEN-LAST:event_txtSoDTCaretUpdate
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -402,6 +429,7 @@ public class KhachHangView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblngaysinh;
+    private javax.swing.JLabel lblsdt;
     private javax.swing.JRadioButton rdoNam;
     private javax.swing.JRadioButton rdoNu;
     private javax.swing.JTable tblKhachHang;
