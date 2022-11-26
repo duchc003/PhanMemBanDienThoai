@@ -274,6 +274,11 @@ public class BanHangView extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblGioHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblGioHangMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblGioHang);
 
         jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 700, 140));
@@ -705,9 +710,18 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        int row = tblGioHang.getSelectedRow();
-        gioHangViewModels.remove(row);
-        loadGioHang();
+      int row = tblGioHang.getSelectedRow();
+      String soluong =  JOptionPane.showInputDialog("Nhập số lượng","0");
+        if(Integer.parseInt(soluong)>Integer.parseInt(tblGioHang.getValueAt(row, 3).toString())){
+          JOptionPane.showMessageDialog(this, "Bạn đã nhập quá số lượng\n Vui lòng nhập lại");
+          return;
+      }
+      tblGioHang.setValueAt(Integer.parseInt(tblGioHang.getValueAt(row, 3).toString())-Integer.parseInt(soluong), row, 3);
+    
+       if(Integer.parseInt(tblGioHang.getValueAt(row, 3).toString())-Integer.parseInt(soluong)<=0){
+           gioHangViewModels.remove(row);
+           loadGioHang();
+       }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -781,6 +795,11 @@ public class BanHangView extends javax.swing.JInternalFrame {
         list = impl.getSeach(sdt, list);
         cbbTenKhachHang(list);
     }//GEN-LAST:event_txtKhachHangCaretUpdate
+
+    private void tblGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGioHangMouseClicked
+
+      
+    }//GEN-LAST:event_tblGioHangMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
