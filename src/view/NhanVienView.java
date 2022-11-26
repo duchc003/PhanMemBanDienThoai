@@ -71,7 +71,11 @@ public class NhanVienView extends javax.swing.JInternalFrame {
         }else{
             cbbVaiTro.setSelectedItem("Quản lý");
         }
-        
+        if (nv.getTrangThai().equalsIgnoreCase("Hoạt động")) {
+            rdoHoatDong.setSelected(true);
+        }else{
+            rdoNghi.setSelected(true);
+        }
     }
 
     private NhanVienViewmodel add() {
@@ -87,7 +91,19 @@ public class NhanVienView extends javax.swing.JInternalFrame {
             gioiTinh = "Nữ";
         }
         String SDT = txtSDT.getText();
-        return new NhanVienViewmodel(maNv, hoVaTen, diaChi, gioiTinh, SDT, email, isIcon, diaChi);
+        boolean vaiTro;
+        if (cbbVaiTro.getSelectedIndex()== 0) {
+            vaiTro = false;
+        }else{
+            vaiTro = true;
+        }
+        String trangThai;
+        if (rdoHoatDong.isSelected()) {
+            trangThai = "Hoạt động";
+        }else{
+            trangThai = "Nghỉ";
+        }
+        return new NhanVienViewmodel(maNv, hoVaTen, diaChi, gioiTinh, SDT, email, vaiTro, trangThai);
     }
     
     private void clear(){
@@ -98,6 +114,8 @@ public class NhanVienView extends javax.swing.JInternalFrame {
         txtHoVaTen.setText("");
         txtSDT.setText("");
         rdoNam.setSelected(true);
+        cbbVaiTro.setSelectedIndex(0);
+        rdoHoatDong.setSelected(true);
     }
 
     /**
@@ -180,6 +198,7 @@ public class NhanVienView extends javax.swing.JInternalFrame {
         jLabel5.setText("Email");
 
         buttonGroup1.add(rdoNam);
+        rdoNam.setSelected(true);
         rdoNam.setText("Nam");
 
         buttonGroup1.add(rdoNu);
@@ -231,6 +250,7 @@ public class NhanVienView extends javax.swing.JInternalFrame {
         jLabel9.setText("Trạng thái");
 
         buttonGroup2.add(rdoHoatDong);
+        rdoHoatDong.setSelected(true);
         rdoHoatDong.setText("Hoạt Động");
 
         buttonGroup2.add(rdoNghi);
@@ -277,7 +297,6 @@ public class NhanVienView extends javax.swing.JInternalFrame {
                                             .addComponent(rdoNam))
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel8)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -375,7 +394,7 @@ public class NhanVienView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_rdoNuActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        clear();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void tblTBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTBMouseClicked
