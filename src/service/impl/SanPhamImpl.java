@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import model.HangSP;
 import model.KhuyenMai;
-import model.PhuKien;
 import model.SanPham;
 import repository.SanPhamRepository;
 import service.SanPhamService;
@@ -52,11 +51,6 @@ public class SanPhamImpl implements SanPhamService {
     @Override
     public List<KhuyenMai> getKM() {
         return SP.getALLKM();
-    }
-
-    @Override
-    public List<PhuKien> getPK() {
-        return SP.getALLPK();
     }
 
     @Override

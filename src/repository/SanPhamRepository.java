@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import model.HangSP;
 import model.KhuyenMai;
-import model.PhuKien;
 import util.ConnectDB;
 import viewmodel.SanPhamViewModel;
 
@@ -74,21 +73,6 @@ public class SanPhamRepository {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getString(9)));
-            }
-            return list;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public List<PhuKien> getALLPK() {
-        String query = " select * from PhuKien ";
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
-            List<PhuKien> list = new ArrayList<>();
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new PhuKien(rs.getInt(1), rs.getString(2), rs.getString(3)));
             }
             return list;
         } catch (Exception e) {
