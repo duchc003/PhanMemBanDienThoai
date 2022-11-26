@@ -76,11 +76,9 @@
                                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel31" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtMAIMEI" min="-2" pref="240" max="-2" attributes="0"/>
                                       <Component id="txtIDSanPHam" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
                                       <Component id="txtMASANPHAM" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
                                       <Component id="txtTENSANPHAM" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
@@ -143,11 +141,6 @@
                                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                                       <Component id="jButton4" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtMAIMEI" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
@@ -168,7 +161,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                           <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="54" max="32767" attributes="0"/>
                       </Group>
@@ -383,13 +376,6 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="ID ph&#x1ee5; ki&#x1ec7;n"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel31">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="M&#xe3; IMEI"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="txtMAIMEI">
                 </Component>
               </SubComponents>
             </Container>
@@ -1602,13 +1588,15 @@
                 <Component class="javax.swing.JComboBox" name="cbbManHinh">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="6">
-                        <StringItem index="0" value="4 inch"/>
-                        <StringItem index="1" value="6 inch"/>
-                        <StringItem index="2" value="8 inch"/>
-                        <StringItem index="3" value="10 inch"/>
-                        <StringItem index="4" value="12 inch"/>
-                        <StringItem index="5" value="16 inch"/>
+                      <StringArray count="8">
+                        <StringItem index="0" value="2 inch"/>
+                        <StringItem index="1" value="3 inch"/>
+                        <StringItem index="2" value="4 inch"/>
+                        <StringItem index="3" value="6 inch"/>
+                        <StringItem index="4" value="8 inch"/>
+                        <StringItem index="5" value="10 inch"/>
+                        <StringItem index="6" value="12 inch"/>
+                        <StringItem index="7" value="16 inch"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -1619,10 +1607,12 @@
                 <Component class="javax.swing.JComboBox" name="cbbRam">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="4G"/>
-                        <StringItem index="1" value="8G"/>
-                        <StringItem index="2" value="16G"/>
+                      <StringArray count="5">
+                        <StringItem index="0" value="2G"/>
+                        <StringItem index="1" value="4G"/>
+                        <StringItem index="2" value="6G"/>
+                        <StringItem index="3" value="8G"/>
+                        <StringItem index="4" value=" "/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -1633,11 +1623,12 @@
                 <Component class="javax.swing.JComboBox" name="cbbBoNho">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
+                      <StringArray count="5">
                         <StringItem index="0" value="8GB"/>
                         <StringItem index="1" value="16GB"/>
                         <StringItem index="2" value="32GB"/>
-                        <StringItem index="3" value="125Gb"/>
+                        <StringItem index="3" value="125GB"/>
+                        <StringItem index="4" value="250GB"/>
                       </StringArray>
                     </Property>
                   </Properties>

@@ -579,9 +579,9 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jPanel7.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, -1));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel7.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, 215, -1));
+        jPanel7.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 215, -1));
 
-        jLabel20.setText("Khách Cần trả");
+        jLabel20.setText("Tiền khách cần trả");
         jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
         jPanel7.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, 215, -1));
 

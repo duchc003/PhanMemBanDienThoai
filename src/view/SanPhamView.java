@@ -116,7 +116,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         fillCt(listCt);
         //5 sản phẩm
         tblSanPham.setModel(dtm);
-        Object[] SanPham = {"ID", "ID Khuyến mãi", "ID Phụ Kiện", "ID Hãng", "Mã SP", "Tên SP", "Mã IMEI"};
+        Object[] SanPham = {"ID", "ID Khuyến mãi", "ID Phụ Kiện", "ID Hãng", "Mã SP", "Tên SP"};
         dtm.setColumnIdentifiers(SanPham);
         showDataTable(SP.getAll());
         // cbb chitietsp
@@ -336,7 +336,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         txtIDSanPHam.setText(String.valueOf(nv.getId()));
         txtMASANPHAM.setText(nv.getMa());
         txtTENSANPHAM.setText(nv.getTen());
-        txtMAIMEI.setText(nv.getMaIMEI());
         cbbHANG.setSelectedItem(nv.getIdHang());
         cbbKHUYENMAI.setSelectedItem(nv.getIdKM());
         cbbPHUKIEN.setSelectedItem(nv.getIdPK());
@@ -349,8 +348,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                 (int) cbbPHUKIEN.getSelectedItem(),
                 (int) cbbHANG.getSelectedItem(),
                 txtMASANPHAM.getText(),
-                txtTENSANPHAM.getText(),
-                txtMAIMEI.getText());
+                txtTENSANPHAM.getText());
     }
 
     /**
@@ -385,8 +383,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        txtMAIMEI = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         txtMaHangSp = new javax.swing.JTextField();
@@ -585,8 +581,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
         jLabel6.setText("ID phụ kiện");
 
-        jLabel31.setText("Mã IMEI");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -598,11 +592,9 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel31))
+                            .addComponent(jLabel3))
                         .addGap(80, 80, 80)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMAIMEI, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIDSanPHam, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMASANPHAM, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTENSANPHAM, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -649,11 +641,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                         .addGap(68, 68, 68)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2)
-                            .addComponent(jButton4))
-                        .addGap(63, 63, 63)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel31)
-                            .addComponent(txtMAIMEI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton4)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -668,7 +656,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                             .addComponent(txtTENSANPHAM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(cbbPHUKIEN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(81, 81, 81)
+                .addGap(154, 154, 154)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(54, Short.MAX_VALUE))
         );
@@ -1256,11 +1244,11 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
         cbbMauSac.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trắng", "Đỏ", "Đen", "Tím", "Xanh", " " }));
 
-        cbbManHinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "4 inch", "6 inch", "8 inch", "10 inch", "12 inch", "16 inch" }));
+        cbbManHinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2 inch", "3 inch", "4 inch", "6 inch", "8 inch", "10 inch", "12 inch", "16 inch" }));
 
-        cbbRam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "4G", "8G", "16G" }));
+        cbbRam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2G", "4G", "6G", "8G", " " }));
 
-        cbbBoNho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8GB", "16GB", "32GB", "125Gb" }));
+        cbbBoNho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8GB", "16GB", "32GB", "125GB", "250GB" }));
 
         cbbCamera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 Mắt", "2 Mắt", "3 Mắt", "4 Mắt" }));
 
@@ -1779,7 +1767,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         txtIDSanPHam.setText("");
         txtMASANPHAM.setText("");
         txtTENSANPHAM.setText("");
-        txtMAIMEI.setText("");
         cbbHANG.setSelectedItem(null);
         cbbKHUYENMAI.setSelectedItem(null);
         cbbPHUKIEN.setSelectedItem(null);
@@ -1865,7 +1852,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
@@ -1917,7 +1903,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtIdHangSp;
     private javax.swing.JTextField txtIdNhaCungCap;
     private javax.swing.JTextField txtIdPhuKien;
-    private javax.swing.JTextField txtMAIMEI;
     private javax.swing.JTextField txtMASANPHAM;
     private javax.swing.JTextArea txtMMoTa;
     private javax.swing.JTextField txtMaHangSp;

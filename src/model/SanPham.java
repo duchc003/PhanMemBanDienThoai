@@ -16,19 +16,17 @@ public class SanPham {
     private int idHang;
     private String ma;
     private String ten;
-    private String maIMEI;
 
     public SanPham() {
     }
 
-    public SanPham(int id, int idKM, int idPK, int idHang, String ma, String ten, String maIMEI) {
+    public SanPham(int id, int idKM, int idPK, int idHang, String ma, String ten) {
         this.id = id;
         this.idKM = idKM;
         this.idPK = idPK;
         this.idHang = idHang;
         this.ma = ma;
         this.ten = ten;
-        this.maIMEI = maIMEI;
     }
 
     public int getId() {
@@ -78,13 +76,4 @@ public class SanPham {
     public void setTen(String ten) {
         this.ten = ten;
     }
-
-    public String getMaIMEI() {
-        return maIMEI;
-    }
-
-    public void setMaIMEI(String maIMEI) {
-        this.maIMEI = maIMEI;
-    }
-
 }

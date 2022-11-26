@@ -107,9 +107,8 @@ public class SanPhamRepository {
                 + "           ,[IDHang]\n"
                 + "           ,[MaSP]\n"
                 + "           ,[TenSp]\n"
-                + "           ,[MaIMEI])\n"
                 + "     VALUES\n"
-                + "           (?,?,?,?,?,?)";
+                + "           (?,?,?,?,?)";
         int check = 0;
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ps.setObject(1, SP.getIdKM());
@@ -117,7 +116,6 @@ public class SanPhamRepository {
             ps.setObject(3, SP.getIdHang());
             ps.setObject(4, SP.getMa());
             ps.setObject(5, SP.getTen());
-            ps.setObject(6, SP.getMaIMEI());
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,7 +140,6 @@ public class SanPhamRepository {
             ps.setObject(3, SP.getIdHang());
             ps.setObject(4, SP.getMa());
             ps.setObject(5, SP.getTen());
-            ps.setObject(6, SP.getMaIMEI());
             ps.setObject(7, viTri);
         } catch (Exception e) {
             e.printStackTrace();
