@@ -17,18 +17,22 @@ import util.ConnectDB;
 public class NhanVienRepository {
 
     public List<NhanVienViewmodel> getAll() {
-        String query = "SELECT [MaNV]\n"
+        String query = "SELECT [ID]\n"
+                + "      ,[MaNV]\n"
                 + "      ,[HoVaTen]\n"
                 + "      ,[DiaChi]\n"
                 + "      ,[GioiTinh]\n"
                 + "      ,[SDT]\n"
                 + "      ,[Email]\n"
+                + "      ,[VaiTro]\n"
+                + "      ,[TrangThai]\n"
                 + "  FROM [dbo].[NhanVien]";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
             ResultSet rs = ps.executeQuery();
             List<NhanVienViewmodel> list = new ArrayList<>();
             while (rs.next()) {
-                list.add(new NhanVienViewmodel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+                list.add(new NhanVienViewmodel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                        rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getString(8)));
             }
             return list;
         } catch (Exception e) {
@@ -44,9 +48,11 @@ public class NhanVienRepository {
                 + "           ,[DiaChi]\n"
                 + "           ,[GioiTinh]\n"
                 + "           ,[SDT]\n"
-                + "           ,[Email])\n"
+                + "           ,[Email]\n"
+                + "           ,[VaiTro]\n"
+                + "           ,[TrangThai])\n"
                 + "     VALUES\n"
-                + "           (?,?,?,?,?,?)";
+                + "           (?,?,?,?,?,?,?,?)";
         int check = 0;
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, nv.getMaNV());
@@ -55,19 +61,8 @@ public class NhanVienRepository {
             ps.setObject(4, nv.getGioiTinh());
             ps.setObject(5, nv.getSdt());
             ps.setObject(6, nv.getEmail());
-            check = ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return check > 0;
-    }
-
-    public boolean xoa(String maNV) {
-        String query = "DELETE FROM [dbo].[NhanVien]\n"
-                + "      WHERE [MaNV] = ?";
-        int check = 0;
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
-            ps.setObject(1, maNV);
+            ps.setObject(7, nv.isVaiTro());
+            ps.setObject(8, nv.getTrangThai());
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,12 +78,14 @@ public class NhanVienRepository {
                 + "      ,[GioiTinh]\n"
                 + "      ,[SDT]\n"
                 + "      ,[Email]\n"
+                + "      ,[VaiTro] = ?\n"
+                + "      ,[TrangThai] = ?\n"
                 + "  FROM [dbo].[NhanVien] where MaNV = ?";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, maNV);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                NhanVienViewmodel nv = new NhanVienViewmodel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                NhanVienViewmodel nv = new NhanVienViewmodel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(8), rs.getString(8));
                 listkh.add(nv);
             }
         } catch (Exception e) {
@@ -105,6 +102,8 @@ public class NhanVienRepository {
                 + "      ,[GioiTinh] = ?\n"
                 + "      ,[SDT] = ?\n"
                 + "      ,[Email] = ?\n"
+                + "      ,[VaiTro] = ?\n"
+                + "      ,[TrangThai] = ?\n"
                 + " WHERE MaNV = ?";
         int check = 0;
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
@@ -114,7 +113,9 @@ public class NhanVienRepository {
             ps.setObject(4, nv.getGioiTinh());
             ps.setObject(5, nv.getSdt());
             ps.setObject(6, nv.getEmail());
-            ps.setObject(7, maNV);
+            ps.setObject(7, nv.isVaiTro());
+            ps.setObject(8, nv.getTrangThai());
+            ps.setObject(9, maNV);
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
