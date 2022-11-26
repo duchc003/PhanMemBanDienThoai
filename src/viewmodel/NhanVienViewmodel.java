@@ -32,6 +32,11 @@ public class NhanVienViewmodel {
         this.vaiTro = vaiTro;
         this.trangThai = trangThai;
     }
+        public NhanVienViewmodel(String email) {
+     
+        this.email = email;
+       
+    }
 
     public String getMaNV() {
         return maNV;
