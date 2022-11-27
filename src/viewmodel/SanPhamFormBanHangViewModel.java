@@ -6,13 +6,13 @@ public class SanPhamFormBanHangViewModel {
     private String tenSp;
     private int soLuong;
     private String hang;
-    private Double giaBan;
+    private double giaBan;
     private String xuatXu;
 
     public SanPhamFormBanHangViewModel() {
     }
 
-    public SanPhamFormBanHangViewModel(String maSp, String tenSp, int soLuong, String hang, Double giaBan, String xuatXu) {
+    public SanPhamFormBanHangViewModel(String maSp, String tenSp, int soLuong, String hang, double giaBan, String xuatXu) {
         this.maSp = maSp;
         this.tenSp = tenSp;
         this.soLuong = soLuong;
@@ -53,11 +53,11 @@ public class SanPhamFormBanHangViewModel {
         this.hang = hang;
     }
 
-    public Double getGiaBan() {
+    public double getGiaBan() {
         return giaBan;
     }
 
-    public void setGiaBan(Double giaBan) {
+    public void setGiaBan(double giaBan) {
         this.giaBan = giaBan;
     }
 
