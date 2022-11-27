@@ -24,13 +24,13 @@ public class ChiTietSPView {
     private float giaBan;
     private String image;
     private String barcode;
-    private String trangThai;
+    private int trangThai;
     private String moTa;
 
     public ChiTietSPView() {
     }
 
-    public ChiTietSPView(int id, int idSP, int idNcc, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, float giaNhap, float giaBan, String image, String barcode, String trangThai, String moTa) {
+    public ChiTietSPView(int id, int idSP, int idNcc, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, float giaNhap, float giaBan, String image, String barcode, int trangThai, String moTa) {
         this.id = id;
         this.idSP = idSP;
         this.idNcc = idNcc;
@@ -161,11 +161,11 @@ public class ChiTietSPView {
         this.mauSac = mauSac;
     }
 
-    public String getTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
 
@@ -178,7 +178,7 @@ public class ChiTietSPView {
     }
 
     public Object[] toDataRow() {
-        return new Object[]{id, idSP, idNcc, soLuong, ram, xuatXu, camera, manHinh, boNho, mauSac, giaNhap, giaBan, image, barcode, trangThai, moTa};
+        return new Object[]{id, idSP, idNcc, soLuong, ram, xuatXu, camera, manHinh, boNho, mauSac, giaNhap, giaBan, image, barcode, trangThai == 1 ? "Còn Hàng" :"Hết Hàng", moTa};
     }
 
     @Override

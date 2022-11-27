@@ -51,4 +51,9 @@ public class khuyenMaiServicesImpl implements khuyenMaiServices {
         }
     }
 
+    @Override
+    public KhuyenMaiViewModel getOne(int hinhThai) {
+        return KhuyenMaiViewModelReprository.getOne(hinhThai);
+    }
+
 }

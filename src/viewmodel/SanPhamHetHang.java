@@ -21,12 +21,12 @@ public class SanPhamHetHang {
     private String manHinh;
     private String boNho;
     private String mauSac;
-    private String trangThaiString;
+    private int trangThaiString;
 
     public SanPhamHetHang() {
     }
 
-    public SanPhamHetHang(int id, String maSp, String tenSP, String tenHang, int soLuong, String ram, String xuatXu, String camere, String manHinh, String boNho, String mauSac, String trangThaiString) {
+    public SanPhamHetHang(int id, String maSp, String tenSP, String tenHang, int soLuong, String ram, String xuatXu, String camere, String manHinh, String boNho, String mauSac, int trangThaiString) {
         this.id = id;
         this.maSp = maSp;
         this.tenSP = tenSP;
@@ -41,7 +41,7 @@ public class SanPhamHetHang {
         this.trangThaiString = trangThaiString;
     }
 
-    public SanPhamHetHang(int soLuong, String trangThaiString) {
+    public SanPhamHetHang(int soLuong, int trangThaiString) {
         this.soLuong = soLuong;
         this.trangThaiString = trangThaiString;
     }
@@ -126,11 +126,11 @@ public class SanPhamHetHang {
         this.mauSac = mauSac;
     }
 
-    public String getTrangThaiString() {
+    public int getTrangThaiString() {
         return trangThaiString;
     }
 
-    public void setTrangThaiString(String trangThaiString) {
+    public void setTrangThaiString(int trangThaiString) {
         this.trangThaiString = trangThaiString;
     }
 
@@ -143,7 +143,7 @@ public class SanPhamHetHang {
     }
     
     public Object[] toDataRow(){
-        return new Object[] {id,maSp,tenSP,tenHang,soLuong,ram,xuatXu,camere,manHinh,boNho,mauSac,trangThaiString};
+        return new Object[] {id,maSp,tenSP,tenHang,soLuong,ram,xuatXu,camere,manHinh,boNho,mauSac,trangThaiString == 1 ? "Còn Hàng" :"Hết Hàng"};
     }
 
     @Override

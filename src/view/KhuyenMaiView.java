@@ -23,7 +23,6 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
 
     public KhuyenMaiView() {
         initComponents();
-        initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
@@ -405,9 +404,9 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
                 km.getTen(),
                 km.getNgayBD(),
                 km.getNgayKT(),
-                km.getHinhThuc(),
+                km.getHinhThuc() == 1 ? "Giảm Giá %" : "Giảm Giá Tiền",
                 km.getGiamGia(),
-                km.getTrangThai(),
+                km.getTrangThai() == 1 ? "Hoạt Động" : "Không Hoạt Động",
                 km.getMoTa()
             });
         }
@@ -419,12 +418,12 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         km.setTen(txt_tenKM.getText());
         km.setNgayBD(txt_ngayBD.getText());
         km.setNgayKT(txt_ngayKT.getText());
-        km.setHinhThuc(cbo_ht.getSelectedItem().toString());
+        km.setHinhThuc((int) cbo_ht.getSelectedItem());
         km.setGiamGia(Float.valueOf(txt_giam.getText()));
         if (rdo_hoatDong.isSelected()) {
-            km.setTrangThai("Hoat Đông");
+            km.setTrangThai(1);
         } else {
-            km.setTrangThai("Không Hoạt Động");
+            km.setTrangThai(2);
         }
         km.setMoTa(txt_moTa.getText());
 

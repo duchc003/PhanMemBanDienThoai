@@ -240,7 +240,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         cbbXuatXu.setSelectedItem(ct.getXuatXu());
         cbbBoNho.setSelectedItem(ct.getBoNho());
         txtMMoTa.setText(ct.getMoTa());
-        if (ct.getTrangThai().equalsIgnoreCase("Còn Hàng")) {
+        if (ct.getTrangThai() == 1) {
             rdoConHang.setSelected(true);
         } else {
             rdoHetHang.setSelected(true);
@@ -1295,7 +1295,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         SanPhamHetHang sp = spHetHang.get(index);
         int id = sp.getId();
         String soLuong = JOptionPane.showInputDialog("Số Lượng", "0");
-        SanPhamHetHang spUpdate = new SanPhamHetHang(Integer.parseInt(soLuong), "Còn Hàng");
+        SanPhamHetHang spUpdate = new SanPhamHetHang(Integer.parseInt(soLuong), 1);
         MsgBox.alert(this, implHetHang.update(spUpdate, id));
         spHetHang = implHetHang.getALL();
         showTTableHetHang(spHetHang);

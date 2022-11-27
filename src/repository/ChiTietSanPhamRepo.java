@@ -39,7 +39,7 @@ public class ChiTietSanPhamRepo {
                 + "      ,[TrangThai]\n"
                 + "      ,[MoTa]\n"
                 + "  FROM [dbo].[ChiTietSanPham]\n"
-                + "  where TrangThai = 'Còn Hàng'";
+                + "  where TrangThai = '1'";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             List<ChiTietSPView> list = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
@@ -59,7 +59,7 @@ public class ChiTietSanPhamRepo {
                         rs.getFloat(12),
                         rs.getString(13),
                         rs.getString(14),
-                        rs.getString(15),
+                        rs.getInt(15),
                         rs.getString(16)));
             }
             return list;

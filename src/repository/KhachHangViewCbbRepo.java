@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package repository;
 
 import java.sql.Connection;
@@ -18,10 +14,6 @@ import util.JDBCHelper;
 import viewmodel.ChiTietSPView;
 import viewmodel.KhachHangViewModel;
 
-/**
- *
- * @author ASUS
- */
 public class KhachHangViewCbbRepo {
 
     public List<KhachHang> getALL() {
