@@ -5,24 +5,44 @@
 package service.impl;
 
 import java.util.List;
+import model.ChiTietSP;
+import model.SanPham;
 import service.ThongKeSPservice;
 import viewmodel.ThongkeSanPhamViewModel;
 import repository.ThongKeSanPhamRepository;
 import viewmodel.ThongKeDoanhThuViewModel;
+
 /**
  *
  * @author ADMIN
  */
-public class ThongKeImpl implements ThongKeSPservice{
-     private  ThongKeSanPhamRepository tk = new ThongKeSanPhamRepository();
+public class ThongKeImpl implements ThongKeSPservice {
+
+    private ThongKeSanPhamRepository tk = new ThongKeSanPhamRepository();
+
     @Override
     public List<ThongkeSanPhamViewModel> getAllThongKeViewModel() {
-          return tk.all();
+        return tk.all();
     }
 
     @Override
     public List<ThongKeDoanhThuViewModel> getAll() {
         return tk.getall();
     }
-    
+
+    @Override
+    public List<ChiTietSP> ConHang() {
+        return tk.ConHang();
+    }
+
+    @Override
+    public List<ChiTietSP> HetHang() {
+        return tk.HetHang();
+    }
+
+    @Override
+    public List<SanPham> SoSanPhamDangKinhDoanh() {
+        return tk.SoSanPhamDangKinhDoanh();
+    }
+
 }

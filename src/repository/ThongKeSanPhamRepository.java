@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import model.ChiTietSP;
+import model.SanPham;
 import util.ConnectDB;
 import viewmodel.SanPhamViewModel;
 import viewmodel.ThongkeSanPhamViewModel;
@@ -64,5 +66,56 @@ public class ThongKeSanPhamRepository {
         }
 
         return listt;
+    }
+
+    public List<ChiTietSP> ConHang() {
+        List<ChiTietSP> listt = new ArrayList<>();
+        String query = "SELECT count(trangThai) FROM ChiTietSanPham\n"
+                + "WHERE TrangThai = 1;";
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listt.add(new ChiTietSP(rs.getInt(1)));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listt;
+    }
+
+    public List<ChiTietSP> HetHang() {
+        List<ChiTietSP> listt = new ArrayList<>();
+        String query = "SELECT count(trangThai) FROM ChiTietSanPham\n"
+                + "WHERE TrangThai = 2;";
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listt.add(new ChiTietSP(rs.getInt(1)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listt;
+    }
+
+    public List<SanPham> SoSanPhamDangKinhDoanh() {
+        List<SanPham> listt = new ArrayList<>();
+        String query = "SELECT count(ID) FROM SanPham";
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listt.add(new SanPham(rs.getInt(1)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listt;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new ThongKeSanPhamRepository().ConHang());
     }
 }

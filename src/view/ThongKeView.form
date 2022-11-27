@@ -146,7 +146,7 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-                                      <Component id="jLabel40" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="lblTongSanPham" min="-2" pref="40" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace pref="18" max="32767" attributes="0"/>
@@ -159,7 +159,7 @@
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTongSanPham" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="40" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -174,7 +174,7 @@
                         <Property name="text" type="java.lang.String" value="T&#x1ed5;ng S&#x1ed1; S&#x1ea3;n Ph&#x1ea9;m &#x110;ang Kinh Doanh"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel40">
+                    <Component class="javax.swing.JLabel" name="lblTongSanPham">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="36" style="0"/>
@@ -209,7 +209,7 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jLabel41" min="-2" pref="45" max="-2" attributes="0"/>
+                              <Component id="lblConHang" min="-2" pref="45" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -220,7 +220,7 @@
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblConHang" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="40" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -235,7 +235,7 @@
                         <Property name="text" type="java.lang.String" value="T&#x1ed5;ng S&#x1ed1; S&#x1ea3;n Ph&#x1ea9;m &#x110;ang C&#xf2;n H&#xe0;ng"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel41">
+                    <Component class="javax.swing.JLabel" name="lblConHang">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="36" style="0"/>
@@ -271,7 +271,7 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-                                      <Component id="jLabel42" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <Component id="lblHetHang" min="-2" pref="35" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace pref="17" max="32767" attributes="0"/>
@@ -284,7 +284,7 @@
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jLabel42" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblHetHang" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="40" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -299,7 +299,7 @@
                         <Property name="text" type="java.lang.String" value="T&#x1ed5;ng S&#x1ed1; S&#x1ea3;n Ph&#x1ea9;m &#x110;ang H&#x1ebf;t H&#xe0;ng"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel42">
+                    <Component class="javax.swing.JLabel" name="lblHetHang">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="36" style="0"/>

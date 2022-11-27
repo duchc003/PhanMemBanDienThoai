@@ -9,7 +9,7 @@ package model;
  * @author ASUS
  */
 public class ChiTietSP {
-    
+
     private int id;
     private int idSP;
     private int nhaCungCap;
@@ -19,18 +19,18 @@ public class ChiTietSP {
     private String camera;
     private String manHinh;
     private String boNho;
-    private String mauSac;  
+    private String mauSac;
     private float giaNhap;
     private float giaBan;
     private String image;
     private String barcodde;
-    private String trangThai;
+    private int trangThai;
     private String moTa;
 
     public ChiTietSP() {
     }
 
-    public ChiTietSP(int idSP, int nhaCungCap, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, float giaNhap, float giaBan, String image, String barcodde, String trangThai, String moTa) {
+    public ChiTietSP(int idSP, int nhaCungCap, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, float giaNhap, float giaBan, String image, String barcodde, int trangThai, String moTa) {
         this.idSP = idSP;
         this.nhaCungCap = nhaCungCap;
         this.soLuong = soLuong;
@@ -46,6 +46,10 @@ public class ChiTietSP {
         this.barcodde = barcodde;
         this.trangThai = trangThai;
         this.moTa = moTa;
+    }
+
+    public ChiTietSP(int trangThai) {
+        this.trangThai = trangThai;
     }
 
     public int getId() {
@@ -144,11 +148,11 @@ public class ChiTietSP {
         this.image = image;
     }
 
-    public String getTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
 
@@ -175,6 +179,10 @@ public class ChiTietSP {
     public void setBarcodde(String barcodde) {
         this.barcodde = barcodde;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "ChiTietSP{" + "id=" + id + ", idSP=" + idSP + ", nhaCungCap=" + nhaCungCap + ", soLuong=" + soLuong + ", ram=" + ram + ", xuatXu=" + xuatXu + ", camera=" + camera + ", manHinh=" + manHinh + ", boNho=" + boNho + ", mauSac=" + mauSac + ", giaNhap=" + giaNhap + ", giaBan=" + giaBan + ", image=" + image + ", barcodde=" + barcodde + ", trangThai=" + trangThai + ", moTa=" + moTa + '}';
+    }
+
 }

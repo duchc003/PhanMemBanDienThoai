@@ -249,11 +249,11 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }
 
     private ChiTietSP getDataSp() {
-        String trangThai;
+        int trangThai;
         if (rdoConHang.isSelected()) {
-            trangThai = "Còn Hàng";
+            trangThai = 1;
         } else {
-            trangThai = "Hết Hàng";
+            trangThai = 2;
         }
         String imgName = null;
         if (lblAnh.getIcon() != null) {

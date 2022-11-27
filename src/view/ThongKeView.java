@@ -19,6 +19,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import model.ChiTietSP;
 import model.SanPham;
 import viewmodel.SanPhamViewModel;
 import org.apache.poi.ss.usermodel.Cell;
@@ -62,6 +63,9 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         listtt = tk.getAll();
         showDataTable(listt);
         showDataTable2(listtt);
+        lblConHang(tk.ConHang());
+        lblHetHang(tk.HetHang());
+        lblTongSoHang(tk.SoSanPhamDangKinhDoanh());
     }
 
     private void showDataTable(List<ThongkeSanPhamViewModel> lists) {
@@ -75,6 +79,23 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         dtmDoanhThu.setRowCount(0);
         for (ThongKeDoanhThuViewModel thongKeDoanhThuViewModel : listt) {
             dtmDoanhThu.addRow(thongKeDoanhThuViewModel.toDatarow());
+        }
+    }
+    
+    private void lblConHang(List<ChiTietSP> listt) {
+        for (ChiTietSP chiTietSP : listt) {
+            lblConHang.setText(String.valueOf(chiTietSP.getTrangThai()));
+        }
+    }
+    private void lblHetHang(List<ChiTietSP> listt) {
+        for (ChiTietSP chiTietSP : listt) {
+            lblHetHang.setText(String.valueOf(chiTietSP.getTrangThai()));
+            
+        }
+    }
+    private void lblTongSoHang(List<SanPham> listt) {
+        for (SanPham sanPham : listt) {
+            lblTongSanPham.setText(String.valueOf(sanPham.getId()));
         }
     }
 
@@ -93,13 +114,13 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jPanel8 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel35 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
+        lblTongSanPham = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
+        lblConHang = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
+        lblHetHang = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -154,8 +175,8 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel35.setText("Tổng Số Sản Phẩm Đang Kinh Doanh");
 
-        jLabel40.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel40.setText("0");
+        lblTongSanPham.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblTongSanPham.setText("0");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -168,7 +189,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                         .addComponent(jLabel35))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(97, 97, 97)
-                        .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblTongSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
@@ -177,7 +198,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel35)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel40)
+                .addComponent(lblTongSanPham)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -188,8 +209,8 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel36.setText("Tổng Số Sản Phẩm Đang Còn Hàng");
 
-        jLabel41.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel41.setText("0");
+        lblConHang.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblConHang.setText("0");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -201,7 +222,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblConHang, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(77, 77, 77))
         );
         jPanel11Layout.setVerticalGroup(
@@ -210,7 +231,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel36)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel41)
+                .addComponent(lblConHang)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -221,8 +242,8 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel37.setText("Tổng Số Sản Phẩm Đang Hết Hàng");
 
-        jLabel42.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel42.setText("0");
+        lblHetHang.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblHetHang.setText("0");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -235,7 +256,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                         .addComponent(jLabel37))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGap(83, 83, 83)
-                        .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblHetHang, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
@@ -244,7 +265,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel37)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel42)
+                .addComponent(lblHetHang)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -737,9 +758,6 @@ public class ThongKeView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -763,6 +781,9 @@ public class ThongKeView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JLabel lblConHang;
+    private javax.swing.JLabel lblHetHang;
+    private javax.swing.JLabel lblTongSanPham;
     private javax.swing.JTable tblDoanhThu;
     private javax.swing.JTable tblSanPham;
     // End of variables declaration//GEN-END:variables

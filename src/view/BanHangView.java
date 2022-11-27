@@ -92,8 +92,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
         KhachHang kh = impl.getOne(cbbKhachHang.getSelectedItem().toString());
         lblIdKH.setText(String.valueOf(kh.getId()));
         cbbHinhThucGG(impl1.getAllKhuyenMaiViewModel());
-        KhuyenMaiViewModel km = impl1.getOne((int) cbbHinhThuc.getSelectedItem());
-        cbbGiamGia.setSelectedItem(km.getGiamGia());
     }
     int row = 0;
 
