@@ -24,13 +24,13 @@ public class ChiTietSP {
     private float giaBan;
     private String image;
     private String barcodde;
-    private String trangThai;
+    private int trangThai;
     private String moTa;
 
     public ChiTietSP() {
     }
 
-    public ChiTietSP(int idSP, int nhaCungCap, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, float giaNhap, float giaBan, String image, String barcodde, String trangThai, String moTa) {
+    public ChiTietSP(int idSP, int nhaCungCap, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, float giaNhap, float giaBan, String image, String barcodde, int trangThai, String moTa) {
         this.idSP = idSP;
         this.nhaCungCap = nhaCungCap;
         this.soLuong = soLuong;
@@ -46,6 +46,10 @@ public class ChiTietSP {
         this.barcodde = barcodde;
         this.trangThai = trangThai;
         this.moTa = moTa;
+    }
+        public ChiTietSP(int trangThai) {
+
+        this.trangThai = trangThai;
     }
 
     public int getId() {
@@ -144,11 +148,11 @@ public class ChiTietSP {
         this.image = image;
     }
 
-    public String getTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
 

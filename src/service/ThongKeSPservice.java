@@ -5,6 +5,8 @@
 package service;
 
 import java.util.List;
+import model.ChiTietSP;
+import model.SanPham;
 import viewmodel.ThongkeSanPhamViewModel;
 import viewmodel.ThongKeDoanhThuViewModel;
 
@@ -18,4 +20,9 @@ public interface ThongKeSPservice {
 
     List<ThongKeDoanhThuViewModel> getAll();
 
+    List<ChiTietSP> ConHang();
+
+    List<ChiTietSP> HetHang();
+
+    List<SanPham> SoSanPhamDangKinhDoanh();
 }

@@ -29,6 +29,11 @@ public class SanPham {
         this.ten = ten;
     }
 
+    public SanPham(int id) {
+        this.id = id;
+
+    }
+
     public int getId() {
         return id;
     }
