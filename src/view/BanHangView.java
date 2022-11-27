@@ -451,6 +451,11 @@ public class BanHangView extends javax.swing.JInternalFrame {
                 txtKhachHangCaretUpdate(evt);
             }
         });
+        txtKhachHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtKhachHangActionPerformed(evt);
+            }
+        });
 
         jLabel16.setText("Tìm Khách");
 
@@ -831,6 +836,10 @@ public class BanHangView extends javax.swing.JInternalFrame {
         }
         txtTienThua.setText(df.format(Double.valueOf(txtTienKhachDua.getText()) - Double.valueOf(txtTongTien.getText())) + "");
     }//GEN-LAST:event_txtTienKhachDuaCaretUpdate
+
+    private void txtKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKhachHangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtKhachHangActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
