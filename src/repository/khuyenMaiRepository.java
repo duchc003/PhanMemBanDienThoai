@@ -5,13 +5,17 @@
  */
 package repository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.HangSP;
 import model.KhuyenMai;
+import util.ConnectDB;
 import util.JDBCHelper;
 import viewmodel.KhuyenMaiViewModel;
 
@@ -33,8 +37,8 @@ public class khuyenMaiRepository {
                         rs.getString(4),
                         rs.getString(5),
                         rs.getFloat(6),
-                        rs.getString(7),
-                        rs.getString(8),
+                        rs.getInt(7),
+                        rs.getInt(8),
                         rs.getString(9)));
             }
         } catch (SQLException ex) {
@@ -55,8 +59,8 @@ public class khuyenMaiRepository {
                         rs.getString(4),
                         rs.getString(5),
                         rs.getFloat(6),
-                        rs.getString(7),
-                        rs.getString(8),
+                        rs.getInt(7),
+                        rs.getInt(8),
                         rs.getString(9)));
 
             }
@@ -89,5 +93,27 @@ public class khuyenMaiRepository {
                 + "WHERE MaKM = ?";
         row = JDBCHelper.executeUpdate(sql, km.getTen(), km.getNgayBD(), km.getNgayKT(), km.getGiamGia(), km.getHinhThuc(), km.getTrangThai(), km.getMoTa(), km.getMaKM());
         return row;
+    }
+
+    public KhuyenMaiViewModel getOne(int hinhThuc) {
+        String query = "select * from KhuyenMai where HinhThuc = ?";
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, hinhThuc);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new KhuyenMaiViewModel(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getFloat(6),
+                        rs.getInt(7),
+                        rs.getInt(8),
+                        rs.getString(9));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
