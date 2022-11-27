@@ -17,12 +17,12 @@ public class NhanVienViewmodel {
     private String sdt;
     private String email;
     private boolean vaiTro;
-    private String trangThai;
+    private int trangThai;
 
     public NhanVienViewmodel() {
     }
 
-    public NhanVienViewmodel(String maNV, String hoVaTen, String diaChi, String gioiTinh, String sdt, String email, boolean vaiTro, String trangThai) {
+    public NhanVienViewmodel(String maNV, String hoVaTen, String diaChi, String gioiTinh, String sdt, String email, boolean vaiTro, int trangThai) {
         this.maNV = maNV;
         this.hoVaTen = hoVaTen;
         this.diaChi = diaChi;
@@ -32,10 +32,11 @@ public class NhanVienViewmodel {
         this.vaiTro = vaiTro;
         this.trangThai = trangThai;
     }
-        public NhanVienViewmodel(String email) {
-     
+
+    public NhanVienViewmodel(String email) {
+
         this.email = email;
-       
+
     }
 
     public String getMaNV() {
@@ -94,20 +95,15 @@ public class NhanVienViewmodel {
         this.vaiTro = vaiTro;
     }
 
-    public String getTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
 
-    @Override
-    public String toString() {
-        return "NhanVienViewmodel{" + "maNV=" + maNV + ", hoVaTen=" + hoVaTen + ", diaChi=" + diaChi + ", gioiTinh=" + gioiTinh + ", sdt=" + sdt + ", email=" + email + ", vaiTro=" + vaiTro + ", trangThai=" + trangThai + '}';
-    }
-
     public Object[] toRowData() {
-        return new Object[]{maNV, hoVaTen, diaChi, gioiTinh, sdt, email, vaiTro == true ? "Nhân viên" : "Quản lý", trangThai};
+        return new Object[]{maNV, hoVaTen, diaChi, gioiTinh, sdt, email, vaiTro == true ? "Nhân viên" : "Quản lý", trangThai == 1 ? "Hoạt động" : "Nghỉ"};
     }
 }

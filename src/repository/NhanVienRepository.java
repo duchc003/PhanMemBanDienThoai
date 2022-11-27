@@ -31,7 +31,7 @@ public class NhanVienRepository {
             List<NhanVienViewmodel> list = new ArrayList<>();
             while (rs.next()) {
                 list.add(new NhanVienViewmodel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                        rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getString(8)));
+                        rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getInt(8)));
             }
             return list;
         } catch (Exception e) {
@@ -84,7 +84,7 @@ public class NhanVienRepository {
             ps.setObject(1, maNV);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                NhanVienViewmodel nv = new NhanVienViewmodel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getString(8));
+                NhanVienViewmodel nv = new NhanVienViewmodel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getInt(8));
                 listkh.add(nv);
             }
         } catch (Exception e) {
@@ -108,7 +108,7 @@ public class NhanVienRepository {
             ps.setObject(1, hoVaten);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                NhanVienViewmodel nv = new NhanVienViewmodel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getString(8));
+                NhanVienViewmodel nv = new NhanVienViewmodel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getInt(8));
                 listhovaten.add(nv);
             }
         } catch (Exception e) {
@@ -132,7 +132,7 @@ public class NhanVienRepository {
             ps.setObject(1, sdt);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                NhanVienViewmodel nv = new NhanVienViewmodel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getString(8));
+                NhanVienViewmodel nv = new NhanVienViewmodel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getInt(8));
                 listSdt.add(nv);
             }
         } catch (Exception e) {

@@ -71,7 +71,7 @@ public class NhanVienView extends javax.swing.JInternalFrame {
         }else{
             cbbVaiTro.setSelectedItem("Quản lý");
         }
-        if (nv.getTrangThai().equalsIgnoreCase("Hoạt động")) {
+        if (nv.getTrangThai() == 1) {
             rdoHoatDong.setSelected(true);
         }else{
             rdoNghi.setSelected(true);
@@ -97,11 +97,11 @@ public class NhanVienView extends javax.swing.JInternalFrame {
         }else{
             vaiTro = true;
         }
-        String trangThai;
+        int trangThai;
         if (rdoHoatDong.isSelected()) {
-            trangThai = "Hoạt động";
+            trangThai = 1;
         }else{
-            trangThai = "Nghỉ";
+            trangThai = 0;
         }
         return new NhanVienViewmodel(maNv, hoVaTen, diaChi, gioiTinh, SDT, email, vaiTro, trangThai);
     }
