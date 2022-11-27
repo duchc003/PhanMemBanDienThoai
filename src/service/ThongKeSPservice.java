@@ -27,4 +27,9 @@ public interface ThongKeSPservice {
     List<SanPham> SoSanPhamDangKinhDoanh();
 
 
+    List<ChiTietSP> ConHang();
+
+    List<ChiTietSP> HetHang();
+
+    List<SanPham> SoSanPhamDangKinhDoanh();
 }

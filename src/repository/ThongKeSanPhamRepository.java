@@ -67,15 +67,25 @@ public class ThongKeSanPhamRepository {
 
         return listt;
     }
+<<<<<<< HEAD
 
     public List<ChiTietSP> ConHang() {
         List<ChiTietSP> listt = new ArrayList<>();
         String query = "SELECT count(trangThai) FROM ChiTietSanPham\n"
+=======
+     public List<ChiTietSP> ConHang() {
+        List<ChiTietSP> listt = new ArrayList<>();
+        String query = "SELECT * FROM ChiTietSanPham\n"
+>>>>>>> eb81af44dfb6b1faef8dc836a0df4ea1481436ae
                 + "WHERE TrangThai = 1;";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+<<<<<<< HEAD
                 listt.add(new ChiTietSP(rs.getInt(1)));
+=======
+                listt.add( new ChiTietSP(rs.getInt(15)));
+>>>>>>> eb81af44dfb6b1faef8dc836a0df4ea1481436ae
             }
 
         } catch (Exception e) {
@@ -87,19 +97,36 @@ public class ThongKeSanPhamRepository {
 
     public List<ChiTietSP> HetHang() {
         List<ChiTietSP> listt = new ArrayList<>();
+<<<<<<< HEAD
         String query = "SELECT count(trangThai) FROM ChiTietSanPham\n"
                 + "WHERE TrangThai = 2;";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 listt.add(new ChiTietSP(rs.getInt(1)));
+=======
+        String query = "SELECT dbo.HoaDon.MaHD, dbo.HoaDonChiTiet.SoLuong, dbo.ChiTietSanPham.GiaNhap, dbo.ChiTietSanPham.GiaBan, dbo.HoaDon.TongTien\n"
+                + "FROM     dbo.ChiTietSanPham INNER JOIN\n"
+                + "                  dbo.HoaDonChiTiet ON dbo.ChiTietSanPham.ID = dbo.HoaDonChiTiet.ID INNER JOIN\n"
+                + "                  dbo.HoaDon ON dbo.HoaDonChiTiet.IDHoaDon = dbo.HoaDon.ID";
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listt.add(new ChiTietSP(rs.getInt(15)));
+>>>>>>> eb81af44dfb6b1faef8dc836a0df4ea1481436ae
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+<<<<<<< HEAD
         return listt;
     }
 
+=======
+
+        return listt;
+    }
+>>>>>>> eb81af44dfb6b1faef8dc836a0df4ea1481436ae
     public List<SanPham> SoSanPhamDangKinhDoanh() {
         List<SanPham> listt = new ArrayList<>();
         String query = "SELECT count(ID) FROM SanPham";
@@ -114,8 +141,11 @@ public class ThongKeSanPhamRepository {
 
         return listt;
     }
+<<<<<<< HEAD
 
     public static void main(String[] args) {
         System.out.println(new ThongKeSanPhamRepository().ConHang());
     }
+=======
+>>>>>>> eb81af44dfb6b1faef8dc836a0df4ea1481436ae
 }

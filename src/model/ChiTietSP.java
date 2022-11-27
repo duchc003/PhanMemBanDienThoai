@@ -47,6 +47,10 @@ public class ChiTietSP {
         this.trangThai = trangThai;
         this.moTa = moTa;
     }
+        public ChiTietSP(int trangThai) {
+
+        this.trangThai = trangThai;
+    }
 
     public ChiTietSP(int trangThai) {
         this.trangThai = trangThai;

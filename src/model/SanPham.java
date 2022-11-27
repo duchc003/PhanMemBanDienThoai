@@ -31,6 +31,10 @@ public class SanPham {
 
     public SanPham(int id) {
         this.id = id;
+<<<<<<< HEAD
+=======
+
+>>>>>>> eb81af44dfb6b1faef8dc836a0df4ea1481436ae
     }
 
     public int getId() {

@@ -99,6 +99,25 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         }
     }
 
+    private void lblConHang(List<ChiTietSP> listt) {
+        for (ChiTietSP chiTietSP : listt) {
+            lblConHang.setText(String.valueOf(chiTietSP.getId()));
+        }
+    }
+
+    private void lblHetHang(List<ChiTietSP> listt) {
+        for (ChiTietSP chiTietSP : listt) {
+            lblHetHang.setText(String.valueOf(chiTietSP.getId()));
+
+        }
+    }
+
+    private void lblTongSoHang(List<SanPham> listt) {
+        for (SanPham sanPham : listt) {
+            lblTongSanPham.setText(String.valueOf(sanPham.getId()));
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
