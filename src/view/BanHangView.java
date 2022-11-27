@@ -877,8 +877,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtKhachHangActionPerformed
 
     private void cbbHinhThucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbHinhThucActionPerformed
-        KhuyenMaiViewModel km = impl1.getOne((int) cbbHinhThuc.getSelectedItem());
-        cbbGiamGia.setSelectedItem(km.getGiamGia());
+//        KhuyenMaiViewModel km = impl1.getOne((int) cbbHinhThuc.getSelectedItem());
+//        cbbGiamGia.setSelectedItem(km.getGiamGia());
     }//GEN-LAST:event_cbbHinhThucActionPerformed
 
 

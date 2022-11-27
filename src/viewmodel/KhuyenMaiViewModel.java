@@ -109,4 +109,9 @@ public class KhuyenMaiViewModel {
         this.moTa = moTa;
     }
 
+    @Override
+    public String toString() {
+        return "KhuyenMaiViewModel{" + "id=" + id + ", maKM=" + maKM + ", ten=" + ten + ", ngayBD=" + ngayBD + ", ngayKT=" + ngayKT + ", giamGia=" + giamGia + ", hinhThuc=" + hinhThuc + ", trangThai=" + trangThai + ", moTa=" + moTa + '}';
+    }
+
 }
