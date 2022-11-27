@@ -41,8 +41,9 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private DefaultComboBoxModel dcbm1 = new DefaultComboBoxModel();
     private List<SanPhamFormBanHangViewModel> lst = new ArrayList<>();
     private List<GioHangViewModel> gioHangViewModels = new ArrayList<>();
-    double v1 = 1000000000;
-        DecimalFormat df = new DecimalFormat("#");
+    private double v1 = 1000000000;
+    private DecimalFormat df = new DecimalFormat("#");
+
     public BanHangView() {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -737,7 +738,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       
+
         DefaultTableModel tblModelGH = new DefaultTableModel();
         tblModelGH = (DefaultTableModel) tblGioHang.getModel();
         tblModelGH.setRowCount(0);
@@ -778,7 +779,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         }
         gioHangViewModels.add(gh);
         loadGioHang();
-loadTien();
+        loadTien();
 
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -818,17 +819,17 @@ loadTien();
     }//GEN-LAST:event_tblGioHangMouseClicked
 
     private void txtTienKhachDuaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTienKhachDuaCaretUpdate
-         if(txtTienKhachDua.getText().isEmpty()){
+        if (txtTienKhachDua.getText().isEmpty()) {
             return;
         }
         double tien = Double.valueOf(txtTienKhachDua.getText());
-       
-        if(Double.valueOf(txtTienKhachDua.getText())-Double.valueOf(txtTongTien.getText())>=0){
+
+        if (Double.valueOf(txtTienKhachDua.getText()) - Double.valueOf(txtTongTien.getText()) >= 0) {
             btnThanhToan.setEnabled(true);
-        }else{
-             btnThanhToan.setEnabled(false);
+        } else {
+            btnThanhToan.setEnabled(false);
         }
-        txtTienThua.setText(df.format(Double.valueOf(txtTienKhachDua.getText())-Double.valueOf(txtTongTien.getText()))+"");
+        txtTienThua.setText(df.format(Double.valueOf(txtTienKhachDua.getText()) - Double.valueOf(txtTongTien.getText())) + "");
     }//GEN-LAST:event_txtTienKhachDuaCaretUpdate
 
 
@@ -964,7 +965,7 @@ loadTien();
                 gh.get(i).getTen(),
                 gh.get(i).getSoLuong(),
                 gh.get(i).getDonGia(),
-             gh.get(i).thanhTien()
+                gh.get(i).thanhTien()
             });
 
         }
@@ -1013,8 +1014,7 @@ loadTien();
         for (int i = 0; i < tblGioHang.getRowCount(); i++) {
             tien += Double.valueOf(tblGioHang.getValueAt(i, 4).toString());
         }
-       
-       
-        txtTongTien.setText(df.format(tien)+"");
+
+        txtTongTien.setText(df.format(tien) + "");
     }
 }

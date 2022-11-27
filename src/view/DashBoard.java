@@ -408,7 +408,7 @@ public class DashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_lblNhanVienMouseClicked
 
     private void lblThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblThongKeMouseClicked
-        if (Auth.user.getTaiKhoan().equalsIgnoreCase("alo")) {
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
             ThongKeView thongKeView = new ThongKeView();
             jDesktopPane1.add(thongKeView).setVisible(true);
         } else {
