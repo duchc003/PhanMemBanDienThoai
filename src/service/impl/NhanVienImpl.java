@@ -48,4 +48,14 @@ public class NhanVienImpl implements NhanVienService {
         }
     }
 
+    @Override
+    public ArrayList<NhanVienViewmodel> getOneTen(String hoVaten) {
+        return NhanVienRepository.getOneTen(hoVaten);
+    }
+
+    @Override
+    public ArrayList<NhanVienViewmodel> getOneSdt(String sdt) {
+        return NhanVienRepository.getOneSdt(sdt);
+    }
+
 }
