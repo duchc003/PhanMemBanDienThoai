@@ -727,14 +727,15 @@ public class BanHangView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Bạn đã nhập quá số lượng\n Vui lòng nhập lại");
             return;
         }
-
-        tblGioHang.setValueAt(Integer.parseInt(tblGioHang.getValueAt(row, 3).toString()) - Integer.parseInt(soluong), row, 3);
         tblSanPham.setValueAt(Integer.parseInt(tblSanPham.getValueAt(row, 3).toString()) + Integer.parseInt(soluong), row, 3);
-        if (Integer.parseInt(tblGioHang.getValueAt(row, 3).toString()) - Integer.parseInt(soluong) <= 0) {
+        if (Integer.parseInt(tblGioHang.getValueAt(row, 3).toString()) == Integer.parseInt(soluong)) {
             gioHangViewModels.remove(row);
             loadGioHang();
+        } else {
+            tblGioHang.setValueAt(Integer.parseInt(tblGioHang.getValueAt(row, 3).toString()) - Integer.parseInt(soluong), row, 3);
+
+            loadTien();
         }
-        loadTien();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
