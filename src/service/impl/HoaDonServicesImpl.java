@@ -34,4 +34,14 @@ public class HoaDonServicesImpl implements HoaDonServices {
         }
     }
 
+    @Override
+    public String huyDon(String maHD) {
+        boolean huyDon = hoaDonRespository.huyDon(maHD);
+        if (huyDon) {
+            return "Đã hủy";
+        } else {
+            return "Lỗi";
+        }
+    }
+
 }

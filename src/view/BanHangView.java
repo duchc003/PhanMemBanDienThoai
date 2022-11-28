@@ -47,6 +47,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private List<GioHangViewModel> gioHangViewModels = new ArrayList<>();
     private double v1 = 1000000000;
     private DecimalFormat df = new DecimalFormat("#");
+    private List<HoaDonViewModel> list = hoaDonServices.getAll();
+
 
     public BanHangView() {
         initComponents();
@@ -440,6 +442,11 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/multiply.png"))); // NOI18N
         jButton5.setText("Hủy đơn");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiền Mặt", "Chuyển Khoản", "Quẹt khẻ", "Quét Mã" }));
@@ -892,6 +899,13 @@ public class BanHangView extends javax.swing.JInternalFrame {
 //        cbbGiamGia.setSelectedItem(km.getGiamGia());
     }//GEN-LAST:event_cbbHinhThucActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        String maHD = txtMaHD.getText();
+        JOptionPane.showMessageDialog(this, hoaDonServices.huyDon(maHD));
+        list = hoaDonServices.getAll();
+        loadHoaDon();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnThanhToan;
@@ -1049,7 +1063,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }
 
     private void loadHoaDon() {
-        List<HoaDonViewModel> list = hoaDonServices.getAll();
         DefaultTableModel tblModel = new DefaultTableModel();
 
         tblModel = (DefaultTableModel) tblHoaDon.getModel();

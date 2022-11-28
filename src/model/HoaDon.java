@@ -11,7 +11,7 @@ import java.util.Date;
  * @author ASUS
  */
 public class HoaDon {
-    
+
     private int id;
     private int idKhachHang;
     private int idNhanVien;
@@ -29,8 +29,12 @@ public class HoaDon {
     private String ngayTra;
     private String trangThai;
     private String moTa;
-    
+
     public HoaDon() {
+    }
+
+    public HoaDon(String trangThai) {
+        this.trangThai = trangThai;
     }
 
     public HoaDon(int id, int idKhachHang, int idNhanVien, int idHinhThucTT, int idHinhThucGH, String maHD, String ngayTao, String ngayThanhToan, String ngayNhanHang, String ngayGiaoHang, String ngayKhachNhanhang, String thoiGianBaohanh, double tongTien, String hanTra, String ngayTra, String trangThai, String moTa) {
@@ -193,5 +197,5 @@ public class HoaDon {
     public void setMoTa(String moTa) {
         this.moTa = moTa;
     }
-    
+
 }

@@ -17,4 +17,6 @@ public interface HoaDonServices {
     List<HoaDonViewModel> getAll();
 
     String addHoaDon(HoaDon hoaDon);
+    
+    String huyDon(String maHD);
 }
