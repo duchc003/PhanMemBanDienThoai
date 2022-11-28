@@ -83,14 +83,11 @@ public class BanHangView extends javax.swing.JInternalFrame {
         if (Auth.user.getTaiKhoan().equalsIgnoreCase("huyhmph22668")) {
             lblNV.setText("Hoàng Minh Huy");
         }
-
         loadHoaDon();
         lst = sanPhamFormBanHangServices.getAll();
         loadSanPham(lst);
         cbbTenHang(sanPhamFormBanHangServices.getTenHangSPs());
         cbbTenKhachHang(impl.getALL());
-        KhachHang kh = impl.getOne(cbbKhachHang.getSelectedItem().toString());
-        lblIdKH.setText(String.valueOf(kh.getId()));
         cbbHinhThucGG(impl1.getAllKhuyenMaiViewModel());
     }
     int row = 0;
@@ -852,7 +849,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtKhachHangCaretUpdate
 
     private void tblGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGioHangMouseClicked
-
 
     }//GEN-LAST:event_tblGioHangMouseClicked
 
