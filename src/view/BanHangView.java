@@ -762,12 +762,29 @@ public class BanHangView extends javax.swing.JInternalFrame {
             return;
         }
         tblSanPham.setValueAt(Integer.parseInt(tblSanPham.getValueAt(row, 3).toString()) + Integer.parseInt(soluong), row, 3);
+     
         if (Integer.parseInt(tblGioHang.getValueAt(row, 3).toString()) == Integer.parseInt(soluong)) {
             gioHangViewModels.remove(row);
+            
             loadGioHang();
+            
         } else {
-            tblGioHang.setValueAt(Integer.parseInt(tblGioHang.getValueAt(row, 3).toString()) - Integer.parseInt(soluong), row, 3);
+          //  tblGioHang.setValueAt(Integer.parseInt(tblGioHang.getValueAt(row, 3).toString()) - Integer.parseInt(soluong), row, 3);
+          //
+        String ma = tblSanPham.getValueAt(row, 1).toString();
+        String ten = tblSanPham.getValueAt(row, 2).toString();
+        double dongia = Double.parseDouble(tblSanPham.getValueAt(row, 5).toString());
 
+        GioHangViewModel gh = new GioHangViewModel();
+        gh.setMa(ma);
+        gh.setTen(ten);
+        gh.setDonGia(dongia);
+        gh.setSoLuong(Integer.parseInt(tblGioHang.getValueAt(row, 3).toString())-Integer.parseInt(soluong));
+      
+
+        gioHangViewModels.set(row, gh);
+        loadGioHang();
+        //
             loadTien();
         }
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -1008,12 +1025,11 @@ public class BanHangView extends javax.swing.JInternalFrame {
                 j++,
                 gh.get(i).getMa(),
                 gh.get(i).getTen(),
-                gh.get(i).getSoLuong(),
-                gh.get(i).getDonGia(),
+                gh.get(i).getSoLuong(),             
                 gh.get(i).thanhTien()
             });
-
         }
+        
     }
 
     private void addHoaDon() {

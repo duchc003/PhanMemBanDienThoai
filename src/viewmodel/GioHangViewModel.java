@@ -1,7 +1,7 @@
-
 package viewmodel;
 
 public class GioHangViewModel {
+
     private String ma;
     private String ten;
     private int soLuong;
@@ -48,8 +48,9 @@ public class GioHangViewModel {
     public void setDonGia(double donGia) {
         this.donGia = donGia;
     }
-    public double thanhTien(){
-    return donGia*soLuong;
-}
-    
+
+    public double thanhTien() {
+        return donGia * soLuong;
+    }
+
 }
