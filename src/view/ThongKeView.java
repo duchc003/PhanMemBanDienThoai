@@ -4,6 +4,8 @@
  */
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import model.ChiTietSP;
+import model.HoaDon;
 import model.SanPham;
 import viewmodel.SanPhamViewModel;
 import org.apache.poi.ss.usermodel.Cell;
@@ -28,12 +31,36 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
 import service.ThongKeSPservice;
 import service.impl.SanPhamImpl;
 import service.impl.ThongKeImpl;
 import util.MsgBox;
 import viewmodel.ThongKeDoanhThuViewModel;
 import viewmodel.ThongkeSanPhamViewModel;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.util.List;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.statistics.HistogramDataset;
 
 /**
  *
@@ -66,6 +93,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         lblConHang(tk.ConHang());
         lblHetHang(tk.HetHang());
         lblTongSoHang(tk.SoSanPhamDangKinhDoanh());
+        thongKeCot();
     }
 
     private void showDataTable(List<ThongkeSanPhamViewModel> lists) {
@@ -81,33 +109,16 @@ public class ThongKeView extends javax.swing.JInternalFrame {
             dtmDoanhThu.addRow(thongKeDoanhThuViewModel.toDatarow());
         }
     }
-    
+
     private void lblConHang(List<ChiTietSP> listt) {
         for (ChiTietSP chiTietSP : listt) {
             lblConHang.setText(String.valueOf(chiTietSP.getTrangThai()));
         }
     }
+
     private void lblHetHang(List<ChiTietSP> listt) {
         for (ChiTietSP chiTietSP : listt) {
             lblHetHang.setText(String.valueOf(chiTietSP.getTrangThai()));
-            
-        }
-    }
-    private void lblTongSoHang(List<SanPham> listt) {
-        for (SanPham sanPham : listt) {
-            lblTongSanPham.setText(String.valueOf(sanPham.getId()));
-        }
-    }
-
-    private void lblConHang(List<ChiTietSP> listt) {
-        for (ChiTietSP chiTietSP : listt) {
-            lblConHang.setText(String.valueOf(chiTietSP.getId()));
-        }
-    }
-
-    private void lblHetHang(List<ChiTietSP> listt) {
-        for (ChiTietSP chiTietSP : listt) {
-            lblHetHang.setText(String.valueOf(chiTietSP.getId()));
 
         }
     }
@@ -181,6 +192,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDoanhThu = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
+        panelLineChart = new javax.swing.JPanel();
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1319, 800));
@@ -674,16 +686,29 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jTabbedPane1.addTab("Bảng", jPanel6);
 
         jPanel7.setBackground(new java.awt.Color(0, 204, 255));
+        jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        panelLineChart.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1224, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                    .addContainerGap(25, Short.MAX_VALUE)
+                    .addComponent(panelLineChart, javax.swing.GroupLayout.PREFERRED_SIZE, 1178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(21, Short.MAX_VALUE)))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 342, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                    .addContainerGap(19, Short.MAX_VALUE)
+                    .addComponent(panelLineChart, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(18, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Cột", jPanel7);
@@ -703,7 +728,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1228, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane1))
                 .addGap(51, 51, 51))
         );
         jPanel9Layout.setVerticalGroup(
@@ -803,6 +828,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblConHang;
     private javax.swing.JLabel lblHetHang;
     private javax.swing.JLabel lblTongSanPham;
+    private javax.swing.JPanel panelLineChart;
     private javax.swing.JTable tblDoanhThu;
     private javax.swing.JTable tblSanPham;
     // End of variables declaration//GEN-END:variables
@@ -852,6 +878,28 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 MsgBox.alert(this, "Xuất tệp thất bại");
             }
         }
+    }
+
+    private void thongKeCot() {
+        List<HoaDon> list = tk.thongKe();
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        if (list != null) {
+            for (HoaDon hoaDon : list) {
+                dataset.setValue(hoaDon.getTongTien(), "Tổng Doanh Thu", hoaDon.getNgayTao());
+            }
+        }
+        JFreeChart linechart = ChartFactory.createLineChart("Thống kê doanh thu", "Năm", "Tổng Doanh Thu",
+                dataset, PlotOrientation.VERTICAL, false, true, false);
+        CategoryPlot lineCategoryPlot = linechart.getCategoryPlot();
+        // lineCategoryPlot.setRangeGridlinePaint(Color.BLUE);
+        lineCategoryPlot.setBackgroundPaint(Color.white);
+        LineAndShapeRenderer lineRenderer = (LineAndShapeRenderer) lineCategoryPlot.getRenderer();
+        Color lineChartColor = new Color(204, 0, 51);
+        lineRenderer.setSeriesPaint(0, lineChartColor);
+        ChartPanel sd = new ChartPanel(linechart);
+        panelLineChart.removeAll();
+        panelLineChart.add(sd, BorderLayout.CENTER);
+        panelLineChart.validate();
     }
 
 }

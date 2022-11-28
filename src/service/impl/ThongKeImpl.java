@@ -6,6 +6,7 @@ package service.impl;
 
 import java.util.List;
 import model.ChiTietSP;
+import model.HoaDon;
 import model.SanPham;
 import service.ThongKeSPservice;
 import viewmodel.ThongkeSanPhamViewModel;
@@ -29,35 +30,25 @@ public class ThongKeImpl implements ThongKeSPservice {
     public List<ThongKeDoanhThuViewModel> getAll() {
         return tk.getall();
     }
-<<<<<<< HEAD
 
     @Override
     public List<ChiTietSP> ConHang() {
         return tk.ConHang();
-=======
-     @Override
-    public List<ChiTietSP> ConHang() {
-     return tk.ConHang();
->>>>>>> eb81af44dfb6b1faef8dc836a0df4ea1481436ae
     }
 
     @Override
     public List<ChiTietSP> HetHang() {
-<<<<<<< HEAD
-        return tk.HetHang();
-=======
-       return tk.HetHang();
->>>>>>> eb81af44dfb6b1faef8dc836a0df4ea1481436ae
+        return  tk.HetHang();
     }
 
     @Override
     public List<SanPham> SoSanPhamDangKinhDoanh() {
-<<<<<<< HEAD
         return tk.SoSanPhamDangKinhDoanh();
     }
 
-=======
-   return tk.SoSanPhamDangKinhDoanh();
+    @Override
+    public List<HoaDon> thongKe() {
+        return tk.thongKeCot();
     }
->>>>>>> eb81af44dfb6b1faef8dc836a0df4ea1481436ae
+
 }
