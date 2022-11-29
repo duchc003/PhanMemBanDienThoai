@@ -807,6 +807,9 @@ public class BanHangView extends javax.swing.JInternalFrame {
             //
             loadTien();
         }
+        if(tblGioHang.getRowCount()<=0){
+            txtTongTien.setText("0 vnd");
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

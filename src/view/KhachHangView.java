@@ -253,7 +253,7 @@ public class KhachHangView extends javax.swing.JInternalFrame {
 
         lblngaysinh.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         lblngaysinh.setForeground(new java.awt.Color(0, 255, 153));
-        jPanel1.add(lblngaysinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 680, 300, 20));
+        jPanel1.add(lblngaysinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 670, 300, 20));
         jPanel1.add(txtTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, 610, -1));
 
         jLabel8.setText("Mã KH");
@@ -271,7 +271,7 @@ public class KhachHangView extends javax.swing.JInternalFrame {
 
         lblsdt.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         lblsdt.setForeground(new java.awt.Color(0, 255, 153));
-        jPanel1.add(lblsdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 300, 20));
+        jPanel1.add(lblsdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 610, 300, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -378,6 +378,12 @@ public class KhachHangView extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập ngày sinh hợp lệ\n Định dạng yyyy/MM/dd \n Năm(1900-2999)\n Tháng (1-12) \n Ngày (1-31)");
                 return;
             }
+               Pattern p = Pattern.compile("^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$");
+         if(p.matcher(txtSoDT.getText()).find()==false){
+            
+           JOptionPane.showMessageDialog(this, "Số điện thoại phải là số và có đúng 10 chữ số \n Nếu đầu khác 0 thì còn 9 số");
+          return;
+         }
     
             KhachHang kh = new KhachHang();
             kh.setMa(txtMaKH.getText());
@@ -403,10 +409,13 @@ public class KhachHangView extends javax.swing.JInternalFrame {
 
     private void txtSoDTCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSoDTCaretUpdate
         
-         Pattern p = Pattern.compile("0\\d{9,10}");
+         Pattern p = Pattern.compile("^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$");
          if(p.matcher(txtSoDT.getText()).find()==false){
-             lblsdt.setText("sai định dạng !");
-             lblsdt.setBackground(Color.red);
+            
+             lblsdt.setText("sai định dạng!");
+             lblsdt.setForeground(Color.red);
+             
+          
          }else{
              lblsdt.setText("");
          }
