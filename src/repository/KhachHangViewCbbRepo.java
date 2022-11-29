@@ -64,7 +64,7 @@ public class KhachHangViewCbbRepo {
         return null;
     }
 
-    public List<KhachHang> getTenKh(String sdt) {
+    public KhachHang getTenKh(String sdt) {
         String query = "SELECT [ID]\n"
                 + "      ,[MaKH]\n"
                 + "      ,[HoVaTen]\n"
@@ -76,11 +76,10 @@ public class KhachHangViewCbbRepo {
                 + "  FROM [dbo].[KhachHang]\n"
                 + "   where SoDienThoai like ?";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
-            ps.setObject(1, "%" + sdt + "%");
-            List<KhachHang> list = new ArrayList<>();
+            ps.setObject(1, sdt);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new KhachHang(
+            if (rs.next()) {
+                return new KhachHang(
                         rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -88,12 +87,12 @@ public class KhachHangViewCbbRepo {
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getString(8)));
+                        rs.getString(8));
             }
-            return list;
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
         return null;
     }
+
 }

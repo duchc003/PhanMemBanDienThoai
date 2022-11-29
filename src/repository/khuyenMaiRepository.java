@@ -117,6 +117,29 @@ public class khuyenMaiRepository {
         return null;
     }
 
+    public List<KhuyenMaiViewModel> giamGia() {
+        String query = "select * from KhuyenMai";
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            List<KhuyenMaiViewModel> list = new ArrayList<>();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new KhuyenMaiViewModel(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getFloat(6),
+                        rs.getInt(7),
+                        rs.getInt(8),
+                        rs.getString(9)));
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         KhuyenMaiViewModel km = new khuyenMaiRepository().getOne(1);
         System.out.println(km.toString());

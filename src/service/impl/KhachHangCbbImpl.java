@@ -28,9 +28,9 @@ public class KhachHangCbbImpl implements KhachHangCbbService{
     }
 
     @Override
-    public List<KhachHang> getSeach(String sdt, List<KhachHang> list) {
-        list = impl.getTenKh(sdt);
-        return list;
+    public KhachHang getSeach(String sdt) {
+        return impl.getTenKh(sdt);
     }
+
     
 }

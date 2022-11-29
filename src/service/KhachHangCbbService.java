@@ -17,5 +17,5 @@ public interface KhachHangCbbService {
 
     KhachHang getOne(String hoVaTen);
 
-    List<KhachHang> getSeach(String sdt, List<KhachHang> list);
+    KhachHang getSeach(String sdt);
 }
