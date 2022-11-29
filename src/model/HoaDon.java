@@ -61,6 +61,10 @@ public class HoaDon {
         this.ngayTao = ngayTao;
         this.tongTien = tongTien;
     }
+    public HoaDon( double tongTien) {
+        
+        this.tongTien = tongTien;
+    }
 
     public int getId() {
         return id;

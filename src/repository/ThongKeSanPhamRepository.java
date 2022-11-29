@@ -130,6 +130,22 @@ public class ThongKeSanPhamRepository {
 
         return listt;
     }
+    
+    
+        public List<HoaDon> TongDoanhThuNam() {
+        List<HoaDon> listt = new ArrayList<>();
+        String query = " select sum(TongTien) from HoaDon";
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listt.add(new HoaDon(rs.getDouble(1)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listt;
+    }
 
     public static void main(String[] args) {
         System.out.println(new ThongKeSanPhamRepository().ConHang());
