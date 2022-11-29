@@ -171,7 +171,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
 
     private void cbo_trangThaiItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_trangThaiItemStateChanged
         // TODO add your handling code here:
-         if (cbo_trangThai.getSelectedIndex() == 0) {
+        if (cbo_trangThai.getSelectedIndex() == 0) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
             DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
@@ -190,7 +190,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                
+
             }
             return;
         }
@@ -213,9 +213,9 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-               
+
             }
-             return;
+            return;
         }
         if (cbo_trangThai.getSelectedIndex() == 2) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
@@ -236,7 +236,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                
+
             }
             return;
         }
@@ -259,7 +259,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                
+
             }
             return;
         }
@@ -282,7 +282,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                
+
             }
             return;
         }
@@ -303,7 +303,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
             int i = 1;
             for (hoaDonViewModelHUY hd : list) {
                 model.addRow(new Object[]{
-                    i ++,
+                    i++,
                     hd.getMaHD(),
                     hd.getHoVaTen(),
                     hd.getTenKhachHang(),
@@ -314,11 +314,11 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                
+
             }
             return;
         }
-          if (cbo_HTTT.getSelectedIndex() == 1) {
+        if (cbo_HTTT.getSelectedIndex() == 1) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
             DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
@@ -326,7 +326,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
             int i = 1;
             for (hoaDonViewModelHUY hd : list) {
                 model.addRow(new Object[]{
-                    i ++,
+                    i++,
                     hd.getMaHD(),
                     hd.getHoVaTen(),
                     hd.getTenKhachHang(),
@@ -337,11 +337,11 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                
+
             }
             return;
         }
-            if (cbo_HTTT.getSelectedIndex() == 2) {
+        if (cbo_HTTT.getSelectedIndex() == 2) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
             DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
@@ -349,7 +349,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
             int i = 1;
             for (hoaDonViewModelHUY hd : list) {
                 model.addRow(new Object[]{
-                    i ++,
+                    i++,
                     hd.getMaHD(),
                     hd.getHoVaTen(),
                     hd.getTenKhachHang(),
@@ -360,11 +360,11 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                
+
             }
             return;
         }
-              if (cbo_HTTT.getSelectedIndex() == 3) {
+        if (cbo_HTTT.getSelectedIndex() == 3) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
             DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
@@ -372,7 +372,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
             int i = 1;
             for (hoaDonViewModelHUY hd : list) {
                 model.addRow(new Object[]{
-                    i ++,
+                    i++,
                     hd.getMaHD(),
                     hd.getHoVaTen(),
                     hd.getTenKhachHang(),
@@ -383,12 +383,12 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                
+
             }
             return;
         }
-        
-      
+
+
     }//GEN-LAST:event_cbo_HTTTItemStateChanged
 
     private void cbo_HTGHItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_HTGHItemStateChanged
@@ -398,7 +398,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
             DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
             List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
-            int i= 1;
+            int i = 1;
             for (hoaDonViewModelHUY hd : list) {
                 model.addRow(new Object[]{
                     i++,
@@ -412,17 +412,17 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                
+
             }
             return;
         }
-        
-                if (cbo_HTGH.getSelectedIndex() == 0) {
+
+        if (cbo_HTGH.getSelectedIndex() == 0) {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
             DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
             List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
-            int i= 1;
+            int i = 1;
             for (hoaDonViewModelHUY hd : list) {
                 model.addRow(new Object[]{
                     i++,
@@ -436,7 +436,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getTrangThai()
 
                 });
-                
+
             }
             return;
         }
@@ -522,11 +522,11 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                 hd.getTongTien(),
                 hd.getTenHTTT(),
                 hd.getTenHTGH(),
-                hd.getTrangThai() == 1 ? "Đã Thanh Toán"
+                hd.getTrangThai() == 0 ? "Chờ Thanh Toán"
+                : hd.getTrangThai() == 1 ? "Đã Thanh Toán"
                 : hd.getTrangThai() == 2 ? "Đã Hủy"
                 : hd.getTrangThai() == 3 ? "Giao Hàng Thành Công"
                 : hd.getTrangThai() == 4 ? "Đang Giao Hàng" : "Giao Hàng Thất Bại"
-
             });
         }
 

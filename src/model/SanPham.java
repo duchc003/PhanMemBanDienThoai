@@ -12,7 +12,6 @@ public class SanPham {
 
     private int id;
     private int idKM;
-    private int idPK;
     private int idHang;
     private String ma;
     private String ten;
@@ -20,10 +19,9 @@ public class SanPham {
     public SanPham() {
     }
 
-    public SanPham(int id, int idKM, int idPK, int idHang, String ma, String ten) {
+    public SanPham(int id, int idKM ,int idHang, String ma, String ten) {
         this.id = id;
         this.idKM = idKM;
-        this.idPK = idPK;
         this.idHang = idHang;
         this.ma = ma;
         this.ten = ten;
@@ -47,14 +45,6 @@ public class SanPham {
 
     public void setIdKM(int idKM) {
         this.idKM = idKM;
-    }
-
-    public int getIdPK() {
-        return idPK;
-    }
-
-    public void setIdPK(int idPK) {
-        this.idPK = idPK;
     }
 
     public int getIdHang() {

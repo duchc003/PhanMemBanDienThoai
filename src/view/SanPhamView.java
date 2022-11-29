@@ -104,7 +104,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         fillCt(listCt);
         //5 sản phẩm
         tblSanPham.setModel(dtm);
-        Object[] SanPham = {"ID", "ID Khuyến mãi", "ID Phụ Kiện", "ID Hãng", "Mã SP", "Tên SP"};
+        Object[] SanPham = {"ID", "ID Khuyến mãi", "ID Hãng", "Mã SP", "Tên SP"};
         dtm.setColumnIdentifiers(SanPham);
         showDataTable(SP.getAll());
         // cbb chitietsp
@@ -262,7 +262,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                 imgName = saveImage(((ImageIcon) lblAnh.getIcon()).getImage(), getOriginalImageName(choice.getSelectedFile()));
                 System.out.println("img 1: " + imgName);
             } else {
-                System.out.println("img null");
                 imgName = impl.getALL().get(index).getImage();
             }
         }
@@ -297,7 +296,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                 0,
                 (int) cbbKhuyenMai.getSelectedItem(),
                 (int) cbbHang.getSelectedItem(),
-                (int) cbbKhuyenMai.getSelectedItem(),
                 txtMASANPHAM.getText(),
                 txtTENSANPHAM.getText());
     }
