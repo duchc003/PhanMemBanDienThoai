@@ -73,7 +73,17 @@ public class khuyenMaiRepository {
 
     public int addKhuyenMai(KhuyenMaiViewModel km) {
         int row = 0;
-        String sql = "insert into KhuyenMai(MaKM,ten,NgayBD,NgayKT,GiamGia,HinhThuc,TrangThai,Mota) values(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO [dbo].[KhuyenMai]\n"
+                + "           ([MaKM]\n"
+                + "           ,[Ten]\n"
+                + "           ,[NgayBD]\n"
+                + "           ,[NgayKT]\n"
+                + "           ,[GiamGia]\n"
+                + "           ,[HinhThuc]\n"
+                + "           ,[TrangThai]\n"
+                + "           ,[Mota])\n"
+                + "     VALUES\n"
+                + "           (?,?,?,?,?,?,?,?)";
         row = JDBCHelper.executeUpdate(sql,
                 km.getMaKM(),
                 km.getTen(),

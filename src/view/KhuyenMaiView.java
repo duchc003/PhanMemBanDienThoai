@@ -5,7 +5,9 @@
 package view;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
@@ -20,15 +22,18 @@ import viewmodel.KhuyenMaiViewModel;
 public class KhuyenMaiView extends javax.swing.JInternalFrame {
 
     private khuyenMaiServicesImpl impl = new khuyenMaiServicesImpl();
+    private List<KhuyenMaiViewModel> list = new ArrayList<>();
+    private DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
 
     public KhuyenMaiView() {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
-        loadTable();
+        list = impl.getAllKhuyenMaiViewModel();
+        loadTable(list);
     }
-
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,7 +54,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        cbo_ht = new javax.swing.JComboBox<>();
+        cbbHinhThuc = new javax.swing.JComboBox<>();
         txt_giam = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -82,7 +87,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Ngày Kết Thúc");
 
-        cbo_ht.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Giảm Giá %", "Giảm Giá Tiền" }));
+        cbbHinhThuc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Giảm Giá %", "Giảm Giá Tiền" }));
 
         jLabel5.setText("Hình Thức Giảm Giá");
 
@@ -136,7 +141,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_giam, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbo_ht, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbbHinhThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -146,7 +151,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txt_maKM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbo_ht, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbbHinhThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5))
                     .addComponent(jLabel1))
                 .addGap(33, 33, 33)
@@ -303,25 +308,25 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
 
     private void tbl_khuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_khuyenMaiMouseClicked
         int row = tbl_khuyenMai.getSelectedRow();
-        txt_maKM.setText((String) tbl_khuyenMai.getValueAt(row, 1));
-        txt_tenKM.setText((String) tbl_khuyenMai.getValueAt(row, 2));
-        txt_ngayBD.setText(tbl_khuyenMai.getValueAt(row, 3).toString());
-        txt_ngayKT.setText(tbl_khuyenMai.getValueAt(row, 4).toString());
-        if (tbl_khuyenMai.getValueAt(row, 5).toString().equalsIgnoreCase("Giảm Giá %")) {
-            cbo_ht.setSelectedIndex(0);
+        KhuyenMaiViewModel km = list.get(row);
+        txt_maKM.setText(km.getMaKM());
+        txt_tenKM.setText(km.getTen());
+        txt_ngayKT.setText(km.getNgayKT());
+        txt_ngayBD.setText(km.getNgayBD());
+        txt_giam.setText(String.valueOf(km.getGiamGia()));
+         if (tbl_khuyenMai.getValueAt(row, 5).toString().equalsIgnoreCase("Giảm Giá %")) {
+            cbbHinhThuc.setSelectedIndex(0);
         }
         if (tbl_khuyenMai.getValueAt(row, 5).toString().equalsIgnoreCase("Giảm Giá Tiền")) {
-            cbo_ht.setSelectedIndex(1);
-        } else {
-            cbo_ht.setSelectedIndex(2);
+            cbbHinhThuc.setSelectedIndex(1);
         }
-        txt_giam.setText((String) tbl_khuyenMai.getValueAt(row, 6).toString());
-        if (tbl_khuyenMai.getValueAt(row, 7).toString().equalsIgnoreCase("Hoạt Động")) {
+        if (km.getTrangThai() == 1) {
             rdo_hoatDong.setSelected(true);
-        } else {
+        }else{
             rdo_khongHoatDong.setSelected(true);
         }
-        txt_moTa.setText((String) tbl_khuyenMai.getValueAt(row, 8));
+        txt_moTa.setText(km.getMoTa());
+        
     }//GEN-LAST:event_tbl_khuyenMaiMouseClicked
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
@@ -348,7 +353,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         KhuyenMaiViewModel km = getFormKhuyenMaiInput();
         JOptionPane.showMessageDialog(this, impl.addKhuyenMai(km));
-        loadTable();
+        loadTable(list);
         cleaForm();
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -367,7 +372,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
-    private javax.swing.JComboBox<String> cbo_ht;
+    private javax.swing.JComboBox<String> cbbHinhThuc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -393,10 +398,9 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_tenKM;
     // End of variables declaration//GEN-END:variables
 
-    private void loadTable() {
+    private void loadTable(List<KhuyenMaiViewModel> listKM) {
         DefaultTableModel model = (DefaultTableModel) tbl_khuyenMai.getModel();
         model.setRowCount(0);
-        List<KhuyenMaiViewModel> listKM = impl.getAllKhuyenMaiViewModel();
         for (KhuyenMaiViewModel km : listKM) {
                 model.addRow(new Object[]{
                 km.getId(),
@@ -413,21 +417,22 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
     }
 
     private KhuyenMaiViewModel getFormKhuyenMaiInput() {
-        KhuyenMaiViewModel km = new KhuyenMaiViewModel();
-        km.setMaKM(txt_maKM.getText());
-        km.setTen(txt_tenKM.getText());
-        km.setNgayBD(txt_ngayBD.getText());
-        km.setNgayKT(txt_ngayKT.getText());
-        km.setHinhThuc((int) cbo_ht.getSelectedItem());
-        km.setGiamGia(Float.valueOf(txt_giam.getText()));
+        int trangThai;
         if (rdo_hoatDong.isSelected()) {
-            km.setTrangThai(1);
-        } else {
-            km.setTrangThai(2);
+            trangThai = 1;
+        }else{
+            trangThai =2;
         }
-        km.setMoTa(txt_moTa.getText());
-
-        return km;
+        return new KhuyenMaiViewModel(
+                0, 
+                txt_maKM.getText(), 
+                txt_tenKM.getText(), 
+                txt_ngayBD.getText(), 
+                txt_ngayKT.getText(), 
+                Float.parseFloat(txt_giam.getText()), 
+                (int) cbbHinhThuc.getSelectedItem(), 
+                trangThai, 
+                txt_moTa.getText());
     }
 
     private void updateKhuyenMai() {
@@ -435,7 +440,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         KhuyenMaiViewModel km = getFormKhuyenMaiInput();
         String maKM = (String) tbl_khuyenMai.getValueAt(row, 1);
         JOptionPane.showMessageDialog(this, impl.updateKhuyenmai(km, maKM));
-        loadTable();
+        loadTable(list);
     }
 
     private void cleaForm() {
@@ -443,7 +448,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         txt_tenKM.setText("");
         txt_ngayBD.setText("");
         txt_ngayKT.setText("");
-        cbo_ht.setSelectedItem("Giảm giá sản phẩm");
+        cbbHinhThuc.setSelectedItem("Giảm giá sản phẩm");
         txt_giam.setText("");
         rdo_khongHoatDong.setSelected(true);
         txt_moTa.setText("");
