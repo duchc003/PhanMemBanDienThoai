@@ -47,6 +47,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private List<GioHangViewModel> gioHangViewModels = new ArrayList<>();
     private double v1 = 1000000000;
     private DecimalFormat df = new DecimalFormat("#");
+    private List<HoaDonViewModel> list = hoaDonServices.getAll();
+
 
     public BanHangView() {
         initComponents();
@@ -440,6 +442,11 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/multiply.png"))); // NOI18N
         jButton5.setText("Hủy đơn");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiền Mặt", "Chuyển Khoản", "Quẹt khẻ", "Quét Mã" }));
@@ -762,12 +769,29 @@ public class BanHangView extends javax.swing.JInternalFrame {
             return;
         }
         tblSanPham.setValueAt(Integer.parseInt(tblSanPham.getValueAt(row, 3).toString()) + Integer.parseInt(soluong), row, 3);
+     
         if (Integer.parseInt(tblGioHang.getValueAt(row, 3).toString()) == Integer.parseInt(soluong)) {
             gioHangViewModels.remove(row);
+            
             loadGioHang();
+            
         } else {
-            tblGioHang.setValueAt(Integer.parseInt(tblGioHang.getValueAt(row, 3).toString()) - Integer.parseInt(soluong), row, 3);
+          //  tblGioHang.setValueAt(Integer.parseInt(tblGioHang.getValueAt(row, 3).toString()) - Integer.parseInt(soluong), row, 3);
+          //
+        String ma = tblSanPham.getValueAt(row, 1).toString();
+        String ten = tblSanPham.getValueAt(row, 2).toString();
+        double dongia = Double.parseDouble(tblSanPham.getValueAt(row, 5).toString());
 
+        GioHangViewModel gh = new GioHangViewModel();
+        gh.setMa(ma);
+        gh.setTen(ten);
+        gh.setDonGia(dongia);
+        gh.setSoLuong(Integer.parseInt(tblGioHang.getValueAt(row, 3).toString())-Integer.parseInt(soluong));
+      
+
+        gioHangViewModels.set(row, gh);
+        loadGioHang();
+        //
             loadTien();
         }
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -874,6 +898,13 @@ public class BanHangView extends javax.swing.JInternalFrame {
 //        KhuyenMaiViewModel km = impl1.getOne((int) cbbHinhThuc.getSelectedItem());
 //        cbbGiamGia.setSelectedItem(km.getGiamGia());
     }//GEN-LAST:event_cbbHinhThucActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        String maHD = txtMaHD.getText();
+        JOptionPane.showMessageDialog(this, hoaDonServices.huyDon(maHD));
+        list = hoaDonServices.getAll();
+        loadHoaDon();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1008,12 +1039,11 @@ public class BanHangView extends javax.swing.JInternalFrame {
                 j++,
                 gh.get(i).getMa(),
                 gh.get(i).getTen(),
-                gh.get(i).getSoLuong(),
-                gh.get(i).getDonGia(),
+                gh.get(i).getSoLuong(),             
                 gh.get(i).thanhTien()
             });
-
         }
+        
     }
 
     private void addHoaDon() {
@@ -1033,9 +1063,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }
 
     private void loadHoaDon() {
-        List<HoaDonViewModel> list = hoaDonServices.getAll();
         DefaultTableModel tblModel = new DefaultTableModel();
-
+        List<HoaDonViewModel> list = hoaDonServices.getAll();
         tblModel = (DefaultTableModel) tblHoaDon.getModel();
         tblModel.setRowCount(0);
 

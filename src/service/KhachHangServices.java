@@ -14,10 +14,17 @@ import viewmodel.KhachHangViewModel;
  * @author Admin
  */
 public interface KhachHangServices {
+
     List<KhachHangViewModel> getAll();
+
     String addKH(KhachHang kh);
-    String deleteKH(String ma );
+
+    String deleteKH(String ma);
+
     String updateKH(KhachHang kh);
-     List<KhachHangViewModel> searchKH(String ma);
-    
+
+    List<KhachHangViewModel> searchKH(String ma);
+
+    List<KhachHangViewModel> searchSdt(String sdt);
+
 }

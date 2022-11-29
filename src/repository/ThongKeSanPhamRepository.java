@@ -31,7 +31,7 @@ public class ThongKeSanPhamRepository {
                 thongKeSanPhamViewModel.setMaSp(rs.getString(1));
                 thongKeSanPhamViewModel.setTenSP(rs.getString(2));
                 thongKeSanPhamViewModel.setSoLuong(rs.getInt(3));
-                thongKeSanPhamViewModel.setTrangThai(rs.getString(4));
+                thongKeSanPhamViewModel.setTrangThai(rs.getInt(4));
 
                 lists.add(thongKeSanPhamViewModel);
             }
