@@ -93,6 +93,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         lblConHang(tk.ConHang());
         lblHetHang(tk.HetHang());
         lblTongSoHang(tk.SoSanPhamDangKinhDoanh());
+        lblTongDoanhThuNam(tk.TongDoanhThuNam());
         thongKeCot();
     }
 
@@ -129,6 +130,11 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         }
     }
 
+        private void lblTongDoanhThuNam(List<HoaDon> listt) {
+        for (HoaDon hoaDon : listt) {
+            lblTongDoanhThuNam.setText(String.valueOf(hoaDon.getTongTien()));
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -173,7 +179,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
+        lblTongDoanhThuNam = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
@@ -219,7 +225,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addComponent(lblTongSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +254,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel36)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblConHang, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -281,7 +287,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel37)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblHetHang, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -511,7 +517,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
 
         jLabel28.setText("Tiền :");
 
-        jLabel29.setText("0");
+        lblTongDoanhThuNam.setText("0");
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/money-bag.png"))); // NOI18N
 
@@ -527,7 +533,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                        .addComponent(lblTongDoanhThuNam, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel28)
@@ -545,7 +551,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel28)
                     .addComponent(jLabel26))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(jLabel29)
+                .addComponent(lblTongDoanhThuNam)
                 .addGap(55, 55, 55))
         );
 
@@ -775,7 +781,6 @@ public class ThongKeView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
@@ -805,6 +810,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel lblConHang;
     private javax.swing.JLabel lblHetHang;
+    private javax.swing.JLabel lblTongDoanhThuNam;
     private javax.swing.JLabel lblTongSanPham;
     private javax.swing.JPanel panelLineChart;
     private javax.swing.JTable tblDoanhThu;
