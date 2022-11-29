@@ -335,6 +335,8 @@ public class KhachHangView extends javax.swing.JInternalFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String ma = txtTimKiem.getText();
         lists = khachHangServices.searchKH(ma);
+        String sdt = txtTimKiem.getText();
+        lists = khachHangServices.searchSdt(sdt);
         DefaultTableModel tblModel = new DefaultTableModel();
         tblModel = (DefaultTableModel) tblKhachHang.getModel();
         tblModel.setRowCount(0);

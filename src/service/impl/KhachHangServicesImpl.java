@@ -11,9 +11,9 @@ import repository.KhachHangRespository;
 import service.KhachHangServices;
 import viewmodel.KhachHangViewModel;
 
+public class KhachHangServicesImpl implements KhachHangServices {
 
-public class KhachHangServicesImpl implements KhachHangServices{
-  private KhachHangRespository khachHangRespository = new KhachHangRespository();
+    private KhachHangRespository khachHangRespository = new KhachHangRespository();
 
     @Override
     public List<KhachHangViewModel> getAll() {
@@ -22,40 +22,45 @@ public class KhachHangServicesImpl implements KhachHangServices{
 
     @Override
     public String addKH(KhachHang kh) {
-      int row =0;
-      row = khachHangRespository.addKH(kh);
-      if(row>0){
-          return "Thêm thành công";
-      }else{
-          return "Thất bại";
-      }
+        int row = 0;
+        row = khachHangRespository.addKH(kh);
+        if (row > 0) {
+            return "Thêm thành công";
+        } else {
+            return "Thất bại";
+        }
     }
 
     @Override
     public String deleteKH(String ma) {
-       int row =0;
-      row = khachHangRespository.deleteKH(ma);
-      if(row>0){
-          return "Xóa thành công";
-      }else{
-          return "Thất bại";
-      }
+        int row = 0;
+        row = khachHangRespository.deleteKH(ma);
+        if (row > 0) {
+            return "Xóa thành công";
+        } else {
+            return "Thất bại";
+        }
     }
 
     @Override
     public String updateKH(KhachHang kh) {
-       int row =0;
-       row = khachHangRespository.updateKH(kh);
-       if(row>0){
-           return "Sửa thành công";
-       }else{
-           return "Thất bại";
-       }
+        int row = 0;
+        row = khachHangRespository.updateKH(kh);
+        if (row > 0) {
+            return "Sửa thành công";
+        } else {
+            return "Thất bại";
+        }
     }
 
     @Override
     public List<KhachHangViewModel> searchKH(String ma) {
         return khachHangRespository.searchKH(ma);
     }
-  
+
+    @Override
+    public List<KhachHangViewModel> searchSdt(String sdt) {
+        return khachHangRespository.searchSdt(sdt);
+    }
+
 }
