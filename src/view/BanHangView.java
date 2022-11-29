@@ -1064,6 +1064,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
     private void loadHoaDon() {
         DefaultTableModel tblModel = new DefaultTableModel();
+        List<HoaDonViewModel> list = hoaDonServices.getAll();
         tblModel = (DefaultTableModel) tblHoaDon.getModel();
         tblModel.setRowCount(0);
 
