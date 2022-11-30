@@ -17,13 +17,13 @@ public class HoaDonRespository {
 
     public List<HoaDonViewModel> getAll() {
         List<HoaDonViewModel> hoaDonViewModels = new ArrayList<>();
-        String sql = "SELECT MaHD,Ngaytao,TrangThai FROM HoaDon";
+        String sql = "SELECT Ngaytao,TrangThai FROM HoaDon";
         ResultSet rs = JDBCHelper.executeQuery(sql);
         try {
             while (rs.next()) {
-                hoaDonViewModels.add(new HoaDonViewModel(rs.getString(1),
-                        rs.getString(2),
-                        rs.getInt(3)));
+                hoaDonViewModels.add(new HoaDonViewModel(
+                        rs.getString(1),
+                        rs.getInt(2)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(HoaDonRespository.class.getName()).log(Level.SEVERE, null, ex);
@@ -33,8 +33,8 @@ public class HoaDonRespository {
 
     public int addHoaDon(HoaDon hoaDon) {
         int row = 0;
-        String sql = " INSERT INTO HoaDon(MaHD,NgayTao,TrangThai) VALUES (?,?,?)";
-        row = JDBCHelper.executeUpdate(sql, hoaDon.getMaHD(), hoaDon.getNgayTao(), hoaDon.getTrangThai());
+        String sql = " INSERT INTO HoaDon(NgayTao,TrangThai) VALUES (?,?)";
+        row = JDBCHelper.executeUpdate(sql, hoaDon.getNgayTao(), hoaDon.getTrangThai());
         return row;
     }
 

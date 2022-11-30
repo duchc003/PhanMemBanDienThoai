@@ -208,17 +208,17 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
         tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "STT", "Mã Hóa Đơn", "Ngày Tạo", "Trạng Thái"
+                "STT", "Ngày Tạo", "Trạng Thái"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -800,7 +800,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
             loadTien();
         }
         if(tblGioHang.getRowCount()<=0){
-            txtTongTien.setText("0 vnd");
+            txtTongTien.setText("");
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -1062,9 +1062,9 @@ public class BanHangView extends javax.swing.JInternalFrame {
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
         String dateTT = df.format(date);
-        Random rd = new Random();
+        
 
-        hoaDon.setMaHD("HD" + rd.nextInt(999999));
+        
         hoaDon.setNgayTao(dateTT);
         hoaDon.setTrangThai("0");
 
@@ -1082,7 +1082,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         for (HoaDonViewModel hd : list) {
             tblModel.addRow(new Object[]{
                 i++,
-                hd.getMaHD(),
+  
                 hd.getNgayTao(),
                 hd.getTrangThai() == 0 ? "Chờ Thanh Toán"
                 : hd.getTrangThai() == 1 ? "Đã Thanh Toán"

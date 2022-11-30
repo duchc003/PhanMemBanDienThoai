@@ -2,25 +2,16 @@ package viewmodel;
 
 public class HoaDonViewModel {
 
-    private String maHD;
+    
     private String ngayTao;
     private int trangThai;
 
     public HoaDonViewModel() {
     }
 
-    public HoaDonViewModel(String maHD, String ngayTao, int trangThai) {
-        this.maHD = maHD;
+    public HoaDonViewModel(String ngayTao, int trangThai) {
         this.ngayTao = ngayTao;
         this.trangThai = trangThai;
-    }
-
-    public String getMaHD() {
-        return maHD;
-    }
-
-    public void setMaHD(String maHD) {
-        this.maHD = maHD;
     }
 
     public String getNgayTao() {
@@ -39,6 +30,7 @@ public class HoaDonViewModel {
         this.trangThai = trangThai;
     }
 
+ 
    
 
 }
