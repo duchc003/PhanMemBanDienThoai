@@ -37,8 +37,8 @@ public class khuyenMaiRepository {
                         rs.getString(4),
                         rs.getString(5),
                         rs.getFloat(6),
-                        rs.getInt(7),
-                        rs.getInt(8),
+                        rs.getString(7),
+                        rs.getString(8),
                         rs.getString(9)));
             }
         } catch (SQLException ex) {
@@ -59,8 +59,8 @@ public class khuyenMaiRepository {
                         rs.getString(4),
                         rs.getString(5),
                         rs.getFloat(6),
-                        rs.getInt(7),
-                        rs.getInt(8),
+                        rs.getString(7),
+                        rs.getString(8),
                         rs.getString(9)));
 
             }
@@ -117,8 +117,8 @@ public class khuyenMaiRepository {
                         rs.getString(4),
                         rs.getString(5),
                         rs.getFloat(6),
-                        rs.getInt(7),
-                        rs.getInt(8),
+                        rs.getString(7),
+                        rs.getString(8),
                         rs.getString(9));
             }
         } catch (Exception e) {
@@ -139,8 +139,8 @@ public class khuyenMaiRepository {
                         rs.getString(4),
                         rs.getString(5),
                         rs.getFloat(6),
-                        rs.getInt(7),
-                        rs.getInt(8),
+                        rs.getString(7),
+                        rs.getString(8),
                         rs.getString(9)));
             }
             return list;

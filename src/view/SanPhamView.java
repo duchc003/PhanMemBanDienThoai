@@ -68,6 +68,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private DefaultComboBoxModel box2 = new DefaultComboBoxModel();
     private DefaultComboBoxModel box3 = new DefaultComboBoxModel();
     private ChiTietSpImpl impl = new ChiTietSpImpl();
+    DefaultTableModel model;
     private JFileChooser choice;
     private final String path = "IMG_SQL\\IMG\\";
     private final String imgType = "png";
@@ -78,12 +79,13 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
 
-        choice = new JFileChooser("C:\\Users\\ASUS\\OneDrive\\Documents\\NetBeansProjects\\QuanLyCuaHangDienThoai\\anh");
+        choice = new JFileChooser("C:\\Users\\ASUS\\OneDrive\\Documents\\PhanMemBanDienThoai\\anh");
         choice.setFileFilter(new FileNameExtensionFilter("Image File", "jpg", "png"));
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
         }
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         //1 hãng
         tblHangSP.setModel(dtmHangSP);
         Object[] tieuDe = {"ID", "Mã Hãng", "Tên Hãng"};
@@ -1421,7 +1423,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnXoaCtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaCtActionPerformed
-        
+
     }//GEN-LAST:event_btnXoaCtActionPerformed
 
 
@@ -1525,7 +1527,8 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTenNhaCungCap;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
-private Icon getHinhAnh(String hinhAnh) {
+
+    private Icon getHinhAnh(String hinhAnh) {
         return new ImageIcon(path + hinhAnh);
     }
 

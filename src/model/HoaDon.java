@@ -24,7 +24,7 @@ public class HoaDon {
     private String ngayGiaoHang;
     private String ngayKhachNhanhang;
     private String thoiGianBaohanh;
-    private double tongTien;
+    private long tongTien;
     private String hanTra;
     private String ngayTra;
     private String trangThai;
@@ -33,11 +33,11 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(String trangThai) {
-        this.trangThai = trangThai;
+    public HoaDon(String maHD) {
+        this.maHD = maHD;
     }
 
-    public HoaDon(int id, int idKhachHang, int idNhanVien, int idHinhThucTT, int idHinhThucGH, String maHD, String ngayTao, String ngayThanhToan, String ngayNhanHang, String ngayGiaoHang, String ngayKhachNhanhang, String thoiGianBaohanh, double tongTien, String hanTra, String ngayTra, String trangThai, String moTa) {
+    public HoaDon(int id, int idKhachHang, int idNhanVien, int idHinhThucTT, int idHinhThucGH, String maHD, String ngayTao, String ngayThanhToan, String ngayNhanHang, String ngayGiaoHang, String ngayKhachNhanhang, String thoiGianBaohanh, long tongTien, String hanTra, String ngayTra, String trangThai, String moTa) {
         this.id = id;
         this.idKhachHang = idKhachHang;
         this.idNhanVien = idNhanVien;
@@ -57,12 +57,13 @@ public class HoaDon {
         this.moTa = moTa;
     }
 
-    public HoaDon(String ngayTao, double tongTien) {
+    public HoaDon(String ngayTao, long tongTien) {
         this.ngayTao = ngayTao;
         this.tongTien = tongTien;
     }
-    public HoaDon( double tongTien) {
-        
+
+    public HoaDon(long tongTien) {
+
         this.tongTien = tongTien;
     }
 
@@ -162,11 +163,11 @@ public class HoaDon {
         this.thoiGianBaohanh = thoiGianBaohanh;
     }
 
-    public double getTongTien() {
+    public long getTongTien() {
         return tongTien;
     }
 
-    public void setTongTien(double tongTien) {
+    public void setTongTien(long tongTien) {
         this.tongTien = tongTien;
     }
 

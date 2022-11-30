@@ -18,14 +18,14 @@ public class KhuyenMaiViewModel {
     private String ngayBD;
     private String ngayKT;
     private float giamGia;
-    private int hinhThuc;
-    private int trangThai;
+    private String hinhThuc;
+    private String trangThai;
     private String moTa;
 
     public KhuyenMaiViewModel() {
     }
 
-    public KhuyenMaiViewModel(int id, String maKM, String ten, String ngayBD, String ngayKT, float giamGia, int hinhThuc, int trangThai, String moTa) {
+    public KhuyenMaiViewModel(int id, String maKM, String ten, String ngayBD, String ngayKT, float giamGia, String hinhThuc, String trangThai, String moTa) {
         this.id = id;
         this.maKM = maKM;
         this.ten = ten;
@@ -85,22 +85,22 @@ public class KhuyenMaiViewModel {
         this.giamGia = giamGia;
     }
 
-    public int getHinhThuc() {
+    public String getHinhThuc() {
         return hinhThuc;
     }
 
-    public void setHinhThuc(int hinhThuc) {
+    public void setHinhThuc(String hinhThuc) {
         this.hinhThuc = hinhThuc;
     }
 
-    public int getTrangThai() {
+    public String getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(int trangThai) {
+    public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
-
+    
     public String getMoTa() {
         return moTa;
     }

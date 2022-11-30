@@ -12,14 +12,14 @@ public class ThongKeDoanhThuViewModel {
 
     private String MaHD;
     private int SoLuong;
-    private float GiaNhap;
-    private float giaBan;
-    private float doanhThu;
+    private long GiaNhap;
+    private long giaBan;
+    private long doanhThu;
 
     public ThongKeDoanhThuViewModel() {
     }
 
-    public ThongKeDoanhThuViewModel(String MaHD, int SoLuong, float GiaNhap, float giaBan, float doanhThu) {
+    public ThongKeDoanhThuViewModel(String MaHD, int SoLuong, long GiaNhap, long giaBan, long doanhThu) {
         this.MaHD = MaHD;
         this.SoLuong = SoLuong;
         this.GiaNhap = GiaNhap;
@@ -52,7 +52,7 @@ public class ThongKeDoanhThuViewModel {
         return GiaNhap;
     }
 
-    public void setGiaNhap(float GiaNhap) {
+    public void setGiaNhap(long GiaNhap) {
         this.GiaNhap = GiaNhap;
     }
 
@@ -60,7 +60,7 @@ public class ThongKeDoanhThuViewModel {
         return giaBan;
     }
 
-    public void setGiaBan(float giaBan) {
+    public void setGiaBan(long giaBan) {
         this.giaBan = giaBan;
     }
 
@@ -68,7 +68,7 @@ public class ThongKeDoanhThuViewModel {
         return doanhThu;
     }
 
-    public void setDoanhThu(float doanhThu) {
+    public void setDoanhThu(long doanhThu) {
         this.doanhThu = doanhThu;
     }
 

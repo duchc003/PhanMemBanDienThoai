@@ -33,7 +33,6 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         list = impl.getAllKhuyenMaiViewModel();
         loadTable(list);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,6 +43,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         txt_maKM = new javax.swing.JTextField();
@@ -97,8 +97,10 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Mô tả");
 
+        buttonGroup1.add(rdo_hoatDong);
         rdo_hoatDong.setText("Hoạt Động");
 
+        buttonGroup1.add(rdo_khongHoatDong);
         rdo_khongHoatDong.setText("Không hoạt động");
 
         txt_moTa.setColumns(20);
@@ -314,19 +316,19 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         txt_ngayKT.setText(km.getNgayKT());
         txt_ngayBD.setText(km.getNgayBD());
         txt_giam.setText(String.valueOf(km.getGiamGia()));
-         if (tbl_khuyenMai.getValueAt(row, 5).toString().equalsIgnoreCase("Giảm Giá %")) {
+        if (tbl_khuyenMai.getValueAt(row, 5).toString().equalsIgnoreCase("Giảm Giá %")) {
             cbbHinhThuc.setSelectedIndex(0);
         }
         if (tbl_khuyenMai.getValueAt(row, 5).toString().equalsIgnoreCase("Giảm Giá Tiền")) {
             cbbHinhThuc.setSelectedIndex(1);
         }
-        if (km.getTrangThai() == 1) {
+        if (km.getTrangThai() == "Hoạt Động") {
             rdo_hoatDong.setSelected(true);
-        }else{
+        } else {
             rdo_khongHoatDong.setSelected(true);
         }
         txt_moTa.setText(km.getMoTa());
-        
+
     }//GEN-LAST:event_tbl_khuyenMaiMouseClicked
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
@@ -345,7 +347,6 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
                 km.getGiamGia(),
                 km.getTrangThai(),
                 km.getMoTa()
-
             });
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
@@ -353,6 +354,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         KhuyenMaiViewModel km = getFormKhuyenMaiInput();
         JOptionPane.showMessageDialog(this, impl.addKhuyenMai(km));
+        list = impl.getAllKhuyenMaiViewModel();
         loadTable(list);
         cleaForm();
     }//GEN-LAST:event_btnThemActionPerformed
@@ -372,6 +374,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbHinhThuc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -402,36 +405,36 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         DefaultTableModel model = (DefaultTableModel) tbl_khuyenMai.getModel();
         model.setRowCount(0);
         for (KhuyenMaiViewModel km : listKM) {
-                model.addRow(new Object[]{
+            model.addRow(new Object[]{
                 km.getId(),
                 km.getMaKM(),
                 km.getTen(),
                 km.getNgayBD(),
                 km.getNgayKT(),
-                km.getHinhThuc() == 1 ? "Giảm Giá %" : "Giảm Giá Tiền",
+                km.getHinhThuc(),
                 km.getGiamGia(),
-                km.getTrangThai() == 1 ? "Hoạt Động" : "Không Hoạt Động",
+                km.getTrangThai(),
                 km.getMoTa()
             });
         }
     }
 
     private KhuyenMaiViewModel getFormKhuyenMaiInput() {
-        int trangThai;
+        String trangThai;
         if (rdo_hoatDong.isSelected()) {
-            trangThai = 1;
-        }else{
-            trangThai =2;
+            trangThai = "Hoạt Động";
+        } else {
+            trangThai = "Không Hoạt Động";
         }
         return new KhuyenMaiViewModel(
-                0, 
-                txt_maKM.getText(), 
-                txt_tenKM.getText(), 
-                txt_ngayBD.getText(), 
-                txt_ngayKT.getText(), 
-                Float.parseFloat(txt_giam.getText()), 
-                (int) cbbHinhThuc.getSelectedItem(), 
-                trangThai, 
+                0,
+                txt_maKM.getText(),
+                txt_tenKM.getText(),
+                txt_ngayBD.getText(),
+                txt_ngayKT.getText(),
+                Float.parseFloat(txt_giam.getText()),
+                (String) cbbHinhThuc.getSelectedItem(),
+                trangThai,
                 txt_moTa.getText());
     }
 
@@ -440,6 +443,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         KhuyenMaiViewModel km = getFormKhuyenMaiInput();
         String maKM = (String) tbl_khuyenMai.getValueAt(row, 1);
         JOptionPane.showMessageDialog(this, impl.updateKhuyenmai(km, maKM));
+        list = impl.getAllKhuyenMaiViewModel();
         loadTable(list);
     }
 

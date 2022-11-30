@@ -104,7 +104,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private void cbbHinhThucGG(List<KhuyenMaiViewModel> list) {
         cbbHinhThuc.setModel(dcbm2);
         for (KhuyenMaiViewModel khuyenMaiViewModel : list) {
-            dcbm2.addElement(khuyenMaiViewModel.getHinhThuc() == 1 ? "Giảm Giá %" : "Giảm Giá Tiền");
+            dcbm2.addElement(khuyenMaiViewModel.getHinhThuc());
         }
     }
     

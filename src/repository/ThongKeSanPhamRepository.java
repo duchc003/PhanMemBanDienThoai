@@ -42,14 +42,14 @@ public class ThongKeSanPhamRepository {
 
         return lists;
     }
-    
+
     public List<HoaDon> thongKeCot() {
         List<HoaDon> listt = new ArrayList<>();
         String query = "select  Year(ngayTao),tongTien  from hoaDon";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                listt.add(new HoaDon(rs.getString(1), rs.getDouble(2)));
+                listt.add(new HoaDon(rs.getString(1), rs.getLong(2)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,9 +70,9 @@ public class ThongKeSanPhamRepository {
                 ThongKeDoanhThuViewModel thongKedoanhthuViewModel = new ThongKeDoanhThuViewModel();
                 thongKedoanhthuViewModel.setMaHD(rs.getString(1));
                 thongKedoanhthuViewModel.setSoLuong(rs.getInt(2));
-                thongKedoanhthuViewModel.setGiaNhap(rs.getFloat(3));
-                thongKedoanhthuViewModel.setGiaBan(rs.getFloat(4));
-                thongKedoanhthuViewModel.setDoanhThu(rs.getFloat(5));
+                thongKedoanhthuViewModel.setGiaNhap(rs.getLong(3));
+                thongKedoanhthuViewModel.setGiaBan(rs.getLong(4));
+                thongKedoanhthuViewModel.setDoanhThu(rs.getLong(5));
 
                 listt.add(thongKedoanhthuViewModel);
             }
@@ -130,15 +130,50 @@ public class ThongKeSanPhamRepository {
 
         return listt;
     }
-    
-    
-        public List<HoaDon> TongDoanhThuNam() {
+
+    public List<HoaDon> TongDoanhThuNam() {
         List<HoaDon> listt = new ArrayList<>();
-        String query = " select sum(TongTien) from HoaDon";
+        String query = " select sum(TongTien) from HoaDon where Year(NgayThanhToan) = Year(GETDATE())";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                listt.add(new HoaDon(rs.getDouble(1)));
+                listt.add(new HoaDon(rs.getLong(1)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listt;
+    }
+
+    public List<HoaDon> tonDonHangTaiQuay() {
+        List<HoaDon> listt = new ArrayList<>();
+        String query = "SELECT count(dbo.HoaDon.MaHD)\n"
+                + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
+                + "                  dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH\n"
+                + "				  where TenHTGH = 1";
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listt.add(new HoaDon(rs.getString(1)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listt;
+    }
+    
+    public List<HoaDon> tonDonGiao() {
+        List<HoaDon> listt = new ArrayList<>();
+        String query = "SELECT count(dbo.HoaDon.MaHD)\n"
+                + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
+                + "                  dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH\n"
+                + "				  where TenHTGH = 2";
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listt.add(new HoaDon(rs.getString(1)));
             }
         } catch (Exception e) {
             e.printStackTrace();

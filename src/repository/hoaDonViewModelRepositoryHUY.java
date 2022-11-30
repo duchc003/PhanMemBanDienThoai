@@ -35,7 +35,7 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(4),
-                        rs.getDouble(5),
+                        rs.getLong(5),
                         rs.getString(6),
                         rs.getString(7),
                         rs.getInt(8)));
@@ -64,7 +64,7 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(4),
-                        rs.getDouble(5),
+                        rs.getLong(5),
                         rs.getString(6),
                         rs.getString(7),
                         rs.getInt(8)));
@@ -93,7 +93,7 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(4),
-                        rs.getDouble(5),
+                        rs.getLong(5),
                         rs.getString(6),
                         rs.getString(7),
                         rs.getInt(8)));
@@ -122,7 +122,7 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(4),
-                        rs.getDouble(5),
+                        rs.getLong(5),
                         rs.getString(6),
                         rs.getString(7),
                         rs.getInt(8)));
@@ -150,7 +150,7 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(4),
-                        rs.getDouble(5),
+                        rs.getLong(5),
                         rs.getString(6),
                         rs.getString(7),
                         rs.getInt(8)));

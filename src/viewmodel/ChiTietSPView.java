@@ -20,8 +20,8 @@ public class ChiTietSPView {
     private String manHinh;
     private String boNho;
     private String mauSac;
-    private float giaNhap;
-    private float giaBan;
+    private long giaNhap;
+    private long giaBan;
     private String image;
     private String barcode;
     private int trangThai;
@@ -30,7 +30,7 @@ public class ChiTietSPView {
     public ChiTietSPView() {
     }
 
-    public ChiTietSPView(int id, int idSP, int idNcc, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, float giaNhap, float giaBan, String image, String barcode, int trangThai, String moTa) {
+    public ChiTietSPView(int id, int idSP, int idNcc, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, long giaNhap, long giaBan, String image, String barcode, int trangThai, String moTa) {
         this.id = id;
         this.idSP = idSP;
         this.idNcc = idNcc;
@@ -85,7 +85,7 @@ public class ChiTietSPView {
         return giaNhap;
     }
 
-    public void setGiaNhap(float giaNhap) {
+    public void setGiaNhap(long giaNhap) {
         this.giaNhap = giaNhap;
     }
 
@@ -93,7 +93,7 @@ public class ChiTietSPView {
         return giaBan;
     }
 
-    public void setGiaBan(float giaBan) {
+    public void setGiaBan(long giaBan) {
         this.giaBan = giaBan;
     }
 
