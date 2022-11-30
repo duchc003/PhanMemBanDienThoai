@@ -33,5 +33,13 @@ public interface ThongKeSPservice {
     
     List<HoaDon> tonDonHang();
     
+    List<HoaDon> tonDonHuy();
+    
+    List<HoaDon> tonDonGiaoHuy();
+    
+    List<HoaDon> tonDonGiaoThanhCong();
+    
+    List<HoaDon> tonDonThanhCong();
+    
     List<HoaDon> tonDonGiao();
 }

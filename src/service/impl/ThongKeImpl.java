@@ -66,4 +66,24 @@ public class ThongKeImpl implements ThongKeSPservice {
         return tk.tonDonGiao();
     }
 
+    @Override
+    public List<HoaDon> tonDonHuy() {
+        return tk.tongDonHuy();
+    }
+
+    @Override
+    public List<HoaDon> tonDonGiaoHuy() {
+        return tk.tongDonHuyGiaoHang();
+    }
+
+    @Override
+    public List<HoaDon> tonDonGiaoThanhCong() {
+        return tk.tongDonGiaoThanhCong();
+    }
+
+    @Override
+    public List<HoaDon> tonDonThanhCong() {
+        return tk.tongDonThanhCong();
+    }
+
 }

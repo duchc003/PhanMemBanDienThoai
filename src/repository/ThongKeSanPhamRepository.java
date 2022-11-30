@@ -163,7 +163,7 @@ public class ThongKeSanPhamRepository {
 
         return listt;
     }
-    
+
     public List<HoaDon> tonDonGiao() {
         List<HoaDon> listt = new ArrayList<>();
         String query = "SELECT count(dbo.HoaDon.MaHD)\n"
@@ -181,6 +181,71 @@ public class ThongKeSanPhamRepository {
 
         return listt;
     }
+
+    public List<HoaDon> tongDonThanhCong() {
+        List<HoaDon> listt = new ArrayList<>();
+        String query = "SELECT count(dbo.HoaDon.MaHD)\n"
+                + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
+                + "                  dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH\n"
+                + "				  where TenHTGH = 2";
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listt.add(new HoaDon(rs.getString(1)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listt;
+    }
+
+    public List<HoaDon> tongDonHuy() {
+        List<HoaDon> listt = new ArrayList<>();
+        String query = "select count(MaHD) from HoaDon where TrangThai = 2";
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listt.add(new HoaDon(rs.getString(1)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listt;
+    }
+
+    public List<HoaDon> tongDonHuyGiaoHang() {
+        List<HoaDon> listt = new ArrayList<>();
+        String query = "select count(MaHD) from HoaDon where TrangThai = 5";
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listt.add(new HoaDon(rs.getString(1)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listt;
+    }
+
+    public List<HoaDon> tongDonGiaoThanhCong() {
+        List<HoaDon> listt = new ArrayList<>();
+        String query = "select count(MaHD) from HoaDon where TrangThai = 3";
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listt.add(new HoaDon(rs.getString(1)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listt;
+    }
+    
+    
 
     public static void main(String[] args) {
         System.out.println(new ThongKeSanPhamRepository().ConHang());

@@ -34,7 +34,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private khuyenMaiServicesImpl impl1 = new khuyenMaiServicesImpl();
     private DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
     private DefaultComboBoxModel dcbm1 = new DefaultComboBoxModel();
-    private DefaultComboBoxModel dcbm2 = new DefaultComboBoxModel();
     private DefaultComboBoxModel dcbm3 = new DefaultComboBoxModel();
     private List<SanPhamFormBanHangViewModel> lst = new ArrayList<>();
     private List<GioHangViewModel> gioHangViewModels = new ArrayList<>();
@@ -82,7 +81,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
         loadSanPham(lst);
         cbbTenHang(sanPhamFormBanHangServices.getTenHangSPs());
         cbbTenKhachHang(impl.getALL());
-        cbbHinhThucGG(impl1.getAllKhuyenMaiViewModel());
         cbbGiamGia(impl1.getAllKhuyenMaiViewModel());
     }
     int row = 0;
@@ -98,13 +96,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
         cbbKhachHang.setModel(dcbm1);
         for (KhachHang khachHang : list) {
             dcbm1.addElement(khachHang.getHoVaTen());
-        }
-    }
-
-    private void cbbHinhThucGG(List<KhuyenMaiViewModel> list) {
-        cbbHinhThuc.setModel(dcbm2);
-        for (KhuyenMaiViewModel khuyenMaiViewModel : list) {
-            dcbm2.addElement(khuyenMaiViewModel.getHinhThuc());
         }
     }
     
@@ -483,6 +474,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
         jLabel26.setText("Hình Thức");
 
+        cbbHinhThuc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Giảm Giá %", "Giảm Giá Tiền" }));
         cbbHinhThuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbHinhThucActionPerformed(evt);
