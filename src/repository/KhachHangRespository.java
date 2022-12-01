@@ -33,6 +33,13 @@ public class KhachHangRespository {
         return row;
     }
 
+    public int addKH2(KhachHang kh) {
+        int row = 0;
+        String sql = "INSERT INTO KhachHang(HoVaTen,GioiTinh,NgaySinh,SoDienThoai,DiaChi,MoTa) VALUES(?,?,?,?,?,?)";
+        row = JDBCHelper.executeUpdate(sql, kh.getHoVaTen(), kh.getGioiTinh(), kh.getNgaySinh(), kh.getSoDienThoai(), kh.getDiaChi(), kh.getMoTa());
+        return row;
+    }
+
     public int deleteKH(String ma) {
         int row = 0;
         String sql = "DELETE KHACHHANG WHERE MaKH = ?";
@@ -61,7 +68,7 @@ public class KhachHangRespository {
         }
         return khachHangViewModels;
     }
-    
+
     public List<KhachHangViewModel> searchSdt(String sdt) {
         List<KhachHangViewModel> khachHangViewModels = new ArrayList<>();
         String sql = " SELECT MaKH,HoVaTen,SoDienThoai,NgaySinh,DiaChi,GioiTinh,MoTa from KhachHang where SoDienThoai = ?";
@@ -75,5 +82,5 @@ public class KhachHangRespository {
         }
         return khachHangViewModels;
     }
-    
+
 }

@@ -30,6 +30,16 @@ public class KhachHangServicesImpl implements KhachHangServices {
             return "Thất bại";
         }
     }
+    @Override
+    public String addKH2(KhachHang kh) {
+        int row = 0;
+        row = khachHangRespository.addKH2(kh);
+        if (row > 0) {
+            return "Thêm thành công";
+        } else {
+            return "Thất bại";
+        }
+    }
 
     @Override
     public String deleteKH(String ma) {
