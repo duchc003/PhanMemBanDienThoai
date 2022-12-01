@@ -2,16 +2,25 @@ package viewmodel;
 
 public class HoaDonViewModel {
 
-    
+    private int id;
     private String ngayTao;
     private int trangThai;
 
     public HoaDonViewModel() {
     }
 
-    public HoaDonViewModel(String ngayTao, int trangThai) {
+    public HoaDonViewModel(int id, String ngayTao, int trangThai) {
+        this.id = id;
         this.ngayTao = ngayTao;
         this.trangThai = trangThai;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNgayTao() {
@@ -29,8 +38,5 @@ public class HoaDonViewModel {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
-
- 
-   
 
 }

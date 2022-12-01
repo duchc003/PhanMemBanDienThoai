@@ -648,6 +648,11 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/multiply.png"))); // NOI18N
         jButton2.setText("Hủy Đơn");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel7.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 640, 153, -1));
 
         jButton7.setBackground(new java.awt.Color(102, 255, 102));
@@ -913,8 +918,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbbHinhThucActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        String maHD = txtMaHD.getText();
-        JOptionPane.showMessageDialog(this, hoaDonServices.huyDon(maHD));
+        int id = list.get(tblHoaDon.getSelectedRow()).getId();
+        JOptionPane.showMessageDialog(this, hoaDonServices.huyDon(id));
         list = hoaDonServices.getAll();
         loadHoaDon();
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -922,6 +927,13 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int id = list.get(tblHoaDon.getSelectedRow()).getId();
+        JOptionPane.showMessageDialog(this, hoaDonServices.huyDonShip(id));
+        list = hoaDonServices.getAll();
+        loadHoaDon();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
