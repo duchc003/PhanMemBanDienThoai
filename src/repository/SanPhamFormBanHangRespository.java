@@ -34,10 +34,9 @@ public class SanPhamFormBanHangRespository {
 
     public List<SanPhamFormBanHangViewModel> Search(String ma) {
         List<SanPhamFormBanHangViewModel> list = new ArrayList<>();
-        String sql = "SELECT MaSP,TenSp,ChiTietSanPham.SoLuong,HangSanPham.TenHangSP,ChiTietSanPham.GiaBan,ChiTietSanPham.XuatXu FROM ChiTietSanPham join SanPham \n"
-                + "on ChiTietSanPham.IDSP =  SanPham.ID \n"
-                + "join HangSanPham \n"
-                + "on SanPham.IDHang = HangSanPham.ID where MaSp like ?";
+        String sql = "SELECT MaSP,TenSp,ChiTietSanPham.SoLuong,HangSanPham.TenHangSP,ChiTietSanPham.GiaBan,ChiTietSanPham.XuatXu \n"
+                + "FROM ChiTietSanPham join SanPham on ChiTietSanPham.IDSP =  SanPham.ID join HangSanPham on SanPham.IDHang = HangSanPham.ID \n"
+                + "where MaSp like ? and ChiTietSanPham.TrangThai = 1";
         ResultSet rs = JDBCHelper.executeQuery(sql, "%" + ma + "%");
         try {
             while (rs.next()) {

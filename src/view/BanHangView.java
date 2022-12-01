@@ -174,12 +174,9 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
@@ -191,6 +188,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
         jTextField10 = new javax.swing.JTextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
         jButton9 = new javax.swing.JButton();
         cbbTenHang = new javax.swing.JComboBox<>();
         jLabel22 = new javax.swing.JLabel();
@@ -661,33 +660,34 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jPanel7.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 23, 92, -1));
 
         lblNV.setText("jLabel24");
-        jPanel7.add(lblNV, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 23, 260, -1));
+        jPanel7.add(lblNV, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 23, 210, -1));
 
         jLabel2.setText("Mã Hóa Đơn");
         jPanel7.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 65, -1, -1));
-        jPanel7.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 62, 215, -1));
+
+        jTextField2.setEnabled(false);
+        jPanel7.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 62, 220, -1));
 
         jLabel3.setText("Ngày Tạo");
         jPanel7.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 117, -1, -1));
+
+        jTextField3.setEnabled(false);
         jPanel7.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 215, -1));
 
-        jLabel4.setText("Ngày Tạo");
-        jPanel7.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 171, -1, -1));
-        jPanel7.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 168, 215, -1));
-
         jLabel6.setText("Tên Khách Hàng");
-        jPanel7.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 218, -1, -1));
-        jPanel7.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 215, 215, -1));
+        jPanel7.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        jPanel7.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 215, -1));
 
         jLabel15.setText("Số Điện thoại");
-        jPanel7.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 268, -1, -1));
-        jPanel7.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 215, -1));
+        jPanel7.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
         jLabel17.setText("Địa Chỉ");
-        jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+        jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
         jLabel18.setText("Tổng Tiền");
         jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
+
+        jTextField7.setEnabled(false);
         jPanel7.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 215, -1));
 
         jLabel19.setText("Giảm Giá %");
@@ -698,6 +698,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
         jLabel20.setText("Tiền khách cần trả");
         jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
+
+        jTextField9.setEnabled(false);
         jPanel7.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, 215, -1));
 
         jLabel21.setText("Ghi Chú");
@@ -708,7 +710,13 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jScrollPane6.setViewportView(jTextArea3);
 
         jPanel7.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 540, 220, 70));
-        jPanel7.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 265, 215, -1));
+        jPanel7.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 215, -1));
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane5.setViewportView(jTextArea2);
+
+        jPanel7.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, -1, -1));
 
         jTabbedPane1.addTab("ShipCode", jPanel7);
 
@@ -953,7 +961,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -971,16 +978,16 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JPanel lblCamera;
@@ -1062,8 +1069,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
         String dateTT = df.format(date);
-        
-
         
         hoaDon.setNgayTao(dateTT);
         hoaDon.setTrangThai("0");

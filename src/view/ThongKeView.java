@@ -104,7 +104,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         donGiao(tk.tonDonGiao());
         donGiaoHuy(tk.tonDonGiaoHuy());
         donGiaoThanhCong(tk.tonDonGiaoThanhCong());
-        donThanhCong(tk.tonDonGiaoThanhCong());
+        donThanhCong(tk.tonDonThanhCong());
         donhuy(tk.tonDonHuy());
         pannelThang.hide();
         pannelNam.hide();
@@ -249,7 +249,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jLabel19 = new javax.swing.JLabel();
         lblDonHang = new javax.swing.JLabel();
         pannelThang = new javax.swing.JPanel();
-        cbbThang = new javax.swing.JComboBox<>();
+        cbbTheoThang = new javax.swing.JComboBox<>();
         pannelNam = new javax.swing.JPanel();
         cbbNam = new javax.swing.JComboBox<>();
 
@@ -692,23 +692,24 @@ public class ThongKeView extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 25, Short.MAX_VALUE)
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblThanhCong, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblBiHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(lblDonHang, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(lblDonHang, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblBiHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                .addGap(0, 25, Short.MAX_VALUE)
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblThanhCong, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(13, 13, 13)))
                 .addComponent(jLabel18)
                 .addContainerGap())
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -738,18 +739,27 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35))
         );
 
+        cbbTheoThang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12" }));
+        cbbTheoThang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbTheoThangActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pannelThangLayout = new javax.swing.GroupLayout(pannelThang);
         pannelThang.setLayout(pannelThangLayout);
         pannelThangLayout.setHorizontalGroup(
             pannelThangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cbbThang, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cbbTheoThang, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         pannelThangLayout.setVerticalGroup(
             pannelThangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pannelThangLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(cbbThang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(cbbTheoThang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        cbbNam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2018", "2019", "2020", "2021", "2022" }));
 
         javax.swing.GroupLayout pannelNamLayout = new javax.swing.GroupLayout(pannelNam);
         pannelNam.setLayout(pannelNamLayout);
@@ -865,24 +875,6 @@ public class ThongKeView extends javax.swing.JInternalFrame {
     private void rdoThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoThangActionPerformed
         pannelThang.show();
         pannelNam.hide();
-        cbbThang.setModel(dcbm);
-        List<String> lst = new ArrayList<>();
-        lst.add("Tháng 1");
-        lst.add("Tháng 2");
-        lst.add("Tháng 3");
-        lst.add("Tháng 4");
-        lst.add("Tháng 5");
-        lst.add("Tháng 6");
-        lst.add("Tháng 7");
-        lst.add("Tháng 8");
-        lst.add("Tháng 9");
-        lst.add("Tháng 10");
-        lst.add("Tháng 11");
-        lst.add("Tháng 12");
-        for (String string : lst) {
-            dcbm.addElement(string);
-        }
-        
     }//GEN-LAST:event_rdoThangActionPerformed
 
     private void rdoTatCaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoTatCaActionPerformed
@@ -901,17 +893,363 @@ public class ThongKeView extends javax.swing.JInternalFrame {
     private void rdoNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNamActionPerformed
         pannelThang.hide();
         pannelNam.show();
-        cbbNam.setModel(dcbm1);
-        List<String> lsts = new ArrayList<>();
-        lsts.add("2018");
-        lsts.add("2019");
-        lsts.add("2020");
-        lsts.add("2021");
-        lsts.add("2022");
-        for (String string : lsts) {
-            dcbm1.addElement(string);
-        }
     }//GEN-LAST:event_rdoNamActionPerformed
+
+    private void cbbTheoThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTheoThangActionPerformed
+        try {
+            if (cbbTheoThang.getSelectedIndex() == 0) {
+                List<Integer> donHuy = tk.selectTongHoaDonTheoThang1();
+                for (Integer dt : donHuy) {
+                    lblDonHang.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang1();
+                for (Integer hd : thanhCong) {
+                    lblThanhCong.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang1();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblBiHuy.setText(hdHuy.toString());
+                }
+                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang1();
+                for (Integer kh : giaoHuy) {
+                    lblGiaoHuy.setText(kh.toString());
+                }
+                List<Integer> donGiao = tk.selectDoanhThuTheoThang1();
+                for (Integer kh : donGiao) {
+                    lblDonGiao.setText(kh.toString());
+                }
+                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang1();
+                for (Integer kh : giaoThanhCong) {
+                    lblGiaoThanhCong.setText(kh.toString());
+                }
+                List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang1();
+                for (Integer kh : tongDoanhThuNam) {
+                    lblTongDoanhThuNam.setText(kh.toString());
+                }
+            } else if (cbbTheoThang.getSelectedIndex() == 1) {
+                List<Integer> donHuy = tk.selectTongHoaDonTheoThang2();
+                for (Integer dt : donHuy) {
+                    lblDonHang.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang2();
+                for (Integer hd : thanhCong) {
+                    lblThanhCong.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang2();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblBiHuy.setText(hdHuy.toString());
+                }
+                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang2();
+                for (Integer kh : giaoHuy) {
+                    lblGiaoHuy.setText(kh.toString());
+                }
+                List<Integer> donGiao = tk.selectDoanhThuTheoThang2();
+                for (Integer kh : donGiao) {
+                    lblDonGiao.setText(kh.toString());
+                }
+                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang2();
+                for (Integer kh : giaoThanhCong) {
+                    lblGiaoThanhCong.setText(kh.toString());
+                }
+                List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang2();
+                for (Integer kh : tongDoanhThuNam) {
+                    lblTongDoanhThuNam.setText(kh.toString());
+                }
+            } if (cbbTheoThang.getSelectedIndex() == 2) {
+                List<Integer> donHuy = tk.selectTongHoaDonTheoThang3();
+                for (Integer dt : donHuy) {
+                    lblDonHang.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang3();
+                for (Integer hd : thanhCong) {
+                    lblThanhCong.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang3();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblBiHuy.setText(hdHuy.toString());
+                }
+                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang3();
+                for (Integer kh : giaoHuy) {
+                    lblGiaoHuy.setText(kh.toString());
+                }
+                List<Integer> donGiao = tk.selectDoanhThuTheoThang3();
+                for (Integer kh : donGiao) {
+                    lblDonGiao.setText(kh.toString());
+                }
+                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang3();
+                for (Integer kh : giaoThanhCong) {
+                    lblGiaoThanhCong.setText(kh.toString());
+                }
+                List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang3();
+                for (Integer kh : tongDoanhThuNam) {
+                    lblTongDoanhThuNam.setText(kh.toString());
+                }
+            } if (cbbTheoThang.getSelectedIndex() == 3) {
+                List<Integer> donHuy = tk.selectTongHoaDonTheoThang4();
+                for (Integer dt : donHuy) {
+                    lblDonHang.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang4();
+                for (Integer hd : thanhCong) {
+                    lblThanhCong.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang4();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblBiHuy.setText(hdHuy.toString());
+                }
+                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang4();
+                for (Integer kh : giaoHuy) {
+                    lblGiaoHuy.setText(kh.toString());
+                }
+                List<Integer> donGiao = tk.selectDoanhThuTheoThang4();
+                for (Integer kh : donGiao) {
+                    lblDonGiao.setText(kh.toString());
+                }
+                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang4();
+                for (Integer kh : giaoThanhCong) {
+                    lblGiaoThanhCong.setText(kh.toString());
+                }
+                List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang4();
+                for (Integer kh : tongDoanhThuNam) {
+                    lblTongDoanhThuNam.setText(kh.toString());
+                }
+            } if (cbbTheoThang.getSelectedIndex() == 4) {
+                List<Integer> donHuy = tk.selectTongHoaDonTheoThang5();
+                for (Integer dt : donHuy) {
+                    lblDonHang.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang5();
+                for (Integer hd : thanhCong) {
+                    lblThanhCong.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang5();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblBiHuy.setText(hdHuy.toString());
+                }
+                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang5();
+                for (Integer kh : giaoHuy) {
+                    lblGiaoHuy.setText(kh.toString());
+                }
+                List<Integer> donGiao = tk.selectDoanhThuTheoThang5();
+                for (Integer kh : donGiao) {
+                    lblDonGiao.setText(kh.toString());
+                }
+                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang5();
+                for (Integer kh : giaoThanhCong) {
+                    lblGiaoThanhCong.setText(kh.toString());
+                }
+                List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang5();
+                for (Integer kh : tongDoanhThuNam) {
+                    lblTongDoanhThuNam.setText(kh.toString());
+                }
+            } if (cbbTheoThang.getSelectedIndex() == 5) {
+                List<Integer> donHuy = tk.selectTongHoaDonTheoThang6();
+                for (Integer dt : donHuy) {
+                    lblDonHang.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang6();
+                for (Integer hd : thanhCong) {
+                    lblThanhCong.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang6();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblBiHuy.setText(hdHuy.toString());
+                }
+                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang6();
+                for (Integer kh : giaoHuy) {
+                    lblGiaoHuy.setText(kh.toString());
+                }
+                List<Integer> donGiao = tk.selectDoanhThuTheoThang6();
+                for (Integer kh : donGiao) {
+                    lblDonGiao.setText(kh.toString());
+                }
+                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang6();
+                for (Integer kh : giaoThanhCong) {
+                    lblGiaoThanhCong.setText(kh.toString());
+                }
+                List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang6();
+                for (Integer kh : tongDoanhThuNam) {
+                    lblTongDoanhThuNam.setText(kh.toString());
+                }
+            } if (cbbTheoThang.getSelectedIndex() == 6) {
+                List<Integer> donHuy = tk.selectTongHoaDonTheoThang7();
+                for (Integer dt : donHuy) {
+                    lblDonHang.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang7();
+                for (Integer hd : thanhCong) {
+                    lblThanhCong.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang7();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblBiHuy.setText(hdHuy.toString());
+                }
+                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang7();
+                for (Integer kh : giaoHuy) {
+                    lblGiaoHuy.setText(kh.toString());
+                }
+                List<Integer> donGiao = tk.selectDoanhThuTheoThang7();
+                for (Integer kh : donGiao) {
+                    lblDonGiao.setText(kh.toString());
+                }
+                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang7();
+                for (Integer kh : giaoThanhCong) {
+                    lblGiaoThanhCong.setText(kh.toString());
+                }
+                List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang7();
+                for (Integer kh : tongDoanhThuNam) {
+                    lblTongDoanhThuNam.setText(kh.toString());
+                }
+            } if (cbbTheoThang.getSelectedIndex() == 7) {
+                List<Integer> donHuy = tk.selectTongHoaDonTheoThang8();
+                for (Integer dt : donHuy) {
+                    lblDonHang.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang8();
+                for (Integer hd : thanhCong) {
+                    lblThanhCong.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang8();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblBiHuy.setText(hdHuy.toString());
+                }
+                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang8();
+                for (Integer kh : giaoHuy) {
+                    lblGiaoHuy.setText(kh.toString());
+                }
+                List<Integer> donGiao = tk.selectDoanhThuTheoThang8();
+                for (Integer kh : donGiao) {
+                    lblDonGiao.setText(kh.toString());
+                }
+                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang8();
+                for (Integer kh : giaoThanhCong) {
+                    lblGiaoThanhCong.setText(kh.toString());
+                }
+                List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang8();
+                for (Integer kh : tongDoanhThuNam) {
+                    lblTongDoanhThuNam.setText(kh.toString());
+                }
+            } if (cbbTheoThang.getSelectedIndex() == 8) {
+                List<Integer> donHuy = tk.selectTongHoaDonTheoThang9();
+                for (Integer dt : donHuy) {
+                    lblDonHang.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang9();
+                for (Integer hd : thanhCong) {
+                    lblThanhCong.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang9();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblBiHuy.setText(hdHuy.toString());
+                }
+                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang9();
+                for (Integer kh : giaoHuy) {
+                    lblGiaoHuy.setText(kh.toString());
+                }
+                List<Integer> donGiao = tk.selectDoanhThuTheoThang9();
+                for (Integer kh : donGiao) {
+                    lblDonGiao.setText(kh.toString());
+                }
+                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang9();
+                for (Integer kh : giaoThanhCong) {
+                    lblGiaoThanhCong.setText(kh.toString());
+                }
+                List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang9();
+                for (Integer kh : tongDoanhThuNam) {
+                    lblTongDoanhThuNam.setText(kh.toString());
+                }
+            } if (cbbTheoThang.getSelectedIndex() == 9) {
+                List<Integer> donHuy = tk.selectTongHoaDonTheoThang10();
+                for (Integer dt : donHuy) {
+                    lblDonHang.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang10();
+                for (Integer hd : thanhCong) {
+                    lblThanhCong.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang10();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblBiHuy.setText(hdHuy.toString());
+                }
+                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang10();
+                for (Integer kh : giaoHuy) {
+                    lblGiaoHuy.setText(kh.toString());
+                }
+                List<Integer> donGiao = tk.selectDoanhThuTheoThang10();
+                for (Integer kh : donGiao) {
+                    lblDonGiao.setText(kh.toString());
+                }
+                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang10();
+                for (Integer kh : giaoThanhCong) {
+                    lblGiaoThanhCong.setText(kh.toString());
+                }
+                List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang10();
+                for (Integer kh : tongDoanhThuNam) {
+                    lblTongDoanhThuNam.setText(kh.toString());
+                }
+            } if (cbbTheoThang.getSelectedIndex() == 10) {
+                List<Integer> donHuy = tk.selectTongHoaDonTheoThang11();
+                for (Integer dt : donHuy) {
+                    lblDonHang.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang11();
+                for (Integer hd : thanhCong) {
+                    lblThanhCong.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang11();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblBiHuy.setText(hdHuy.toString());
+                }
+                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang11();
+                for (Integer kh : giaoHuy) {
+                    lblGiaoHuy.setText(kh.toString());
+                }
+                List<Integer> donGiao = tk.selectDoanhThuTheoThang11();
+                for (Integer kh : donGiao) {
+                    lblDonGiao.setText(kh.toString());
+                }
+                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang11();
+                for (Integer kh : giaoThanhCong) {
+                    lblGiaoThanhCong.setText(kh.toString());
+                }
+                List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang11();
+                for (Integer kh : tongDoanhThuNam) {
+                    lblTongDoanhThuNam.setText(kh.toString());
+                }
+            } if (cbbTheoThang.getSelectedIndex() == 11) {
+                List<Integer> donHuy = tk.selectTongHoaDonTheoThang12();
+                for (Integer dt : donHuy) {
+                    lblDonHang.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang12();
+                for (Integer hd : thanhCong) {
+                    lblThanhCong.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang12();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblBiHuy.setText(hdHuy.toString());
+                }
+                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang12();
+                for (Integer kh : giaoHuy) {
+                    lblGiaoHuy.setText(kh.toString());
+                }
+                List<Integer> donGiao = tk.selectDoanhThuTheoThang12();
+                for (Integer kh : donGiao) {
+                    lblDonGiao.setText(kh.toString());
+                }
+                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang12();
+                for (Integer kh : giaoThanhCong) {
+                    lblGiaoThanhCong.setText(kh.toString());
+                }
+                List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang12();
+                for (Integer kh : tongDoanhThuNam) {
+                    lblTongDoanhThuNam.setText(kh.toString());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_cbbTheoThangActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -920,7 +1258,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cbbNam;
-    private javax.swing.JComboBox<String> cbbThang;
+    private javax.swing.JComboBox<String> cbbTheoThang;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1081,11 +1419,4 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         panelLineChart.validate();
     }
 
-    private void loadTheoThang(){
-        
-    }
-    
-    private void loadTheoNam(){
-        
-    }
 }
