@@ -19,11 +19,6 @@ public class HoaDonServicesImpl implements HoaDonServices {
     private HoaDonRespository hoaDonRespository = new HoaDonRespository();
 
     @Override
-    public List<HoaDonViewModel> getAll() {
-        return hoaDonRespository.getAll();
-    }
-
-    @Override
     public String addHoaDon(HoaDon hoaDon) {
         int row = 0;
         row = hoaDonRespository.addHoaDon(hoaDon);

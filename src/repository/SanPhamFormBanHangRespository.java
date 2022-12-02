@@ -1,5 +1,6 @@
 package repository;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,17 +18,25 @@ public class SanPhamFormBanHangRespository {
 
     public List<SanPhamFormBanHangViewModel> getAll() {
         List<SanPhamFormBanHangViewModel> list = new ArrayList<>();
-        String sql = "SELECT MaSP,TenSp,ChiTietSanPham.SoLuong,HangSanPham.TenHangSP,ChiTietSanPham.GiaBan,ChiTietSanPham.XuatXu FROM ChiTietSanPham join SanPham \n"
-                + "               on ChiTietSanPham.IDSP =  SanPham.ID \n"
-                + "                join HangSanPham \n"
-                + "             on SanPham.IDHang = HangSanPham.ID where SoLuong>0";
+        String sql = "SELECT dbo.SanPham.MaSP, dbo.SanPham.TenSp, dbo.ChiTietSanPham.SoLuong, dbo.KhuyenMai.GiamGia, dbo.HangSanPham.MaHangSP, dbo.ChiTietSanPham.GiaBan, dbo.ChiTietSanPham.XuatXu\n"
+                + "FROM     dbo.ChiTietSanPham INNER JOIN\n"
+                + "                  dbo.HangSanPham ON dbo.ChiTietSanPham.ID = dbo.HangSanPham.ID INNER JOIN\n"
+                + "                  dbo.KhuyenMai ON dbo.ChiTietSanPham.ID = dbo.KhuyenMai.ID INNER JOIN\n"
+                + "                  dbo.SanPham ON dbo.ChiTietSanPham.ID = dbo.SanPham.ID";
         ResultSet rs = JDBCHelper.executeQuery(sql);
         try {
             while (rs.next()) {
-                list.add(new SanPhamFormBanHangViewModel(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getDouble(5), rs.getString(6)));
+                list.add(new SanPhamFormBanHangViewModel(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getInt(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getLong(6),
+                        rs.getString(7)));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(SanPhamFormBanHangRespository.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return list;
     }
@@ -40,7 +49,13 @@ public class SanPhamFormBanHangRespository {
         ResultSet rs = JDBCHelper.executeQuery(sql, "%" + ma + "%");
         try {
             while (rs.next()) {
-                list.add(new SanPhamFormBanHangViewModel(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getDouble(5), rs.getString(6)));
+                list.add(new SanPhamFormBanHangViewModel(rs.getString(1),
+                        rs.getString(2),
+                        rs.getInt(3),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getLong(5),
+                        rs.getString(6)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(SanPhamFormBanHangRespository.class.getName()).log(Level.SEVERE, null, ex);
@@ -74,12 +89,22 @@ public class SanPhamFormBanHangRespository {
             List<SanPhamFormBanHangViewModel> list = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new SanPhamFormBanHangViewModel(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getDouble(5), rs.getString(6)));
+                list.add(new SanPhamFormBanHangViewModel(rs.getString(1),
+                        rs.getString(2),
+                        rs.getInt(3),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getLong(5),
+                        rs.getString(6)));
             }
             return list;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new SanPhamFormBanHangRespository().getAll().toString());
     }
 }

@@ -15,23 +15,6 @@ import viewmodel.HoaDonViewModel;
 
 public class HoaDonRespository {
 
-    public List<HoaDonViewModel> getAll() {
-        List<HoaDonViewModel> hoaDonViewModels = new ArrayList<>();
-        String sql = "SELECT ID, Ngaytao,TrangThai FROM HoaDon";
-        ResultSet rs = JDBCHelper.executeQuery(sql);
-        try {
-            while (rs.next()) {
-                hoaDonViewModels.add(new HoaDonViewModel(
-                        rs.getInt(1),
-                        rs.getString(2),
-                        rs.getInt(3)));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(HoaDonRespository.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return hoaDonViewModels;
-    }
-
     public int addHoaDon(HoaDon hoaDon) {
         int row = 0;
         String sql = " INSERT INTO HoaDon(NgayTao,TrangThai) VALUES (?,?)";
