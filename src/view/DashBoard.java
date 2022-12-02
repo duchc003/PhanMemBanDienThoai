@@ -40,8 +40,8 @@ public class DashBoard extends javax.swing.JFrame {
             txtNhanVien.setText("Hoàng Minh Huy");
             txtVaiTro.setText("Nhân Viên");
         }
-        BanHangView banHangView = new BanHangView();
-        jDesktopPane1.add(banHangView).setVisible(true);
+//        BanHangView banHangView = new BanHangView();
+//        jDesktopPane1.add(banHangView).setVisible(true);
     }
 
     /**

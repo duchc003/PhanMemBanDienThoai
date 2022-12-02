@@ -28,7 +28,7 @@ import viewmodel.SanPhamFormBanHangViewModel;
 public class BanHangView extends javax.swing.JInternalFrame {
 
     private DefaultTableModel tblModel1 = new DefaultTableModel();
-    private HoaDonServices hoaDonServices = new HoaDonServicesImpl();
+//    private HoaDonServices hoaDonServices = new HoaDonServicesImpl();
     private KhachHangCbbImpl impl = new KhachHangCbbImpl();
     private SanPhamFormBanHangServices sanPhamFormBanHangServices = new SanPhamFormBanHangServicesImpl();
     private khuyenMaiServicesImpl impl1 = new khuyenMaiServicesImpl();
@@ -39,7 +39,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private List<GioHangViewModel> gioHangViewModels = new ArrayList<>();
     private double v1 = 1000000000;
     private DecimalFormat df = new DecimalFormat("#");
-    private List<HoaDonViewModel> list = hoaDonServices.getAll();
+//    private List<HoaDonViewModel> list = hoaDonServices.getAll();
 
     public BanHangView() {
         initComponents();
@@ -76,7 +76,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         if (Auth.user.getTaiKhoan().equalsIgnoreCase("huyhmph22668")) {
             lblNV.setText("Hoàng Minh Huy");
         }
-        loadHoaDon();
+//        loadHoaDon();
         lst = sanPhamFormBanHangServices.getAll();
         loadSanPham(lst);
         cbbTenHang(sanPhamFormBanHangServices.getTenHangSPs());
@@ -854,7 +854,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTimKiemCaretUpdate
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        addHoaDon();
+//        addHoaDon();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tblSanPhamMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseEntered
@@ -885,26 +885,22 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbbHinhThucActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        int id = list.get(tblHoaDon.getSelectedRow()).getId();
-        JOptionPane.showMessageDialog(this, hoaDonServices.huyDon(id));
-        list = hoaDonServices.getAll();
-        loadHoaDon();
+//        int id = list.get(tblHoaDon.getSelectedRow()).getId();
+//        JOptionPane.showMessageDialog(this, hoaDonServices.huyDon(id));
+//        list = hoaDonServices.getAll();
+//        loadHoaDon();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-<<<<<<< HEAD
-=======
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int id = list.get(tblHoaDon.getSelectedRow()).getId();
-        JOptionPane.showMessageDialog(this, hoaDonServices.huyDonShip(id));
-        list = hoaDonServices.getAll();
-        loadHoaDon();
+//        int id = list.get(tblHoaDon.getSelectedRow()).getId();
+//        JOptionPane.showMessageDialog(this, hoaDonServices.huyDonShip(id));
+//        list = hoaDonServices.getAll();
+//        loadHoaDon();
     }//GEN-LAST:event_jButton2ActionPerformed
-
->>>>>>> d32c49df03e8e150bd48c7d9eda089f98b6406b8
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnThanhToan;
@@ -1045,40 +1041,40 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
     }
 
-    private void addHoaDon() {
-        HoaDon hoaDon = new HoaDon();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        long millis = System.currentTimeMillis();
-        java.sql.Date date = new java.sql.Date(millis);
-        String dateTT = df.format(date);
-        
-        hoaDon.setNgayTao(dateTT);
-        hoaDon.setTrangThai("0");
-
-        JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon));
-        loadHoaDon();
-    }
-
-    private void loadHoaDon() {
-        DefaultTableModel tblModel = new DefaultTableModel();
-        List<HoaDonViewModel> list = hoaDonServices.getAll();
-        tblModel = (DefaultTableModel) tblHoaDon.getModel();
-        tblModel.setRowCount(0);
-
-        int i = 1;
-        for (HoaDonViewModel hd : list) {
-            tblModel.addRow(new Object[]{
-                i++,
-  
-                hd.getNgayTao(),
-                hd.getTrangThai() == 0 ? "Chờ Thanh Toán"
-                : hd.getTrangThai() == 1 ? "Đã Thanh Toán"
-                : hd.getTrangThai() == 2 ? "Đã Hủy"
-                : hd.getTrangThai() == 3 ? "Giao Hàng Thành Công"
-                : hd.getTrangThai() == 4 ? "Đang Giao Hàng" : "Giao Hàng Thất Bại"
-            });
-        }
-    }
+//    private void addHoaDon() {
+//        HoaDon hoaDon = new HoaDon();
+//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//        long millis = System.currentTimeMillis();
+//        java.sql.Date date = new java.sql.Date(millis);
+//        String dateTT = df.format(date);
+//        
+//        hoaDon.setNgayTao(dateTT);
+//        hoaDon.setTrangThai("0");
+//
+//        JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon));
+//        loadHoaDon();
+//    }
+//
+//    private void loadHoaDon() {
+//        DefaultTableModel tblModel = new DefaultTableModel();
+//        List<HoaDonViewModel> list = hoaDonServices.getAll();
+//        tblModel = (DefaultTableModel) tblHoaDon.getModel();
+//        tblModel.setRowCount(0);
+//
+//        int i = 1;
+//        for (HoaDonViewModel hd : list) {
+//            tblModel.addRow(new Object[]{
+//                i++,
+//  
+//                hd.getNgayTao(),
+//                hd.getTrangThai() == 0 ? "Chờ Thanh Toán"
+//                : hd.getTrangThai() == 1 ? "Đã Thanh Toán"
+//                : hd.getTrangThai() == 2 ? "Đã Hủy"
+//                : hd.getTrangThai() == 3 ? "Giao Hàng Thành Công"
+//                : hd.getTrangThai() == 4 ? "Đang Giao Hàng" : "Giao Hàng Thất Bại"
+//            });
+//        }
+//    }
 
     private void loadTien() {
         double tien = 0;
