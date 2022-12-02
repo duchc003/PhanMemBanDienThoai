@@ -1,6 +1,5 @@
 
 import view.DangNhapView;
-import view.KhachHangJframe;
 import view.KhachHangView;
 
 /*
