@@ -19,6 +19,8 @@ public interface KhachHangServices {
 
     String addKH(KhachHang kh);
 
+    String addKH2(KhachHang kh);
+
     String deleteKH(String ma);
 
     String updateKH(KhachHang kh);

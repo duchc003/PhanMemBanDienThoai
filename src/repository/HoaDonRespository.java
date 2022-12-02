@@ -17,13 +17,14 @@ public class HoaDonRespository {
 
     public List<HoaDonViewModel> getAll() {
         List<HoaDonViewModel> hoaDonViewModels = new ArrayList<>();
-        String sql = "SELECT Ngaytao,TrangThai FROM HoaDon";
+        String sql = "SELECT ID, Ngaytao,TrangThai FROM HoaDon";
         ResultSet rs = JDBCHelper.executeQuery(sql);
         try {
             while (rs.next()) {
                 hoaDonViewModels.add(new HoaDonViewModel(
-                        rs.getString(1),
-                        rs.getInt(2)));
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getInt(3)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(HoaDonRespository.class.getName()).log(Level.SEVERE, null, ex);
@@ -38,13 +39,27 @@ public class HoaDonRespository {
         return row;
     }
 
-    public boolean huyDon(String maHD) {
+    public boolean huyDon(int id) {
         String query = "UPDATE [dbo].[HoaDon]\n"
-                + "   SET [TrangThai] = 2 \n"
-                + " WHERE MaHD = ? and TrangThai = 0";
+                + "   SET [TrangThai] = 2\n"
+                + " WHERE ID = ? and TrangThai = 0";
         int check = 0;
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
-            ps.setObject(1, maHD);
+            ps.setObject(1, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
+
+    public boolean huyDonShip(int id) {
+        String query = "UPDATE [dbo].[HoaDon]\n"
+                + "   SET [TrangThai] = 5\n"
+                + " WHERE ID = ? and TrangThai = 4";
+        int check = 0;
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, id);
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

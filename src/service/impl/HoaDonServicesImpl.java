@@ -35,9 +35,19 @@ public class HoaDonServicesImpl implements HoaDonServices {
     }
 
     @Override
-    public String huyDon(String maHD) {
-        boolean huyDon = hoaDonRespository.huyDon(maHD);
+    public String huyDon(int id) {
+        boolean huyDon = hoaDonRespository.huyDon(id);
         if (huyDon) {
+            return "Đã hủy";
+        } else {
+            return "Hóa đơn này không được hủy";
+        }
+    }
+
+    @Override
+    public String huyDonShip(int id) {
+        boolean huyDonShip = hoaDonRespository.huyDonShip(id);
+        if (huyDonShip) {
             return "Đã hủy";
         } else {
             return "Lỗi";

@@ -43,6 +43,14 @@ public class KhachHang {
         this.gioiTinh = gioiTinh;
         this.moTa = moTa;
     }
+       public KhachHang( String hoVaTen, String soDienThoai, String ngaySinh, String diaChi, String gioiTinh, String moTa) {
+        this.hoVaTen = hoVaTen;
+        this.soDienThoai = soDienThoai;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.gioiTinh = gioiTinh;
+        this.moTa = moTa;
+    }
 
     public KhachHang(int id, String hoVaTen) {
         this.id = id;
