@@ -49,6 +49,6 @@ public class KhuyenMaiFormBanHang {
     }
 
     public static void main(String[] args) {
-        System.out.println(new KhuyenMaiFormBanHang().giamGiaPhanTram("SP01").toString());
+        System.out.println(new KhuyenMaiFormBanHang().giamGiaPhanTram("SP02").toString());
     }
 }

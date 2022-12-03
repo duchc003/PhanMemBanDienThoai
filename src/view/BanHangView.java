@@ -991,9 +991,10 @@ public class BanHangView extends javax.swing.JInternalFrame {
             } else {
                 if (km.get(i).getHinhThucString().equalsIgnoreCase("Giảm Giá %")) {
                     float giaTriKM = km.get(i).getGiamGia();
+                    System.out.println(giaTriKM);
                     giaTriKM = giaTriKM / 100;
-//                    float giatriGiam = giaTriKM * soLuong;
-//                    giamGia += (tien * giatriGiam);
+                    float giatriGiam = giaTriKM * soLuong;
+                    giamGia += (tien * giatriGiam);
                 } else {
                     giamGia += (km.get(i).getGiamGia() * soLuong);
                 }

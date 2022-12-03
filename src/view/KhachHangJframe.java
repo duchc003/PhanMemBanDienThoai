@@ -15,27 +15,23 @@ public class KhachHangJframe extends javax.swing.JFrame {
     private KhachHangServices KH = new KhachHangServicesImpl();
     private List<KhachHangViewModel> lisst = new ArrayList<>();
     DefaultTableModel dtm = new DefaultTableModel();
-    
+
     public KhachHangJframe() {
         initComponents();
-        
         tblKhachHang.setModel(dtm);
-        Object[] hihi = {
-            "Mã", "Họ và Tên", "SDT", "Địa Chỉ", "Giới Tính", "Mô Tả"
-        };
+        dtm.setColumnIdentifiers(new Object[]{"Mã", "Họ và Tên", "SDT", "Địa Chỉ", "Giới Tính", "Mô Tả"});
         lisst = KH.getAll();
-        dtm.setColumnIdentifiers(hihi);
         ShowData(lisst);
     }
-    
+
     private void ShowData(List<KhachHangViewModel> lisst) {
         dtm.setRowCount(0);
         for (KhachHangViewModel khachHangViewModel : lisst) {
             dtm.addColumn(khachHangViewModel.toDataRow());
         }
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -295,7 +291,7 @@ public class KhachHangJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtTimKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKhachHangActionPerformed
-                String ma = txtTimKhachHang.getText();
+        String ma = txtTimKhachHang.getText();
         lisst = KH.searchKH(ma);
         String sdt = txtTimKhachHang.getText();
         lisst = KH.searchSdt(sdt);
@@ -315,9 +311,9 @@ public class KhachHangJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTimKhachHangActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        
+
         if (validateForm() == true) {
-            
+
             Pattern p2 = Pattern.compile("^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$");//Năm bắt đầu từ 1900 đến dưới 3000-tháng từ 1 đến 12 -ngày từ 1 đến 31
             if (p2.matcher(txtNgaySinh.getText()).find() == false) {
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập ngày sinh hợp lệ\n Định dạng yyyy/MM/dd \n Năm(1900-2999)\n Tháng (1-12) \n Ngày (1-31)");
@@ -325,11 +321,11 @@ public class KhachHangJframe extends javax.swing.JFrame {
             }
             Pattern p = Pattern.compile("^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$");
             if (p.matcher(txtSoDienThoai.getText()).find() == false) {
-                
+
                 JOptionPane.showMessageDialog(this, "Số điện thoại phải là số và có đúng 10 chữ số \n Nếu đầu khác 0 thì còn 9 số");
                 return;
             }
-            
+
             KhachHangViewModel kh = new KhachHangViewModel();
             kh.setHoVaTen(txtHoVaTen.getText());
             kh.setSoDienThoai(txtSoDienThoai.getText());
@@ -341,10 +337,10 @@ public class KhachHangJframe extends javax.swing.JFrame {
             kh.setNgaySinh(txtNgaySinh.getText());
             kh.setDiaChi(txtDiaChi.getText());
             kh.setMoTa(txtMoTa.getText());
-            
+
             JOptionPane.showMessageDialog(this, KH.addKH2(kh));
             ShowData(lisst);
-            
+
             clearForm();
         } else {
             return;
@@ -352,7 +348,7 @@ public class KhachHangJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void txtNgaySinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNgaySinhActionPerformed
-              Pattern p2 = Pattern.compile("^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$");
+        Pattern p2 = Pattern.compile("^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$");
         if (p2.matcher(txtNgaySinh.getText()).find() == false) {
             lblNgaySinh.setText("Không hợp lệ !");
             lblNgaySinh.setForeground(Color.red);
@@ -364,7 +360,7 @@ public class KhachHangJframe extends javax.swing.JFrame {
             lblNgaySinh.setText("");
         }
     }//GEN-LAST:event_txtNgaySinhActionPerformed
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -422,7 +418,7 @@ public class KhachHangJframe extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn giới tính");
             return false;
         }
-        
+
         return true;
     }
 
