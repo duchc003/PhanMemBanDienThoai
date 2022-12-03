@@ -399,11 +399,11 @@ public class KhachHangJframe extends javax.swing.JFrame {
 
     private boolean validateForm() {
         if (txtHoVaTen.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã ");
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập Tên ");
             return false;
         }
         if (txtSoDienThoai.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên ");
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập SDT ");
             return false;
         }
         if (txtNgaySinh.getText().equals("")) {
@@ -411,11 +411,11 @@ public class KhachHangJframe extends javax.swing.JFrame {
             return false;
         }
         if (txtDiaChi.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập số điện thoại ");
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập Địa Chỉ ");
             return false;
         }
         if (txtMoTa.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập số địa chỉ");
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập Mô Tả");
             return false;
         }
         if (rdoNam.isSelected() == false && rdoNu.isSelected() == false) {
