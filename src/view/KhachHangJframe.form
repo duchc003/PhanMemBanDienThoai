@@ -91,6 +91,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="txtTimKhachHang">
               <Events>
+                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtTimKhachHangCaretUpdate"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTimKhachHangActionPerformed"/>
               </Events>
             </Component>
