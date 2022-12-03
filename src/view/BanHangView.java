@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -136,8 +137,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
+        lblMaKh = new javax.swing.JLabel();
+        lblTenKh = new javax.swing.JLabel();
         btnChonKhach = new javax.swing.JButton();
         lblTongTien = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -145,7 +146,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jLabel32 = new javax.swing.JLabel();
         lblGiamGia = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        lblMaHD = new javax.swing.JLabel();
+        lblMaHoaDon = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jComboBox6 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
@@ -401,12 +402,13 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
         jLabel16.setText("Tên Khách Hàng");
 
-        jLabel27.setText("jLabel27");
+        lblMaKh.setText("jLabel27");
 
-        jLabel28.setText("jLabel28");
+        lblTenKh.setText("jLabel28");
 
         btnChonKhach.setBackground(new java.awt.Color(51, 255, 51));
         btnChonKhach.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnChonKhach.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/housekeeper.png"))); // NOI18N
         btnChonKhach.setText("Chọn");
         btnChonKhach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -424,35 +426,31 @@ public class BanHangView extends javax.swing.JInternalFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(32, 32, 32)
-                        .addComponent(jLabel27))
+                        .addComponent(lblMaKh))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel28)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTenKh)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnChonKhach)
-                .addGap(33, 33, 33))
+                .addGap(23, 23, 23))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel27)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(btnChonKhach)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lblMaKh))
+                .addGap(35, 35, 35)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jLabel28))
+                    .addComponent(lblTenKh))
                 .addGap(19, 19, 19))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(btnChonKhach, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         lblTongTien.setText("0");
@@ -467,7 +465,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
         jLabel34.setText("VND");
 
-        lblMaHD.setText("jLabel29");
+        lblMaHoaDon.setText("jLabel29");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -522,7 +520,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblMaHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(193, 193, 193))))
         );
         jPanel9Layout.setVerticalGroup(
@@ -537,7 +535,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(lblMaHD))
+                    .addComponent(lblMaHoaDon))
                 .addGap(42, 42, 42)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -824,6 +822,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private void btnChonKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonKhachActionPerformed
         KhachHangJframe hangJframe = new view.KhachHangJframe();
         hangJframe.setVisible(true);
+        showTTKH();
     }//GEN-LAST:event_btnChonKhachActionPerformed
 
     private void txtTienKhachDuaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachDuaKeyReleased
@@ -860,8 +859,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel34;
@@ -897,10 +894,12 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JPanel lblCamera;
     private javax.swing.JLabel lblGiamGia;
-    private javax.swing.JLabel lblMaHD;
+    private javax.swing.JLabel lblMaHoaDon;
+    private javax.swing.JLabel lblMaKh;
     private javax.swing.JLabel lblNV;
     private javax.swing.JLabel lblNV1;
     private javax.swing.JLabel lblNhanVien;
+    private javax.swing.JLabel lblTenKh;
     private javax.swing.JLabel lblTienThua;
     private javax.swing.JLabel lblTongTien;
     private javax.swing.JTable tblGioHang;
@@ -910,6 +909,28 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 
+     public void showTTKH() {
+            if (!KhachHangJframe.maKH.equals("KH00")) {
+                lblMaKh.setText(KhachHangJframe.maKH);
+                lblMaKh.setForeground(Color.black);
+                lblTenKh.setText(KhachHangJframe.tenKH);
+                lblTenKh.setForeground(Color.black);
+            } else {
+                lblMaKh.setText(KhachHangJframe.maKH);
+                lblMaKh.setForeground(Color.red);
+                lblTenKh.setText(KhachHangJframe.tenKH);
+                lblTenKh.setForeground(Color.red);
+            }
+            KhachHangJframe.maKH = null;
+            KhachHangJframe.tenKH = null;
+//            for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
+//                if (lblMaHoaDon.getText().equals(tblHoaDon.getValueAt(i, 0))) {
+//                    tblHoaDon.setRowSelectionInterval(i, i);
+//                }
+//            }
+            util.MsgBox.alert(this, "Thay đổi thành công!");
+        }
+    
     private void loadSanPham(List<SanPhamFormBanHangViewModel> lst) {
         tblModel3.setRowCount(0);
         int i = 1;
