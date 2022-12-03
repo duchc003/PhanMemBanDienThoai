@@ -35,8 +35,8 @@ public class KhachHangRespository {
 
     public int addKH2(KhachHangViewModel kh) {
         int row = 0;
-        String sql = "INSERT INTO KhachHang(HoVaTen,GioiTinh,NgaySinh,SoDienThoai,DiaChi,MoTa) VALUES(?,?,?,?,?,?)";
-        row = JDBCHelper.executeUpdate(sql, kh.getHoVaTen(), kh.getGioiTinh(), kh.getNgaySinh(), kh.getSoDienThoai(), kh.getDiaChi(), kh.getMoTa());
+        String sql = "INSERT INTO KhachHang(MaKH,HoVaTen,GioiTinh,NgaySinh,SoDienThoai,DiaChi,MoTa) VALUES(?,?,?,?,?,?,?)";
+        row = JDBCHelper.executeUpdate(sql, kh.getMa(), kh.getHoVaTen(), kh.getGioiTinh(), kh.getNgaySinh(), kh.getSoDienThoai(), kh.getDiaChi(), kh.getMoTa());
         return row;
     }
 

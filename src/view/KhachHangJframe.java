@@ -390,6 +390,7 @@ public class KhachHangJframe extends javax.swing.JFrame {
             }
 
             KhachHangViewModel kh = new KhachHangViewModel();
+            kh.setMa(txtHoVaTen1.getText());
             kh.setHoVaTen(txtHoVaTen.getText());
             kh.setSoDienThoai(txtSoDienThoai.getText());
             if (rdoNam.isSelected()) {
@@ -425,7 +426,7 @@ public class KhachHangJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNgaySinhActionPerformed
 
     private void txtTimKhachHangCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKhachHangCaretUpdate
-                       String ma = txtTimKhachHang.getText();
+        String ma = txtTimKhachHang.getText();
         lisst = KH.searchKH(ma);
         String sdt = txtTimKhachHang.getText();
         lisst = KH.searchSdt(sdt);
@@ -444,10 +445,13 @@ public class KhachHangJframe extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtTimKhachHangCaretUpdate
 
+<<<<<<< HEAD
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         chonKhachHang();
     }//GEN-LAST:event_jButton1ActionPerformed
     
+=======
+>>>>>>> 55ad8f8909d7e38d2e69765113d0dbf36f77bfe8
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -481,6 +485,10 @@ public class KhachHangJframe extends javax.swing.JFrame {
     }
 
     private boolean validateForm() {
+        if (txtHoVaTen1.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã ");
+            return false;
+        }
         if (txtHoVaTen.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập Tên ");
             return false;
@@ -510,6 +518,7 @@ public class KhachHangJframe extends javax.swing.JFrame {
     }
 
     private void clearForm() {
+        txtHoVaTen1.setText("");
         txtHoVaTen.setText("");
         txtSoDienThoai.setText("");
         txtDiaChi.setText("");
