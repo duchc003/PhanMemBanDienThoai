@@ -1,28 +1,29 @@
 package viewmodel;
 
 import java.math.BigDecimal;
+import util.XMoney;
 
 public class SanPhamFormBanHangViewModel {
 
     private String maSp;
     private String tenSp;
     private int soLuong;
-    private String giamGia;
-    private String hang;
+    private long giamGia;
     private Long giaBan;
     private String xuatXu;
+    private String hinhThuc;
 
     public SanPhamFormBanHangViewModel() {
     }
 
-    public SanPhamFormBanHangViewModel(String maSp, String tenSp, int soLuong, String giamGia, String hang, Long giaBan, String xuatXu) {
+    public SanPhamFormBanHangViewModel(String maSp, String tenSp, int soLuong, long giamGia, Long giaBan, String xuatXu, String hinhThuc) {
         this.maSp = maSp;
         this.tenSp = tenSp;
         this.soLuong = soLuong;
         this.giamGia = giamGia;
-        this.hang = hang;
         this.giaBan = giaBan;
         this.xuatXu = xuatXu;
+        this.hinhThuc = hinhThuc;
     }
 
     public String getMaSp() {
@@ -49,22 +50,6 @@ public class SanPhamFormBanHangViewModel {
         this.soLuong = soLuong;
     }
 
-    public String getGiamGia() {
-        return giamGia;
-    }
-
-    public void setGiamGia(String giamGia) {
-        this.giamGia = giamGia;
-    }
-
-    public String getHang() {
-        return hang;
-    }
-
-    public void setHang(String hang) {
-        this.hang = hang;
-    }
-
     public Long getGiaBan() {
         return giaBan;
     }
@@ -81,10 +66,36 @@ public class SanPhamFormBanHangViewModel {
         this.xuatXu = xuatXu;
     }
 
-    @Override
-    public String toString() {
-        return "SanPhamFormBanHangViewModel{" + "maSp=" + maSp + ", tenSp=" + tenSp + ", soLuong=" + soLuong + ", giamGia=" + giamGia + ", hang=" + hang + ", giaBan=" + giaBan + ", xuatXu=" + xuatXu + '}';
+    public long getGiamGia() {
+        return giamGia;
     }
 
+    public void setGiamGia(long giamGia) {
+        this.giamGia = giamGia;
+    }
 
+    public String getHinhThuc() {
+        return hinhThuc;
+    }
+
+    public void setHinhThuc(String hinhThuc) {
+        this.hinhThuc = hinhThuc;
+    }
+
+    @Override
+    public String toString() {
+        return "SanPhamFormBanHangViewModel{" + "maSp=" + maSp + ", tenSp=" + tenSp + ", soLuong=" + soLuong + ", giamGia=" + giamGia + ", giaBan=" + giaBan + ", xuatXu=" + xuatXu + ", hinhThuc=" + hinhThuc + '}';
+    }
+    
+    private String giamGia(){
+        if (getHinhThuc().equalsIgnoreCase("Giảm Giá %")) {
+            return getGiamGia() + " " +"%";
+        }else{
+            return XMoney.themDauCham(getGiamGia()) + " " +"VND";
+        }
+    }
+
+    public Object[] toDataRow(){
+        return new Object[] {maSp,tenSp,soLuong,giamGia(),giaBan,xuatXu,hinhThuc};
+    }
 }

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import util.JDBCHelper;
+import viewmodel.HoaDonViewModel;
 import viewmodel.hoaDonViewModelHUY;
 
 /**
@@ -59,7 +60,7 @@ public class hoaDonViewModelRepositoryHUY {
         ResultSet rs = JDBCHelper.executeQuery(sql, maHD);
         try {
             while (rs.next()) {
-               timKiem.add(new hoaDonViewModelHUY(
+                timKiem.add(new hoaDonViewModelHUY(
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -89,7 +90,7 @@ public class hoaDonViewModelRepositoryHUY {
         try {
             while (rs.next()) {
                 listtimKiem.add(new hoaDonViewModelHUY(
-                       rs.getString(1),
+                        rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(4),
@@ -160,4 +161,5 @@ public class hoaDonViewModelRepositoryHUY {
         }
         return listtimKiem;
     }
+
 }

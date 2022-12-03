@@ -17,6 +17,7 @@ import model.HangSP;
 import model.KhuyenMai;
 import util.ConnectDB;
 import util.JDBCHelper;
+import viewmodel.KhuyenMaiBanHang;
 import viewmodel.KhuyenMaiViewModel;
 
 /**
@@ -150,8 +151,5 @@ public class khuyenMaiRepository {
         return null;
     }
 
-    public static void main(String[] args) {
-        KhuyenMaiViewModel km = new khuyenMaiRepository().getOne(1);
-        System.out.println(km.toString());
+    
     }
-}

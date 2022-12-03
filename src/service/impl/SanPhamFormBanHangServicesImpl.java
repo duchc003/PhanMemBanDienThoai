@@ -14,28 +14,18 @@ import viewmodel.SanPhamFormBanHangViewModel;
  *
  * @author Admin
  */
-public class SanPhamFormBanHangServicesImpl implements SanPhamFormBanHangServices{
+public class SanPhamFormBanHangServicesImpl implements SanPhamFormBanHangServices {
+
     private SanPhamFormBanHangRespository sanPhamFormBanHangRespository = new SanPhamFormBanHangRespository();
 
     @Override
     public List<SanPhamFormBanHangViewModel> getAll() {
-       return sanPhamFormBanHangRespository.getAll();
+        return sanPhamFormBanHangRespository.getAll();
     }
 
     @Override
     public List<SanPhamFormBanHangViewModel> Search(String ma) {
-     return sanPhamFormBanHangRespository.Search(ma);
+        return sanPhamFormBanHangRespository.Search(ma);
     }
 
-    @Override
-    public List<HangSP> getTenHangSPs() {
-        return sanPhamFormBanHangRespository.getALLHang();
-    }
-
-    @Override
-    public List<SanPhamFormBanHangViewModel> searchTenHang(List<SanPhamFormBanHangViewModel> lst, String ma) {
-        lst = sanPhamFormBanHangRespository.searchHangSPs(ma);
-        return lst;
-    }
-    
 }

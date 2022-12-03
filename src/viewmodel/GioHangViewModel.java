@@ -1,16 +1,18 @@
 package viewmodel;
 
+import util.XMoney;
+
 public class GioHangViewModel {
 
     private String ma;
     private String ten;
     private int soLuong;
-    private double donGia;
+    private long donGia;
 
     public GioHangViewModel() {
     }
 
-    public GioHangViewModel(String ma, String ten, int soLuong, double donGia) {
+    public GioHangViewModel(String ma, String ten, int soLuong, long donGia) {
         this.ma = ma;
         this.ten = ten;
         this.soLuong = soLuong;
@@ -41,11 +43,11 @@ public class GioHangViewModel {
         this.soLuong = soLuong;
     }
 
-    public double getDonGia() {
+    public long getDonGia() {
         return donGia;
     }
 
-    public void setDonGia(double donGia) {
+    public void setDonGia(long donGia) {
         this.donGia = donGia;
     }
 
@@ -53,4 +55,7 @@ public class GioHangViewModel {
         return donGia * soLuong;
     }
 
+    public Object[] toDataRow() {
+        return new Object[]{ma,ten,soLuong,donGia};
+    }
 }

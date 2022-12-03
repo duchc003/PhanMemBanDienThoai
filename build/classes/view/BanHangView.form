@@ -84,30 +84,10 @@
                 <Component class="javax.swing.JTable" name="tblHoaDon">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="3" rowCount="4">
-                        <Column editable="true" title="STT" type="java.lang.String"/>
-                        <Column editable="true" title="Ng&#xe0;y T&#x1ea1;o" type="java.lang.String"/>
-                        <Column editable="true" title="Tr&#x1ea1;ng Th&#xe1;i" type="java.lang.String"/>
-                      </Table>
+                      <Table columnCount="0" rowCount="0"/>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                      </TableColumnModel>
+                      <TableColumnModel selectionModel="0"/>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -195,21 +175,15 @@
                 <Component class="javax.swing.JTable" name="tblGioHang">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="4">
-                        <Column editable="false" title="STT" type="java.lang.String"/>
+                      <Table columnCount="4" rowCount="4">
                         <Column editable="false" title="M&#xe3;" type="java.lang.String"/>
                         <Column editable="false" title="T&#xea;n" type="java.lang.String"/>
                         <Column editable="true" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng " type="java.lang.Integer"/>
-                        <Column editable="false" title="Th&#xe0;nh Ti&#xea;n" type="java.lang.Float"/>
+                        <Column editable="false" title="&#x110;&#x1a1;n Gi&#xe1;" type="java.lang.Float"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -392,12 +366,51 @@
                 <Component class="javax.swing.JTable" name="tblSanPham">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="4">
-                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                      <Table columnCount="6" rowCount="4">
+                        <Column editable="true" title="M&#xe3; SP" type="java.lang.String"/>
+                        <Column editable="true" title="T&#xea;n SP" type="java.lang.String"/>
+                        <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Integer"/>
+                        <Column editable="true" title="Gi&#x1ea3;m Gi&#xe1;" type="java.lang.Long"/>
+                        <Column editable="true" title="&#x110;&#x1a1;n Gi&#xe1;" type="java.lang.Long"/>
+                        <Column editable="true" title="Xu&#x1ea5;t X&#x1ee9;" type="java.lang.String"/>
                       </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -501,7 +514,7 @@
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                           <Component id="lblTongTien" pref="81" max="32767" attributes="0"/>
-                                                          <Component id="jLabel33" max="32767" attributes="0"/>
+                                                          <Component id="lblGiamGia" max="32767" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -548,7 +561,7 @@
                               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblGiamGia" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel34" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
@@ -588,6 +601,7 @@
                     <Component class="javax.swing.JTextField" name="txtTienKhachDua">
                       <Events>
                         <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtTienKhachDuaCaretUpdate"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTienKhachDuaKeyReleased"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel9">
@@ -810,7 +824,7 @@
                         <Property name="text" type="java.lang.String" value="VND"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel33">
+                    <Component class="javax.swing.JLabel" name="lblGiamGia">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="0"/>
                       </Properties>
@@ -1145,24 +1159,6 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="680" y="270" width="-1" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="cbbTenHang">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbbTenHangItemStateChanged"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="622" y="490" width="160" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>

@@ -19,7 +19,7 @@ public class HoaDonServicesImpl implements HoaDonServices {
     private HoaDonRespository hoaDonRespository = new HoaDonRespository();
 
     @Override
-    public String addHoaDon(HoaDon hoaDon) {
+    public String addHoaDon(HoaDonViewModel hoaDon) {
         int row = 0;
         row = hoaDonRespository.addHoaDon(hoaDon);
         if (row > 0) {
@@ -47,6 +47,11 @@ public class HoaDonServicesImpl implements HoaDonServices {
         } else {
             return "Lỗi";
         }
+    }
+
+    @Override
+    public List<HoaDonViewModel> getALlhoaDon() {
+        return hoaDonRespository.getAllHoaDon();
     }
 
 }

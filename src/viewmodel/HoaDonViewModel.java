@@ -3,14 +3,16 @@ package viewmodel;
 public class HoaDonViewModel {
 
     private int id;
+    private String maHdString;
     private String ngayTao;
     private int trangThai;
 
     public HoaDonViewModel() {
     }
 
-    public HoaDonViewModel(int id, String ngayTao, int trangThai) {
+    public HoaDonViewModel(int id, String maHdString, String ngayTao, int trangThai) {
         this.id = id;
+        this.maHdString = maHdString;
         this.ngayTao = ngayTao;
         this.trangThai = trangThai;
     }
@@ -37,6 +39,14 @@ public class HoaDonViewModel {
 
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
+    }
+
+    public String getMaHdString() {
+        return maHdString;
+    }
+
+    public void setMaHdString(String maHdString) {
+        this.maHdString = maHdString;
     }
 
 }
