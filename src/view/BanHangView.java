@@ -237,7 +237,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Long.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, true, false
@@ -768,10 +768,10 @@ public class BanHangView extends javax.swing.JInternalFrame {
         }
         //Giảm số lượng sản phẩm được chọn
         tblSanPham.setValueAt(Integer.parseInt(tblSanPham.getValueAt(row, 2).toString()) - Integer.parseInt(choice), row, 2);
-
         String ma = tblSanPham.getValueAt(row, 0).toString();
         String ten = tblSanPham.getValueAt(row, 1).toString();
         long dongia = Long.parseLong(tblSanPham.getValueAt(row, 4).toString());
+        
         GioHangViewModel gh = new GioHangViewModel();
         gh.setMa(ma);
         gh.setTen(ten);
@@ -978,26 +978,28 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }
 
     private void loadTien() {
-        double tien = 0;
+        long tongTien = 0;
+        long tien = 0;
         long giamGia = 0;
         for (int i = 0; i < tblGioHang.getRowCount(); i++) {
-            tien += Double.valueOf(tblGioHang.getValueAt(i, 3).toString());
-//            int soLuong = (int) tblGioHang.getValueAt(i, 2);
-//            List<KhuyenMaiBanHang> km = km1.getALL(tblGioHang.getValueAt(i, 1).toString());
-//            if (km == null) {
-//                giamGia += 0;
-//            } else {
-//                if (km.get(i).getHinhThucString().equalsIgnoreCase("Giảm Giá %")) {
-//                    float giaTriKM = km.get(i).getGiamGia();
-//                    giaTriKM = giaTriKM / 100;
-////                    float giatriGiam = giaTriKM * soLuong;
-////                    giamGia += (tien * giatriGiam);
-//                } else {
-//                    giamGia += (km.get(i).getGiamGia() * soLuong);
-//                }
-//            }
+            tien = Long.valueOf(tblGioHang.getValueAt(i, 3).toString());
+            long soLuong = (int) tblGioHang.getValueAt(i, 2);
+            tongTien += (soLuong * tien);
+            List<KhuyenMaiBanHang> km = km1.getALL(tblGioHang.getValueAt(i, 0).toString());
+            if (km == null) {
+                giamGia += 0;
+            } else {
+                if (km.get(i).getHinhThucString().equalsIgnoreCase("Giảm Giá %")) {
+                    float giaTriKM = km.get(i).getGiamGia();
+                    giaTriKM = giaTriKM / 100;
+//                    float giatriGiam = giaTriKM * soLuong;
+//                    giamGia += (tien * giatriGiam);
+                } else {
+                    giamGia += (km.get(i).getGiamGia() * soLuong);
+                }
+            }
         }
-        lblTongTien.setText(tien + "");
+        lblTongTien.setText(util.XMoney.themDauCham(tongTien));
         lblGiamGia.setText(util.XMoney.themDauCham(giamGia));
     }
 
