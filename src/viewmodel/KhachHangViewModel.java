@@ -89,5 +89,10 @@ public class KhachHangViewModel {
     public void setMoTa(String moTa) {
         this.moTa = moTa;
     }
-
+    
+    public Object[]toDataRow(){
+    return new Object[]{
+        ma, hoVaTen ,soDienThoai, diaChi, gioiTinh, moTa
+    };
+}
 }
