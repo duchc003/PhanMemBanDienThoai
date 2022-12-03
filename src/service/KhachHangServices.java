@@ -19,7 +19,7 @@ public interface KhachHangServices {
 
     String addKH(KhachHang kh);
 
-    String addKH2(KhachHang kh);
+    String addKH2(KhachHangViewModel kh);
 
     String deleteKH(String ma);
 

@@ -12,7 +12,14 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/ASUS/OneDrive/Documents/PhanMemBanDienThoai/src/view/BanHangView.java</file>
+=======
+            <file>file:/C:/Users/ADMIN/OneDrive/Desktop/New%20folder/src/repository/KhachHangRespository.java</file>
+            <file>file:/C:/Users/ADMIN/OneDrive/Desktop/New%20folder/src/view/KhachHangJframe.java</file>
+            <file>file:/C:/Users/ADMIN/OneDrive/Desktop/New%20folder/src/service/impl/KhachHangServicesImpl.java</file>
+            <file>file:/C:/Users/ADMIN/OneDrive/Desktop/New%20folder/src/service/KhachHangServices.java</file>
+>>>>>>> b6038daeec849e68d3dd46c38363f44012651789
         </group>
     </open-files>
 </project-private>
