@@ -27,7 +27,7 @@ public class KhachHangJframe extends javax.swing.JFrame {
     private void ShowData(List<KhachHangViewModel> lisst) {
         dtm.setRowCount(0);
         for (KhachHangViewModel khachHangViewModel : lisst) {
-            dtm.addColumn(khachHangViewModel.toDataRow());
+            dtm.addRow(khachHangViewModel.toDataRow());
         }
 
     }
@@ -69,6 +69,11 @@ public class KhachHangJframe extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
 
+        txtTimKhachHang.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTimKhachHangCaretUpdate(evt);
+            }
+        });
         txtTimKhachHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTimKhachHangActionPerformed(evt);
@@ -291,6 +296,7 @@ public class KhachHangJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtTimKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKhachHangActionPerformed
+<<<<<<< HEAD
         String ma = txtTimKhachHang.getText();
         lisst = KH.searchKH(ma);
         String sdt = txtTimKhachHang.getText();
@@ -308,6 +314,9 @@ public class KhachHangJframe extends javax.swing.JFrame {
                 kh.getMoTa()
             });
         }
+=======
+
+>>>>>>> c5df7b2e7d32f9465698190b140b986c209ec488
     }//GEN-LAST:event_txtTimKhachHangActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
@@ -361,6 +370,29 @@ public class KhachHangJframe extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtNgaySinhActionPerformed
 
+<<<<<<< HEAD
+=======
+    private void txtTimKhachHangCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKhachHangCaretUpdate
+                       String ma = txtTimKhachHang.getText();
+        lisst = KH.searchKH(ma);
+        String sdt = txtTimKhachHang.getText();
+        lisst = KH.searchSdt(sdt);
+        DefaultTableModel tblModel = new DefaultTableModel();
+        tblModel = (DefaultTableModel) tblKhachHang.getModel();
+        tblModel.setRowCount(0);
+        for (KhachHangViewModel kh : lisst) {
+            tblModel.addRow(new Object[]{
+                kh.getHoVaTen(),
+                kh.getGioiTinh(),
+                kh.getNgaySinh(),
+                kh.getSoDienThoai(),
+                kh.getDiaChi(),
+                kh.getMoTa()
+            });
+        }
+    }//GEN-LAST:event_txtTimKhachHangCaretUpdate
+    
+>>>>>>> c5df7b2e7d32f9465698190b140b986c209ec488
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
