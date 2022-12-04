@@ -5,12 +5,23 @@ public class HoaDonViewModel {
     private int id;
     private String maHdString;
     private String ngayTao;
-    private int trangThai;
+    private long tienKhachCanTra;
+    private long tongTien;
+    private String trangThai;
 
     public HoaDonViewModel() {
     }
 
-    public HoaDonViewModel(int id, String maHdString, String ngayTao, int trangThai) {
+    public HoaDonViewModel(int id, String maHdString, String ngayTao, long tienKhachCanTra, long tongTien, String trangThai) {
+        this.id = id;
+        this.maHdString = maHdString;
+        this.ngayTao = ngayTao;
+        this.tienKhachCanTra = tienKhachCanTra;
+        this.tongTien = tongTien;
+        this.trangThai = trangThai;
+    }
+
+    public HoaDonViewModel(int id, String maHdString, String ngayTao, String trangThai) {
         this.id = id;
         this.maHdString = maHdString;
         this.ngayTao = ngayTao;
@@ -33,11 +44,11 @@ public class HoaDonViewModel {
         this.ngayTao = ngayTao;
     }
 
-    public int getTrangThai() {
+    public String getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(int trangThai) {
+    public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
 
@@ -47,6 +58,27 @@ public class HoaDonViewModel {
 
     public void setMaHdString(String maHdString) {
         this.maHdString = maHdString;
+    }
+
+    public long getTienKhachCanTra() {
+        return tienKhachCanTra;
+    }
+
+    public void setTienKhachCanTra(long tienKhachCanTra) {
+        this.tienKhachCanTra = tienKhachCanTra;
+    }
+
+    public long getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(long tongTien) {
+        this.tongTien = tongTien;
+    }
+
+    @Override
+    public String toString() {
+        return "HoaDonViewModel{" + "id=" + id + ", maHdString=" + maHdString + ", ngayTao=" + ngayTao + ", trangThai=" + trangThai + '}';
     }
 
 }

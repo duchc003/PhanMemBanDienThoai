@@ -82,5 +82,7 @@ public class KhachHangRespository {
         }
         return khachHangViewModels;
     }
-
+    public static void main(String[] args) {
+        System.out.println(new KhachHangRespository().getAll());
+    }
 }

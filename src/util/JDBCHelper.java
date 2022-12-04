@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class JDBCHelper {
-    
+
     public static ResultSet executeQuery(String sql, Object... args) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;

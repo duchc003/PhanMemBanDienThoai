@@ -22,12 +22,13 @@ public class hoaDonViewModelRepositoryHUY {
 
     public List<hoaDonViewModelHUY> getAllHoaDonViewModel() {
         List<hoaDonViewModelHUY> listHD = new ArrayList<>();
-        String sql = "select MaHD,NhanVien.HoVaTen,KhachHang.HoVaTen,SoLuong,TongTien,TenHTTT,TenHTGH,HoaDon.TrangThai from HoaDon join HoaDonChiTiet \n"
-                + "on HoaDonChiTiet.ID = HoaDon.ID join KhachHang \n"
-                + "on KhachHang.ID = HoaDon.IDKhachHang join NhanVien \n"
-                + "on NhanVien.ID = HoaDon.IDNhanVien join HinhThucGiaoHang \n"
-                + "on HinhThucGiaoHang.ID = HoaDon.IDHinhTGH join HinhThucThanhToan \n"
-                + "on HinhThucThanhToan.ID = HoaDon.IDHinhTTT ";
+        String sql = "SELECT dbo.HoaDon.MaHD, dbo.NhanVien.HoVaTen, dbo.KhachHang.HoVaTen AS Expr1, dbo.HoaDonChiTiet.SoLuong, dbo.HoaDon.TongTien, dbo.HinhThucThanhToan.TenHTTT, dbo.HinhThucGiaoHang.TenHTGH, dbo.HoaDon.TrangThai\n"
+                + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
+                + "                  dbo.HinhThucThanhToan ON dbo.HinhThucGiaoHang.ID = dbo.HinhThucThanhToan.ID INNER JOIN\n"
+                + "                  dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH AND dbo.HinhThucThanhToan.ID = dbo.HoaDon.IDHinhTTT INNER JOIN\n"
+                + "                  dbo.HoaDonChiTiet ON dbo.HoaDon.ID = dbo.HoaDonChiTiet.IDHoaDon INNER JOIN\n"
+                + "                  dbo.KhachHang ON dbo.HoaDon.IDKhachHang = dbo.KhachHang.ID INNER JOIN\n"
+                + "                  dbo.NhanVien ON dbo.HoaDon.IDNhanVien = dbo.NhanVien.ID";
         ResultSet rs = JDBCHelper.executeQuery(sql);
         try {
             while (rs.next()) {
@@ -39,7 +40,7 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getLong(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getInt(8)));
+                        rs.getString(8)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
@@ -50,13 +51,14 @@ public class hoaDonViewModelRepositoryHUY {
 
     public List<hoaDonViewModelHUY> timKiemHoaDonViewModel(String maHD) {
         List<hoaDonViewModelHUY> timKiem = new ArrayList<>();
-        String sql = "select MaHD,NhanVien.HoVaTen,KhachHang.HoVaTen,SoLuong,TongTien,TenHTTT,TenHTGH,HoaDon.TrangThai from HoaDon join HoaDonChiTiet \n"
-                + "on HoaDonChiTiet.ID = HoaDon.ID join KhachHang \n"
-                + "on KhachHang.ID = HoaDon.IDKhachHang join NhanVien \n"
-                + "on NhanVien.ID = HoaDon.IDNhanVien join HinhThucGiaoHang \n"
-                + "on HinhThucGiaoHang.ID = HoaDon.IDHinhTGH join HinhThucThanhToan \n"
-                + "on HinhThucThanhToan.ID = HoaDon.IDHinhTTT \n"
-                + "where MaHD = ?";
+        String sql = "SELECT dbo.HoaDon.MaHD, dbo.NhanVien.HoVaTen, dbo.KhachHang.HoVaTen AS Expr1, dbo.HoaDonChiTiet.SoLuong, dbo.HoaDon.TongTien, dbo.HinhThucThanhToan.TenHTTT, dbo.HinhThucGiaoHang.TenHTGH, dbo.HoaDon.TrangThai\n"
+                + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
+                + "                  dbo.HinhThucThanhToan ON dbo.HinhThucGiaoHang.ID = dbo.HinhThucThanhToan.ID INNER JOIN\n"
+                + "                  dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH AND dbo.HinhThucThanhToan.ID = dbo.HoaDon.IDHinhTTT INNER JOIN\n"
+                + "                  dbo.HoaDonChiTiet ON dbo.HoaDon.ID = dbo.HoaDonChiTiet.IDHoaDon INNER JOIN\n"
+                + "                  dbo.KhachHang ON dbo.HoaDon.IDKhachHang = dbo.KhachHang.ID INNER JOIN\n"
+                + "                  dbo.NhanVien ON dbo.HoaDon.IDNhanVien = dbo.NhanVien.ID\n"
+                + "				  where dbo.HoaDon.MaHD = ?";
         ResultSet rs = JDBCHelper.executeQuery(sql, maHD);
         try {
             while (rs.next()) {
@@ -68,7 +70,7 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getLong(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getInt(8)));
+                        rs.getString(8)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
@@ -79,13 +81,14 @@ public class hoaDonViewModelRepositoryHUY {
 
     public List<hoaDonViewModelHUY> timKiemCombobox(String trangThai) {
         List<hoaDonViewModelHUY> listtimKiem = new ArrayList<>();
-        String sql = "select MaHD,NhanVien.HoVaTen,KhachHang.HoVaTen,SoLuong,TongTien,TenHTTT,TenHTGH,HoaDon.TrangThai from HoaDon join HoaDonChiTiet \n"
-                + "on HoaDonChiTiet.ID = HoaDon.ID join KhachHang \n"
-                + "on KhachHang.ID = HoaDon.IDKhachHang join NhanVien \n"
-                + "on NhanVien.ID = HoaDon.IDNhanVien join HinhThucGiaoHang \n"
-                + "on HinhThucGiaoHang.ID = HoaDon.IDHinhTGH join HinhThucThanhToan \n"
-                + "on HinhThucThanhToan.ID = HoaDon.IDHinhTTT \n"
-                + "where HoaDon.TrangThai = ?";
+        String sql = "SELECT dbo.HoaDon.MaHD, dbo.NhanVien.HoVaTen, dbo.KhachHang.HoVaTen AS Expr1, dbo.HoaDonChiTiet.SoLuong, dbo.HoaDon.TongTien, dbo.HinhThucThanhToan.TenHTTT, dbo.HinhThucGiaoHang.TenHTGH, dbo.HoaDon.TrangThai\n"
+                + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
+                + "                  dbo.HinhThucThanhToan ON dbo.HinhThucGiaoHang.ID = dbo.HinhThucThanhToan.ID INNER JOIN\n"
+                + "                  dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH AND dbo.HinhThucThanhToan.ID = dbo.HoaDon.IDHinhTTT INNER JOIN\n"
+                + "                  dbo.HoaDonChiTiet ON dbo.HoaDon.ID = dbo.HoaDonChiTiet.IDHoaDon INNER JOIN\n"
+                + "                  dbo.KhachHang ON dbo.HoaDon.IDKhachHang = dbo.KhachHang.ID INNER JOIN\n"
+                + "                  dbo.NhanVien ON dbo.HoaDon.IDNhanVien = dbo.NhanVien.ID\n"
+                + "				  where dbo.HoaDon.TrangThai = ?";
         ResultSet rs = JDBCHelper.executeQuery(sql, trangThai);
         try {
             while (rs.next()) {
@@ -97,7 +100,7 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getLong(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getInt(8)));
+                        rs.getString(8)));
 
             }
         } catch (SQLException ex) {
@@ -108,13 +111,14 @@ public class hoaDonViewModelRepositoryHUY {
 
     public List<hoaDonViewModelHUY> timKiemCombobox1(String TenHTTT) {
         List<hoaDonViewModelHUY> listtimKiem = new ArrayList<>();
-        String sql = "select MaHD,NhanVien.HoVaTen,KhachHang.HoVaTen,SoLuong,TongTien,TenHTTT,TenHTGH,HoaDon.TrangThai from HoaDon join HoaDonChiTiet \n"
-                + "on HoaDonChiTiet.ID = HoaDon.ID join KhachHang \n"
-                + "on KhachHang.ID = HoaDon.IDKhachHang join NhanVien \n"
-                + "on NhanVien.ID = HoaDon.IDNhanVien join HinhThucGiaoHang \n"
-                + "on HinhThucGiaoHang.ID = HoaDon.IDHinhTGH join HinhThucThanhToan \n"
-                + "on HinhThucThanhToan.ID = HoaDon.IDHinhTTT \n"
-                + "where TenHTTT = ?";
+        String sql = "SELECT dbo.HoaDon.MaHD, dbo.NhanVien.HoVaTen, dbo.KhachHang.HoVaTen AS Expr1, dbo.HoaDonChiTiet.SoLuong, dbo.HoaDon.TongTien, dbo.HinhThucThanhToan.TenHTTT, dbo.HinhThucGiaoHang.TenHTGH, dbo.HoaDon.TrangThai\n"
+                + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
+                + "                  dbo.HinhThucThanhToan ON dbo.HinhThucGiaoHang.ID = dbo.HinhThucThanhToan.ID INNER JOIN\n"
+                + "                  dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH AND dbo.HinhThucThanhToan.ID = dbo.HoaDon.IDHinhTTT INNER JOIN\n"
+                + "                  dbo.HoaDonChiTiet ON dbo.HoaDon.ID = dbo.HoaDonChiTiet.IDHoaDon INNER JOIN\n"
+                + "                  dbo.KhachHang ON dbo.HoaDon.IDKhachHang = dbo.KhachHang.ID INNER JOIN\n"
+                + "                  dbo.NhanVien ON dbo.HoaDon.IDNhanVien = dbo.NhanVien.ID\n"
+                + "				  where dbo.HinhThucThanhToan.TenHTTT = ?";
         ResultSet rs = JDBCHelper.executeQuery(sql, TenHTTT);
         try {
             while (rs.next()) {
@@ -126,7 +130,7 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getLong(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getInt(8)));
+                        rs.getString(8)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
@@ -136,13 +140,14 @@ public class hoaDonViewModelRepositoryHUY {
 
     public List<hoaDonViewModelHUY> timKiemCombobox2(String TenHTGH) {
         List<hoaDonViewModelHUY> listtimKiem = new ArrayList<>();
-        String sql = "select MaHD,NhanVien.HoVaTen,KhachHang.HoVaTen,SoLuong,TongTien,TenHTTT,TenHTGH,HoaDon.TrangThai from HoaDon join HoaDonChiTiet \n"
-                + "on HoaDonChiTiet.ID = HoaDon.ID join KhachHang \n"
-                + "on KhachHang.ID = HoaDon.IDKhachHang join NhanVien \n"
-                + "on NhanVien.ID = HoaDon.IDNhanVien join HinhThucGiaoHang \n"
-                + "on HinhThucGiaoHang.ID = HoaDon.IDHinhTGH join HinhThucThanhToan \n"
-                + "on HinhThucThanhToan.ID = HoaDon.IDHinhTTT \n"
-                + "where TenHTGH = ?";
+        String sql = "SELECT dbo.HoaDon.MaHD, dbo.NhanVien.HoVaTen, dbo.KhachHang.HoVaTen AS Expr1, dbo.HoaDonChiTiet.SoLuong, dbo.HoaDon.TongTien, dbo.HinhThucThanhToan.TenHTTT, dbo.HinhThucGiaoHang.TenHTGH, dbo.HoaDon.TrangThai\n"
+                + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
+                + "                  dbo.HinhThucThanhToan ON dbo.HinhThucGiaoHang.ID = dbo.HinhThucThanhToan.ID INNER JOIN\n"
+                + "                  dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH AND dbo.HinhThucThanhToan.ID = dbo.HoaDon.IDHinhTTT INNER JOIN\n"
+                + "                  dbo.HoaDonChiTiet ON dbo.HoaDon.ID = dbo.HoaDonChiTiet.IDHoaDon INNER JOIN\n"
+                + "                  dbo.KhachHang ON dbo.HoaDon.IDKhachHang = dbo.KhachHang.ID INNER JOIN\n"
+                + "                  dbo.NhanVien ON dbo.HoaDon.IDNhanVien = dbo.NhanVien.ID\n"
+                + "				  where dbo.HinhThucThanhToan.TenHTGH = ?";
         ResultSet rs = JDBCHelper.executeQuery(sql, TenHTGH);
         try {
             while (rs.next()) {
@@ -154,7 +159,7 @@ public class hoaDonViewModelRepositoryHUY {
                         rs.getLong(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getInt(8)));
+                        rs.getString(8)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);

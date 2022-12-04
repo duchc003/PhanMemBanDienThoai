@@ -17,7 +17,7 @@ public class KhuyenMaiBanHangRepo implements KhuyenMaiBanHangSr{
     private KhuyenMaiFormBanHang impl = new KhuyenMaiFormBanHang();
 
     @Override
-    public List<KhuyenMaiBanHang> getALL(String ma) {
+    public KhuyenMaiBanHang getALL(String ma) {
         return impl.giamGiaPhanTram(ma);
     }
 }

@@ -445,13 +445,10 @@ public class KhachHangJframe extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtTimKhachHangCaretUpdate
 
-<<<<<<< HEAD
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         chonKhachHang();
     }//GEN-LAST:event_jButton1ActionPerformed
     
-=======
->>>>>>> 55ad8f8909d7e38d2e69765113d0dbf36f77bfe8
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -25,6 +25,7 @@ public class ChiTietSanPhamRepo {
         String query = "SELECT [ID]\n"
                 + "      ,[IDSP]\n"
                 + "      ,[IDNCC]\n"
+                + "      ,[IDKM]\n"
                 + "      ,[SoLuong]\n"
                 + "      ,[Ram]\n"
                 + "      ,[XuatXu]\n"
@@ -39,8 +40,8 @@ public class ChiTietSanPhamRepo {
                 + "      ,[TrangThai]\n"
                 + "      ,[MoTa]\n"
                 + "  FROM [dbo].[ChiTietSanPham]\n"
-                + "  where TrangThai = '1'";
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+                + "  where TrangThai = N'Còn Hàng'";
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
             List<ChiTietSPView> list = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -49,18 +50,19 @@ public class ChiTietSanPhamRepo {
                         rs.getInt(2),
                         rs.getInt(3),
                         rs.getInt(4),
-                        rs.getString(5),
+                        rs.getInt(5),
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
                         rs.getString(10),
-                        rs.getLong(11),
+                        rs.getString(11),
                         rs.getLong(12),
-                        rs.getString(13),
+                        rs.getLong(13),
                         rs.getString(14),
-                        rs.getInt(15),
-                        rs.getString(16)));
+                        rs.getString(15),
+                        rs.getString(16),
+                        rs.getString(17)));
             }
             return list;
         } catch (Exception e) {
@@ -71,16 +73,15 @@ public class ChiTietSanPhamRepo {
 
     public List<SanPham> getIDSP() {
         String query = "select * from SanPham";
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
             List<SanPham> list = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new SanPham(
                         rs.getInt(1),
                         rs.getInt(2),
-                        rs.getInt(3),
-                        rs.getString(4),
-                        rs.getString(5)));
+                        rs.getString(3),
+                        rs.getString(4)));
             }
             return list;
         } catch (Exception e) {
@@ -91,7 +92,7 @@ public class ChiTietSanPhamRepo {
 
     public List<NhaCungCap> getIDNCC() {
         String query = "select * from NhaCungCap";
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
             List<NhaCungCap> list = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -111,6 +112,7 @@ public class ChiTietSanPhamRepo {
         String query = "INSERT INTO [dbo].[ChiTietSanPham]\n"
                 + "           ([IDSP]\n"
                 + "           ,[IDNCC]\n"
+                + "           ,[IDKM]\n"
                 + "           ,[SoLuong]\n"
                 + "           ,[Ram]\n"
                 + "           ,[XuatXu]\n"
@@ -125,24 +127,25 @@ public class ChiTietSanPhamRepo {
                 + "           ,[TrangThai]\n"
                 + "           ,[MoTa])\n"
                 + "     VALUES\n"
-                + "           (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "           (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         int check = 0;
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, sp.getIdSP());
             ps.setObject(2, sp.getNhaCungCap());
-            ps.setObject(3, sp.getSoLuong());
-            ps.setObject(4, sp.getRam());
-            ps.setObject(5, sp.getXuatXu());
-            ps.setObject(6, sp.getCamera());
-            ps.setObject(7, sp.getManHinh());
-            ps.setObject(8, sp.getBoNho());
-            ps.setObject(9, sp.getMauSac());
-            ps.setObject(10, sp.getGiaNhap());
-            ps.setObject(11, sp.getGiaBan());
-            ps.setObject(12, sp.getImage());
-            ps.setObject(13, sp.getBarcodde());
-            ps.setObject(14, sp.getTrangThai());
-            ps.setObject(15, sp.getMoTa());
+            ps.setObject(3, sp.getIdKm());
+            ps.setObject(4, sp.getSoLuong());
+            ps.setObject(5, sp.getRam());
+            ps.setObject(6, sp.getXuatXu());
+            ps.setObject(7, sp.getCamera());
+            ps.setObject(8, sp.getManHinh());
+            ps.setObject(9, sp.getBoNho());
+            ps.setObject(10, sp.getMauSac());
+            ps.setObject(11, sp.getGiaNhap());
+            ps.setObject(12, sp.getGiaBan());
+            ps.setObject(13, sp.getImage());
+            ps.setObject(14, sp.getBarcodde());
+            ps.setObject(15, sp.getTrangThai());
+            ps.setObject(16, sp.getMoTa());
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -167,7 +170,7 @@ public class ChiTietSanPhamRepo {
                 + "      ,[MoTa] = ?\n"
                 + " WHERE ID = ?";
         int check = 0;
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, sp.getSoLuong());
             ps.setObject(2, sp.getRam());
             ps.setObject(3, sp.getXuatXu());

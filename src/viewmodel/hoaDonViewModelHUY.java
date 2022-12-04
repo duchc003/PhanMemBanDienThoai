@@ -16,12 +16,12 @@ public class hoaDonViewModelHUY {
     private long tongTien;
     private String tenHTTT;
     private String tenHTGH;
-    private int trangThai;
+    private String trangThai;
 
     public hoaDonViewModelHUY() {
     }
 
-    public hoaDonViewModelHUY(String maHD, String hoVaTen, String tenKhachHang, int soLuong, long tongTien, String tenHTTT, String tenHTGH, int trangThai) {
+    public hoaDonViewModelHUY(String maHD, String hoVaTen, String tenKhachHang, int soLuong, long tongTien, String tenHTTT, String tenHTGH, String trangThai) {
         this.maHD = maHD;
         this.hoVaTen = hoVaTen;
         this.tenKhachHang = tenKhachHang;
@@ -88,11 +88,11 @@ public class hoaDonViewModelHUY {
         this.tenHTGH = tenHTGH;
     }
 
-    public int getTrangThai() {
+    public String getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(int trangThai) {
+    public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
 

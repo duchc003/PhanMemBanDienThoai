@@ -5,12 +5,12 @@ public class ThongkeSanPhamViewModel {
     private String MaSp;
     private String TenSP;
     private int SoLuong;
-    private int TrangThai;
+    private String TrangThai;
 
     public ThongkeSanPhamViewModel() {
     }
 
-    public ThongkeSanPhamViewModel(String MaSp, String TenSP, int SoLuong, int TrangThai) {
+    public ThongkeSanPhamViewModel(String MaSp, String TenSP, int SoLuong, String TrangThai) {
         this.MaSp = MaSp;
         this.TenSP = TenSP;
         this.SoLuong = SoLuong;
@@ -41,11 +41,11 @@ public class ThongkeSanPhamViewModel {
         this.SoLuong = SoLuong;
     }
 
-    public int getTrangThai() {
+    public String getTrangThai() {
         return TrangThai;
     }
 
-    public void setTrangThai(int TrangThai) {
+    public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
     }
 
@@ -55,6 +55,6 @@ public class ThongkeSanPhamViewModel {
     }
 
     public Object[] toDatarow() {
-        return new Object[]{MaSp, TenSP, SoLuong, TrangThai == 1 ? "Còn hàng" : "Hết hàng"};
+        return new Object[]{MaSp, TenSP, SoLuong, TrangThai };
     }
 }

@@ -6,6 +6,7 @@ package service.impl;
 
 import java.util.List;
 import model.HoaDon;
+import model.HoaDonCT;
 import repository.HoaDonRespository;
 import service.HoaDonServices;
 import viewmodel.HoaDonViewModel;
@@ -52,6 +53,67 @@ public class HoaDonServicesImpl implements HoaDonServices {
     @Override
     public List<HoaDonViewModel> getALlhoaDon() {
         return hoaDonRespository.getAllHoaDon();
+    }
+
+    @Override
+    public String updateIDNhanVien(HoaDon hd, int id) {
+        boolean update = hoaDonRespository.updateIDNhanVien(hd, id);
+        if (update) {
+            return "";
+        } else {
+            return "";
+        }
+    }
+
+    @Override
+    public String updateIDKhachHang(HoaDon hd, int id) {
+        boolean update = hoaDonRespository.updateIDKhachHang(hd, id);
+        if (update) {
+            return "";
+        } else {
+            return "";
+        }
+    }
+
+    @Override
+    public String updateIDThanhToan(HoaDon hd, int id) {
+        boolean update = hoaDonRespository.updateIDHTTT(hd, id);
+        if (update) {
+            return "";
+        } else {
+            return "";
+        }
+    }
+
+    @Override
+    public String updateIDGiaoHang(HoaDon hd, int id) {
+        boolean update = hoaDonRespository.updateIDHTGH(hd, id);
+        if (update) {
+            return "";
+        } else {
+            return "";
+        }
+    }
+
+    @Override
+    public String updateHoaDon(HoaDon hd, int id) {
+        boolean update = hoaDonRespository.updateHoaDon(hd, id);
+        if (update) {
+            return "";
+        } else {
+            return "";
+        }
+    }
+
+    @Override
+    public String addHoaDonCT(HoaDonCT hoaDon) {
+        int row = 0;
+        row = hoaDonRespository.addHoaDonCT(hoaDon);
+        if (row > 0) {
+            return "Thành công";
+        } else {
+            return "Thất Bại";
+        }
     }
 
 }

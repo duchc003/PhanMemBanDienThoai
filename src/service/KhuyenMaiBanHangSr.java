@@ -12,5 +12,5 @@ import viewmodel.KhuyenMaiBanHang;
  * @author ASUS
  */
 public interface KhuyenMaiBanHangSr {
-    List<KhuyenMaiBanHang> getALL(String ma);
+    KhuyenMaiBanHang getALL(String ma);
 }

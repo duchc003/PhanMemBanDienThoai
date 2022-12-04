@@ -6,6 +6,10 @@ package service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.HinhThucGiaoHang;
+import model.HinhThucThanhToan;
+import model.KhachHang;
+import model.NhanVien;
 import repository.NhanVienRepository;
 import service.NhanVienService;
 import viewmodel.NhanVienViewmodel;
@@ -56,6 +60,26 @@ public class NhanVienImpl implements NhanVienService {
     @Override
     public ArrayList<NhanVienViewmodel> getOneSdt(String sdt) {
         return NhanVienRepository.getOneSdt(sdt);
+    }
+
+    @Override
+    public ArrayList<NhanVien> getIDNhanVien(String id) {
+        return NhanVienRepository.getIDNhanVien(id);
+    }
+
+    @Override
+    public ArrayList<KhachHang> getIDKhachHang(String id) {
+        return NhanVienRepository.getIDKhachHang(id);
+    }
+
+    @Override
+    public ArrayList<HinhThucGiaoHang> getIDGiaoHang() {
+        return NhanVienRepository.getIDGiaoHang();
+    }
+
+    @Override
+    public ArrayList<HinhThucThanhToan> getIDThanhToan() {
+        return NhanVienRepository.getIDThanhToan();
     }
 
 }

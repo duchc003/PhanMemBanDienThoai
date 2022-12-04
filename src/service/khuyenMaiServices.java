@@ -23,6 +23,6 @@ public interface khuyenMaiServices {
 
     String updateKhuyenmai(KhuyenMaiViewModel km, String maKM);
     
-    KhuyenMaiViewModel getOne(int hinhThai);
+    KhuyenMaiViewModel getOne(String hinhThai);
 
 }

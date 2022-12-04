@@ -28,7 +28,7 @@ public class ThongKeSanPhamRepository {
                 thongKeSanPhamViewModel.setMaSp(rs.getString(1));
                 thongKeSanPhamViewModel.setTenSP(rs.getString(2));
                 thongKeSanPhamViewModel.setSoLuong(rs.getInt(3));
-                thongKeSanPhamViewModel.setTrangThai(rs.getInt(4));
+                thongKeSanPhamViewModel.setTrangThai(rs.getString(4));
 
                 lists.add(thongKeSanPhamViewModel);
             }
@@ -84,7 +84,7 @@ public class ThongKeSanPhamRepository {
     public List<ChiTietSP> ConHang() {
         List<ChiTietSP> listt = new ArrayList<>();
         String query = "SELECT count(trangThai) FROM ChiTietSanPham\n"
-                + "WHERE TrangThai = 1;";
+                + "WHERE TrangThai = N'Còn Hàng';";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -101,7 +101,7 @@ public class ThongKeSanPhamRepository {
     public List<ChiTietSP> HetHang() {
         List<ChiTietSP> listt = new ArrayList<>();
         String query = "SELECT count(trangThai) FROM ChiTietSanPham\n"
-                + "WHERE TrangThai = 2;";
+                + "WHERE TrangThai = N'Hết Hàng';";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -148,7 +148,7 @@ public class ThongKeSanPhamRepository {
         String query = "SELECT count(dbo.HoaDon.MaHD)\n"
                 + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
                 + "                  dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH\n"
-                + "				  where TenHTGH = 1 and trangthai = 1 or TrangThai =2";
+                + "				  where TenHTGH = N'Tại Quầy' and trangthai = N'Đã Thanh Toán' or TrangThai = N'Đã Hủy'";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -166,7 +166,7 @@ public class ThongKeSanPhamRepository {
         String query = "SELECT count(dbo.HoaDon.MaHD)\n"
                 + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
                 + "                  dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH\n"
-                + "				  where TenHTGH = 2";
+                + "				  where TenHTGH = N'Khác'";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -183,7 +183,7 @@ public class ThongKeSanPhamRepository {
         List<HoaDon> listt = new ArrayList<>();
         String query = "SELECT count(dbo.HoaDon.MaHD) FROM dbo.HinhThucGiaoHang INNER JOIN\n"
                 + "                dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH\n"
-                + "				where TenHTGH = 1 and trangthai = 1 ";
+                + "				where TenHTGH = N'Khác' and trangthai = N'Đã Thanh Toán' ";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -200,7 +200,7 @@ public class ThongKeSanPhamRepository {
         List<HoaDon> listt = new ArrayList<>();
         String query = "SELECT count(dbo.HoaDon.MaHD) FROM dbo.HinhThucGiaoHang INNER JOIN\n"
                 + "                dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH\n"
-                + "				where TenHTGH = 1 and trangthai = 2";
+                + "				where TenHTGH = N'Tại Quầy' and trangthai = N'Đã Hủy'";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -215,7 +215,7 @@ public class ThongKeSanPhamRepository {
 
     public List<HoaDon> tongDonHuyGiaoHang() {
         List<HoaDon> listt = new ArrayList<>();
-        String query = "select count(MaHD) from HoaDon where TrangThai = 5";
+        String query = "select count(MaHD) from HoaDon where TrangThai = N'Đã Hủy Giao Hàng'";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -230,7 +230,7 @@ public class ThongKeSanPhamRepository {
 
     public List<HoaDon> tongDonGiaoThanhCong() {
         List<HoaDon> listt = new ArrayList<>();
-        String query = "select count(MaHD) from HoaDon where TrangThai = 3";
+        String query = "select count(MaHD) from HoaDon where TrangThai = N'Giao Hàng Thành Công'";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

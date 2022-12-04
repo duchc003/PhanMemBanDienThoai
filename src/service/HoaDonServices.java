@@ -6,6 +6,7 @@ package service;
 
 import java.util.List;
 import model.HoaDon;
+import model.HoaDonCT;
 import viewmodel.HoaDonViewModel;
 
 /**
@@ -15,10 +16,22 @@ import viewmodel.HoaDonViewModel;
 public interface HoaDonServices {
 
     String addHoaDon(HoaDonViewModel hoaDon);
+    
+    String addHoaDonCT(HoaDonCT hoaDon);
 
     String huyDon(int id);
 
     String huyDonShip(int id);
     
     List<HoaDonViewModel> getALlhoaDon();
+    
+    String updateIDNhanVien(HoaDon hd,int id);
+    
+    String updateIDKhachHang(HoaDon hd,int id);
+    
+    String updateIDThanhToan(HoaDon hd,int id);
+    
+    String updateIDGiaoHang(HoaDon hd,int id);
+    
+    String updateHoaDon(HoaDon hd,int id);
 }

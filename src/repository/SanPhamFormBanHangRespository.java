@@ -22,7 +22,7 @@ public class SanPhamFormBanHangRespository {
                 + "FROM     dbo.ChiTietSanPham INNER JOIN\n"
                 + "                  dbo.GiamGia ON dbo.ChiTietSanPham.IDKM = dbo.GiamGia.ID INNER JOIN\n"
                 + "                  dbo.SanPham ON dbo.ChiTietSanPham.IDSP = dbo.SanPham.ID\n"
-                + "				  where ChiTietSanPham.TrangThai = 1";
+                + "				  where ChiTietSanPham.TrangThai = N'Còn Hàng'";
         ResultSet rs = JDBCHelper.executeQuery(sql);
         try {
             while (rs.next()) {

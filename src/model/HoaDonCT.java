@@ -14,21 +14,21 @@ public class HoaDonCT {
     private int idSP;
     private int idHoaDon;
     private int soLuong;
-    private float thanhTien;
+    private float tienThua;
     private float donGia;
-    private float giamGia;
+    private float tienGiamGia;
 
     public HoaDonCT() {
     }
 
-    public HoaDonCT(int id, int idSP, int idHoaDon, int soLuong, float thanhTien, float donGia, float giamGia) {
+    public HoaDonCT(int id, int idSP, int idHoaDon, int soLuong, float tienThua, float donGia, float tienGiamGia) {
         this.id = id;
         this.idSP = idSP;
         this.idHoaDon = idHoaDon;
         this.soLuong = soLuong;
-        this.thanhTien = thanhTien;
+        this.tienThua = tienThua;
         this.donGia = donGia;
-        this.giamGia = giamGia;
+        this.tienGiamGia = tienGiamGia;
     }
 
     public int getId() {
@@ -63,12 +63,12 @@ public class HoaDonCT {
         this.soLuong = soLuong;
     }
 
-    public float getThanhTien() {
-        return thanhTien;
+    public float getTienThua() {
+        return tienThua;
     }
 
-    public void setThanhTien(float thanhTien) {
-        this.thanhTien = thanhTien;
+    public void setTienThua(float tienThua) {
+        this.tienThua = tienThua;
     }
 
     public float getDonGia() {
@@ -79,12 +79,12 @@ public class HoaDonCT {
         this.donGia = donGia;
     }
 
-    public float getGiamGia() {
-        return giamGia;
+    public float getTienGiamGia() {
+        return tienGiamGia;
     }
 
-    public void setGiamGia(float giamGia) {
-        this.giamGia = giamGia;
+    public void setTienGiamGia(float tienGiamGia) {
+        this.tienGiamGia = tienGiamGia;
     }
     
 }

@@ -13,6 +13,7 @@ public class ChiTietSPView {
     private int id;
     private int idSP;
     private int idNcc;
+    private int idKM;
     private int soLuong;
     private String ram;
     private String xuatXu;
@@ -24,16 +25,17 @@ public class ChiTietSPView {
     private long giaBan;
     private String image;
     private String barcode;
-    private int trangThai;
+    private String trangThai;
     private String moTa;
 
     public ChiTietSPView() {
     }
 
-    public ChiTietSPView(int id, int idSP, int idNcc, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, long giaNhap, long giaBan, String image, String barcode, int trangThai, String moTa) {
+    public ChiTietSPView(int id, int idSP, int idNcc, int idKM, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, long giaNhap, long giaBan, String image, String barcode, String trangThai, String moTa) {
         this.id = id;
         this.idSP = idSP;
         this.idNcc = idNcc;
+        this.idKM = idKM;
         this.soLuong = soLuong;
         this.ram = ram;
         this.xuatXu = xuatXu;
@@ -161,11 +163,11 @@ public class ChiTietSPView {
         this.mauSac = mauSac;
     }
 
-    public int getTrangThai() {
+    public String getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(int trangThai) {
+    public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
 
@@ -177,12 +179,21 @@ public class ChiTietSPView {
         this.moTa = moTa;
     }
 
+    public int getIdKM() {
+        return idKM;
+    }
+
+    public void setIdKM(int idKM) {
+        this.idKM = idKM;
+    }
+
     public Object[] toDataRow() {
-        return new Object[]{id, idSP, idNcc, soLuong, ram, xuatXu, camera, manHinh, boNho, mauSac, giaNhap, giaBan, image, barcode, trangThai == 1 ? "Còn Hàng" :"Hết Hàng", moTa};
+        return new Object[]{id, idSP, idNcc,idKM, soLuong, ram, xuatXu, camera, manHinh, boNho, mauSac, giaNhap, giaBan, image, barcode, trangThai, moTa};
     }
 
     @Override
     public String toString() {
-        return "ChiTietSPView{" + "id=" + id + ", idSP=" + idSP + ", idNcc=" + idNcc + ", soLuong=" + soLuong + ", giaNhap=" + giaNhap + ", giaBan=" + giaBan + ", barcode=" + barcode + ", image=" + image + ", ram=" + ram + ", xuatXu=" + xuatXu + ", camera=" + camera + ", manHinh=" + manHinh + ", boNho=" + boNho + ", mauSac=" + mauSac + ", trangThai=" + trangThai + ", moTa=" + moTa + '}';
+        return "ChiTietSPView{" + "id=" + id + ", idSP=" + idSP + ", idNcc=" + idNcc + ", idKM=" + idKM + ", soLuong=" + soLuong + ", ram=" + ram + ", xuatXu=" + xuatXu + ", camera=" + camera + ", manHinh=" + manHinh + ", boNho=" + boNho + ", mauSac=" + mauSac + ", giaNhap=" + giaNhap + ", giaBan=" + giaBan + ", image=" + image + ", barcode=" + barcode + ", trangThai=" + trangThai + ", moTa=" + moTa + '}';
     }
+
 }

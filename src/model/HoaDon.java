@@ -23,10 +23,10 @@ public class HoaDon {
     private String ngayNhanHang;
     private String ngayGiaoHang;
     private String ngayKhachNhanhang;
-    private String thoiGianBaohanh;
+    private long tienKhachCanTra;
     private long tongTien;
-    private String hanTra;
-    private String ngayTra;
+    private String soDienThoai;
+    private String phanTramGiamGia;
     private String trangThai;
     private String moTa;
 
@@ -37,7 +37,7 @@ public class HoaDon {
         this.maHD = maHD;
     }
 
-    public HoaDon(int id, int idKhachHang, int idNhanVien, int idHinhThucTT, int idHinhThucGH, String maHD, String ngayTao, String ngayThanhToan, String ngayNhanHang, String ngayGiaoHang, String ngayKhachNhanhang, String thoiGianBaohanh, long tongTien, String hanTra, String ngayTra, String trangThai, String moTa) {
+    public HoaDon(int id, int idKhachHang, int idNhanVien, int idHinhThucTT, int idHinhThucGH, String maHD, String ngayTao, String ngayThanhToan, String ngayNhanHang, String ngayGiaoHang, String ngayKhachNhanhang, long tienKhachCanTra, long tongTien, String soDienThoai, String phanTramGiamGia, String trangThai, String moTa) {
         this.id = id;
         this.idKhachHang = idKhachHang;
         this.idNhanVien = idNhanVien;
@@ -49,10 +49,10 @@ public class HoaDon {
         this.ngayNhanHang = ngayNhanHang;
         this.ngayGiaoHang = ngayGiaoHang;
         this.ngayKhachNhanhang = ngayKhachNhanhang;
-        this.thoiGianBaohanh = thoiGianBaohanh;
+        this.tienKhachCanTra = tienKhachCanTra;
         this.tongTien = tongTien;
-        this.hanTra = hanTra;
-        this.ngayTra = ngayTra;
+        this.soDienThoai = soDienThoai;
+        this.phanTramGiamGia = phanTramGiamGia;
         this.trangThai = trangThai;
         this.moTa = moTa;
     }
@@ -155,36 +155,12 @@ public class HoaDon {
         this.ngayKhachNhanhang = ngayKhachNhanhang;
     }
 
-    public String getThoiGianBaohanh() {
-        return thoiGianBaohanh;
-    }
-
-    public void setThoiGianBaohanh(String thoiGianBaohanh) {
-        this.thoiGianBaohanh = thoiGianBaohanh;
-    }
-
     public long getTongTien() {
         return tongTien;
     }
 
     public void setTongTien(long tongTien) {
         this.tongTien = tongTien;
-    }
-
-    public String getHanTra() {
-        return hanTra;
-    }
-
-    public void setHanTra(String hanTra) {
-        this.hanTra = hanTra;
-    }
-
-    public String getNgayTra() {
-        return ngayTra;
-    }
-
-    public void setNgayTra(String ngayTra) {
-        this.ngayTra = ngayTra;
     }
 
     public String getTrangThai() {
@@ -201,6 +177,30 @@ public class HoaDon {
 
     public void setMoTa(String moTa) {
         this.moTa = moTa;
+    }
+
+    public long getTienKhachCanTra() {
+        return tienKhachCanTra;
+    }
+
+    public void setTienKhachCanTra(long tienKhachCanTra) {
+        this.tienKhachCanTra = tienKhachCanTra;
+    }
+
+    public String getSoDienThoai() {
+        return soDienThoai;
+    }
+
+    public void setSoDienThoai(String soDienThoai) {
+        this.soDienThoai = soDienThoai;
+    }
+
+    public String getPhanTramGiamGia() {
+        return phanTramGiamGia;
+    }
+
+    public void setPhanTramGiamGia(String phanTramGiamGia) {
+        this.phanTramGiamGia = phanTramGiamGia;
     }
 
 }

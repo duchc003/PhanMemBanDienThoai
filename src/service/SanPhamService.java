@@ -12,8 +12,8 @@ public interface SanPhamService {
    public ArrayList<SanPhamViewModel> getAll();
     
    public List<HangSP> getID();
-    
-   public List<KhuyenMai> getKM();
+   
+   public List<KhuyenMai> getIDKm();
     
    public String addSP(SanPham SP);
     

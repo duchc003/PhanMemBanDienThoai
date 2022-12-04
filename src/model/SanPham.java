@@ -11,7 +11,6 @@ package model;
 public class SanPham {
 
     private int id;
-    private int idKM;
     private int idHang;
     private String ma;
     private String ten;
@@ -19,9 +18,8 @@ public class SanPham {
     public SanPham() {
     }
 
-    public SanPham(int id, int idKM ,int idHang, String ma, String ten) {
+    public SanPham(int id,int idHang, String ma, String ten) {
         this.id = id;
-        this.idKM = idKM;
         this.idHang = idHang;
         this.ma = ma;
         this.ten = ten;
@@ -37,14 +35,6 @@ public class SanPham {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getIdKM() {
-        return idKM;
-    }
-
-    public void setIdKM(int idKM) {
-        this.idKM = idKM;
     }
 
     public int getIdHang() {

@@ -16,6 +16,10 @@ public class HinhThucGiaoHang {
     public HinhThucGiaoHang() {
     }
 
+    public HinhThucGiaoHang(int id) {
+        this.id = id;
+    }
+
     public HinhThucGiaoHang(int id, String tenHinhThuc) {
         this.id = id;
         this.tenHinhThuc = tenHinhThuc;
