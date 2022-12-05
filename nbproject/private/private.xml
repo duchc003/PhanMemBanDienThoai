@@ -11,6 +11,7 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/HieuIT/OneDrive/Documents/PhanMemBanDienThoai/src/view/KhachHangJframe.java</file>
             <file>file:/C:/Users/HieuIT/OneDrive/Documents/PhanMemBanDienThoai/src/service/impl/KhachHangServicesImpl.java</file>
@@ -18,5 +19,8 @@
             <file>file:/C:/Users/HieuIT/OneDrive/Documents/PhanMemBanDienThoai/src/view/NhanVienView.java</file>
             <file>file:/C:/Users/HieuIT/OneDrive/Documents/PhanMemBanDienThoai/src/repository/NhanVienRepository.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> bfa7bfa0d4963b72b3f62761009c0a3cbc1db157
     </open-files>
 </project-private>

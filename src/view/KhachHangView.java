@@ -333,9 +333,9 @@ public class KhachHangView extends javax.swing.JInternalFrame {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String ma = txtTimKiem.getText();
-        lists = khachHangServices.searchKH(ma);
         String sdt = txtTimKiem.getText();
-        lists = khachHangServices.searchSdt(sdt);
+        lists = khachHangServices.searchKH(sdt,ma);
+       
         DefaultTableModel tblModel = new DefaultTableModel();
         tblModel = (DefaultTableModel) tblKhachHang.getModel();
         tblModel.setRowCount(0);
@@ -350,6 +350,22 @@ public class KhachHangView extends javax.swing.JInternalFrame {
                 kh.getMoTa()
             });
         }
+//         String sdt = txtTimKiem.getText();
+//        lists = khachHangServices.searchSdt(sdt);
+//             DefaultTableModel tblModel1 = new DefaultTableModel();
+//        tblModel1 = (DefaultTableModel) tblKhachHang.getModel();
+//        tblModel1.setRowCount(0);
+//        for (KhachHangViewModel kh : lists) {
+//            tblModel1.addRow(new Object[]{
+//                kh.getMa(),
+//                kh.getHoVaTen(),
+//                kh.getGioiTinh(),
+//                kh.getNgaySinh(),
+//                kh.getSoDienThoai(),
+//                kh.getDiaChi(),
+//                kh.getMoTa()
+//            });
+//        }
 
     }//GEN-LAST:event_btnSearchActionPerformed
 

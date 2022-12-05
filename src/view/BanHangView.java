@@ -67,13 +67,13 @@ import java.awt.FlowLayout;
 
 public class BanHangView extends javax.swing.JInternalFrame {
 
-    private DefaultTableModel tblModel = new DefaultTableModel();
+    private DefaultTableModel dtmGiohang = new DefaultTableModel();
     private final Dimension ds = new Dimension(250, 150);
     private final Dimension cs = WebcamResolution.VGA.getSize();
     private final Webcam wCam = Webcam.getDefault();
     private final WebcamPanel wCamPanel = new WebcamPanel(wCam, ds, false);
-    private DefaultTableModel tblModel2 = new DefaultTableModel();
-    private DefaultTableModel tblModel3 = new DefaultTableModel();
+    private DefaultTableModel dtbHoaDon = new DefaultTableModel();
+    private DefaultTableModel dtmSanPham = new DefaultTableModel();
     private HoaDonServices hoaDonServices = new HoaDonServicesImpl();
     private KhachHangCbbImpl impl = new KhachHangCbbImpl();
     private SanPhamFormBanHangServices sanPhamFormBanHangServices = new SanPhamFormBanHangServicesImpl();
@@ -131,9 +131,9 @@ public class BanHangView extends javax.swing.JInternalFrame {
         if (Auth.user.getTaiKhoan().equalsIgnoreCase("huyhmph22668")) {
             lblNV.setText("Hoàng Minh Huy");
         }
-        tblModel3 = (DefaultTableModel) tblSanPham.getModel();
-        tblHoaDon.setModel(tblModel2);
-        tblModel2.setColumnIdentifiers(new Object[]{"ID", "Mã Hóa Đơn", "Ngày Tạo", "Trạng Thái"});
+        dtmSanPham = (DefaultTableModel) tblSanPham.getModel();
+        tblHoaDon.setModel(dtbHoaDon);
+        dtbHoaDon.setColumnIdentifiers(new Object[]{"ID", "Mã Hóa Đơn", "Ngày Tạo", "Trạng Thái"});
         lst = sanPhamFormBanHangServices.getAll();
         loadSanPham(lst);
         List<HoaDonViewModel> hd = hoaDonServices.getALlhoaDon();
@@ -465,9 +465,9 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
         jLabel16.setText("Tên Khách Hàng:");
 
-        lblMaKh.setText("jLabel27");
+        lblMaKh.setText("...");
 
-        lblTenKh.setText("jLabel28");
+        lblTenKh.setText("...");
 
         btnChonKhach.setBackground(new java.awt.Color(51, 255, 51));
         btnChonKhach.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -493,16 +493,16 @@ public class BanHangView extends javax.swing.JInternalFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(32, 32, 32)
-                        .addComponent(lblMaKh))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblTenKh)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTenKh, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(32, 32, 32)
+                        .addComponent(lblMaKh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnChonKhach1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnChonKhach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -942,6 +942,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
     private void btnTaoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonActionPerformed
         addHoaDon();
+//        update();
     }//GEN-LAST:event_btnTaoHoaDonActionPerformed
 
     private void tblGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGioHangMouseClicked
@@ -1193,23 +1194,24 @@ public class BanHangView extends javax.swing.JInternalFrame {
         util.MsgBox.alert(this, "Hiện Thị thành công!");
 
         List<HoaDonViewModel> hds = hoaDonServices.getALlhoaDon();
-        for (int i = 0; i < hds.size(); i++) {
-            List<KhachHang> list = nvImpl.getIDKhachHang(lblTenKh.getText());
-            int id = list.get(0).getId();
+        List<KhachHang> list = nvImpl.getIDKhachHang(lblTenKh.getText());
+        for (int i = 0; i < list.size(); i++) {
+            int id = list.get(i).getId();
             HoaDon hd = new HoaDon();
             hd.setIdKhachHang(id);
             for (int j = 0; j < hds.size(); j++) {
                 hoaDonServices.updateIDKhachHang(hd, hds.get(j).getId());
             }
+            
         }
     }
 
     private void loadSanPham(List<SanPhamFormBanHangViewModel> lst) {
-        tblModel3.setRowCount(0);
+        dtmSanPham.setRowCount(0);
         int i = 1;
         for (SanPhamFormBanHangViewModel spp : lst) {
             if (spp.getSoLuong() > 0) {
-                tblModel3.addRow(spp.toDataRow());
+                dtmSanPham.addRow(spp.toDataRow());
             }
         }
     }
@@ -1234,12 +1236,12 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }
 
     private void loadGioHang() {
-        
-        tblModel = (DefaultTableModel) tblGioHang.getModel();
-        tblModel.setRowCount(0);
+
+        dtmGiohang = (DefaultTableModel) tblGioHang.getModel();
+        dtmGiohang.setRowCount(0);
         List<GioHangViewModel> gh = gioHangViewModels;
         for (viewmodel.GioHangViewModel gioHangViewModel : gh) {
-            tblModel.addRow(gioHangViewModel.toDataRow());
+            dtmGiohang.addRow(gioHangViewModel.toDataRow());
         }
 
     }
@@ -1258,44 +1260,9 @@ public class BanHangView extends javax.swing.JInternalFrame {
         hoaDon.setTrangThai("Chờ Thanh Toán");
 
         JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon));
-
         List<HoaDonViewModel> hds = hoaDonServices.getALlhoaDon();
         loadTableHoaDon(hds);
-        // update id nhân viên vào hóa đơn
-        List<NhanVien> list = nvImpl.getIDNhanVien(lblNhanVien.getText());
-        for (int i = 0; i < list.size(); i++) {
-            int id = list.get(i).getId();
-            HoaDon hd = new HoaDon();
-            hd.setIdNhanVien(id);
-            for (int j = 0; j < hds.size(); j++) {
-                hoaDonServices.updateIDNhanVien(hd, hds.get(j).getId());
-            }
-        }
-        // update id hình thức giao hàng vào hóa đơn
-        List<HinhThucGiaoHang> gh = nvImpl.getIDGiaoHang();
-        for (int i = 0; i < gh.size(); i++) {
-            int idGh = gh.get(i).getId();
-            HoaDon hdGh = new HoaDon();
-            hdGh.setIdHinhThucGH(idGh);
-            for (int j = 0; j < hds.size(); j++) {
-                hoaDonServices.updateIDGiaoHang(hdGh, hds.get(j).getId());
-            }
-        }
-        // update id hình thức thanh toán vào hóa đơn
-        List<HinhThucThanhToan> listTT = nvImpl.getIDThanhToan();
-        for (int i = 0; i < listTT.size(); i++) {
-            int idTT = listTT.get(i).getId();
-            HoaDon hdTT = new HoaDon();
-            hdTT.setIdHinhThucTT(idTT);
-            for (int j = 0; j < hds.size(); j++) {
-                hoaDonServices.updateIDThanhToan(hdTT, hds.get(j).getId());
-            }
-        }
-        for (int i = 0; i < hds.size(); i++) {
-            HoaDonCT hd = new HoaDonCT();
-            hd.setIdHoaDon(hds.get(i).getId());
-            hoaDonServices.addHoaDonCT(hd);
-        }
+
     }
 
     private void addHoaDonShip() {
@@ -1353,14 +1320,9 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }
 
     private void loadTableHoaDon(List<HoaDonViewModel> hd) {
-        int j = 0;
-        for (int i = 0; i < hd.size(); i++) {
-            tblModel2.addRow(new Object[]{
-                hd.get(i).getId(),
-                hd.get(i).getMaHdString(),
-                hd.get(i).getNgayTao(),
-                hd.get(i).getTrangThai()
-            });
+       dtbHoaDon.setRowCount(0);
+        for (HoaDonViewModel hoaDonViewModel : hd) {
+            dtbHoaDon.addRow(hoaDonViewModel.toDataRow());
         }
     }
 
@@ -1422,9 +1384,13 @@ public class BanHangView extends javax.swing.JInternalFrame {
         long tienKhachCanTraGiao = thanhToanGiaohang - giamGiaGiaohang;
         lblTongTienCanTra.setText(util.XMoney.themDauCham(tienKhachCanTraGiao));
     }
-    
+
     public void lamMoi() {
+<<<<<<< HEAD
         tblModel2.setRowCount(0);
+=======
+        dtbHoaDon.setRowCount(0);
+>>>>>>> bfa7bfa0d4963b72b3f62761009c0a3cbc1db157
         lblMaHoaDon.setText("null");
         lblTongTien.setText("0");
         lblGiamGia.setText("0");
@@ -1434,7 +1400,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         lblTenKh.setText("");
         lblTienThua.setText("");
         txtMoTa.setText("");
-        tblModel.setRowCount(0);
+        dtmGiohang.setRowCount(0);
         txtTenKh.setText("");
         txtSDT.setText("");
         txtDiaChi.setText("");
@@ -1442,6 +1408,45 @@ public class BanHangView extends javax.swing.JInternalFrame {
         lblGiamGiaGiao.setText("0");
         lblTienKhachCanTra.setText("0");
         txtGhiChu.setText("");
+    }
+
+    private void update() {
+        List<HoaDonViewModel> hds = hoaDonServices.getALlhoaDon();
+        // update id nhân viên vào hóa đơn
+        List<NhanVien> list = nvImpl.getIDNhanVien(lblNhanVien.getText());
+        for (int i = 0; i < list.size(); i++) {
+            int id = list.get(i).getId();
+            HoaDon hd = new HoaDon();
+            hd.setIdNhanVien(id);
+            for (int j = 0; j < hds.size(); j++) {
+                hoaDonServices.updateIDNhanVien(hd, hds.get(j).getId());
+            }
+        }
+        // update id hình thức giao hàng vào hóa đơn
+        List<HinhThucGiaoHang> gh = nvImpl.getIDGiaoHang();
+        for (int i = 0; i < gh.size(); i++) {
+            int idGh = gh.get(i).getId();
+            HoaDon hdGh = new HoaDon();
+            hdGh.setIdHinhThucGH(idGh);
+            for (int j = 0; j < hds.size(); j++) {
+                hoaDonServices.updateIDGiaoHang(hdGh, hds.get(j).getId());
+            }
+        }
+        // update id hình thức thanh toán vào hóa đơn
+        List<HinhThucThanhToan> listTT = nvImpl.getIDThanhToan();
+        for (int i = 0; i < listTT.size(); i++) {
+            int idTT = listTT.get(i).getId();
+            HoaDon hdTT = new HoaDon();
+            hdTT.setIdHinhThucTT(idTT);
+            for (int j = 0; j < hds.size(); j++) {
+                hoaDonServices.updateIDThanhToan(hdTT, hds.get(j).getId());
+            }
+        }
+        for (int i = 0; i < hds.size(); i++) {
+            HoaDonCT hd = new HoaDonCT();
+            hd.setIdHoaDon(hds.get(i).getId());
+            hoaDonServices.addHoaDonCT(hd);
+        }
     }
 
 //    public void xuatHoaDon() {

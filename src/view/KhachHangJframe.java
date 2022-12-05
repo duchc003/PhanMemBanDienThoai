@@ -353,23 +353,7 @@ public class KhachHangJframe extends javax.swing.JFrame {
 
     private void txtTimKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKhachHangActionPerformed
 
-        String ma = txtTimKhachHang.getText();
-        lisst = KH.searchKH(ma);
-        String sdt = txtTimKhachHang.getText();
-        lisst = KH.searchSdt(sdt);
-        DefaultTableModel tblModel = new DefaultTableModel();
-        tblModel = (DefaultTableModel) tblKhachHang.getModel();
-        tblModel.setRowCount(0);
-        for (KhachHangViewModel kh : lisst) {
-            tblModel.addRow(new Object[]{
-                kh.getHoVaTen(),
-                kh.getGioiTinh(),
-                kh.getNgaySinh(),
-                kh.getSoDienThoai(),
-                kh.getDiaChi(),
-                kh.getMoTa()
-            });
-        }
+
     }//GEN-LAST:event_txtTimKhachHangActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
@@ -426,19 +410,21 @@ public class KhachHangJframe extends javax.swing.JFrame {
 
     private void txtTimKhachHangCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKhachHangCaretUpdate
         String ma = txtTimKhachHang.getText();
-        lisst = KH.searchKH(ma);
+       
         String sdt = txtTimKhachHang.getText();
-        lisst = KH.searchSdt(sdt);
+        lisst = KH.searchKH(sdt, ma);
         DefaultTableModel tblModel = new DefaultTableModel();
         tblModel = (DefaultTableModel) tblKhachHang.getModel();
         tblModel.setRowCount(0);
         for (KhachHangViewModel kh : lisst) {
             tblModel.addRow(new Object[]{
+               kh.getMa(),
                 kh.getHoVaTen(),
-                kh.getGioiTinh(),
-                kh.getNgaySinh(),
-                kh.getSoDienThoai(),
+                   kh.getSoDienThoai(),
                 kh.getDiaChi(),
+                kh.getGioiTinh(),
+           
+             
                 kh.getMoTa()
             });
         }
