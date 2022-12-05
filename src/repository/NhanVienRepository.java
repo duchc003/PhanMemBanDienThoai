@@ -8,6 +8,10 @@ import java.util.List;
 import viewmodel.NhanVienViewmodel;
 import java.sql.*;
 import java.util.ArrayList;
+import model.HinhThucGiaoHang;
+import model.HinhThucThanhToan;
+import model.KhachHang;
+import model.NhanVien;
 import util.ConnectDB;
 
 /**
@@ -26,7 +30,7 @@ public class NhanVienRepository {
                 + "      ,[VaiTro]\n"
                 + "      ,[TrangThai]\n"
                 + "  FROM [dbo].[NhanVien]";
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ResultSet rs = ps.executeQuery();
             List<NhanVienViewmodel> list = new ArrayList<>();
             while (rs.next()) {
@@ -53,7 +57,7 @@ public class NhanVienRepository {
                 + "     VALUES\n"
                 + "           (?,?,?,?,?,?,?,?)";
         int check = 0;
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, nv.getMaNV());
             ps.setObject(2, nv.getHoVaTen());
             ps.setObject(3, nv.getDiaChi());
@@ -80,7 +84,7 @@ public class NhanVienRepository {
                 + "      ,[VaiTro]\n"
                 + "      ,[TrangThai]\n"
                 + "  FROM [dbo].[NhanVien] where MaNV = ?";
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, maNV);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -104,7 +108,7 @@ public class NhanVienRepository {
                 + "      ,[VaiTro]\n"
                 + "      ,[TrangThai]\n"
                 + "  FROM [dbo].[NhanVien] where [HoVaTen] = ?";
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, hoVaten);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -128,7 +132,7 @@ public class NhanVienRepository {
                 + "      ,[VaiTro]\n"
                 + "      ,[TrangThai]\n"
                 + "  FROM [dbo].[NhanVien] where [SDT] = ?";
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, sdt);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -153,7 +157,7 @@ public class NhanVienRepository {
                 + "      ,[TrangThai] = ?\n"
                 + " WHERE MaNV = ?";
         int check = 0;
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, nv.getMaNV());
             ps.setObject(2, nv.getHoVaTen());
             ps.setObject(3, nv.getDiaChi());
@@ -168,5 +172,67 @@ public class NhanVienRepository {
             e.printStackTrace();
         }
         return check > 0;
+    }
+
+    public ArrayList<NhanVien> getIDNhanVien(String Id) {
+        ArrayList<NhanVien> listkh = new ArrayList<>();
+        String query = "select Id from NHANVIEN where HoVaTen =  ?";
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, Id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                NhanVien nv = new NhanVien(rs.getInt(1));
+                listkh.add(nv);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listkh;
+    }
+
+    public ArrayList<KhachHang> getIDKhachHang(String Id) {
+        ArrayList<KhachHang> listkh = new ArrayList<>();
+        String query = "select Id from NHANVIEN where HoVaTen =  ?";
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, Id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                KhachHang nv = new KhachHang(rs.getInt(1));
+                listkh.add(nv);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listkh;
+    }
+    
+    public ArrayList<HinhThucGiaoHang> getIDGiaoHang() {
+        ArrayList<HinhThucGiaoHang> listkh = new ArrayList<>();
+        String query = "select id from HinhThucGiaoHang where TenHTGH = N'Tại Quầy'";
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                HinhThucGiaoHang nv = new HinhThucGiaoHang(rs.getInt(1));
+                listkh.add(nv);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listkh;
+    }
+    
+    public ArrayList<HinhThucThanhToan> getIDThanhToan() {
+        ArrayList<HinhThucThanhToan> listkh = new ArrayList<>();
+        String query = "select id from HinhThucThanhToan where TenHTTT = N'Tiền Mặt'";
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                HinhThucThanhToan nv = new HinhThucThanhToan(rs.getInt(1));
+                listkh.add(nv);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listkh;
     }
 }

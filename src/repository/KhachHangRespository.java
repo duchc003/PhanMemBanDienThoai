@@ -33,10 +33,17 @@ public class KhachHangRespository {
         return row;
     }
 
-    public int addKH2(KhachHang kh) {
+    public int addKH2(KhachHangViewModel kh) {
         int row = 0;
-        String sql = "INSERT INTO KhachHang(HoVaTen,GioiTinh,NgaySinh,SoDienThoai,DiaChi,MoTa) VALUES(?,?,?,?,?,?)";
-        row = JDBCHelper.executeUpdate(sql, kh.getHoVaTen(), kh.getGioiTinh(), kh.getNgaySinh(), kh.getSoDienThoai(), kh.getDiaChi(), kh.getMoTa());
+        String sql = "INSERT INTO KhachHang(MaKH,HoVaTen,GioiTinh,NgaySinh,SoDienThoai,DiaChi,MoTa) VALUES(?,?,?,?,?,?,?)";
+        row = JDBCHelper.executeUpdate(sql, kh.getMa(), kh.getHoVaTen(), kh.getGioiTinh(), kh.getNgaySinh(), kh.getSoDienThoai(), kh.getDiaChi(), kh.getMoTa());
+        return row;
+    }
+
+    public int addKhachHangGiao(KhachHangViewModel kh) {
+        int row = 0;
+        String sql = "INSERT INTO [dbo].[KhachHang]([HoVaTen],[SoDienThoai],[DiaChi]) VALUES (?,?,?)";
+        row = JDBCHelper.executeUpdate(sql, kh.getHoVaTen(), kh.getSoDienThoai(), kh.getDiaChi());
         return row;
     }
 
@@ -83,4 +90,23 @@ public class KhachHangRespository {
         return khachHangViewModels;
     }
 
+    public List<KhachHangViewModel> id(String ma) {
+        List<KhachHangViewModel> khachHangViewModels = new ArrayList<>();
+        String sql = " SELECT [ID]\n"
+                + "  FROM [dbo].[KhachHang]\n"
+                + "  where HoVaTen = ?";
+        ResultSet rs = JDBCHelper.executeQuery(sql, ma);
+        try {
+            while (rs.next()) {
+                khachHangViewModels.add(new KhachHangViewModel(rs.getInt(1)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangRespository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return khachHangViewModels;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new KhachHangRespository().id("KH01"));
+    }
 }

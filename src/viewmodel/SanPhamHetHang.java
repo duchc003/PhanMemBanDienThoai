@@ -13,7 +13,6 @@ public class SanPhamHetHang {
     private int id;
     private String maSp;
     private String tenSP;
-    private String tenHang;
     private int soLuong;
     private String ram;
     private String xuatXu;
@@ -21,16 +20,15 @@ public class SanPhamHetHang {
     private String manHinh;
     private String boNho;
     private String mauSac;
-    private int trangThaiString;
+    private String trangThaiString;
 
     public SanPhamHetHang() {
     }
 
-    public SanPhamHetHang(int id, String maSp, String tenSP, String tenHang, int soLuong, String ram, String xuatXu, String camere, String manHinh, String boNho, String mauSac, int trangThaiString) {
+    public SanPhamHetHang(int id, String maSp, String tenSP, int soLuong, String ram, String xuatXu, String camere, String manHinh, String boNho, String mauSac, String trangThaiString) {
         this.id = id;
         this.maSp = maSp;
         this.tenSP = tenSP;
-        this.tenHang = tenHang;
         this.soLuong = soLuong;
         this.ram = ram;
         this.xuatXu = xuatXu;
@@ -41,7 +39,9 @@ public class SanPhamHetHang {
         this.trangThaiString = trangThaiString;
     }
 
-    public SanPhamHetHang(int soLuong, int trangThaiString) {
+    
+
+    public SanPhamHetHang(int soLuong, String trangThaiString) {
         this.soLuong = soLuong;
         this.trangThaiString = trangThaiString;
     }
@@ -126,29 +126,15 @@ public class SanPhamHetHang {
         this.mauSac = mauSac;
     }
 
-    public int getTrangThaiString() {
+    public String getTrangThaiString() {
         return trangThaiString;
     }
 
-    public void setTrangThaiString(int trangThaiString) {
+    public void setTrangThaiString(String trangThaiString) {
         this.trangThaiString = trangThaiString;
-    }
-
-    public String getTenHang() {
-        return tenHang;
-    }
-
-    public void setTenHang(String tenHang) {
-        this.tenHang = tenHang;
     }
     
     public Object[] toDataRow(){
-        return new Object[] {id,maSp,tenSP,tenHang,soLuong,ram,xuatXu,camere,manHinh,boNho,mauSac,trangThaiString == 1 ? "Còn Hàng" :"Hết Hàng"};
+        return new Object[] {id,maSp,tenSP,soLuong,ram,xuatXu,camere,manHinh,boNho,mauSac,trangThaiString };
     }
-
-    @Override
-    public String toString() {
-        return "SanPhamHetHang{" + "id=" + id + ", maSp=" + maSp + ", tenSP=" + tenSP + ", tenHang=" + tenHang + ", soLuong=" + soLuong + ", ram=" + ram + ", xuatXu=" + xuatXu + ", camere=" + camere + ", manHinh=" + manHinh + ", boNho=" + boNho + ", mauSac=" + mauSac + ", trangThaiString=" + trangThaiString + '}';
-    }
-
 }

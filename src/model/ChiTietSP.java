@@ -13,6 +13,7 @@ public class ChiTietSP {
     private int id;
     private int idSP;
     private int nhaCungCap;
+    private int idKm;
     private int soLuong;
     private String ram;
     private String xuatXu;
@@ -30,9 +31,10 @@ public class ChiTietSP {
     public ChiTietSP() {
     }
 
-    public ChiTietSP(int idSP, int nhaCungCap, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, float giaNhap, float giaBan, String image, String barcodde, int trangThai, String moTa) {
+    public ChiTietSP( int idSP, int nhaCungCap, int idKm, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, float giaNhap, float giaBan, String image, String barcodde, int trangThai, String moTa) {
         this.idSP = idSP;
         this.nhaCungCap = nhaCungCap;
+        this.idKm = idKm;
         this.soLuong = soLuong;
         this.ram = ram;
         this.xuatXu = xuatXu;
@@ -48,6 +50,14 @@ public class ChiTietSP {
         this.moTa = moTa;
     }
     
+    public int getIdKm() {
+        return idKm;
+    }
+
+    public void setIdKm(int idKm) {
+        this.idKm = idKm;
+    }
+
     public ChiTietSP(int trangThai) {
         this.trangThai = trangThai;
     }

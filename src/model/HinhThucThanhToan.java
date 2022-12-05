@@ -16,6 +16,10 @@ public class HinhThucThanhToan {
     public HinhThucThanhToan() {
     }
 
+    public HinhThucThanhToan(int id) {
+        this.id = id;
+    }
+
     public HinhThucThanhToan(int id, String tenHinhThuc) {
         this.id = id;
         this.tenHinhThuc = tenHinhThuc;

@@ -80,24 +80,9 @@ public class NhanVienView extends javax.swing.JInternalFrame {
 
     private NhanVienViewmodel add() {
         String maNv = txtMaNV.getText();
-        if (maNv.isBlank()) {
-            JOptionPane.showMessageDialog(this, "Mã nhân viên không được để trống");
-            return null;
-        }
         String hoVaTen = txtHoVaTen.getText();
-        if (hoVaTen.isBlank()) {
-            JOptionPane.showMessageDialog(this, "Họ và tên nhân viên không được để trống");
-            return null;
-        }
         String diaChi = txtDiaChi.getText();
-        if (diaChi.isBlank()) {
-            JOptionPane.showMessageDialog(this, "Địa chỉ không được để trống");
-            return null;
-        }
         String sdt = txtSDT.getText();
-        if (rootPaneCheckingEnabled) {
-            
-        }
         String email = txtEmail.getText();
         String gioiTinh;
         if (rdoNam.isSelected()) {

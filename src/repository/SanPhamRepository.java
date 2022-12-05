@@ -16,7 +16,6 @@ public class SanPhamRepository {
     public ArrayList<SanPhamViewModel> all() {
         ArrayList<SanPhamViewModel> lists = new ArrayList<>();
         String query = " SELECT [ID]\n"
-                + "      ,[IDKM]\n"
                 + "      ,[IDHang]\n"
                 + "      ,[MaSP]\n"
                 + "      ,[TenSp]\n"
@@ -26,10 +25,9 @@ public class SanPhamRepository {
             while (rs.next()) {
                 SanPhamViewModel sanphamViewModel = new SanPhamViewModel();
                 sanphamViewModel.setId(rs.getInt(1));
-                sanphamViewModel.setIdKM(rs.getInt(2));
-                sanphamViewModel.setIdHang(rs.getInt(3));
-                sanphamViewModel.setMa(rs.getString(4));
-                sanphamViewModel.setTen(rs.getString(5));
+                sanphamViewModel.setIdHang(rs.getInt(2));
+                sanphamViewModel.setMa(rs.getString(3));
+                sanphamViewModel.setTen(rs.getString(4));
                 lists.add(sanphamViewModel);
             }
 
@@ -54,9 +52,9 @@ public class SanPhamRepository {
         }
         return null;
     }
-
+    
     public List<KhuyenMai> getALLKM() {
-        String query = "select * from KhuyenMai";
+        String query = "select * from GiamGia";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             List<KhuyenMai> list = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
@@ -81,18 +79,16 @@ public class SanPhamRepository {
 
     public boolean add(SanPham SP) {
         String query = "INSERT INTO [dbo].[SanPham]\n"
-                + "           ([IDKM]\n"
                 + "           ,[IDHang]\n"
                 + "           ,[MaSP]\n"
                 + "           ,[TenSp])\n"
                 + "     VALUES\n"
-                + "           (?,?,?,?)";
+                + "           (?,?,?)";
         int check = 0;
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
-            ps.setObject(1, SP.getIdKM());
-            ps.setObject(2, SP.getIdHang());
-            ps.setObject(3, SP.getMa());
-            ps.setObject(4, SP.getTen());
+            ps.setObject(1, SP.getIdHang());
+            ps.setObject(2, SP.getMa());
+            ps.setObject(3, SP.getTen());
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -102,7 +98,6 @@ public class SanPhamRepository {
 
     public boolean update(SanPham SP, int viTri) {
         String query = "UPDATE [dbo].[SanPham]\n"
-                + "   SET [IDKM] ?\n"
                 + "      ,[IDHang] ?\n"
                 + "      ,[MaSP] = ?\n"
                 + "      ,[TenSp] = ?\n"
@@ -110,14 +105,16 @@ public class SanPhamRepository {
         int check = 0;
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             check = ps.executeUpdate();
-            ps.setObject(1, SP.getIdKM());
-            ps.setObject(2, SP.getIdHang());
-            ps.setObject(3, SP.getMa());
-            ps.setObject(4, SP.getTen());
-            ps.setObject(5, viTri);
+            ps.setObject(1, SP.getIdHang());
+            ps.setObject(2, SP.getMa());
+            ps.setObject(3, SP.getTen());
+            ps.setObject(4, viTri);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return check > 0;
+    }
+    public static void main(String[] args) {
+        System.out.println(new SanPhamRepository().getALLKM());
     }
 }

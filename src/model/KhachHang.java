@@ -4,8 +4,6 @@
  */
 package model;
 
-import java.util.Date;
-
 /**
  *
  * @author ASUS
@@ -50,6 +48,10 @@ public class KhachHang {
         this.diaChi = diaChi;
         this.gioiTinh = gioiTinh;
         this.moTa = moTa;
+    }
+
+    public KhachHang(int id) {
+        this.id = id;
     }
 
     public KhachHang(int id, String hoVaTen) {

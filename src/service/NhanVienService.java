@@ -6,6 +6,10 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.HinhThucGiaoHang;
+import model.HinhThucThanhToan;
+import model.KhachHang;
+import model.NhanVien;
 import viewmodel.NhanVienViewmodel;
 
 /**
@@ -13,15 +17,24 @@ import viewmodel.NhanVienViewmodel;
  * @author HieuIT
  */
 public interface NhanVienService {
+
     List<NhanVienViewmodel> getAll();
 
     String add(NhanVienViewmodel nv);
 
     ArrayList<NhanVienViewmodel> getOne(String maNV);
-    
+
     ArrayList<NhanVienViewmodel> getOneTen(String hoVaten);
-    
+
     ArrayList<NhanVienViewmodel> getOneSdt(String sdt);
 
     String sua(String maNV, NhanVienViewmodel nv);
+
+    ArrayList<NhanVien> getIDNhanVien(String id);
+
+    ArrayList<KhachHang> getIDKhachHang(String id);
+    
+    ArrayList<HinhThucGiaoHang> getIDGiaoHang();
+    
+    ArrayList<HinhThucThanhToan> getIDThanhToan();
 }

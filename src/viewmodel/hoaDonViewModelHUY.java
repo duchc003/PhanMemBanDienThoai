@@ -9,6 +9,8 @@ package viewmodel;
  * @author Banh Chung Ran
  */
 public class hoaDonViewModelHUY {
+    
+    private  int id;
     private String maHD;
     private String hoVaTen;
     private String tenKhachHang;
@@ -16,12 +18,12 @@ public class hoaDonViewModelHUY {
     private long tongTien;
     private String tenHTTT;
     private String tenHTGH;
-    private int trangThai;
+    private String trangThai;
 
     public hoaDonViewModelHUY() {
     }
 
-    public hoaDonViewModelHUY(String maHD, String hoVaTen, String tenKhachHang, int soLuong, long tongTien, String tenHTTT, String tenHTGH, int trangThai) {
+    public hoaDonViewModelHUY(String maHD, String hoVaTen, String tenKhachHang, int soLuong, long tongTien, String tenHTTT, String tenHTGH, String trangThai) {
         this.maHD = maHD;
         this.hoVaTen = hoVaTen;
         this.tenKhachHang = tenKhachHang;
@@ -30,6 +32,18 @@ public class hoaDonViewModelHUY {
         this.tenHTTT = tenHTTT;
         this.tenHTGH = tenHTGH;
         this.trangThai = trangThai;
+    }
+
+    public hoaDonViewModelHUY(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMaHD() {
@@ -88,11 +102,11 @@ public class hoaDonViewModelHUY {
         this.tenHTGH = tenHTGH;
     }
 
-    public int getTrangThai() {
+    public String getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(int trangThai) {
+    public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
 

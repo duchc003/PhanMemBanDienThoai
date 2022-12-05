@@ -19,7 +19,9 @@ public interface KhachHangServices {
 
     String addKH(KhachHang kh);
 
-    String addKH2(KhachHang kh);
+    String addKH2(KhachHangViewModel kh);
+    
+    String addKhachHang(KhachHangViewModel kh);
 
     String deleteKH(String ma);
 
@@ -29,4 +31,5 @@ public interface KhachHangServices {
 
     List<KhachHangViewModel> searchSdt(String sdt);
 
+    List<KhachHangViewModel> id(String sdt);
 }

@@ -39,11 +39,6 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
-    public List<KhuyenMai> getKM() {
-        return SP.getALLKM();
-    }
-
-    @Override
     public String updateSP(SanPham SP, int ma) {
         boolean update = this.SP.update(SP, ma);
         if (update) {
@@ -51,5 +46,10 @@ public class SanPhamImpl implements SanPhamService {
         } else {
             return "Update that bai";
         }
+    }
+
+    @Override
+    public List<KhuyenMai> getIDKm() {
+        return SP.getALLKM();
     }
 }

@@ -37,6 +37,10 @@ public class NhanVien {
         this.vaiTro = vaiTro;
     }
 
+    public NhanVien(int id) {
+        this.id = id;
+    }
+
     public NhanVien(String matKhau) {
         this.matKhau = matKhau;
     }

@@ -52,7 +52,7 @@ public class khuyenMaiServicesImpl implements khuyenMaiServices {
     }
 
     @Override
-    public KhuyenMaiViewModel getOne(int hinhThai) {
+    public KhuyenMaiViewModel getOne(String hinhThai) {
         return KhuyenMaiViewModelReprository.getOne(hinhThai);
     }
 

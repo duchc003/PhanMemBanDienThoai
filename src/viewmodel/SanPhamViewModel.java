@@ -3,7 +3,6 @@ package viewmodel;
 public class SanPhamViewModel {
 
     private int id;
-    private int idKM;
     private int idHang;
     private String ten;
     private String ma;
@@ -11,9 +10,8 @@ public class SanPhamViewModel {
     public SanPhamViewModel() {
     }
 
-    public SanPhamViewModel(int id, int idKM, int idHang, String ten, String ma) {
+    public SanPhamViewModel(int id, int idHang, String ten, String ma) {
         this.id = id;
-        this.idKM = idKM;
         this.idHang = idHang;
         this.ten = ten;
         this.ma = ma;
@@ -25,14 +23,6 @@ public class SanPhamViewModel {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getIdKM() {
-        return idKM;
-    }
-
-    public void setIdKM(int idKM) {
-        this.idKM = idKM;
     }
 
     public int getIdHang() {
@@ -61,7 +51,7 @@ public class SanPhamViewModel {
 
     public Object[] todataRow() {
         return new Object[]{
-            id, idKM ,idHang,ma, ten
+            id ,idHang,ma, ten
         };
     }
 }

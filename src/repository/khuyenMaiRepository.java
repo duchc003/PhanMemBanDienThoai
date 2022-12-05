@@ -17,6 +17,7 @@ import model.HangSP;
 import model.KhuyenMai;
 import util.ConnectDB;
 import util.JDBCHelper;
+import viewmodel.KhuyenMaiBanHang;
 import viewmodel.KhuyenMaiViewModel;
 
 /**
@@ -27,7 +28,7 @@ public class khuyenMaiRepository {
 
     public List<KhuyenMaiViewModel> getAllKhuyenMaiViewModel() {
         List<KhuyenMaiViewModel> listKMViewModel = new ArrayList<>();
-        String sql = "select * from KhuyenMai";
+        String sql = "select * from GiamGia";
         ResultSet rs = JDBCHelper.executeQuery(sql);
         try {
             while (rs.next()) {
@@ -49,7 +50,7 @@ public class khuyenMaiRepository {
 
     public List<KhuyenMaiViewModel> timKiemKhuyenMai(String maKM) {
         List<KhuyenMaiViewModel> listKMV = new ArrayList<>();
-        String sql = "select ID, MaKM,ten,NgayBD,NgayKT,GiamGia,HinhThuc,TrangThai,Mota from KhuyenMai where MaKM like ?";
+        String sql = "select ID, MaKM,ten,NgayBD,NgayKT,GiamGia,HinhThuc,TrangThai,Mota from GiamGia where MaKM like ?";
         ResultSet rs = JDBCHelper.executeQuery(sql, "%" + maKM + "%");
         try {
             while (rs.next()) {
@@ -73,7 +74,7 @@ public class khuyenMaiRepository {
 
     public int addKhuyenMai(KhuyenMaiViewModel km) {
         int row = 0;
-        String sql = "INSERT INTO [dbo].[KhuyenMai]\n"
+        String sql = "INSERT INTO [dbo].[GiamGia]\n"
                 + "           ([MaKM]\n"
                 + "           ,[Ten]\n"
                 + "           ,[NgayBD]\n"
@@ -98,15 +99,15 @@ public class khuyenMaiRepository {
 
     public int updateKhuyenmai(KhuyenMaiViewModel km, String maKM) {
         int row = 0;
-        String sql = "UPDATE KhuyenMai\n"
+        String sql = "UPDATE GiamGia\n"
                 + "SET ten =?, NgayBD = ?, NgayKT =?,GiamGia =?,HinhThuc=?,TrangThai =?,Mota =?\n"
                 + "WHERE MaKM = ?";
         row = JDBCHelper.executeUpdate(sql, km.getTen(), km.getNgayBD(), km.getNgayKT(), km.getGiamGia(), km.getHinhThuc(), km.getTrangThai(), km.getMoTa(), km.getMaKM());
         return row;
     }
 
-    public KhuyenMaiViewModel getOne(int hinhThuc) {
-        String query = "select * from KhuyenMai where HinhThuc = ?";
+    public KhuyenMaiViewModel getOne(String hinhThuc) {
+        String query = "select * from GiamGia where HinhThuc = ?";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             ps.setObject(1, hinhThuc);
             ResultSet rs = ps.executeQuery();
@@ -128,7 +129,7 @@ public class khuyenMaiRepository {
     }
 
     public List<KhuyenMaiViewModel> giamGia() {
-        String query = "select * from KhuyenMai";
+        String query = "select * from GiamGia";
         try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
             List<KhuyenMaiViewModel> list = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
@@ -150,8 +151,5 @@ public class khuyenMaiRepository {
         return null;
     }
 
-    public static void main(String[] args) {
-        KhuyenMaiViewModel km = new khuyenMaiRepository().getOne(1);
-        System.out.println(km.toString());
+    
     }
-}

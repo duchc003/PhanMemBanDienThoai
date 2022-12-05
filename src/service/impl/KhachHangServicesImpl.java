@@ -31,7 +31,7 @@ public class KhachHangServicesImpl implements KhachHangServices {
         }
     }
     @Override
-    public String addKH2(KhachHang kh) {
+    public String addKH2(KhachHangViewModel kh) {
         int row = 0;
         row = khachHangRespository.addKH2(kh);
         if (row > 0) {
@@ -71,6 +71,22 @@ public class KhachHangServicesImpl implements KhachHangServices {
     @Override
     public List<KhachHangViewModel> searchSdt(String sdt) {
         return khachHangRespository.searchSdt(sdt);
+    }
+
+    @Override
+    public String addKhachHang(KhachHangViewModel kh) {
+        int row = 0;
+        row = khachHangRespository.addKhachHangGiao(kh);
+        if (row > 0) {
+            return "Thêm thành công";
+        } else {
+            return "Thất bại";
+        }
+    }
+
+    @Override
+    public List<KhachHangViewModel> id(String sdt) {
+        return khachHangRespository.id(sdt);
     }
 
 }
