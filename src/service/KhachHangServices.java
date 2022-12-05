@@ -28,6 +28,7 @@ public interface KhachHangServices {
     String updateKH(KhachHang kh);
 
     List<KhachHangViewModel> searchKH(String ma);
+    List<KhachHangViewModel> searchKH(String sdt,String ma);
 
     List<KhachHangViewModel> searchSdt(String sdt);
 

@@ -63,15 +63,7 @@ public class KhachHangServicesImpl implements KhachHangServices {
         }
     }
 
-    @Override
-    public List<KhachHangViewModel> searchKH(String ma) {
-        return khachHangRespository.searchKH(ma);
-    }
 
-    @Override
-    public List<KhachHangViewModel> searchSdt(String sdt) {
-        return khachHangRespository.searchSdt(sdt);
-    }
 
     @Override
     public String addKhachHang(KhachHangViewModel kh) {
@@ -87,6 +79,21 @@ public class KhachHangServicesImpl implements KhachHangServices {
     @Override
     public List<KhachHangViewModel> id(String sdt) {
         return khachHangRespository.id(sdt);
+    }
+
+    @Override
+    public List<KhachHangViewModel> searchKH(String sdt, String ma) {
+        return khachHangRespository.searchKH(sdt, ma);
+    }
+
+    @Override
+    public List<KhachHangViewModel> searchKH(String ma) {
+        return khachHangRespository.searchKH( ma);
+    }
+
+    @Override
+    public List<KhachHangViewModel> searchSdt(String sdt) {
+        return khachHangRespository.searchKH( sdt);
     }
 
 }
