@@ -192,7 +192,7 @@ public class NhanVienRepository {
 
     public ArrayList<KhachHang> getIDKhachHang(String Id) {
         ArrayList<KhachHang> listkh = new ArrayList<>();
-        String query = "select Id from NHANVIEN where HoVaTen =  ?";
+        String query = "select Id from KhachHang where HoVaTen =  ?";
         try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, Id);
             ResultSet rs = ps.executeQuery();

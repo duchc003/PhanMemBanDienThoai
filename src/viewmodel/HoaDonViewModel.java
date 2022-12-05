@@ -126,4 +126,8 @@ public class HoaDonViewModel {
         return "HoaDonViewModel{" + "id=" + id + ", maHdString=" + maHdString + ", ngayTao=" + ngayTao + ", trangThai=" + trangThai + '}';
     }
 
+    public Object[] toDataRow(){
+        return new Object[] {id,maHdString,ngayTao,trangThai};
+    }
+    
 }

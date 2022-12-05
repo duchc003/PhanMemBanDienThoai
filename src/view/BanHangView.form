@@ -741,19 +741,19 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                          <Component id="lblMaKh" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="lblTenKh" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblTenKh" min="-2" pref="87" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                          <Component id="lblMaKh" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="btnChonKhach1" max="32767" attributes="0"/>
                                       <Component id="btnChonKhach" max="32767" attributes="0"/>
@@ -800,12 +800,12 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblMaKh">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="jLabel27"/>
+                            <Property name="text" type="java.lang.String" value="..."/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblTenKh">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="jLabel28"/>
+                            <Property name="text" type="java.lang.String" value="..."/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnChonKhach">
