@@ -80,9 +80,24 @@ public class NhanVienView extends javax.swing.JInternalFrame {
 
     private NhanVienViewmodel add() {
         String maNv = txtMaNV.getText();
+        if (maNv.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Mã nhân viên không được để trống");
+            return null;
+        }
         String hoVaTen = txtHoVaTen.getText();
+        if (hoVaTen.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Họ và tên nhân viên không được để trống");
+            return null;
+        }
         String diaChi = txtDiaChi.getText();
+        if (diaChi.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Địa chỉ không được để trống");
+            return null;
+        }
         String sdt = txtSDT.getText();
+        if (rootPaneCheckingEnabled) {
+            
+        }
         String email = txtEmail.getText();
         String gioiTinh;
         if (rdoNam.isSelected()) {
@@ -359,17 +374,18 @@ public class NhanVienView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8)
                     .addComponent(cbbVaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdoNam)
-                    .addComponent(jLabel6)
-                    .addComponent(jButton5)
-                    .addComponent(rdoNu)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(rdoHoatDong)
-                            .addComponent(rdoNghi))))
+                            .addComponent(rdoNghi)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rdoNam)
+                        .addComponent(jLabel6)
+                        .addComponent(jButton5)
+                        .addComponent(rdoNu)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
