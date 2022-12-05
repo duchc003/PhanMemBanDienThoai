@@ -73,6 +73,31 @@ public class NhanVienRepository {
         return check > 0;
     }
 
+     public ArrayList<NhanVienViewmodel> checkMa(String maNV) {
+        ArrayList< NhanVienViewmodel> listkh = new ArrayList<>();
+        String query = "SELECT [MaNV]\n"
+                + "      ,[HoVaTen]\n"
+                + "      ,[DiaChi]\n"
+                + "      ,[GioiTinh]\n"
+                + "      ,[SDT]\n"
+                + "      ,[Email]\n"
+                + "      ,[VaiTro]\n"
+                + "      ,[TrangThai]\n"
+                + "  FROM [dbo].[NhanVien] where MaNV = ?";
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, maNV);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                NhanVienViewmodel nv = new NhanVienViewmodel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getInt(8));
+                listkh.add(nv);
+                return listkh;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+     
     public ArrayList<NhanVienViewmodel> getOne(String maNV) {
         ArrayList< NhanVienViewmodel> listkh = new ArrayList<>();
         String query = "SELECT [MaNV]\n"
@@ -234,5 +259,12 @@ public class NhanVienRepository {
             e.printStackTrace();
         }
         return listkh;
+    }
+    
+    public static void main(String[] args) {
+        List<NhanVienViewmodel> test = new NhanVienRepository().getOne("NV01");
+        for (NhanVienViewmodel x : test) {
+            System.out.println(x.toString());
+        }
     }
 }

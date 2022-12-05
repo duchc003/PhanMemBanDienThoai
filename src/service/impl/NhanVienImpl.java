@@ -82,4 +82,9 @@ public class NhanVienImpl implements NhanVienService {
         return NhanVienRepository.getIDThanhToan();
     }
 
+    @Override
+    public ArrayList<NhanVienViewmodel> checkMa(String maNV) {
+        return NhanVienRepository.checkMa(maNV);
+    }
+
 }

@@ -37,4 +37,7 @@ public interface NhanVienService {
     ArrayList<HinhThucGiaoHang> getIDGiaoHang();
     
     ArrayList<HinhThucThanhToan> getIDThanhToan();
+    
+    ArrayList<NhanVienViewmodel> checkMa(String maNV);
+    
 }

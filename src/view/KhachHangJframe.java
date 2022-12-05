@@ -33,7 +33,6 @@ public class KhachHangJframe extends javax.swing.JFrame {
         for (KhachHangViewModel khachHangViewModel : lisst) {
             dtm.addRow(khachHangViewModel.toDataRow());
         }
-
     }
     
     private void chonKhachHang() {
