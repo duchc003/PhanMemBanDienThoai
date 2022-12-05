@@ -73,4 +73,20 @@ public class KhachHangServicesImpl implements KhachHangServices {
         return khachHangRespository.searchSdt(sdt);
     }
 
+    @Override
+    public String addKhachHang(KhachHangViewModel kh) {
+        int row = 0;
+        row = khachHangRespository.addKhachHangGiao(kh);
+        if (row > 0) {
+            return "Thêm thành công";
+        } else {
+            return "Thất bại";
+        }
+    }
+
+    @Override
+    public List<KhachHangViewModel> id(String sdt) {
+        return khachHangRespository.id(sdt);
+    }
+
 }

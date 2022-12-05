@@ -24,7 +24,7 @@ import viewmodel.KhachHangViewModel;
  */
 public class KhachHangView extends javax.swing.JInternalFrame {
 
-//    private KhachHangServices khachHangServices = new KhachHangServicesImpl();
+    private KhachHangServices khachHangServices = new KhachHangServicesImpl();
     List<KhachHangViewModel> lists = new ArrayList<>();
     private DateUtil ut = new DateUtil();
     private String pattern = "yyyy/MM/dd";
@@ -36,27 +36,26 @@ public class KhachHangView extends javax.swing.JInternalFrame {
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
-//        loadData();
+        loadData();
     }
 
-//    private void loadData() {
-//        DefaultTableModel tblModel = new DefaultTableModel();
-//        tblModel = (DefaultTableModel) tblKhachHang.getModel();
-//        tblModel.setRowCount(0);
-//        lists = khachHangServices.getAll();
-//        for (KhachHangViewModel kh : lists) {
-//            tblModel.addRow(new Object[]{
-//                kh.getMa(),
-//                kh.getHoVaTen(),
-//                kh.getGioiTinh(),
-//                kh.getNgaySinh(),
-//                kh.getSoDienThoai(),
-//                kh.getDiaChi(),
-//                kh.getMoTa()
-//            });
-//        }
-//
-//    }
+    private void loadData() {
+        DefaultTableModel tblModel = new DefaultTableModel();
+        tblModel = (DefaultTableModel) tblKhachHang.getModel();
+        tblModel.setRowCount(0);
+        lists = khachHangServices.getAll();
+        for (KhachHangViewModel kh : lists) {
+            tblModel.addRow(new Object[]{
+                kh.getMa(),
+                kh.getHoVaTen(),
+                kh.getGioiTinh(),
+                kh.getNgaySinh(),
+                kh.getSoDienThoai(),
+                kh.getDiaChi(),
+                kh.getMoTa()
+            });
+        }
+    }
 
     private boolean validateForm() {
         if (txtMaKH.getText().equals("")) {
@@ -304,8 +303,8 @@ public class KhachHangView extends javax.swing.JInternalFrame {
             kh.setSoDienThoai(txtSoDT.getText());
             kh.setDiaChi(txtDiaChi.getText());
             kh.setMoTa(txtGhiChu.getText());
-//            JOptionPane.showMessageDialog(this, khachHangServices.updateKH(kh));
-//            loadData();
+            JOptionPane.showMessageDialog(this, khachHangServices.updateKH(kh));
+            loadData();
             clearForm();
         }
         if (luachon == JOptionPane.NO_OPTION) {
@@ -333,24 +332,24 @@ public class KhachHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNgaySinhCaretUpdate
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-//        String ma = txtTimKiem.getText();
-//        lists = khachHangServices.searchKH(ma);
-//        String sdt = txtTimKiem.getText();
-//        lists = khachHangServices.searchSdt(sdt);
-//        DefaultTableModel tblModel = new DefaultTableModel();
-//        tblModel = (DefaultTableModel) tblKhachHang.getModel();
-//        tblModel.setRowCount(0);
-//        for (KhachHangViewModel kh : lists) {
-//            tblModel.addRow(new Object[]{
-//                kh.getMa(),
-//                kh.getHoVaTen(),
-//                kh.getGioiTinh(),
-//                kh.getNgaySinh(),
-//                kh.getSoDienThoai(),
-//                kh.getDiaChi(),
-//                kh.getMoTa()
-//            });
-//        }
+        String ma = txtTimKiem.getText();
+        lists = khachHangServices.searchKH(ma);
+        String sdt = txtTimKiem.getText();
+        lists = khachHangServices.searchSdt(sdt);
+        DefaultTableModel tblModel = new DefaultTableModel();
+        tblModel = (DefaultTableModel) tblKhachHang.getModel();
+        tblModel.setRowCount(0);
+        for (KhachHangViewModel kh : lists) {
+            tblModel.addRow(new Object[]{
+                kh.getMa(),
+                kh.getHoVaTen(),
+                kh.getGioiTinh(),
+                kh.getNgaySinh(),
+                kh.getSoDienThoai(),
+                kh.getDiaChi(),
+                kh.getMoTa()
+            });
+        }
 
     }//GEN-LAST:event_btnSearchActionPerformed
 
@@ -370,41 +369,41 @@ public class KhachHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-//           //regex matkhau ^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$
-//        if (validateForm() == true) {
-//            //validate ngaysinh
-//            Pattern p2 = Pattern.compile("^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$");//Năm bắt đầu từ 1900 đến dưới 3000-tháng từ 1 đến 12 -ngày từ 1 đến 31
-//            if (p2.matcher(txtNgaySinh.getText()).find() == false) {
-//                JOptionPane.showMessageDialog(this, "Vui lòng nhập ngày sinh hợp lệ\n Định dạng yyyy/MM/dd \n Năm(1900-2999)\n Tháng (1-12) \n Ngày (1-31)");
-//                return;
-//            }
-//               Pattern p = Pattern.compile("^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$");
-//         if(p.matcher(txtSoDT.getText()).find()==false){
-//            
-//           JOptionPane.showMessageDialog(this, "Số điện thoại phải là số và có đúng 10 chữ số \n Nếu đầu khác 0 thì còn 9 số");
-//          return;
-//         }
-//    
-//            KhachHang kh = new KhachHang();
-//            kh.setMa(txtMaKH.getText());
-//            kh.setHoVaTen(txtTen.getText());
-//            if (rdoNam.isSelected()) {
-//                kh.setGioiTinh("Nam");
-//            } else {
-//                kh.setGioiTinh("Nữ");
-//            }
-//            kh.setNgaySinh(txtNgaySinh.getText());
-//            kh.setSoDienThoai(txtSoDT.getText());
-//            kh.setDiaChi(txtDiaChi.getText());
-//            kh.setMoTa(txtGhiChu.getText());
-//            
-//            JOptionPane.showMessageDialog(this, khachHangServices.addKH(kh));
-//            loadData();
-//            
-//            clearForm();
-//        } else {
-//            return;
-//        }
+           //regex matkhau ^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$
+        if (validateForm() == true) {
+            //validate ngaysinh
+            Pattern p2 = Pattern.compile("^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$");//Năm bắt đầu từ 1900 đến dưới 3000-tháng từ 1 đến 12 -ngày từ 1 đến 31
+            if (p2.matcher(txtNgaySinh.getText()).find() == false) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập ngày sinh hợp lệ\n Định dạng yyyy/MM/dd \n Năm(1900-2999)\n Tháng (1-12) \n Ngày (1-31)");
+                return;
+            }
+               Pattern p = Pattern.compile("^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$");
+         if(p.matcher(txtSoDT.getText()).find()==false){
+            
+           JOptionPane.showMessageDialog(this, "Số điện thoại phải là số và có đúng 10 chữ số \n Nếu đầu khác 0 thì còn 9 số");
+          return;
+         }
+    
+            KhachHang kh = new KhachHang();
+            kh.setMa(txtMaKH.getText());
+            kh.setHoVaTen(txtTen.getText());
+            if (rdoNam.isSelected()) {
+                kh.setGioiTinh("Nam");
+            } else {
+                kh.setGioiTinh("Nữ");
+            }
+            kh.setNgaySinh(txtNgaySinh.getText());
+            kh.setSoDienThoai(txtSoDT.getText());
+            kh.setDiaChi(txtDiaChi.getText());
+            kh.setMoTa(txtGhiChu.getText());
+            
+            JOptionPane.showMessageDialog(this, khachHangServices.addKH(kh));
+            loadData();
+            
+            clearForm();
+        } else {
+            return;
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void txtSoDTCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSoDTCaretUpdate

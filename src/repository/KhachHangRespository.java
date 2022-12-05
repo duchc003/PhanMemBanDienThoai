@@ -40,6 +40,13 @@ public class KhachHangRespository {
         return row;
     }
 
+    public int addKhachHangGiao(KhachHangViewModel kh) {
+        int row = 0;
+        String sql = "INSERT INTO [dbo].[KhachHang]([HoVaTen],[SoDienThoai],[DiaChi]) VALUES (?,?,?)";
+        row = JDBCHelper.executeUpdate(sql, kh.getHoVaTen(), kh.getSoDienThoai(), kh.getDiaChi());
+        return row;
+    }
+
     public int deleteKH(String ma) {
         int row = 0;
         String sql = "DELETE KHACHHANG WHERE MaKH = ?";
@@ -82,7 +89,24 @@ public class KhachHangRespository {
         }
         return khachHangViewModels;
     }
+
+    public List<KhachHangViewModel> id(String ma) {
+        List<KhachHangViewModel> khachHangViewModels = new ArrayList<>();
+        String sql = " SELECT [ID]\n"
+                + "  FROM [dbo].[KhachHang]\n"
+                + "  where HoVaTen = ?";
+        ResultSet rs = JDBCHelper.executeQuery(sql, ma);
+        try {
+            while (rs.next()) {
+                khachHangViewModels.add(new KhachHangViewModel(rs.getInt(1)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangRespository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return khachHangViewModels;
+    }
+
     public static void main(String[] args) {
-        System.out.println(new KhachHangRespository().getAll());
+        System.out.println(new KhachHangRespository().id("KH01"));
     }
 }

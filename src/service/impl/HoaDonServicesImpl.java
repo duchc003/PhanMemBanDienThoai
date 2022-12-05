@@ -10,6 +10,7 @@ import model.HoaDonCT;
 import repository.HoaDonRespository;
 import service.HoaDonServices;
 import viewmodel.HoaDonViewModel;
+import viewmodel.hoaDonViewModelHUY;
 
 /**
  *
@@ -114,6 +115,36 @@ public class HoaDonServicesImpl implements HoaDonServices {
         } else {
             return "Thất Bại";
         }
+    }
+
+    @Override
+    public String updateHoaDonThanhToan(HoaDonViewModel hd, int id) {
+        boolean update = hoaDonRespository.updateHoaDonThanhToan(hd, id);
+        if (update) {
+            return "Thanh Toán Thành Công";
+        } else {
+            return "Thanh Toán Thất Bại";
+        }
+    }
+
+    @Override
+    public String updateHoaDonCTThanhToan(HoaDon hd, int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String updateHoaDonGiaoHang(HoaDonViewModel hd, int id) {
+        boolean update = hoaDonRespository.updateHoaDonGiao(hd, id);
+        if (update) {
+            return "Thanh Toán Thành Công";
+        } else {
+            return "Thanh Toán Thất Bại";
+        }
+    }
+
+    @Override
+    public List<hoaDonViewModelHUY> getALlhoaDonID() {
+        return hoaDonRespository.getAllHoaDonID();
     }
 
 }

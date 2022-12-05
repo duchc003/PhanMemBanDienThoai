@@ -4,14 +4,18 @@
  */
 package repository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import util.ConnectDB;
 import util.JDBCHelper;
 import viewmodel.HoaDonViewModel;
+import viewmodel.KhuyenMaiBanHang;
 import viewmodel.hoaDonViewModelHUY;
 
 /**
@@ -167,4 +171,35 @@ public class hoaDonViewModelRepositoryHUY {
         return listtimKiem;
     }
 
+    public hoaDonViewModelHUY select(int ma) {
+        String query = "SELECT dbo.HoaDon.MaHD, dbo.NhanVien.HoVaTen, dbo.KhachHang.HoVaTen AS Expr1, dbo.HoaDonChiTiet.SoLuong, dbo.HoaDon.TongTien, dbo.HinhThucThanhToan.TenHTTT, dbo.HinhThucGiaoHang.TenHTGH, dbo.HoaDon.TrangThai\n"
+                + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
+                + "                  dbo.HinhThucThanhToan ON dbo.HinhThucGiaoHang.ID = dbo.HinhThucThanhToan.ID INNER JOIN\n"
+                + "                  dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH AND dbo.HinhThucThanhToan.ID = dbo.HoaDon.IDHinhTTT INNER JOIN\n"
+                + "                  dbo.HoaDonChiTiet ON dbo.HoaDon.ID = dbo.HoaDonChiTiet.IDHoaDon INNER JOIN\n"
+                + "                  dbo.KhachHang ON dbo.HoaDon.IDKhachHang = dbo.KhachHang.ID INNER JOIN\n"
+                + "                  dbo.NhanVien ON dbo.HoaDon.IDNhanVien = dbo.NhanVien.ID\n"
+                + "				  where dbo.HoaDon.ID = ?";
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, ma);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new hoaDonViewModelHUY(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getLong(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static void main(String[] args) {
+        System.out.println(new hoaDonViewModelRepositoryHUY().select(1));
+    }
 }

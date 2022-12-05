@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class KhachHangViewModel {
 
+    private int id;
     private String ma;
     private String hoVaTen;
     private String soDienThoai;
@@ -32,6 +33,18 @@ public class KhachHangViewModel {
         this.diaChi = diaChi;
         this.gioiTinh = gioiTinh;
         this.moTa = moTa;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public KhachHangViewModel(int id) {
+        this.id = id;
     }
 
     public String getMa() {
@@ -89,10 +102,10 @@ public class KhachHangViewModel {
     public void setMoTa(String moTa) {
         this.moTa = moTa;
     }
-    
-    public Object[]toDataRow(){
-    return new Object[]{
-        ma, hoVaTen ,soDienThoai, diaChi, gioiTinh, moTa
-    };
-}
+
+    public Object[] toDataRow() {
+        return new Object[]{
+            ma, hoVaTen, soDienThoai, diaChi, gioiTinh, moTa
+        };
+    }
 }

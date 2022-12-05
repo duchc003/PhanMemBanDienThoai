@@ -5,9 +5,14 @@ public class HoaDonViewModel {
     private int id;
     private String maHdString;
     private String ngayTao;
+    private String ngayThanhToan;
     private long tienKhachCanTra;
     private long tongTien;
     private String trangThai;
+    private String mota;
+    private String ngayGiaohang;
+    private int getIDKhachHang;
+    private String sdt;
 
     public HoaDonViewModel() {
     }
@@ -19,6 +24,46 @@ public class HoaDonViewModel {
         this.tienKhachCanTra = tienKhachCanTra;
         this.tongTien = tongTien;
         this.trangThai = trangThai;
+    }
+
+    public String getNgayGiaohang() {
+        return ngayGiaohang;
+    }
+
+    public void setNgayGiaohang(String ngayGiaohang) {
+        this.ngayGiaohang = ngayGiaohang;
+    }
+
+    public int getGetIDKhachHang() {
+        return getIDKhachHang;
+    }
+
+    public void setGetIDKhachHang(int getIDKhachHang) {
+        this.getIDKhachHang = getIDKhachHang;
+    }
+
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
+    public String getMota() {
+        return mota;
+    }
+
+    public void setMota(String mota) {
+        this.mota = mota;
+    }
+
+    public String getNgayThanhToan() {
+        return ngayThanhToan;
+    }
+
+    public void setNgayThanhToan(String ngayThanhToan) {
+        this.ngayThanhToan = ngayThanhToan;
     }
 
     public HoaDonViewModel(int id, String maHdString, String ngayTao, String trangThai) {

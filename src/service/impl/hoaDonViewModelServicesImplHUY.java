@@ -13,8 +13,9 @@ import viewmodel.hoaDonViewModelHUY;
  *
  * @author Banh Chung Ran
  */
-public class hoaDonViewModelServicesImplHUY implements hoaDonViewModelServicesHUY{
-    private  hoaDonViewModelRepositoryHUY hoaDonViewModelRepositoryHUY = new hoaDonViewModelRepositoryHUY();
+public class hoaDonViewModelServicesImplHUY implements hoaDonViewModelServicesHUY {
+
+    private hoaDonViewModelRepositoryHUY hoaDonViewModelRepositoryHUY = new hoaDonViewModelRepositoryHUY();
 
     @Override
     public List<hoaDonViewModelHUY> getAllhoaDonViewModelHUY() {
@@ -23,7 +24,7 @@ public class hoaDonViewModelServicesImplHUY implements hoaDonViewModelServicesHU
 
     @Override
     public List<hoaDonViewModelHUY> timKiemHoaDonViewModelHUY(String maHD) {
-       return hoaDonViewModelRepositoryHUY.timKiemHoaDonViewModel(maHD);
+        return hoaDonViewModelRepositoryHUY.timKiemHoaDonViewModel(maHD);
     }
 
     @Override
@@ -34,12 +35,17 @@ public class hoaDonViewModelServicesImplHUY implements hoaDonViewModelServicesHU
     @Override
     public List<hoaDonViewModelHUY> timKiemCombobox1(String TenHTTT) {
         return hoaDonViewModelRepositoryHUY.timKiemCombobox1(TenHTTT);
-        
+
     }
 
     @Override
     public List<hoaDonViewModelHUY> timKiemCombobox2(String TenHTGH) {
         return hoaDonViewModelRepositoryHUY.timKiemCombobox2(TenHTGH);
     }
-   
+
+    @Override
+    public hoaDonViewModelHUY timhoaDon(int TenHTGH) {
+        return hoaDonViewModelRepositoryHUY.select(TenHTGH);
+    }
+
 }

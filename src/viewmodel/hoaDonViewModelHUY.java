@@ -9,6 +9,8 @@ package viewmodel;
  * @author Banh Chung Ran
  */
 public class hoaDonViewModelHUY {
+    
+    private  int id;
     private String maHD;
     private String hoVaTen;
     private String tenKhachHang;
@@ -30,6 +32,18 @@ public class hoaDonViewModelHUY {
         this.tenHTTT = tenHTTT;
         this.tenHTGH = tenHTGH;
         this.trangThai = trangThai;
+    }
+
+    public hoaDonViewModelHUY(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMaHD() {

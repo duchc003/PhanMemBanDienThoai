@@ -22,4 +22,6 @@ public interface hoaDonViewModelServicesHUY {
     List<hoaDonViewModelHUY> timKiemCombobox1(String TenHTTT);
     
     List<hoaDonViewModelHUY> timKiemCombobox2(String TenHTGH);
+    
+    hoaDonViewModelHUY timhoaDon(int TenHTGH);
 }
