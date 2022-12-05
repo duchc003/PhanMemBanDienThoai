@@ -67,6 +67,7 @@ import java.awt.FlowLayout;
 
 public class BanHangView extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel tblModel = new DefaultTableModel();
     private final Dimension ds = new Dimension(250, 150);
     private final Dimension cs = WebcamResolution.VGA.getSize();
     private final Webcam wCam = Webcam.getDefault();
@@ -139,6 +140,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         loadTableHoaDon(hd);
     }
     int row = 0;
+
     private void initWebcam() {
         Thread t = new Thread() {
             @Override
@@ -149,6 +151,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         t.setDaemon(true);
         t.start();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -184,7 +187,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtMoTa = new javax.swing.JTextArea();
         jLabel14 = new javax.swing.JLabel();
         btnHuyDon = new javax.swing.JButton();
         cbbHTTT = new javax.swing.JComboBox<>();
@@ -420,9 +423,9 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Tiền Thừa");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane4.setViewportView(jTextArea1);
+        txtMoTa.setColumns(20);
+        txtMoTa.setRows(5);
+        jScrollPane4.setViewportView(txtMoTa);
 
         jLabel14.setText("Ghi Chú");
 
@@ -766,7 +769,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
         jPanel7.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 236, 210, 90));
 
-        lblHoaDonGiao.setText("jLabel24");
+        lblHoaDonGiao.setText("null");
         jPanel7.add(lblHoaDonGiao, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 100, -1));
 
         lblGiamGiaGiao.setText("0");
@@ -1019,8 +1022,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
                     } else {
                         txtTienKhachDua.setBackground(Color.white);
                         MsgBox.alert(this, hoaDonServices.updateHoaDonThanhToan(hoaDon, hoaDon.getId()));
-                        List<HoaDonViewModel> hd = hoaDonServices.getALlhoaDon();
-                        loadTableHoaDon(hd);
+                        lamMoi();
                     }
                 }
             }
@@ -1028,7 +1030,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
             e.printStackTrace();
             MsgBox.alert(this, "Thanh toán thất bại");
         }
-//        xuatHoaDon();
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void btnHoaDonShipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonShipActionPerformed
@@ -1079,7 +1080,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
                 if (MsgBox.confirm(this, "Bạn chắc chắn muốn thanh toán hóa đơn này chứ?")) {
                     MsgBox.alert(this, hoaDonServices.updateHoaDonGiaoHang(hoaDon, hoaDon.getId()));
-                    loadTableHoaDon(hd);
+                    lamMoi();
                 }
             }
         } catch (Exception e) {
@@ -1149,7 +1150,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel lblCamera;
     private javax.swing.JLabel lblGiamGia;
     private javax.swing.JLabel lblGiamGiaGiao;
@@ -1169,6 +1169,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblSanPham;
     private javax.swing.JTextArea txtDiaChi;
     private javax.swing.JTextArea txtGhiChu;
+    private javax.swing.JTextArea txtMoTa;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTenKh;
     private javax.swing.JTextField txtTienKhachDua;
@@ -1233,7 +1234,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }
 
     private void loadGioHang() {
-        DefaultTableModel tblModel = new DefaultTableModel();
+        
         tblModel = (DefaultTableModel) tblGioHang.getModel();
         tblModel.setRowCount(0);
         List<GioHangViewModel> gh = gioHangViewModels;
@@ -1420,6 +1421,27 @@ public class BanHangView extends javax.swing.JInternalFrame {
         long giamGiaGiaohang = util.XMoney.loaiBoDauCham(lblGiamGiaGiao.getText().trim());
         long tienKhachCanTraGiao = thanhToanGiaohang - giamGiaGiaohang;
         lblTongTienCanTra.setText(util.XMoney.themDauCham(tienKhachCanTraGiao));
+    }
+    
+    public void lamMoi() {
+        tblModel3.setRowCount(0);
+        lblMaHoaDon.setText("null");
+        lblTongTien.setText("0");
+        lblGiamGia.setText("0");
+        lblTienKhachCanTra.setText("0");
+        txtTienKhachDua.setText("0");
+        lblMaKh.setText("");
+        lblTenKh.setText("");
+        lblTienThua.setText("");
+        txtMoTa.setText("");
+        tblModel.setRowCount(0);
+        txtTenKh.setText("");
+        txtSDT.setText("");
+        txtDiaChi.setText("");
+        lblTongTienGiao.setText("0");
+        lblGiamGiaGiao.setText("0");
+        lblTienKhachCanTra.setText("0");
+        txtGhiChu.setText("");
     }
 
 //    public void xuatHoaDon() {
