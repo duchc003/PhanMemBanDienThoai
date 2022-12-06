@@ -861,39 +861,10 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        int row = tblGioHang.getSelectedRow();
-        String soluong = JOptionPane.showInputDialog("Nhập số lượng", "0");
-        if (Integer.parseInt(soluong) > Integer.parseInt(tblGioHang.getValueAt(row, 3).toString())) {
-            JOptionPane.showMessageDialog(this, "Bạn đã nhập quá số lượng\n Vui lòng nhập lại");
-            return;
-        }
-        tblSanPham.setValueAt(Integer.parseInt(tblSanPham.getValueAt(row, 3).toString()) + Integer.parseInt(soluong), row, 3);
-
-        if (Integer.parseInt(tblGioHang.getValueAt(row, 3).toString()) == Integer.parseInt(soluong)) {
-            gioHangViewModels.remove(row);
-
+        int choice = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa tất cả sản phẩm không ?");
+        if (choice == JOptionPane.YES_OPTION) {
+            gioHangViewModels.removeAll(gioHangViewModels);
             loadGioHang();
-
-        } else {
-            //  tblGioHang.setValueAt(Integer.parseInt(tblGioHang.getValueAt(row, 3).toString()) - Integer.parseInt(soluong), row, 3);
-            //
-            String ma = tblSanPham.getValueAt(row, 1).toString();
-            String ten = tblSanPham.getValueAt(row, 2).toString();
-            long dongia = Long.parseLong(tblSanPham.getValueAt(row, 5).toString());
-
-            GioHangViewModel gh = new GioHangViewModel();
-            gh.setMa(ma);
-            gh.setTen(ten);
-            gh.setDonGia(dongia);
-            gh.setSoLuong(Integer.parseInt(tblGioHang.getValueAt(row, 3).toString()) - Integer.parseInt(soluong));
-
-            gioHangViewModels.set(row, gh);
-            loadGioHang();
-            //
-            loadTien();
-        }
-        if (tblGioHang.getRowCount() <= 0) {
-            lblTongTien.setText("");
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -1104,7 +1075,39 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnGiaoHangActionPerformed
 
     private void btnXoa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa1ActionPerformed
-        // TODO add your handling code here:
+        int row = tblGioHang.getSelectedRow();
+        String soluong = JOptionPane.showInputDialog("Nhập số lượng", "0");
+        if (Integer.parseInt(soluong) > Integer.parseInt(tblGioHang.getValueAt(row, 2).toString())) {
+            JOptionPane.showMessageDialog(this, "Bạn đã nhập quá số lượng\n Vui lòng nhập lại");
+            return;
+        }
+
+        if (Integer.parseInt(tblGioHang.getValueAt(row, 2).toString()) == Integer.parseInt(soluong)) {
+            gioHangViewModels.remove(row);
+
+            loadGioHang();
+
+        } else {
+
+            String ma = tblSanPham.getValueAt(row, 0).toString();
+            String ten = tblSanPham.getValueAt(row, 1).toString();
+            long dongia = Long.parseLong(tblSanPham.getValueAt(row, 4).toString());
+
+            GioHangViewModel gh = new GioHangViewModel();
+            gh.setMa(ma);
+            gh.setTen(ten);
+            gh.setDonGia(dongia);
+            gh.setSoLuong(Integer.parseInt(tblGioHang.getValueAt(row, 2).toString()) - Integer.parseInt(soluong));
+
+            gioHangViewModels.set(row, gh);
+            loadGioHang();
+            //
+            loadTien();
+        }
+        if (tblGioHang.getRowCount() <= 0) {
+            lblTongTien.setText("");
+        }
+        System.out.println(gioHangViewModels.get(0).toInt());
     }//GEN-LAST:event_btnXoa1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

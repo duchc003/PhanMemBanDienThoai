@@ -22,7 +22,8 @@ public class hoaDonViewModelHUY {
     public hoaDonViewModelHUY() {
     }
 
-    public hoaDonViewModelHUY(String maHD, String hoVaTen, String tenKhachHang, long tongTien, String tenHTTT, String tenHTGH, String trangThai) {
+    public hoaDonViewModelHUY(int id, String maHD, String hoVaTen, String tenKhachHang, long tongTien, String tenHTTT, String tenHTGH, String trangThai) {
+        this.id = id;
         this.maHD = maHD;
         this.hoVaTen = hoVaTen;
         this.tenKhachHang = tenKhachHang;

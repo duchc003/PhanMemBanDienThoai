@@ -68,4 +68,8 @@ public class GioHangViewModel {
     public Object[] toDataRow() {
         return new Object[]{ma,ten,soLuong,donGia,thanhTien};
     }
+    
+    public int toInt(){
+       return soLuong;
+   }
 }
