@@ -1399,7 +1399,11 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }
 
     public void lamMoi() {
+<<<<<<< HEAD
+        tblModel2.setRowCount(0);
+=======
         dtbHoaDon.setRowCount(0);
+>>>>>>> bfa7bfa0d4963b72b3f62761009c0a3cbc1db157
         lblMaHoaDon.setText("null");
         lblTongTien.setText("0");
         lblGiamGia.setText("0");
