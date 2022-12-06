@@ -938,11 +938,11 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTienKhachDuaCaretUpdate
 
     private void btnHuyDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyDonActionPerformed
-        List<HoaDonViewModel> hds = hoaDonServices.getALlhoaDon();
-        int index = tblHoaDon.getSelectedRow();
-        HoaDonViewModel hoaDon = hds.get(index);
-        JOptionPane.showMessageDialog(this, hoaDonServices.huyDon(hoaDon.getId()));
         List<HoaDonViewModel> hd = hoaDonServices.getALlhoaDon();
+        int index = hd.get(tblHoaDon.getSelectedRow()).getId();
+        String mota = JOptionPane.showInputDialog("Lý do hủy");
+        JOptionPane.showMessageDialog(this, hoaDonServices.huyDon(index, mota));
+        hd = hoaDonServices.getALlhoaDon();
         loadTableHoaDon(hd);
     }//GEN-LAST:event_btnHuyDonActionPerformed
 
@@ -951,8 +951,14 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int id = list.get(tblHoaDon.getSelectedRow()).getId();
-        JOptionPane.showMessageDialog(this, hoaDonServices.huyDonShip(id));
+//        int id = list.get(tblHoaDon.getSelectedRow()).getId();
+//        JOptionPane.showMessageDialog(this, hoaDonServices.huyDonShip(id));
+        List<HoaDonViewModel> hd = hoaDonServices.getALlhoaDon();
+        int index = hd.get(tblHoaDon.getSelectedRow()).getId();
+        String mota = JOptionPane.showInputDialog("Lý do hủy");
+        JOptionPane.showMessageDialog(this, hoaDonServices.huyDonShip(index, mota));
+        hd = hoaDonServices.getALlhoaDon();
+        loadTableHoaDon(hd);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnChonKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonKhachActionPerformed

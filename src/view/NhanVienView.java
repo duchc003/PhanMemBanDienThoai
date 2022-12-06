@@ -133,6 +133,54 @@ public class NhanVienView extends javax.swing.JInternalFrame {
         return new NhanVienViewmodel(maNv, hoVaTen, diaChi, gioiTinh, SDT, email, vaiTro, trangThai);
     }
     
+    private NhanVienViewmodel sua() {
+        String maNv = txtMaNV.getText();
+        if (maNv.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Mã nhân viên đang trống!");
+            return null;
+        }
+        String hoVaTen = txtHoVaTen.getText();
+        if (hoVaTen.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Họ và Tên đang trống!");
+            return null;
+        }
+        String diaChi = txtDiaChi.getText();
+        if (diaChi.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Địa chỉ đang trống!");
+            return null;
+        }
+        String sdt = txtSDT.getText();
+        if (sdt.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "SĐT đang trống!");
+            return null;
+        }
+        
+        String email = txtEmail.getText();
+        if (email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Email đang trống!");
+            return null;
+        }
+        String gioiTinh;
+        if (rdoNam.isSelected()) {
+            gioiTinh = "Nam";
+        } else {
+            gioiTinh = "Nữ";
+        }
+        String SDT = txtSDT.getText();
+        boolean vaiTro;
+        if (cbbVaiTro.getSelectedIndex()== 0) {
+            vaiTro = false;
+        }else{
+            vaiTro = true;
+        }
+        int trangThai;
+        if (rdoHoatDong.isSelected()) {
+            trangThai = 1;
+        }else{
+            trangThai = 0;
+        }
+        return new NhanVienViewmodel(maNv, hoVaTen, diaChi, gioiTinh, SDT, email, vaiTro, trangThai);
+    }
     private void clear(){
         txtSearch.setText("");
         txtMaNV.setText("");
@@ -450,7 +498,7 @@ public class NhanVienView extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String maNV = txtMaNV.getText();
-        JOptionPane.showMessageDialog(this, nvs.sua(maNV, add()));
+        JOptionPane.showMessageDialog(this, nvs.sua(maNV, sua()));
         lists = nvs.getAll();
         hienThiTable(lists); 
     }//GEN-LAST:event_jButton3ActionPerformed

@@ -32,8 +32,8 @@ public class HoaDonServicesImpl implements HoaDonServices {
     }
 
     @Override
-    public String huyDon(int id) {
-        boolean huyDon = hoaDonRespository.huyDon(id);
+    public String huyDon(int id, String moTa) {
+        boolean huyDon = hoaDonRespository.huyDon(id, moTa);
         if (huyDon) {
             return "Đã hủy";
         } else {
@@ -42,8 +42,8 @@ public class HoaDonServicesImpl implements HoaDonServices {
     }
 
     @Override
-    public String huyDonShip(int id) {
-        boolean huyDonShip = hoaDonRespository.huyDonShip(id);
+    public String huyDonShip(int id, String moTa) {
+        boolean huyDonShip = hoaDonRespository.huyDonShip(id, moTa);
         if (huyDonShip) {
             return "Đã hủy";
         } else {

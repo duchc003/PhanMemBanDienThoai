@@ -47,13 +47,16 @@ public class HoaDonRespository {
         return row;
     }
 
-    public boolean huyDon(int id) {
+    public boolean huyDon(int id, String moTa) {
         String query = "UPDATE [dbo].[HoaDon]\n"
-                + "   SET [TrangThai] = N'Đã Hủy'\n"
+                + "   SET \n"
+                + "      [TrangThai] = N'Đã hủy'\n"
+                + "      ,[Mota] = ?\n"
                 + " WHERE ID = ?";
         int check = 0;
-        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
-            ps.setObject(1, id);
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, moTa);
+            ps.setObject(2, id);
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,13 +64,15 @@ public class HoaDonRespository {
         return check > 0;
     }
 
-    public boolean huyDonShip(int id) {
+    public boolean huyDonShip(int id, String moTa) {
         String query = "UPDATE [dbo].[HoaDon]\n"
                 + "   SET [TrangThai] = N'Đã Hủy Đơn Giao'\n"
+                 + "      ,[Mota] = ?\n"
                 + " WHERE ID = ?";
         int check = 0;
-        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
-            ps.setObject(1, id);
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, moTa);
+            ps.setObject(2, id);
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,7 +104,7 @@ public class HoaDonRespository {
         String sql = "SELECT [ID]\n"
                 + "  FROM [dbo].[SanPham]\n"
                 + "  where MaSP = ?";
-        ResultSet rs = JDBCHelper.executeQuery(sql,ma);
+        ResultSet rs = JDBCHelper.executeQuery(sql, ma);
         try {
             if (rs.next()) {
                 return new HoaDonCT(
@@ -132,7 +137,7 @@ public class HoaDonRespository {
                 + "   SET [IDNhanVien] = ?\n"
                 + " WHERE ID = ?";
         int check = 0;
-        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, hd.getIdNhanVien());
             ps.setObject(2, id);
             check = ps.executeUpdate();
@@ -153,7 +158,7 @@ public class HoaDonRespository {
                 + "      ,[TrangThai] = ?\n"
                 + " WHERE ID = ?";
         int check = 0;
-        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, hd.getGetIDKhachHang());
             ps.setObject(2, hd.getMaHdString());
             ps.setObject(3, hd.getNgayGiaohang());
@@ -174,7 +179,7 @@ public class HoaDonRespository {
                 + "   SET [IDKhachHang] = ?\n"
                 + " WHERE ID = ?";
         int check = 0;
-        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, hd.getIdKhachHang());
             ps.setObject(2, id);
             check = ps.executeUpdate();
@@ -187,7 +192,7 @@ public class HoaDonRespository {
     public boolean updateIDHTTT(HoaDon hd, int id) {
         String query = "UPDATE [dbo].[HoaDon] SET [IDHinhTTT] = ? WHERE ID = ?";
         int check = 0;
-        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, hd.getIdHinhThucTT());
             ps.setObject(2, id);
             check = ps.executeUpdate();
@@ -200,7 +205,7 @@ public class HoaDonRespository {
     public boolean updateIDHTGH(HoaDon hd, int id) {
         String query = "UPDATE [dbo].[HoaDon] SET [IDHinhTGH] = ? WHERE ID = ?";
         int check = 0;
-        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, hd.getIdHinhThucGH());
             ps.setObject(2, id);
             check = ps.executeUpdate();
@@ -216,7 +221,7 @@ public class HoaDonRespository {
                 + "      ,[TongTien] = ?\n"
                 + " WHERE ID = ?";
         int check = 0;
-        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, hd.getTienKhachCanTra());
             ps.setObject(2, hd.getTongTien());
             ps.setObject(3, id);
@@ -237,7 +242,7 @@ public class HoaDonRespository {
                 + "      ,[Mota] = ?\n"
                 + " WHERE ID = ?";
         int check = 0;
-        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, hd.getMaHdString());
             ps.setObject(2, hd.getNgayThanhToan());
             ps.setObject(3, hd.getTienKhachCanTra());
@@ -253,6 +258,6 @@ public class HoaDonRespository {
     }
 
     public static void main(String[] args) {
-        System.out.println(new HoaDonRespository().getIdSp("SP01"));
+        System.out.println(new HoaDonRespository().huyDon(8, "Lỗi"));
     }
 }

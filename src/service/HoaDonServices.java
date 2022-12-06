@@ -20,9 +20,9 @@ public interface HoaDonServices {
 
     String addHoaDonCT(HoaDonCT hoaDon);
 
-    String huyDon(int id);
+    String huyDon(int id, String moTa);
 
-    String huyDonShip(int id);
+    String huyDonShip(int id, String moTa);
 
     List<HoaDonViewModel> getALlhoaDon();
     
