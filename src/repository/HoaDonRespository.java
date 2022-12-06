@@ -35,10 +35,15 @@ public class HoaDonRespository {
     public int addHoaDonCT(HoaDonCT hoaDon) {
         int row = 0;
         String sql = "INSERT INTO [dbo].[HoaDonChiTiet]\n"
-                + "           ([IDHoaDon])\n"
+                + "           ([IDSP]\n"
+                + "           ,[IDHoaDon]\n"
+                + "           ,[SoLuong]\n"
+                + "           ,[TienThua]\n"
+                + "           ,[DonGia]\n"
+                + "           ,[TienGiamGia])\n"
                 + "     VALUES\n"
-                + "           (?)";
-        row = JDBCHelper.executeUpdate(sql, hoaDon.getIdHoaDon());
+                + "           (?,?,?,?,?,?)";
+        row = JDBCHelper.executeUpdate(sql, hoaDon.getIdSP(), hoaDon.getIdHoaDon(), hoaDon.getSoLuong(), hoaDon.getTienThua(), hoaDon.getDonGia(), hoaDon.getTienGiamGia());
         return row;
     }
 
@@ -88,8 +93,25 @@ public class HoaDonRespository {
         }
         return listHD;
     }
-    
-     public List<hoaDonViewModelHUY> getAllHoaDonID() {
+
+    public HoaDonCT getIdSp(String ma) {
+        List<HoaDonCT> listHD = new ArrayList<>();
+        String sql = "SELECT [ID]\n"
+                + "  FROM [dbo].[SanPham]\n"
+                + "  where MaSP = ?";
+        ResultSet rs = JDBCHelper.executeQuery(sql,ma);
+        try {
+            if (rs.next()) {
+                return new HoaDonCT(
+                        rs.getInt(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public List<hoaDonViewModelHUY> getAllHoaDonID() {
         List<hoaDonViewModelHUY> listHD = new ArrayList<>();
         String sql = "SELECT id,MaHD, NgayTao, TrangThai\n"
                 + " FROM     dbo.HoaDon where trangthai = N'Chờ Thanh Toán' or trangthai = N'Chờ Giao Hàng' or trangthai = N'Đang Giao Hàng'";
@@ -230,25 +252,7 @@ public class HoaDonRespository {
         return check > 0;
     }
 
-    public boolean updateHoaDonCTThanhToan(HoaDon hd, int id) {
-        String query = "";
-        int check = 0;
-        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
-            ps.setObject(1, hd.getMaHD());
-            ps.setObject(2, hd.getNgayThanhToan());
-            ps.setObject(3, hd.getTienKhachCanTra());
-            ps.setObject(4, hd.getTongTien());
-            ps.setObject(5, hd.getTrangThai());
-            ps.setObject(6, hd.getMoTa());
-            ps.setObject(7, id);
-            check = ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return check > 0;
-    }
-
     public static void main(String[] args) {
-        System.out.println(new HoaDonRespository().getAllHoaDon().toString());
+        System.out.println(new HoaDonRespository().getIdSp("SP01"));
     }
 }

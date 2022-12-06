@@ -22,12 +22,13 @@ public class NhaCungCapRepository {
         String query = "SELECT [ID]\n"
                 + "      ,[MaNCC]\n"
                 + "      ,[TenNCC]\n"
+                + "      ,[SDT]\n"
                 + "  FROM [dbo].[NhaCungCap]";
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ResultSet rs = ps.executeQuery();
             List<NhaCungCapViewModel> list = new ArrayList<>();
             while (rs.next()) {
-                list.add(new NhaCungCapViewModel(rs.getInt(1), rs.getString(2), rs.getString(3)));
+                list.add(new NhaCungCapViewModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
             }
             return list;
         } catch (Exception e) {
@@ -39,11 +40,12 @@ public class NhaCungCapRepository {
     public boolean add(NhaCungCapViewModel ncc) {
         String query = "INSERT INTO [dbo].[NhaCungCap]\n"
                 + "           ([MaNCC]\n"
-                + "           ,[TenNCC])\n"
+                + "           ,[TenNCC]\n"
+                + "           ,[SDT])\n"
                 + "     VALUES\n"
-                + "           (?,?)";
+                + "           (?,?,?)";
         int check = 0;
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, ncc.getMa());
             ps.setObject(2, ncc.getTen());
             check = ps.executeUpdate();
@@ -57,12 +59,14 @@ public class NhaCungCapRepository {
         String query = "UPDATE [dbo].[NhaCungCap]\n"
                 + "   SET [MaNCC] = ?\n"
                 + "      ,[TenNCC] = ?\n"
+                + "      ,[SDT] = ?\n"
                 + " WHERE ID = ?";
         int check = 0;
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, ncc.getMa());
             ps.setObject(2, ncc.getTen());
-            ps.setObject(3, id);
+            ps.setObject(3, ncc.getSdt());
+            ps.setObject(4, id);
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

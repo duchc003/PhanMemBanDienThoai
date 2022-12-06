@@ -147,4 +147,9 @@ public class HoaDonServicesImpl implements HoaDonServices {
         return hoaDonRespository.getAllHoaDonID();
     }
 
+    @Override
+    public HoaDonCT getIDSP(String ma) {
+        return hoaDonRespository.getIdSp(ma);
+    }
+
 }

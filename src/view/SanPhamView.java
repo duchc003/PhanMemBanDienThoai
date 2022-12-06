@@ -222,7 +222,8 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     public NhaCungCapViewModel addNcc() {
         String ma = txtMaNhaCungCap.getText();
         String ten = txtTenNhaCungCap.getText();
-        NhaCungCapViewModel ncc = new NhaCungCapViewModel(ma, ten);
+        String sdt = txtSDT.getText();
+        NhaCungCapViewModel ncc = new NhaCungCapViewModel(ma, ten,sdt);
         return ncc;
     }
 
@@ -360,7 +361,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         tblNhaCungCap = new javax.swing.JTable();
         jButton16 = new javax.swing.JButton();
         jLabel31 = new javax.swing.JLabel();
-        txtTenNhaCungCap1 = new javax.swing.JTextField();
+        txtSDT = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         txtID = new javax.swing.JTextField();
         cbbNCC = new javax.swing.JComboBox<>();
@@ -416,6 +417,8 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(1370, 800));
+
+        txtIDSanPHam.setEnabled(false);
 
         jLabel1.setText("Id Sản phẩm");
 
@@ -563,6 +566,8 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(0, 204, 255));
 
         jPanel9.setBackground(new java.awt.Color(0, 204, 255));
+
+        txtIdHangSp.setEnabled(false);
 
         jLabel7.setText("Id Hãng Sản phẩm");
 
@@ -717,6 +722,8 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
         jPanel16.setBackground(new java.awt.Color(0, 204, 255));
 
+        txtIdNhaCungCap.setEnabled(false);
+
         jLabel13.setText("Id nhà cung cấp");
 
         jLabel14.setText("Mã nhà cung cấp");
@@ -811,7 +818,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel31))
                         .addGap(80, 80, 80)
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTenNhaCungCap1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTenNhaCungCap, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel16Layout.createSequentialGroup()
                                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -850,7 +857,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                 .addGap(11, 11, 11)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
-                    .addComponent(txtTenNhaCungCap1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(86, 86, 86)
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(91, Short.MAX_VALUE))
@@ -912,6 +919,8 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         jTabbedPane1.addTab("Nhà Cung Cấp", jPanel5);
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));
+
+        txtID.setEnabled(false);
 
         jLabel17.setText("ID");
 
@@ -1300,7 +1309,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Sản Phẩm Hết Hàng", jPanel7);
 
-        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 810));
+        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1370, 810));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1551,11 +1560,11 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea txtMMoTa;
     private javax.swing.JTextField txtMaHangSp;
     private javax.swing.JTextField txtMaNhaCungCap;
+    private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtSOLuong;
     private javax.swing.JTextField txtTENSANPHAM;
     private javax.swing.JTextField txtTenHangSp;
     private javax.swing.JTextField txtTenNhaCungCap;
-    private javax.swing.JTextField txtTenNhaCungCap1;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 

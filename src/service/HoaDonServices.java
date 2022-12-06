@@ -26,6 +26,8 @@ public interface HoaDonServices {
 
     List<HoaDonViewModel> getALlhoaDon();
     
+    HoaDonCT getIDSP(String ma);
+    
     List<hoaDonViewModelHUY> getALlhoaDonID();
 
     String updateIDNhanVien(HoaDon hd, int id);

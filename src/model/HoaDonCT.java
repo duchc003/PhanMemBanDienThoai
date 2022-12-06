@@ -9,19 +9,19 @@ package model;
  * @author ASUS
  */
 public class HoaDonCT {
-    
+
     private int id;
     private int idSP;
     private int idHoaDon;
     private int soLuong;
-    private float tienThua;
-    private float donGia;
-    private float tienGiamGia;
+    private long tienThua;
+    private long donGia;
+    private long tienGiamGia;
 
     public HoaDonCT() {
     }
 
-    public HoaDonCT(int id, int idSP, int idHoaDon, int soLuong, float tienThua, float donGia, float tienGiamGia) {
+    public HoaDonCT(int id, int idSP, int idHoaDon, int soLuong, long tienThua, long donGia, long tienGiamGia) {
         this.id = id;
         this.idSP = idSP;
         this.idHoaDon = idHoaDon;
@@ -29,6 +29,10 @@ public class HoaDonCT {
         this.tienThua = tienThua;
         this.donGia = donGia;
         this.tienGiamGia = tienGiamGia;
+    }
+
+    public HoaDonCT(int idSP) {
+        this.idSP = idSP;
     }
 
     public int getId() {
@@ -63,28 +67,28 @@ public class HoaDonCT {
         this.soLuong = soLuong;
     }
 
-    public float getTienThua() {
+    public long getTienThua() {
         return tienThua;
     }
 
-    public void setTienThua(float tienThua) {
+    public void setTienThua(long tienThua) {
         this.tienThua = tienThua;
     }
 
-    public float getDonGia() {
+    public long getDonGia() {
         return donGia;
     }
 
-    public void setDonGia(float donGia) {
+    public void setDonGia(long donGia) {
         this.donGia = donGia;
     }
 
-    public float getTienGiamGia() {
+    public long getTienGiamGia() {
         return tienGiamGia;
     }
 
-    public void setTienGiamGia(float tienGiamGia) {
+    public void setTienGiamGia(long tienGiamGia) {
         this.tienGiamGia = tienGiamGia;
     }
-    
+
 }

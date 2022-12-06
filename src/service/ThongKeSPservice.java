@@ -33,14 +33,6 @@ public interface ThongKeSPservice {
 
     List<HoaDon> tonDonHang();
 
-    List<HoaDon> tonDonHuy();
-
-    List<HoaDon> tonDonGiaoHuy();
-
-    List<HoaDon> tonDonGiaoThanhCong();
-
-    List<HoaDon> tonDonThanhCong();
-
     List<HoaDon> tonDonGiao();
 
     List<Integer> selectDoanhThuTheoThang1();
@@ -90,52 +82,58 @@ public interface ThongKeSPservice {
     List<Integer> selectTongHoaDonTheoThang11();
 
     List<Integer> selectTongHoaDonTheoThang12();
-
-    List<Integer> selectTongHoaDonThanhCongTheoThang1();
-
-    List<Integer> selectTongHoaDonThanhCongTheoThang2();
-
-    List<Integer> selectTongHoaDonThanhCongTheoThang3();
-
-    List<Integer> selectTongHoaDonThanhCongTheoThang4();
-
-    List<Integer> selectTongHoaDonThanhCongTheoThang5();
-
-    List<Integer> selectTongHoaDonThanhCongTheoThang6();
-
-    List<Integer> selectTongHoaDonThanhCongTheoThang7();
-
-    List<Integer> selectTongHoaDonThanhCongTheoThang8();
-
-    List<Integer> selectTongHoaDonThanhCongTheoThang9();
-
-    List<Integer> selectTongHoaDonThanhCongTheoThang10();
-
-    List<Integer> selectTongHoaDonThanhCongTheoThang11();
-
-    List<Integer> selectTongHoaDonThanhCongTheoThang12();
-
-    List<Integer> selectTongHoaDonHuyTheoThang1();
-
-    List<Integer> selectTongHoaDonHuyTheoThang2();
-
-    List<Integer> selectTongHoaDonHuyTheoThang3();
-
-    List<Integer> selectTongHoaDonHuyTheoThang4();
-
-    List<Integer> selectTongHoaDonHuyTheoThang5();
-
-    List<Integer> selectTongHoaDonHuyTheoThang6();
-
-    List<Integer> selectTongHoaDonHuyTheoThang7();
-
-    List<Integer> selectTongHoaDonHuyTheoThang8();
-
-    List<Integer> selectTongHoaDonHuyTheoThang9();
-
-    List<Integer> selectTongHoaDonHuyTheoThang10();
-
-    List<Integer> selectTongHoaDonHuyTheoThang11();
-
-    List<Integer> selectTongHoaDonHuyTheoThang12();
+    
+    List<Integer> selectTongHoaDonGiaoTheoThang1();
+    
+    List<Integer> selectTongHoaDonGiaoTheoThang2();
+    
+    List<Integer> selectTongHoaDonGiaoTheoThang3();
+    
+    List<Integer> selectTongHoaDonGiaoTheoThang4();
+    
+    List<Integer> selectTongHoaDonGiaoTheoThang5();
+    
+    List<Integer> selectTongHoaDonGiaoTheoThang6();
+    
+    List<Integer> selectTongHoaDonGiaoTheoThang7();
+    
+    List<Integer> selectTongHoaDonGiaoTheoThang8();
+    
+    List<Integer> selectTongHoaDonGiaoTheoThang9();
+    
+    List<Integer> selectTongHoaDonGiaoTheoThang10();
+    
+    List<Integer> selectTongHoaDonGiaoTheoThang11();
+    
+    List<Integer> selectTongHoaDonGiaoTheoThang12();
+    
+    List<Integer> selectDoanhThuTheoNam2018();
+    
+    List<Integer> selectDoanhThuTheoNam2019();
+    
+    List<Integer> selectDoanhThuTheoNam2020();
+    
+    List<Integer> selectDoanhThuTheoNam2021();
+    
+    List<Integer> selectDoanhThuTheoNam2022();
+    
+    List<Integer> selectTongHoaDonGiaoTheoNam2018();
+    
+    List<Integer> selectTongHoaDonGiaoTheoNam2019();
+    
+    List<Integer> selectTongHoaDonGiaoTheoNam2020();
+    
+    List<Integer> selectTongHoaDonGiaoTheoNam2021();
+    
+    List<Integer> selectTongHoaDonGiaoTheoNam2022();
+    
+    List<Integer> selectTongHoaDonTheoNam2018();
+    
+    List<Integer> selectTongHoaDonTheoNam2019();
+    
+    List<Integer> selectTongHoaDonTheoNam2020();
+    
+    List<Integer> selectTongHoaDonTheoNam2021();
+    
+    List<Integer> selectTongHoaDonTheoNam2022();
 }

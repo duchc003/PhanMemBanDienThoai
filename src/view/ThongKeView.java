@@ -102,10 +102,6 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         thongKeCot();
         DonHang(tk.tonDonHang());
         donGiao(tk.tonDonGiao());
-        donGiaoHuy(tk.tonDonGiaoHuy());
-        donGiaoThanhCong(tk.tonDonGiaoThanhCong());
-        donThanhCong(tk.tonDonThanhCong());
-        donhuy(tk.tonDonHuy());
         pannelThang.hide();
         pannelNam.hide();
     }
@@ -160,31 +156,6 @@ public class ThongKeView extends javax.swing.JInternalFrame {
             lblDonGiao.setText(String.valueOf(hoaDon.getMaHD()));
         }
     }
-    
-    private void donGiaoHuy(List<HoaDon> listt) {
-        for (HoaDon hoaDon : listt) {
-            lblGiaoHuy.setText(String.valueOf(hoaDon.getMaHD()));
-        }
-    }
-    
-    private void donGiaoThanhCong(List<HoaDon> listt) {
-        for (HoaDon hoaDon : listt) {
-            lblGiaoThanhCong.setText(String.valueOf(hoaDon.getMaHD()));
-        }
-    }
-    
-    private void donThanhCong(List<HoaDon> listt) {
-        for (HoaDon hoaDon : listt) {
-            lblThanhCong.setText(String.valueOf(hoaDon.getMaHD()));
-        }
-    }
-    
-    private void donhuy(List<HoaDon> listt) {
-        for (HoaDon hoaDon : listt) {
-            lblBiHuy.setText(String.valueOf(hoaDon.getMaHD()));
-        }
-    }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -216,18 +187,11 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jPanel9 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        lblGiaoThanhCong = new javax.swing.JLabel();
-        lblGiaoHuy = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         lblDonGiao = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         lblTongDoanhThuNam = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
@@ -241,17 +205,11 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         rdoNam = new javax.swing.JRadioButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        lblThanhCong = new javax.swing.JLabel();
-        lblBiHuy = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         lblDonHang = new javax.swing.JLabel();
         pannelThang = new javax.swing.JPanel();
         cbbTheoThang = new javax.swing.JComboBox<>();
         pannelNam = new javax.swing.JPanel();
-        cbbNam = new javax.swing.JComboBox<>();
+        cbbTheoNam = new javax.swing.JComboBox<>();
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1319, 800));
@@ -280,7 +238,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addComponent(lblTongSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,7 +267,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel36)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblConHang, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -342,7 +300,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel37)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblHetHang, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -431,7 +389,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 .addComponent(btnSanPham)
                 .addGap(44, 44, 44)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Sản Phẩm", jPanel8);
@@ -445,18 +403,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Tổng đơn Giao");
 
-        jLabel4.setText("Thành Công :");
-
-        jLabel5.setText("Bị Hủy :");
-
-        lblGiaoThanhCong.setText("0");
-
-        lblGiaoHuy.setText("0");
-
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/trolley.png"))); // NOI18N
-
-        jLabel12.setText("Đơn hàng");
-
+        lblDonGiao.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         lblDonGiao.setText("0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -465,51 +412,21 @@ public class ThongKeView extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 25, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblGiaoThanhCong, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblGiaoHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(lblDonGiao, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jLabel11)
-                .addContainerGap())
+                        .addGap(10, 10, 10)
+                        .addComponent(lblDonGiao, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDonGiao)
-                    .addComponent(jLabel12))
-                .addGap(39, 39, 39)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(lblGiaoThanhCong))
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(lblGiaoHuy))
-                .addGap(35, 35, 35))
+                .addComponent(lblDonGiao, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(0, 204, 255));
@@ -524,8 +441,6 @@ public class ThongKeView extends javax.swing.JInternalFrame {
 
         lblTongDoanhThuNam.setText("0");
 
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/money-bag.png"))); // NOI18N
-
         jLabel8.setText("VND");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -539,16 +454,11 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 .addComponent(lblTongDoanhThuNam, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(38, 38, 38))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel26)
-                        .addGap(20, 20, 20))))
+                .addComponent(jLabel10)
+                .addGap(38, 38, 38))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -560,9 +470,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel28)
                     .addComponent(lblTongDoanhThuNam)
                     .addComponent(jLabel8))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel26)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));
@@ -621,7 +529,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
             .addGap(0, 298, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                    .addContainerGap(12, Short.MAX_VALUE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelLineChart, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(19, Short.MAX_VALUE)))
         );
@@ -671,18 +579,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("Tổng Đơn Hàng Tại Quầy");
 
-        jLabel13.setText("Thành Công :");
-
-        jLabel14.setText("Bị Hủy :");
-
-        lblThanhCong.setText("0");
-
-        lblBiHuy.setText("0");
-
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/trolley.png"))); // NOI18N
-
-        jLabel19.setText("Đơn hàng");
-
+        lblDonHang.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         lblDonHang.setText("0");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -690,53 +587,20 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(lblDonHang, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblBiHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                                .addGap(0, 25, Short.MAX_VALUE)
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblThanhCong, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(13, 13, 13)))
-                .addComponent(jLabel18)
-                .addContainerGap())
-            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDonHang, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDonHang)
-                    .addComponent(jLabel19))
-                .addGap(38, 38, 38)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel13)
-                        .addComponent(lblThanhCong))
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(lblBiHuy))
-                .addGap(35, 35, 35))
+                .addComponent(lblDonHang, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69))
         );
 
         cbbTheoThang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12" }));
@@ -759,7 +623,12 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 .addComponent(cbbTheoThang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        cbbNam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2018", "2019", "2020", "2021", "2022" }));
+        cbbTheoNam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2018", "2019", "2020", "2021", "2022" }));
+        cbbTheoNam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbTheoNamActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pannelNamLayout = new javax.swing.GroupLayout(pannelNam);
         pannelNam.setLayout(pannelNamLayout);
@@ -767,13 +636,13 @@ public class ThongKeView extends javax.swing.JInternalFrame {
             pannelNamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pannelNamLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(cbbNam, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(cbbTheoNam, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pannelNamLayout.setVerticalGroup(
             pannelNamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pannelNamLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(cbbNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(cbbTheoNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -790,32 +659,39 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(266, 266, 266)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rdoThang)
-                                    .addComponent(rdoNam))
-                                .addGap(56, 56, 56)
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(pannelNam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(pannelThang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(762, 762, 762)
-                                .addComponent(btnDoanhThu)))
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
+                                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(266, 266, 266)
+                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
+                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(rdoThang)
+                                            .addComponent(rdoNam))
+                                        .addGap(56, 56, 56)
+                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(pannelNam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(pannelThang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(762, 762, 762)
+                                        .addComponent(btnDoanhThu)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(51, 51, 51))))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(73, 73, 73)
                 .addComponent(rdoTatCa)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel9Layout.createSequentialGroup()
@@ -832,7 +708,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                             .addComponent(pannelNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Doanh Thu", jPanel9);
@@ -845,14 +721,14 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 800, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1329, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1329, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -884,10 +760,6 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         lblTongDoanhThuNam(tk.TongDoanhThuNam());
         DonHang(tk.tonDonHang());
         donGiao(tk.tonDonGiao());
-        donGiaoHuy(tk.tonDonGiaoHuy());
-        donGiaoThanhCong(tk.tonDonGiaoThanhCong());
-        donThanhCong(tk.tonDonGiaoThanhCong());
-        donhuy(tk.tonDonHuy());
     }//GEN-LAST:event_rdoTatCaActionPerformed
 
     private void rdoNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNamActionPerformed
@@ -902,25 +774,9 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 for (Integer dt : donHuy) {
                     lblDonHang.setText(XMoney.themDauCham(dt));
                 }
-                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang1();
-                for (Integer hd : thanhCong) {
-                    lblThanhCong.setText(hd.toString());
-                }
-                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang1();
-                for (Integer hdHuy : hoaDonHuy) {
-                    lblBiHuy.setText(hdHuy.toString());
-                }
-                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang1();
-                for (Integer kh : giaoHuy) {
-                    lblGiaoHuy.setText(kh.toString());
-                }
-                List<Integer> donGiao = tk.selectDoanhThuTheoThang1();
+                List<Integer> donGiao = tk.selectTongHoaDonGiaoTheoThang1();
                 for (Integer kh : donGiao) {
                     lblDonGiao.setText(kh.toString());
-                }
-                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang1();
-                for (Integer kh : giaoThanhCong) {
-                    lblGiaoThanhCong.setText(kh.toString());
                 }
                 List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang1();
                 for (Integer kh : tongDoanhThuNam) {
@@ -931,25 +787,9 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 for (Integer dt : donHuy) {
                     lblDonHang.setText(XMoney.themDauCham(dt));
                 }
-                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang2();
-                for (Integer hd : thanhCong) {
-                    lblThanhCong.setText(hd.toString());
-                }
-                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang2();
-                for (Integer hdHuy : hoaDonHuy) {
-                    lblBiHuy.setText(hdHuy.toString());
-                }
-                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang2();
-                for (Integer kh : giaoHuy) {
-                    lblGiaoHuy.setText(kh.toString());
-                }
-                List<Integer> donGiao = tk.selectDoanhThuTheoThang2();
+                List<Integer> donGiao = tk.selectTongHoaDonGiaoTheoThang2();
                 for (Integer kh : donGiao) {
                     lblDonGiao.setText(kh.toString());
-                }
-                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang2();
-                for (Integer kh : giaoThanhCong) {
-                    lblGiaoThanhCong.setText(kh.toString());
                 }
                 List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang2();
                 for (Integer kh : tongDoanhThuNam) {
@@ -960,25 +800,9 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 for (Integer dt : donHuy) {
                     lblDonHang.setText(XMoney.themDauCham(dt));
                 }
-                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang3();
-                for (Integer hd : thanhCong) {
-                    lblThanhCong.setText(hd.toString());
-                }
-                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang3();
-                for (Integer hdHuy : hoaDonHuy) {
-                    lblBiHuy.setText(hdHuy.toString());
-                }
-                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang3();
-                for (Integer kh : giaoHuy) {
-                    lblGiaoHuy.setText(kh.toString());
-                }
-                List<Integer> donGiao = tk.selectDoanhThuTheoThang3();
+                List<Integer> donGiao = tk.selectTongHoaDonGiaoTheoThang3();
                 for (Integer kh : donGiao) {
                     lblDonGiao.setText(kh.toString());
-                }
-                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang3();
-                for (Integer kh : giaoThanhCong) {
-                    lblGiaoThanhCong.setText(kh.toString());
                 }
                 List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang3();
                 for (Integer kh : tongDoanhThuNam) {
@@ -989,26 +813,11 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 for (Integer dt : donHuy) {
                     lblDonHang.setText(XMoney.themDauCham(dt));
                 }
-                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang4();
-                for (Integer hd : thanhCong) {
-                    lblThanhCong.setText(hd.toString());
-                }
-                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang4();
-                for (Integer hdHuy : hoaDonHuy) {
-                    lblBiHuy.setText(hdHuy.toString());
-                }
-                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang4();
-                for (Integer kh : giaoHuy) {
-                    lblGiaoHuy.setText(kh.toString());
-                }
-                List<Integer> donGiao = tk.selectDoanhThuTheoThang4();
+                List<Integer> donGiao = tk.selectTongHoaDonGiaoTheoThang4();
                 for (Integer kh : donGiao) {
                     lblDonGiao.setText(kh.toString());
                 }
-                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang4();
-                for (Integer kh : giaoThanhCong) {
-                    lblGiaoThanhCong.setText(kh.toString());
-                }
+
                 List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang4();
                 for (Integer kh : tongDoanhThuNam) {
                     lblTongDoanhThuNam.setText(kh.toString());
@@ -1018,25 +827,9 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 for (Integer dt : donHuy) {
                     lblDonHang.setText(XMoney.themDauCham(dt));
                 }
-                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang5();
-                for (Integer hd : thanhCong) {
-                    lblThanhCong.setText(hd.toString());
-                }
-                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang5();
-                for (Integer hdHuy : hoaDonHuy) {
-                    lblBiHuy.setText(hdHuy.toString());
-                }
-                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang5();
-                for (Integer kh : giaoHuy) {
-                    lblGiaoHuy.setText(kh.toString());
-                }
-                List<Integer> donGiao = tk.selectDoanhThuTheoThang5();
+                List<Integer> donGiao = tk.selectTongHoaDonGiaoTheoThang5();
                 for (Integer kh : donGiao) {
                     lblDonGiao.setText(kh.toString());
-                }
-                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang5();
-                for (Integer kh : giaoThanhCong) {
-                    lblGiaoThanhCong.setText(kh.toString());
                 }
                 List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang5();
                 for (Integer kh : tongDoanhThuNam) {
@@ -1047,25 +840,9 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 for (Integer dt : donHuy) {
                     lblDonHang.setText(XMoney.themDauCham(dt));
                 }
-                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang6();
-                for (Integer hd : thanhCong) {
-                    lblThanhCong.setText(hd.toString());
-                }
-                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang6();
-                for (Integer hdHuy : hoaDonHuy) {
-                    lblBiHuy.setText(hdHuy.toString());
-                }
-                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang6();
-                for (Integer kh : giaoHuy) {
-                    lblGiaoHuy.setText(kh.toString());
-                }
-                List<Integer> donGiao = tk.selectDoanhThuTheoThang6();
+                List<Integer> donGiao = tk.selectTongHoaDonGiaoTheoThang6();
                 for (Integer kh : donGiao) {
                     lblDonGiao.setText(kh.toString());
-                }
-                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang6();
-                for (Integer kh : giaoThanhCong) {
-                    lblGiaoThanhCong.setText(kh.toString());
                 }
                 List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang6();
                 for (Integer kh : tongDoanhThuNam) {
@@ -1076,25 +853,9 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 for (Integer dt : donHuy) {
                     lblDonHang.setText(XMoney.themDauCham(dt));
                 }
-                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang7();
-                for (Integer hd : thanhCong) {
-                    lblThanhCong.setText(hd.toString());
-                }
-                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang7();
-                for (Integer hdHuy : hoaDonHuy) {
-                    lblBiHuy.setText(hdHuy.toString());
-                }
-                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang7();
-                for (Integer kh : giaoHuy) {
-                    lblGiaoHuy.setText(kh.toString());
-                }
-                List<Integer> donGiao = tk.selectDoanhThuTheoThang7();
+                List<Integer> donGiao = tk.selectTongHoaDonGiaoTheoThang7();
                 for (Integer kh : donGiao) {
                     lblDonGiao.setText(kh.toString());
-                }
-                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang7();
-                for (Integer kh : giaoThanhCong) {
-                    lblGiaoThanhCong.setText(kh.toString());
                 }
                 List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang7();
                 for (Integer kh : tongDoanhThuNam) {
@@ -1105,25 +866,9 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 for (Integer dt : donHuy) {
                     lblDonHang.setText(XMoney.themDauCham(dt));
                 }
-                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang8();
-                for (Integer hd : thanhCong) {
-                    lblThanhCong.setText(hd.toString());
-                }
-                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang8();
-                for (Integer hdHuy : hoaDonHuy) {
-                    lblBiHuy.setText(hdHuy.toString());
-                }
-                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang8();
-                for (Integer kh : giaoHuy) {
-                    lblGiaoHuy.setText(kh.toString());
-                }
-                List<Integer> donGiao = tk.selectDoanhThuTheoThang8();
+                List<Integer> donGiao = tk.selectTongHoaDonGiaoTheoThang8();
                 for (Integer kh : donGiao) {
                     lblDonGiao.setText(kh.toString());
-                }
-                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang8();
-                for (Integer kh : giaoThanhCong) {
-                    lblGiaoThanhCong.setText(kh.toString());
                 }
                 List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang8();
                 for (Integer kh : tongDoanhThuNam) {
@@ -1134,25 +879,9 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 for (Integer dt : donHuy) {
                     lblDonHang.setText(XMoney.themDauCham(dt));
                 }
-                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang9();
-                for (Integer hd : thanhCong) {
-                    lblThanhCong.setText(hd.toString());
-                }
-                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang9();
-                for (Integer hdHuy : hoaDonHuy) {
-                    lblBiHuy.setText(hdHuy.toString());
-                }
-                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang9();
-                for (Integer kh : giaoHuy) {
-                    lblGiaoHuy.setText(kh.toString());
-                }
-                List<Integer> donGiao = tk.selectDoanhThuTheoThang9();
+                List<Integer> donGiao = tk.selectTongHoaDonGiaoTheoThang9();
                 for (Integer kh : donGiao) {
                     lblDonGiao.setText(kh.toString());
-                }
-                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang9();
-                for (Integer kh : giaoThanhCong) {
-                    lblGiaoThanhCong.setText(kh.toString());
                 }
                 List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang9();
                 for (Integer kh : tongDoanhThuNam) {
@@ -1163,25 +892,9 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 for (Integer dt : donHuy) {
                     lblDonHang.setText(XMoney.themDauCham(dt));
                 }
-                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang10();
-                for (Integer hd : thanhCong) {
-                    lblThanhCong.setText(hd.toString());
-                }
-                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang10();
-                for (Integer hdHuy : hoaDonHuy) {
-                    lblBiHuy.setText(hdHuy.toString());
-                }
-                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang10();
-                for (Integer kh : giaoHuy) {
-                    lblGiaoHuy.setText(kh.toString());
-                }
-                List<Integer> donGiao = tk.selectDoanhThuTheoThang10();
+                List<Integer> donGiao = tk.selectTongHoaDonGiaoTheoThang10();
                 for (Integer kh : donGiao) {
                     lblDonGiao.setText(kh.toString());
-                }
-                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang10();
-                for (Integer kh : giaoThanhCong) {
-                    lblGiaoThanhCong.setText(kh.toString());
                 }
                 List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang10();
                 for (Integer kh : tongDoanhThuNam) {
@@ -1192,25 +905,9 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 for (Integer dt : donHuy) {
                     lblDonHang.setText(XMoney.themDauCham(dt));
                 }
-                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang11();
-                for (Integer hd : thanhCong) {
-                    lblThanhCong.setText(hd.toString());
-                }
-                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang11();
-                for (Integer hdHuy : hoaDonHuy) {
-                    lblBiHuy.setText(hdHuy.toString());
-                }
-                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang11();
-                for (Integer kh : giaoHuy) {
-                    lblGiaoHuy.setText(kh.toString());
-                }
-                List<Integer> donGiao = tk.selectDoanhThuTheoThang11();
+                List<Integer> donGiao = tk.selectTongHoaDonGiaoTheoThang11();
                 for (Integer kh : donGiao) {
                     lblDonGiao.setText(kh.toString());
-                }
-                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang11();
-                for (Integer kh : giaoThanhCong) {
-                    lblGiaoThanhCong.setText(kh.toString());
                 }
                 List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang11();
                 for (Integer kh : tongDoanhThuNam) {
@@ -1221,25 +918,9 @@ public class ThongKeView extends javax.swing.JInternalFrame {
                 for (Integer dt : donHuy) {
                     lblDonHang.setText(XMoney.themDauCham(dt));
                 }
-                List<Integer> thanhCong = tk.selectTongHoaDonThanhCongTheoThang12();
-                for (Integer hd : thanhCong) {
-                    lblThanhCong.setText(hd.toString());
-                }
-                List<Integer> hoaDonHuy = tk.selectTongHoaDonHuyTheoThang12();
-                for (Integer hdHuy : hoaDonHuy) {
-                    lblBiHuy.setText(hdHuy.toString());
-                }
-                List<Integer> giaoHuy = tk.selectDoanhThuTheoThang12();
-                for (Integer kh : giaoHuy) {
-                    lblGiaoHuy.setText(kh.toString());
-                }
-                List<Integer> donGiao = tk.selectDoanhThuTheoThang12();
+                List<Integer> donGiao = tk.selectTongHoaDonGiaoTheoThang12();
                 for (Integer kh : donGiao) {
                     lblDonGiao.setText(kh.toString());
-                }
-                List<Integer> giaoThanhCong = tk.selectDoanhThuTheoThang12();
-                for (Integer kh : giaoThanhCong) {
-                    lblGiaoThanhCong.setText(kh.toString());
                 }
                 List<Integer> tongDoanhThuNam = tk.selectDoanhThuTheoThang12();
                 for (Integer kh : tongDoanhThuNam) {
@@ -1251,29 +932,93 @@ public class ThongKeView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_cbbTheoThangActionPerformed
 
+    private void cbbTheoNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTheoNamActionPerformed
+         try {
+            if (cbbTheoNam.getSelectedIndex() == 0) {
+                List<Integer> doanhThu = tk.selectDoanhThuTheoNam2018();
+                for (Integer dt : doanhThu) {
+                    lblTongDoanhThuNam.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> hoaDon = tk.selectTongHoaDonGiaoTheoNam2018();
+                for (Integer hd : hoaDon) {
+                    lblDonGiao.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonTheoNam2018();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblDonHang.setText(hdHuy.toString());
+                }
+            } else if (cbbTheoNam.getSelectedIndex() == 1) {
+                List<Integer> doanhThu = tk.selectDoanhThuTheoNam2019();
+                for (Integer dt : doanhThu) {
+                    lblTongDoanhThuNam.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> hoaDon = tk.selectTongHoaDonGiaoTheoNam2019();
+                for (Integer hd : hoaDon) {
+                    lblDonGiao.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonTheoNam2019();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblDonHang.setText(hdHuy.toString());
+                }
+            } else if (cbbTheoNam.getSelectedIndex() == 2) {
+                List<Integer> doanhThu = tk.selectDoanhThuTheoNam2020();
+                for (Integer dt : doanhThu) {
+                    lblTongDoanhThuNam.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> hoaDon = tk.selectTongHoaDonGiaoTheoNam2020();
+                for (Integer hd : hoaDon) {
+                    lblDonGiao.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonTheoNam2020();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblDonHang.setText(hdHuy.toString());
+                }
+            }else if (cbbTheoNam.getSelectedIndex() == 3) {
+                List<Integer> doanhThu = tk.selectDoanhThuTheoNam2021();
+                for (Integer dt : doanhThu) {
+                    lblTongDoanhThuNam.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> hoaDon = tk.selectTongHoaDonGiaoTheoNam2021();
+                for (Integer hd : hoaDon) {
+                    lblDonGiao.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonTheoNam2021();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblDonHang.setText(hdHuy.toString());
+                }
+            }else if (cbbTheoNam.getSelectedIndex() == 4) {
+                List<Integer> doanhThu = tk.selectDoanhThuTheoNam2022();
+                for (Integer dt : doanhThu) {
+                    lblTongDoanhThuNam.setText(XMoney.themDauCham(dt));
+                }
+                List<Integer> hoaDon = tk.selectTongHoaDonGiaoTheoNam2022();
+                for (Integer hd : hoaDon) {
+                    lblDonGiao.setText(hd.toString());
+                }
+                List<Integer> hoaDonHuy = tk.selectTongHoaDonTheoNam2022();
+                for (Integer hdHuy : hoaDonHuy) {
+                    lblDonHang.setText(hdHuy.toString());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_cbbTheoNamActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDoanhThu;
     private javax.swing.JButton btnSanPham;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JComboBox<String> cbbNam;
+    private javax.swing.JComboBox<String> cbbTheoNam;
     private javax.swing.JComboBox<String> cbbTheoThang;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -1292,14 +1037,10 @@ public class ThongKeView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JLabel lblBiHuy;
     private javax.swing.JLabel lblConHang;
     private javax.swing.JLabel lblDonGiao;
     private javax.swing.JLabel lblDonHang;
-    private javax.swing.JLabel lblGiaoHuy;
-    private javax.swing.JLabel lblGiaoThanhCong;
     private javax.swing.JLabel lblHetHang;
-    private javax.swing.JLabel lblThanhCong;
     private javax.swing.JLabel lblTongDoanhThuNam;
     private javax.swing.JLabel lblTongSanPham;
     private javax.swing.JPanel panelLineChart;

@@ -235,4 +235,7 @@ public class NhanVienRepository {
         }
         return listkh;
     }
+    public static void main(String[] args) {
+        System.out.println(new NhanVienRepository().getOne("NV01"));
+    }
 }

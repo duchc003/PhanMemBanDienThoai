@@ -42,7 +42,7 @@
         <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="1370" height="810"/>
+              <AbsoluteConstraints x="10" y="0" width="1370" height="810"/>
             </Constraint>
           </Constraints>
 
@@ -149,6 +149,9 @@
                 <Component class="javax.swing.JTextField" name="txtMASANPHAM">
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtIDSanPHam">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtTENSANPHAM">
                 </Component>
@@ -421,6 +424,9 @@
                     <Component class="javax.swing.JTextField" name="txtMaHangSp">
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtIdHangSp">
+                      <Properties>
+                        <Property name="enabled" type="boolean" value="false"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtTenHangSp">
                     </Component>
@@ -661,7 +667,7 @@
                                               </Group>
                                               <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="txtTenNhaCungCap1" min="-2" pref="240" max="-2" attributes="0"/>
+                                                  <Component id="txtSDT" min="-2" pref="240" max="-2" attributes="0"/>
                                                   <Component id="txtTenNhaCungCap" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -714,7 +720,7 @@
                                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtTenNhaCungCap1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtSDT" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                                       <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
@@ -727,6 +733,9 @@
                             <Component class="javax.swing.JTextField" name="txtMaNhaCungCap">
                             </Component>
                             <Component class="javax.swing.JTextField" name="txtIdNhaCungCap">
+                              <Properties>
+                                <Property name="enabled" type="boolean" value="false"/>
+                              </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="txtTenNhaCungCap">
                             </Component>
@@ -860,7 +869,7 @@
                                 <Property name="text" type="java.lang.String" value="S&#x1ed1; &#x110;i&#x1ec7;n Tho&#x1ea1;i"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="txtTenNhaCungCap1">
+                            <Component class="javax.swing.JTextField" name="txtSDT">
                             </Component>
                           </SubComponents>
                         </Container>
@@ -1115,6 +1124,9 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="txtID">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="cbbNCC">
                   <Properties>

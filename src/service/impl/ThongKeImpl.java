@@ -67,26 +67,6 @@ public class ThongKeImpl implements ThongKeSPservice {
     }
 
     @Override
-    public List<HoaDon> tonDonHuy() {
-        return tk.tongDonHuy();
-    }
-
-    @Override
-    public List<HoaDon> tonDonGiaoHuy() {
-        return tk.tongDonHuyGiaoHang();
-    }
-
-    @Override
-    public List<HoaDon> tonDonGiaoThanhCong() {
-        return tk.tongDonGiaoThanhCong();
-    }
-
-    @Override
-    public List<HoaDon> tonDonThanhCong() {
-        return tk.tongDonThanhCong();
-    }
-
-    @Override
     public List<Integer> selectDoanhThuTheoThang1() {
         return tk.selectDoanhThuTheoThang1();
     }
@@ -207,123 +187,138 @@ public class ThongKeImpl implements ThongKeSPservice {
     }
 
     @Override
-    public List<Integer> selectTongHoaDonThanhCongTheoThang1() {
-        return tk.selectTongHoaDonThanhCongTheoThang1();
+    public List<Integer> selectTongHoaDonGiaoTheoThang1() {
+        return tk.selectTongHoaDonGiaoTheoThang1();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonThanhCongTheoThang2() {
-        return tk.selectTongHoaDonThanhCongTheoThang2();
+    public List<Integer> selectTongHoaDonGiaoTheoThang2() {
+        return tk.selectTongHoaDonGiaoTheoThang2();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonThanhCongTheoThang3() {
-        return tk.selectTongHoaDonThanhCongTheoThang3();
+    public List<Integer> selectTongHoaDonGiaoTheoThang3() {
+        return tk.selectTongHoaDonGiaoTheoThang3();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonThanhCongTheoThang4() {
-        return tk.selectTongHoaDonThanhCongTheoThang4();
+    public List<Integer> selectTongHoaDonGiaoTheoThang4() {
+        return tk.selectTongHoaDonGiaoTheoThang4();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonThanhCongTheoThang5() {
-        return tk.selectTongHoaDonThanhCongTheoThang5();
+    public List<Integer> selectTongHoaDonGiaoTheoThang5() {
+        return tk.selectTongHoaDonGiaoTheoThang5();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonThanhCongTheoThang6() {
-        return tk.selectTongHoaDonThanhCongTheoThang6();
+    public List<Integer> selectTongHoaDonGiaoTheoThang6() {
+        return tk.selectTongHoaDonGiaoTheoThang6();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonThanhCongTheoThang7() {
-        return tk.selectTongHoaDonThanhCongTheoThang7();
+    public List<Integer> selectTongHoaDonGiaoTheoThang7() {
+        return tk.selectTongHoaDonGiaoTheoThang7();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonThanhCongTheoThang8() {
-        return tk.selectTongHoaDonThanhCongTheoThang8();
+    public List<Integer> selectTongHoaDonGiaoTheoThang8() {
+        return tk.selectTongHoaDonGiaoTheoThang8();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonThanhCongTheoThang9() {
-        return tk.selectTongHoaDonThanhCongTheoThang9();
+    public List<Integer> selectTongHoaDonGiaoTheoThang9() {
+        return tk.selectTongHoaDonGiaoTheoThang9();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonThanhCongTheoThang10() {
-        return tk.selectTongHoaDonThanhCongTheoThang10();
+    public List<Integer> selectTongHoaDonGiaoTheoThang10() {
+        return tk.selectTongHoaDonGiaoTheoThang10();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonThanhCongTheoThang11() {
-        return tk.selectTongHoaDonThanhCongTheoThang11();
+    public List<Integer> selectTongHoaDonGiaoTheoThang11() {
+        return tk.selectTongHoaDonGiaoTheoThang11();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonThanhCongTheoThang12() {
-        return tk.selectTongHoaDonThanhCongTheoThang12();
+    public List<Integer> selectTongHoaDonGiaoTheoThang12() {
+        return tk.selectTongHoaDonGiaoTheoThang12();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonHuyTheoThang1() {
-        return tk.selectTongHoaDonHuyTheoThang1();
+    public List<Integer> selectDoanhThuTheoNam2018() {
+        return tk.selectDoanhThuTheoNam2018();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonHuyTheoThang2() {
-        return tk.selectTongHoaDonHuyTheoThang2();
+    public List<Integer> selectDoanhThuTheoNam2019() {
+        return tk.selectDoanhThuTheoNam2019();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonHuyTheoThang3() {
-        return tk.selectTongHoaDonHuyTheoThang3();
+    public List<Integer> selectDoanhThuTheoNam2020() {
+        return tk.selectDoanhThuTheoNam2020();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonHuyTheoThang4() {
-        return tk.selectTongHoaDonHuyTheoThang4();
+    public List<Integer> selectDoanhThuTheoNam2021() {
+        return tk.selectDoanhThuTheoNam2021();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonHuyTheoThang5() {
-        return tk.selectTongHoaDonHuyTheoThang5();
+    public List<Integer> selectDoanhThuTheoNam2022() {
+        return tk.selectDoanhThuTheoNam2022();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonHuyTheoThang6() {
-        return tk.selectTongHoaDonHuyTheoThang6();
+    public List<Integer> selectTongHoaDonGiaoTheoNam2018() {
+        return tk.selectTongHoaDonGiaoTheoNam2018();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonHuyTheoThang7() {
-        return tk.selectTongHoaDonHuyTheoThang7();
+    public List<Integer> selectTongHoaDonGiaoTheoNam2019() {
+        return tk.selectTongHoaDonGiaoTheoNam2019();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonHuyTheoThang8() {
-        return tk.selectTongHoaDonHuyTheoThang8();
+    public List<Integer> selectTongHoaDonGiaoTheoNam2020() {
+        return tk.selectTongHoaDonGiaoTheoNam2020();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonHuyTheoThang9() {
-        return tk.selectTongHoaDonHuyTheoThang9();
+    public List<Integer> selectTongHoaDonGiaoTheoNam2021() {
+        return tk.selectTongHoaDonGiaoTheoNam2021();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonHuyTheoThang10() {
-        return tk.selectTongHoaDonHuyTheoThang10();
+    public List<Integer> selectTongHoaDonGiaoTheoNam2022() {
+        return tk.selectTongHoaDonGiaoTheoNam2022();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonHuyTheoThang11() {
-        return tk.selectTongHoaDonHuyTheoThang11();
+    public List<Integer> selectTongHoaDonTheoNam2018() {
+        return tk.selectTongHoaDonTheoNam2018();
     }
 
     @Override
-    public List<Integer> selectTongHoaDonHuyTheoThang12() {
-        return tk.selectTongHoaDonHuyTheoThang12();
+    public List<Integer> selectTongHoaDonTheoNam2019() {
+        return tk.selectTongHoaDonTheoNam2019();
+    }
+
+    @Override
+    public List<Integer> selectTongHoaDonTheoNam2020() {
+        return tk.selectTongHoaDonTheoNam2020();
+    }
+
+    @Override
+    public List<Integer> selectTongHoaDonTheoNam2021() {
+        return tk.selectTongHoaDonTheoNam2021();
+    }
+
+    @Override
+    public List<Integer> selectTongHoaDonTheoNam2022() {
+        return tk.selectTongHoaDonTheoNam2022();
     }
 
 }
