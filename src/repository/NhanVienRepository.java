@@ -260,16 +260,7 @@ public class NhanVienRepository {
         }
         return listkh;
     }
-<<<<<<< HEAD
     public static void main(String[] args) {
         System.out.println(new NhanVienRepository().getOne("NV01"));
-=======
-    
-    public static void main(String[] args) {
-        List<NhanVienViewmodel> test = new NhanVienRepository().getOne("NV01");
-        for (NhanVienViewmodel x : test) {
-            System.out.println(x.toString());
-        }
->>>>>>> fe671681ad8a55a895ac1cfa89e2c41ca6df0d89
     }
 }

@@ -82,7 +82,7 @@ public class NhanVienView extends javax.swing.JInternalFrame {
 
     private NhanVienViewmodel add() {
         String maNv = txtMaNV.getText();
-        if (maNv.isBlank()) {
+        if (maNv.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Mã nhân viên đang trống!");
             return null;
         }
@@ -91,23 +91,23 @@ public class NhanVienView extends javax.swing.JInternalFrame {
             return null;
         }
         String hoVaTen = txtHoVaTen.getText();
-        if (hoVaTen.isBlank()) {
+        if (hoVaTen.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Họ và Tên đang trống!");
             return null;
         }
         String diaChi = txtDiaChi.getText();
-        if (diaChi.isBlank()) {
+        if (diaChi.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Địa chỉ đang trống!");
             return null;
         }
         String sdt = txtSDT.getText();
-        if (sdt.isBlank()) {
+        if (sdt.isEmpty()) {
             JOptionPane.showMessageDialog(this, "SĐT đang trống!");
             return null;
         }
         
         String email = txtEmail.getText();
-        if (email.isBlank()) {
+        if (email.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Email đang trống!");
             return null;
         }

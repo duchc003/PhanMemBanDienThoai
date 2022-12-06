@@ -69,22 +69,13 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private DefaultComboBoxModel box3 = new DefaultComboBoxModel();
     private ChiTietSpImpl impl = new ChiTietSpImpl();
     DefaultTableModel model;
-    private JFileChooser choice;
-    private final String path = "IMG_SQL\\IMG\\";
-    private final String imgType = "png";
+    String duongDanAnh = "";
 
     public SanPhamView() {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
-
-        choice = new JFileChooser("C:\\Users\\ASUS\\OneDrive\\Documents\\PhanMemBanDienThoai\\anh");
-        choice.setFileFilter(new FileNameExtensionFilter("Image File", "jpg", "png"));
-        File file = new File(path);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         //1 hãng
         tblHangSP.setModel(dtmHangSP);
@@ -101,7 +92,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         hienThiTableNcc(listncc);
         //4 chi tiết sp
         tblCt.setModel(dtmCT);
-        dtmCT.setColumnIdentifiers(new Object[]{"Id", "Id Sp", "Id NCC","Id KM", "Số Lượng", "Ram", "Xuất Xứ", "Camera", "Màn Hình", "Bộ Nhớ", "Màu Sắc", "Giá Nhập", "Giá Bán", "Image", "BarCode", "Trạng Thái", "Mô tả"});
+        dtmCT.setColumnIdentifiers(new Object[]{"Id", "Id Sp", "Id NCC", "Id KM", "Số Lượng", "Ram", "Xuất Xứ", "Camera", "Màn Hình", "Bộ Nhớ", "Màu Sắc", "Giá Nhập", "Giá Bán", "Image", "BarCode", "Trạng Thái", "Mô tả"});
         listCt = impl.getALL();
         fillCt(listCt);
         //5 sản phẩm
@@ -128,10 +119,10 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
     private void cbbKM(List<KhuyenMai> list) {
         for (KhuyenMai khuyenMai : list) {
-            box2.addElement(khuyenMai.getId());
+            box2.addElement(khuyenMai.getTen());
         }
     }
-    
+
     private void showTTableHetHang(List<SanPhamHetHang> list) {
         dtmHetHang.setRowCount(0);
         for (SanPhamHetHang sanPhamHetHang : list) {
@@ -154,13 +145,13 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
     private void getID(List<SanPham> list) {
         for (SanPham sanPham : list) {
-            box22.addElement(sanPham.getId());
+            box22.addElement(sanPham.getTen());
         }
     }
 
     private void getIDNCC(List<NhaCungCap> list) {
         for (NhaCungCap nhaCungCap : list) {
-            box11.addElement(nhaCungCap.getId());
+            box11.addElement(nhaCungCap.getTen());
         }
     }
 
@@ -223,7 +214,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         String ma = txtMaNhaCungCap.getText();
         String ten = txtTenNhaCungCap.getText();
         String sdt = txtSDT.getText();
-        NhaCungCapViewModel ncc = new NhaCungCapViewModel(ma, ten,sdt);
+        NhaCungCapViewModel ncc = new NhaCungCapViewModel(ma, ten, sdt);
         return ncc;
     }
 
@@ -248,30 +239,45 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         } else {
             rdoHetHang.setSelected(true);
         }
-        lblAnh.setIcon(ct.getImage() != null ? getHinhAnh(ct.getImage()) : null);
+        lblAnh.setIcon(reSizeImage(String.valueOf(listCt.get(index).getImage())));
     }
 
     private ChiTietSP getDataSp() {
-        int trangThai;
+        String trangThai;
         if (rdoConHang.isSelected()) {
-            trangThai = 1;
+            trangThai = "Còn Hàng";
         } else {
-            trangThai = 2;
+            trangThai = "Hết Hàng";
         }
-        String imgName = null;
-        if (lblAnh.getIcon() != null) {
-            int index = tblCt.getSelectedRow();
-            if (index == -1) {
-                imgName = saveImage(((ImageIcon) lblAnh.getIcon()).getImage(), getOriginalImageName(choice.getSelectedFile()));
-                System.out.println("img 1: " + imgName);
-            } else {
-                imgName = impl.getALL().get(index).getImage();
-            }
-        }
+        String imgName = duongDanAnh;
         return new ChiTietSP(
-                (int) cbbSanPham.getSelectedItem(), 
+                (int) cbbSanPham.getSelectedItem(),
                 (int) cbbNCC.getSelectedItem(),
                 (int) cbbKm.getSelectedItem(),
+                Integer.parseInt(txtSOLuong.getText()),
+                (String) cbbRam.getSelectedItem(),
+                (String) cbbXuatXu.getSelectedItem(),
+                (String) cbbCamera.getSelectedItem(),
+                (String) cbbManHinh.getSelectedItem(),
+                (String) cbbBoNho.getSelectedItem(),
+                (String) cbbMauSac.getSelectedItem(),
+                Float.parseFloat(txtGiaNhap.getText()),
+                Float.parseFloat(txtGiaBan.getText()),
+                imgName,
+                txtBarCode.getText(),
+                trangThai,
+                txtMMoTa.getText());
+    }
+    
+    private ChiTietSP getDataUpdate() {
+        String trangThai;
+        if (rdoConHang.isSelected()) {
+            trangThai = "Còn Hàng";
+        } else {
+            trangThai = "Hết Hàng";
+        }
+        String imgName = duongDanAnh;
+        return new ChiTietSP(
                 Integer.parseInt(txtSOLuong.getText()),
                 (String) cbbRam.getSelectedItem(),
                 (String) cbbXuatXu.getSelectedItem(),
@@ -924,9 +930,9 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
         jLabel17.setText("ID");
 
-        jLabel18.setText("ID Sản Phẩm");
+        jLabel18.setText("Sản Phẩm");
 
-        jLabel19.setText("ID Nhà Cung Cấp");
+        jLabel19.setText("Nhà Cung Cấp");
 
         jLabel20.setText("Số Lượng");
 
@@ -961,6 +967,9 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         jPanel18.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         lblAnh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAnhMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 lblAnhMousePressed(evt);
             }
@@ -1072,7 +1081,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 1266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(94, Short.MAX_VALUE))
+                        .addContainerGap(78, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17)
@@ -1366,7 +1375,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
     private void btnSuaCtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaCtActionPerformed
         int id = Integer.parseInt(txtID.getText());
-        MsgBox.alert(this, impl.update(id, getDataSp()));
+        MsgBox.alert(this, impl.update(id, getDataUpdate()));
         listCt = impl.getALL();
         fillCt(listCt);
     }//GEN-LAST:event_btnSuaCtActionPerformed
@@ -1383,16 +1392,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblCtMouseClicked
 
     private void lblAnhMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnhMousePressed
-        if (choice.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            File file = choice.getSelectedFile();
-            System.out.println("file" + file);
-            try {
-                lblAnh.setIcon(new ImageIcon(ImageIO.read(file).getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), Image.SCALE_SMOOTH)));
-            } catch (IOException e) {
-                System.out.println("Erro HinhAnhMousePressed");
-                e.printStackTrace();
-            }
-        }
+        
     }//GEN-LAST:event_lblAnhMousePressed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
@@ -1463,6 +1463,22 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private void btnXoaCtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaCtActionPerformed
 
     }//GEN-LAST:event_btnXoaCtActionPerformed
+
+    private void lblAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnhMouseClicked
+        try {
+            JFileChooser fileChooser = new JFileChooser("C:\\Users\\ASUS\\OneDrive\\Documents\\PhanMemBanDienThoai\\anh");
+            fileChooser.setDialogTitle("Mở File");
+            fileChooser.showOpenDialog(null);
+            File f = fileChooser.getSelectedFile();
+            duongDanAnh = f.getAbsolutePath();
+            if (duongDanAnh != null) {
+                lblAnh.setIcon(reSizeImage(duongDanAnh));
+                System.out.println(duongDanAnh);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Chưa Chọn ảnh");
+        }
+    }//GEN-LAST:event_lblAnhMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1568,28 +1584,11 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 
-    private Icon getHinhAnh(String hinhAnh) {
-        return new ImageIcon(path + hinhAnh);
-    }
-
-    private String getOriginalImageName(File file) {
-        return file.getName().split("\\.")[0];
-    }
-
-    private String saveImage(Image image, String name) {
-        BufferedImage img = new BufferedImage(lblAnh.getWidth(), lblAnh.getHeight(), BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2d = img.createGraphics();
-        g2d.drawImage(image, 0, 0, null);
-        g2d.dispose();
-
-        File saveImg = new File(path + name + "." + imgType);
-
-        try {
-            ImageIO.write(img, imgType, saveImg);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return saveImg.getName();
+    private ImageIcon reSizeImage(String imagePart) {
+        ImageIcon imageIcon = new ImageIcon(imagePart);
+        Image image = imageIcon.getImage();
+        Image newImage = image.getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image1 = new ImageIcon(newImage);
+        return image1;
     }
 }

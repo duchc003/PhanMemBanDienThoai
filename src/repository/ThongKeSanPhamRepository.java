@@ -88,7 +88,7 @@ public class ThongKeSanPhamRepository {
         try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                listt.add(new ChiTietSP(rs.getInt(1)));
+                listt.add(new ChiTietSP(rs.getString(1)));
             }
 
         } catch (Exception e) {
@@ -105,7 +105,7 @@ public class ThongKeSanPhamRepository {
         try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                listt.add(new ChiTietSP(rs.getInt(1)));
+                listt.add(new ChiTietSP(rs.getString(1)));
             }
         } catch (Exception e) {
             e.printStackTrace();

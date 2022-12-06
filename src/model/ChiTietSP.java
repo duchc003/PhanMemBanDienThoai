@@ -25,16 +25,32 @@ public class ChiTietSP {
     private float giaBan;
     private String image;
     private String barcodde;
-    private int trangThai;
+    private String trangThai;
     private String moTa;
 
     public ChiTietSP() {
     }
 
-    public ChiTietSP( int idSP, int nhaCungCap, int idKm, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, float giaNhap, float giaBan, String image, String barcodde, int trangThai, String moTa) {
+    public ChiTietSP( int idSP, int nhaCungCap, int idKm, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, float giaNhap, float giaBan, String image, String barcodde, String trangThai, String moTa) {
         this.idSP = idSP;
         this.nhaCungCap = nhaCungCap;
         this.idKm = idKm;
+        this.soLuong = soLuong;
+        this.ram = ram;
+        this.xuatXu = xuatXu;
+        this.camera = camera;
+        this.manHinh = manHinh;
+        this.boNho = boNho;
+        this.mauSac = mauSac;
+        this.giaNhap = giaNhap;
+        this.giaBan = giaBan;
+        this.image = image;
+        this.barcodde = barcodde;
+        this.trangThai = trangThai;
+        this.moTa = moTa;
+    }
+
+    public ChiTietSP(int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, float giaNhap, float giaBan, String image, String barcodde, String trangThai, String moTa) {
         this.soLuong = soLuong;
         this.ram = ram;
         this.xuatXu = xuatXu;
@@ -58,7 +74,7 @@ public class ChiTietSP {
         this.idKm = idKm;
     }
 
-    public ChiTietSP(int trangThai) {
+    public ChiTietSP(String trangThai) {
         this.trangThai = trangThai;
     }
 
@@ -158,11 +174,11 @@ public class ChiTietSP {
         this.image = image;
     }
 
-    public int getTrangThai() {
+    public String getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(int trangThai) {
+    public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
 
