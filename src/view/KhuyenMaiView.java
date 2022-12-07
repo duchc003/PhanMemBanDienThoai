@@ -322,7 +322,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         if (tbl_khuyenMai.getValueAt(row, 5).toString().equalsIgnoreCase("Giảm Giá Tiền")) {
             cbbHinhThuc.setSelectedIndex(1);
         }
-        if (km.getTrangThai() == "Hoạt Động") {
+        if (km.getTrangThai().equalsIgnoreCase("Hoạt Động")) {
             rdo_hoatDong.setSelected(true);
         } else {
             rdo_khongHoatDong.setSelected(true);

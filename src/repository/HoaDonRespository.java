@@ -291,10 +291,5 @@ public class HoaDonRespository {
     }
 
     public static void main(String[] args) {
-<<<<<<< HEAD
-        System.out.println(new HoaDonRespository().getAllHoaDonNgay(5));
-=======
-        System.out.println(new HoaDonRespository().huyDon(8, "Lỗi"));
->>>>>>> fa72d3f9b1922a34457197fc46478cc95b3d3ea6
     }
 }

@@ -119,7 +119,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
     private void cbbKM(List<KhuyenMai> list) {
         for (KhuyenMai khuyenMai : list) {
-            box2.addElement(khuyenMai.getTen());
+            box2.addElement(khuyenMai.getId());
         }
     }
 
@@ -145,13 +145,13 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
     private void getID(List<SanPham> list) {
         for (SanPham sanPham : list) {
-            box22.addElement(sanPham.getTen());
+            box22.addElement(sanPham.getId());
         }
     }
 
     private void getIDNCC(List<NhaCungCap> list) {
         for (NhaCungCap nhaCungCap : list) {
-            box11.addElement(nhaCungCap.getTen());
+            box11.addElement(nhaCungCap.getId());
         }
     }
 

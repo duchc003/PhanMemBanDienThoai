@@ -774,7 +774,7 @@ public class ThongKeSanPhamRepository {
         String sql = "SELECT count(dbo.HoaDon.MaHD)\n"
                 + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
                 + "             dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH\n"
-                + "		  where TenHTGH = N'Khác' and MONTH(NGAYTAO) = 1o";
+                + "		  where TenHTGH = N'Khác' and MONTH(NGAYTAO) = 10";
         List<Integer> list = new ArrayList<>();
         try {
             ResultSet rs = JDBCHelper.executeQuery(sql);
