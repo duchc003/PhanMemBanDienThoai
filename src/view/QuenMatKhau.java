@@ -237,7 +237,7 @@ public class QuenMatKhau extends javax.swing.JFrame {
             String email = lists.get(0).toString();
 
             final String username = "cuahangdienthoaipoly@gmail.com";
-            final String password = "Dienthoai123@";
+            final String password = "ydispkdidsxfrcek";
             Properties prop = new Properties();
             prop.setProperty("mail.smtp.host", "smtp.gmail.com");
             prop.setProperty("mail.smtp.port", "587");
