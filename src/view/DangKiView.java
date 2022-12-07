@@ -236,7 +236,7 @@ public class DangKiView extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, dks.addAccount(taikhoan, matkhau, email));
                 //gui email
                 final String username = "cuahangdienthoaipoly@gmail.com";
-                final String password = "sizpciyelmjqhbud";
+                final String password = "ydispkdidsxfrcek";
                 Properties prop = new Properties();
                 prop.setProperty("mail.smtp.host", "smtp.gmail.com");
                 prop.setProperty("mail.smtp.port", "587");
