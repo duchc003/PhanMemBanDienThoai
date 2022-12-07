@@ -955,6 +955,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(this, hoaDonServices.huyDon(index, mota));
         hd = hoaDonServices.getALlhoaDon();
         loadTableHoaDon(hd);
+        lamMoi();
     }//GEN-LAST:event_btnHuyDonActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -970,6 +971,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(this, hoaDonServices.huyDonShip(index, mota));
         hd = hoaDonServices.getALlhoaDon();
         loadTableHoaDon(hd);
+        lamMoi();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnChonKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonKhachActionPerformed
