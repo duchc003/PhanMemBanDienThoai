@@ -927,7 +927,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
             loadGioHang();
             loadTien();
             capNhapTienKhachPhaiTra();
-            addhoaDonChiTiet();
+//            addhoaDonChiTiet();
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
