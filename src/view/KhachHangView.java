@@ -94,6 +94,7 @@ public class KhachHangView extends javax.swing.JInternalFrame {
         txtGhiChu.setText("");
         txtNgaySinh.setText("");
         lblngaysinh.setText("");
+        lblsdt.setText("");
 
     }
 
@@ -434,6 +435,7 @@ public class KhachHangView extends javax.swing.JInternalFrame {
          }else{
              lblsdt.setText("");
          }
+       
     }//GEN-LAST:event_txtSoDTCaretUpdate
 
 
