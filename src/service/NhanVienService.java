@@ -22,22 +22,18 @@ public interface NhanVienService {
 
     String add(NhanVienViewmodel nv);
 
-    ArrayList<NhanVienViewmodel> getOne(String maNV);
-
-    ArrayList<NhanVienViewmodel> getOneTen(String hoVaten);
-
-    ArrayList<NhanVienViewmodel> getOneSdt(String sdt);
+    List<NhanVienViewmodel> getOne(String maNV, String hoVaTen, String sdt);
 
     String sua(String maNV, NhanVienViewmodel nv);
 
     ArrayList<NhanVien> getIDNhanVien(String id);
 
     ArrayList<KhachHang> getIDKhachHang(String id);
-    
+
     ArrayList<HinhThucGiaoHang> getIDGiaoHang();
-    
+
     ArrayList<HinhThucThanhToan> getIDThanhToan();
-    
+
     ArrayList<NhanVienViewmodel> checkMa(String maNV);
-    
+
 }

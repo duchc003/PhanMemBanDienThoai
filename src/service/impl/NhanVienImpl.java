@@ -38,8 +38,8 @@ public class NhanVienImpl implements NhanVienService {
     }
 
     @Override
-    public ArrayList<NhanVienViewmodel> getOne(String maNV) {
-        return NhanVienRepository.getOne(maNV);
+    public List<NhanVienViewmodel> getOne(String maNV, String hoVaTen, String sdt) {
+        return NhanVienRepository.getOne(maNV, hoVaTen, sdt);
     }
 
     @Override
@@ -50,16 +50,6 @@ public class NhanVienImpl implements NhanVienService {
         } else {
             return "Sửa thất bại";
         }
-    }
-
-    @Override
-    public ArrayList<NhanVienViewmodel> getOneTen(String hoVaten) {
-        return NhanVienRepository.getOneTen(hoVaten);
-    }
-
-    @Override
-    public ArrayList<NhanVienViewmodel> getOneSdt(String sdt) {
-        return NhanVienRepository.getOneSdt(sdt);
     }
 
     @Override

@@ -10,6 +10,10 @@ package viewmodel;
  */
 public class NhanVienViewmodel {
 
+    public static void add(NhanVienViewmodel nhanVienViewmodel) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     private String maNV;
     private String hoVaTen;
     private String diaChi;
