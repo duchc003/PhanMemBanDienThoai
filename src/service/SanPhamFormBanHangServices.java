@@ -10,4 +10,8 @@ public interface SanPhamFormBanHangServices {
 
     List<SanPhamFormBanHangViewModel> Search(String ma);
     
+    SanPhamFormBanHangViewModel soLuong(String ma);
+    
+    String updateSoLuong( SanPhamFormBanHangViewModel sp,int id);
+    
 }

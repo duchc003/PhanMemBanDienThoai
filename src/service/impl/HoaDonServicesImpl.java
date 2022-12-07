@@ -152,4 +152,18 @@ public class HoaDonServicesImpl implements HoaDonServices {
         return hoaDonRespository.getIdSp(ma);
     }
 
+    @Override
+    public String updateHoaDonTienThua(HoaDonCT hd, int id) {
+        boolean update = hoaDonRespository.updateHoaDonTienThua(hd, id);
+        if (update) {
+            return "";
+        } else {
+            return "";
+        }
+    }
+
+    @Override
+    public HoaDonViewModel getAllHoaDonNgay(int id) {
+        return hoaDonRespository.getAllHoaDonNgay(id);
+    }
 }

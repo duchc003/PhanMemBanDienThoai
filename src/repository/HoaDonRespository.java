@@ -94,12 +94,30 @@ public class HoaDonRespository {
         return listHD;
     }
 
+    public HoaDonViewModel getAllHoaDonNgay(int id) {
+        String sql = "SELECT id,MaHD, NgayTao, TrangThai\n"
+                + " FROM     dbo.HoaDon where id = ?";
+        ResultSet rs = JDBCHelper.executeQuery(sql,id);
+        try {
+            if (rs.next()) {
+                return new HoaDonViewModel(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
     public HoaDonCT getIdSp(String ma) {
         List<HoaDonCT> listHD = new ArrayList<>();
         String sql = "SELECT [ID]\n"
                 + "  FROM [dbo].[SanPham]\n"
                 + "  where MaSP = ?";
-        ResultSet rs = JDBCHelper.executeQuery(sql,ma);
+        ResultSet rs = JDBCHelper.executeQuery(sql, ma);
         try {
             if (rs.next()) {
                 return new HoaDonCT(
@@ -252,7 +270,22 @@ public class HoaDonRespository {
         return check > 0;
     }
 
+    public boolean updateHoaDonTienThua(HoaDonCT hd, int id) {
+        String query = "UPDATE [dbo].[HoaDonChiTiet]\n"
+                + "   SET [TienThua] = ?\n"
+                + " WHERE ID = ?";
+        int check = 0;
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, hd.getTienThua());
+            ps.setObject(2, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
+
     public static void main(String[] args) {
-        System.out.println(new HoaDonRespository().getIdSp("SP01"));
+        System.out.println(new HoaDonRespository().getAllHoaDonNgay(5));
     }
 }

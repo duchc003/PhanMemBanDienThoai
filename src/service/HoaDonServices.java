@@ -45,4 +45,8 @@ public interface HoaDonServices {
     String updateHoaDonThanhToan(HoaDonViewModel hd, int id);
 
     String updateHoaDonCTThanhToan(HoaDon hd, int id);
+    
+    String updateHoaDonTienThua(HoaDonCT hd, int id);
+    
+    HoaDonViewModel getAllHoaDonNgay(int id);
 }

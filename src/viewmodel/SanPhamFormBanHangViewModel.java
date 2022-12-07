@@ -5,6 +5,7 @@ import util.XMoney;
 
 public class SanPhamFormBanHangViewModel {
 
+    private int id;
     private String maSp;
     private String tenSp;
     private int soLuong;
@@ -16,7 +17,8 @@ public class SanPhamFormBanHangViewModel {
     public SanPhamFormBanHangViewModel() {
     }
 
-    public SanPhamFormBanHangViewModel(String maSp, String tenSp, int soLuong, long giamGia, Long giaBan, String xuatXu, String hinhThuc) {
+    public SanPhamFormBanHangViewModel(int id, String maSp, String tenSp, int soLuong, long giamGia, Long giaBan, String xuatXu, String hinhThuc) {
+        this.id = id;
         this.maSp = maSp;
         this.tenSp = tenSp;
         this.soLuong = soLuong;
@@ -24,6 +26,14 @@ public class SanPhamFormBanHangViewModel {
         this.giaBan = giaBan;
         this.xuatXu = xuatXu;
         this.hinhThuc = hinhThuc;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMaSp() {
@@ -84,18 +94,18 @@ public class SanPhamFormBanHangViewModel {
 
     @Override
     public String toString() {
-        return "SanPhamFormBanHangViewModel{" + "maSp=" + maSp + ", tenSp=" + tenSp + ", soLuong=" + soLuong + ", giamGia=" + giamGia + ", giaBan=" + giaBan + ", xuatXu=" + xuatXu + ", hinhThuc=" + hinhThuc + '}';
+        return "SanPhamFormBanHangViewModel{" + "id=" + id + ", maSp=" + maSp + ", tenSp=" + tenSp + ", soLuong=" + soLuong + ", giamGia=" + giamGia + ", giaBan=" + giaBan + ", xuatXu=" + xuatXu + ", hinhThuc=" + hinhThuc + '}';
     }
-    
-    private String giamGia(){
+
+    private String giamGia() {
         if (getHinhThuc().equalsIgnoreCase("Giảm Giá %")) {
-            return getGiamGia() + " " +"%";
-        }else{
-            return XMoney.themDauCham(getGiamGia()) + " " +"VND";
+            return getGiamGia() + " " + "%";
+        } else {
+            return XMoney.themDauCham(getGiamGia()) + " " + "VND";
         }
     }
 
-    public Object[] toDataRow(){
-        return new Object[] {maSp,tenSp,soLuong,giamGia(),giaBan,xuatXu,hinhThuc};
+    public Object[] toDataRow() {
+        return new Object[]{maSp, tenSp, soLuong, giamGia(), giaBan, xuatXu, hinhThuc};
     }
 }

@@ -28,4 +28,19 @@ public class SanPhamFormBanHangServicesImpl implements SanPhamFormBanHangService
         return sanPhamFormBanHangRespository.Search(ma);
     }
 
+    @Override
+    public SanPhamFormBanHangViewModel soLuong(String ma) {
+        return sanPhamFormBanHangRespository.soLuong(ma);
+    }
+
+    @Override
+    public String updateSoLuong(SanPhamFormBanHangViewModel sp,int id) {
+        boolean update = sanPhamFormBanHangRespository.sua(sp, id);
+        if (update) {
+            return "";
+        } else {
+            return "";
+        }
+    }
+
 }
