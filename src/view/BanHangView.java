@@ -889,6 +889,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 return;
             }
             if (Integer.parseInt(choice) == 0) {
+                JOptionPane.showMessageDialog(this, "Bạn chưa chọn số lượng", "warning", JOptionPane.WARNING_MESSAGE);
                 loadGioHang();
                 return;
             }
