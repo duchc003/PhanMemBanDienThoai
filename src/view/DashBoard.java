@@ -29,8 +29,8 @@ public class DashBoard extends javax.swing.JFrame {
             txtNhanVien.setText("Nguyễn Đức Nam");
             txtVaiTro.setText("Nhân Viên");
         }
-        if (Auth.user.getTaiKhoan().equalsIgnoreCase("hieunvph")) {
-            txtNhanVien.setText("Nguyễn Minh Hiếu");
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("hieunmph")) {
+            txtNhanVien.setText("Nguyễn Mạnh Hiếu");
             txtVaiTro.setText("Nhân Viên");
         }
         if (Auth.user.getTaiKhoan().equalsIgnoreCase("huybqph")) {
