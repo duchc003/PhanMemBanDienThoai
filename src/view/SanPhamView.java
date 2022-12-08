@@ -124,6 +124,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }
     
     public static void cbbImei(List<String> items) {
+        cbbImei.removeAll();;
         for (String item : items) {
             cbbImei.addItem(item);
         }

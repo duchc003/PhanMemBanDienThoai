@@ -24,6 +24,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import service.ImeiService;
 import service.impl.ImeiServiceImpl;
+import service.impl.ImeiServices;
 import util.MsgBox;
 
 /**
@@ -35,8 +36,9 @@ public class ImeiForm extends javax.swing.JFrame {
     private DefaultTableModel dtm = new DefaultTableModel();
     boolean isNewProduct = false;
     public static int mactsp;
-    static List<String> listImei = new ArrayList<>();
     private ImeiServiceImpl impl = new ImeiServiceImpl();
+    private ImeiServices services;
+    List<String> list = impl.getList();
 
     public ImeiForm() {
         initComponents();
@@ -45,7 +47,6 @@ public class ImeiForm extends javax.swing.JFrame {
         dtm.setColumnIdentifiers(new Object[]{"Mã Imei"});
         txtSoLuong.setText("Số lượng : 0");
         DefaultTableModel model = (DefaultTableModel) tbImei.getModel();
-        List<String> list = impl.getList();
         if (list == null) {
             return;
         }
@@ -59,6 +60,7 @@ public class ImeiForm extends javax.swing.JFrame {
 
         txtSoLuong.setText("Số lượng : " + String.valueOf(row));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -197,7 +199,7 @@ public class ImeiForm extends javax.swing.JFrame {
             list.add(tbImei.getValueAt(i, 0).toString());
         }
 
-        impl.setList(list);
+        services.setList(list);
         loadCbbImei();
         loadTxtSoLuong();
     }//GEN-LAST:event_btnThemActionPerformed
@@ -270,7 +272,7 @@ public class ImeiForm extends javax.swing.JFrame {
                     for (int j = 0; j <= row; j++) {
                         list.add(tbImei.getValueAt(j, 0).toString());
                     }
-                    impl.setList(list);
+                    services.setList(list);
 
                     loadSoLuong();
                     loadCbbImei();
@@ -344,4 +346,5 @@ public class ImeiForm extends javax.swing.JFrame {
         SanPhamView.txtSoLuong(String.valueOf(list.size()));
 
     }
+    
 }

@@ -6,6 +6,7 @@ import com.github.sarxos.webcam.WebcamResolution;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.LuminanceSource;
 import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -64,18 +65,22 @@ import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.print.PrinterException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import viewmodel.SanPhamViewModel;
 
-public class BanHangView extends javax.swing.JInternalFrame {
+public class BanHangView extends javax.swing.JInternalFrame implements Runnable, ThreadFactory {
 
     private DefaultTableModel dtmGiohang = new DefaultTableModel();
     private final Dimension ds = new Dimension(250, 150);
     private final Dimension cs = WebcamResolution.VGA.getSize();
-    private final Webcam wCam = Webcam.getDefault();
-    private final WebcamPanel wCamPanel = new WebcamPanel(wCam, ds, false);
+    private WebcamPanel panel = null;
+    private Webcam webcam = null;
+    private Executor executor = Executors.newSingleThreadExecutor(this);
     private DefaultTableModel dtbHoaDon = new DefaultTableModel();
     private DefaultTableModel dtmSanPham = new DefaultTableModel();
     private HoaDonServices hoaDonServices = new HoaDonServicesImpl();
@@ -94,17 +99,12 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private NhanVienImpl nvImpl = new NhanVienImpl();
     private hoaDonViewModelServicesImplHUY hoaViewModelServicesImplHUY = new hoaDonViewModelServicesImplHUY();
     private KhachHangServicesImpl kmImpl = new KhachHangServicesImpl();
-    
 
     public BanHangView() {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
-//        wCam.setViewSize(cs);
-        wCamPanel.setFillArea(true);
-        lblCamera.setLayout(new FlowLayout());
-        lblCamera.add(wCamPanel);
         initWebcam();
         if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
             lblNhanVien.setText("Hoàng Công Đức");
@@ -148,14 +148,17 @@ public class BanHangView extends javax.swing.JInternalFrame {
     int row = 0;
 
     private void initWebcam() {
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                wCamPanel.start();
-            }
-        };
-        t.setDaemon(true);
-        t.start();
+
+        Dimension size = WebcamResolution.QVGA.getSize();;
+        webcam = Webcam.getWebcams().get(0);
+        webcam.setViewSize(size);
+
+        panel = new WebcamPanel(webcam);
+        panel.setPreferredSize(size);
+        panel.setFPSDisplayed(true);
+        jPanel10.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 150));
+        executor.execute(this);
+
     }
 
     /**
@@ -176,8 +179,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblGioHang = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        lblCamera = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         txtTimKiem = new javax.swing.JTextField();
@@ -332,24 +335,13 @@ public class BanHangView extends javax.swing.JInternalFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblCamera.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout lblCameraLayout = new javax.swing.GroupLayout(lblCamera);
-        lblCamera.setLayout(lblCameraLayout);
-        lblCameraLayout.setHorizontalGroup(
-            lblCameraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
-        );
-        lblCameraLayout.setVerticalGroup(
-            lblCameraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
-        );
-
-        jPanel4.add(lblCamera, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 250, 150));
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Quét mã sản phẩm");
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+
+        jPanel10.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 250, 150));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, 270, 180));
 
@@ -590,7 +582,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addGap(0, 7, Short.MAX_VALUE)
+                                        .addGap(0, 0, Short.MAX_VALUE)
                                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel11))
@@ -963,7 +955,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private void btnHuyDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyDonActionPerformed
         List<HoaDonViewModel> hd = hoaDonServices.getALlhoaDon();
         int index = hd.get(tblHoaDon.getSelectedRow()).getId();
-        String mota = JOptionPane.showInputDialog("Lý do hủy");
+//        String mota = JOptionPane.showInputDialog("");
+        String mota = MsgBox.prompt(this, "Lý do hủy");
         JOptionPane.showMessageDialog(this, hoaDonServices.huyDon(index, mota));
         hd = hoaDonServices.getALlhoaDon();
         loadTableHoaDon(hd);
@@ -1204,6 +1197,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1219,7 +1213,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JPanel lblCamera;
     private javax.swing.JLabel lblGiamGia;
     private javax.swing.JLabel lblGiamGiaGiao;
     private javax.swing.JLabel lblHoaDonGiao;
@@ -1321,22 +1314,18 @@ public class BanHangView extends javax.swing.JInternalFrame {
         String dateTT = df.format(date);
         //random ma hoa don
         Random rd = new Random();
-        int hd = rd.nextInt(99); 
-           
+        int hd = rd.nextInt(99);
+
         hoaDon.setMaHdString("HD" + hd + "");
         hoaDon.setNgayTao(dateTT);
         hoaDon.setTienKhachCanTra(Long.parseLong(lblTienKhachCanTra.getText()));
         hoaDon.setTongTien(Long.parseLong(lblTongTien.getText()));
         hoaDon.setTrangThai("Chờ Thanh Toán");
 
-        JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon),"Tạo Hóa Đơn",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon), "Tạo Hóa Đơn", JOptionPane.INFORMATION_MESSAGE);
         List<HoaDonViewModel> hds = hoaDonServices.getALlhoaDon();
         loadTableHoaDon(hds);
-        
-      
-        
-      
-    
+
     }
 
     private void addHoaDonShip() {
@@ -1864,5 +1853,117 @@ public class BanHangView extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    @Override
+    public void run() {
+        do {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(BanHangView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Result result = null;
+            BufferedImage image = null;
+
+            if (webcam.isOpen()) {
+                if ((image = webcam.getImage()) == null) {
+                    continue;
+                }
+            }
+
+            LuminanceSource source = new BufferedImageLuminanceSource(image);
+            BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+
+            try {
+                result = new MultiFormatReader().decode(bitmap);
+            } catch (NotFoundException ex) {
+                //khong co du lieu
+            }
+            if (result != null) {
+                System.out.println(result.getText());
+                int index = tblHoaDon.getSelectedRow();
+                if (index == -1) {
+                    JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn trước khi thêm sản phẩm vào giỏ hàng !");
+                    continue;
+                }
+//                ChiTietSP c = services.seachbyMa(result.getText());
+//                if (c == null) {
+//                    JOptionPane.showMessageDialog(this, "Mã QRCode/BARCODE không khớp với sản phẩm nào !");
+//                    continue;
+//                }
+//
+//                String maHd = tbHoaDon.getValueAt(index, 0).toString();
+//                ChiTietSP c1 = chiTietSPServices.seachbyMa(result.getText());
+//                if (c1.getTrangThai() == 2) {
+//                    JOptionPane.showMessageDialog(this, "Imei này đã tồn tại trên Hóa đơn !");
+//                    continue;
+//                }
+//                chiTietSPServices.updateImeiTrangThai(result.getText(), 2);
+//                tbGioHang.getColumn("Ảnh").setCellRenderer(new myTableCellRender());
+//                DefaultTableModel model = (DefaultTableModel) tbGioHang.getModel();
+//                JLabel label = new JLabel();
+//                ImageIcon icon = new ImageIcon(c.getAnh());
+//                Image img = icon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
+//                label.setIcon(new ImageIcon(img));
+//                if (c.getTrangThai() == 0) {
+//                    Object[] data = new Object[]{
+//                        label,
+//                        c.getSanPham().getTenSP(),
+//                        c.getMaImei(),
+//                        "1",
+//                        c.getGiaBan(),};
+//
+//                    model.addRow(data);
+//                    JOptionPane.showMessageDialog(this, "Thêm sản phẩm vào giỏ hàng thành công !");
+//                }
+//                HoaDonChiTiet hdct = new HoaDonChiTiet();
+//                HoaDon hd = null;
+//                List<HoaDon> hoaDons = hoaDonServices.getALL();
+//                for (HoaDon hoaDon : hoaDons) {
+//                    if (hoaDon.getMaHD().equals(maHd)) {
+//                        hd = hoaDon;
+//                    }
+//                }
+//                ChiTietSP chiTietSP = null;
+//                List<ChiTietSP> chiTietSPs = chiTietSPServices.getImei();
+//                for (ChiTietSP chiTietSP1 : chiTietSPs) {
+//                    if (chiTietSP1.getMaImei().equals(result.getText())) {
+//                        chiTietSP = chiTietSP1;
+//                    }
+//                }
+//                hdct.setMaHD(hd);
+//                hdct.setMaImei(chiTietSP);
+//                hdct.setSoLuong(1);
+//                hdct.setDonGia(c.getGiaBan());
+//                List<HoaDonChiTiet> list = hoaDonChiTietServies.getALL(maHd);
+//                for (HoaDonChiTiet hoaDonChiTiet : list) {
+//                    if (result.getText().equals(hoaDonChiTiet.getMaImei().getMaImei())) {
+//                        return;
+//                    }
+//                }
+//                hoaDonChiTietServies.add(hdct);
+//
+//                Integer tongTien = 0;
+//                String tongTienstr = "";
+//                List<HoaDonChiTiet> hdcts = hoaDonChiTietServies.getALL(maHd);
+//                for (HoaDonChiTiet hdct1 : hdcts) {
+//                    tongTienstr = String.valueOf(hdct1.getDonGia());
+//                    tongTien += Integer.parseInt(tongTienstr);
+//                }
+//                txtTongTien.setText(String.valueOf(tongTien));
+//
+//                hienThiSanPham();
+
+            }
+
+        } while (true);
+    }
+
+    @Override
+    public Thread newThread(Runnable r) {
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        return t;
     }
 }
