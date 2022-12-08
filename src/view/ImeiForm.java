@@ -268,9 +268,7 @@ public class ImeiForm extends javax.swing.JFrame {
 
                     list.removeAll(list);
                     for (int j = 0; j <= row; j++) {
-
                         list.add(tbImei.getValueAt(j, 0).toString());
-
                     }
                     impl.setList(list);
 
