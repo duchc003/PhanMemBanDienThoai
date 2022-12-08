@@ -94,6 +94,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private NhanVienImpl nvImpl = new NhanVienImpl();
     private hoaDonViewModelServicesImplHUY hoaViewModelServicesImplHUY = new hoaDonViewModelServicesImplHUY();
     private KhachHangServicesImpl kmImpl = new KhachHangServicesImpl();
+    
 
     public BanHangView() {
         initComponents();
@@ -139,7 +140,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
         tblHoaDon.setModel(dtbHoaDon);
         dtbHoaDon.setColumnIdentifiers(new Object[]{"ID", "Mã Hóa Đơn", "Ngày Tạo", "Trạng Thái"});
         lst = sanPhamFormBanHangServices.getAll();
-        
+
         loadSanPham(lst);
         List<HoaDonViewModel> hd = hoaDonServices.getALlhoaDon();
         loadTableHoaDon(hd);
@@ -545,8 +546,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
         jLabel34.setText("VND");
 
-        lblMaHoaDon.setText("null");
-
         jLabel28.setText("Tiền Khách Cần Trả");
 
         jLabel35.setText("VND");
@@ -584,14 +583,14 @@ public class BanHangView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addComponent(lblMaHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnTaoHoaDon))
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGap(0, 7, Short.MAX_VALUE)
                                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel11))
@@ -651,11 +650,15 @@ public class BanHangView extends javax.swing.JInternalFrame {
                     .addComponent(lblNhanVien))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(btnTaoHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMaHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(btnTaoHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lblMaHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -685,7 +688,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbbHTTT, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHuyDon))
@@ -861,20 +864,21 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
-//        int row = tblHoaDon.getSelectedRow();
-//        lblMaHD.setText(tblHoaDon.getValueAt(row, 1).toString());
+        int row = tblHoaDon.getSelectedRow();
+        lblMaHoaDon.setText(tblHoaDon.getValueAt(row, 1).toString());
+        lblMaHoaDon.setForeground(Color.red);
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-      int choice = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa tất cả sản phẩm không ?");
-    if(choice==JOptionPane.YES_OPTION){
-       gioHangViewModels.removeAll(gioHangViewModels);
-         loadGioHang();
-    }
+        int choice = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa tất cả sản phẩm không ?");
+        if (choice == JOptionPane.YES_OPTION) {
+            gioHangViewModels.removeAll(gioHangViewModels);
+            loadGioHang();
+        }
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-                
+
         DefaultTableModel tblModelGH = new DefaultTableModel();
         tblModelGH = (DefaultTableModel) tblGioHang.getModel();
         tblModelGH.setRowCount(0);
@@ -887,10 +891,10 @@ public class BanHangView extends javax.swing.JInternalFrame {
         } else {
 
             String choice = JOptionPane.showInputDialog("Nhập vào số lượng : ", "0");
-            if(Integer.parseInt(choice)<0){
-                 JOptionPane.showMessageDialog(this, "Số lượng phải là số dương","warning",JOptionPane.WARNING_MESSAGE);
-                 loadGioHang();
-                 return;
+            if (Integer.parseInt(choice) < 0) {
+                JOptionPane.showMessageDialog(this, "Số lượng phải là số dương", "warning", JOptionPane.WARNING_MESSAGE);
+                loadGioHang();
+                return;
             }
             if (Integer.parseInt(choice) == 0) {
                 loadGioHang();
@@ -903,8 +907,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
                 return;
             }
             //Giảm số lượng sản phẩm được chọn
-         //   tblSanPham.setValueAt(Integer.parseInt(tblSanPham.getValueAt(row, 2).toString()) - Integer.parseInt(choice), row, 2);
-        
+            //   tblSanPham.setValueAt(Integer.parseInt(tblSanPham.getValueAt(row, 2).toString()) - Integer.parseInt(choice), row, 2);
+
             String ma = tblSanPham.getValueAt(row, 0).toString();
             String ten = tblSanPham.getValueAt(row, 1).toString();
             long dongia = Long.parseLong(tblSanPham.getValueAt(row, 4).toString());
@@ -918,12 +922,12 @@ public class BanHangView extends javax.swing.JInternalFrame {
             for (GioHangViewModel gioHangViewModel : gioHangViewModels) {
 
                 if (tblSanPham.getValueAt(row, 0).toString().equals(gioHangViewModel.getMa())) {
-                                    if(((gioHangViewModel.getSoLuong())+Integer.parseInt(choice))> Integer.parseInt(tblSanPham.getValueAt(row, 2).toString())){
-                    JOptionPane.showMessageDialog(this, "bạn đã chọn tối đa số lượng của sản phẩm này ","warning",JOptionPane.WARNING_MESSAGE);
-                    loadGioHang();
-                    return;
-                }
-                    int soluong = gioHangViewModel.getSoLuong() + Integer.parseInt(choice);                    
+                    if (((gioHangViewModel.getSoLuong()) + Integer.parseInt(choice)) > Integer.parseInt(tblSanPham.getValueAt(row, 2).toString())) {
+                        JOptionPane.showMessageDialog(this, "bạn đã chọn tối đa số lượng của sản phẩm này ", "warning", JOptionPane.WARNING_MESSAGE);
+                        loadGioHang();
+                        return;
+                    }
+                    int soluong = gioHangViewModel.getSoLuong() + Integer.parseInt(choice);
                     gioHangViewModel.setSoLuong(soluong);
                     loadGioHang();
                     return;
@@ -943,6 +947,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
 
     private void btnTaoHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonActionPerformed
         addHoaDon();
+        lblMaHoaDon.setText("");
+        lblMaHoaDon.setForeground(Color.red);
         update();
     }//GEN-LAST:event_btnTaoHoaDonActionPerformed
 
@@ -1044,7 +1050,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
             e.printStackTrace();
             MsgBox.alert(this, "Thanh toán thất bại");
         }
-        
+
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void btnHoaDonShipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonShipActionPerformed
@@ -1105,26 +1111,26 @@ public class BanHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnGiaoHangActionPerformed
 
     private void btnXoa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa1ActionPerformed
-          int row = tblGioHang.getSelectedRow();
+        int row = tblGioHang.getSelectedRow();
         String soluong = JOptionPane.showInputDialog("Nhập số lượng", "0");
         if (Integer.parseInt(soluong) > Integer.parseInt(tblGioHang.getValueAt(row, 2).toString())) {
             JOptionPane.showMessageDialog(this, "Bạn đã nhập quá số lượng\n Vui lòng nhập lại");
             return;
         }
-        
-        if(Integer.parseInt(soluong)<0){
-                 JOptionPane.showMessageDialog(this, "Số lượng phải là số dương","warning",JOptionPane.WARNING_MESSAGE);
-                 loadGioHang();
-                 return;
-            }
-        
+
+        if (Integer.parseInt(soluong) < 0) {
+            JOptionPane.showMessageDialog(this, "Số lượng phải là số dương", "warning", JOptionPane.WARNING_MESSAGE);
+            loadGioHang();
+            return;
+        }
+
         if (Integer.parseInt(tblGioHang.getValueAt(row, 2).toString()) == Integer.parseInt(soluong)) {
             gioHangViewModels.remove(row);
 
             loadGioHang();
 
         } else {
-           
+
             String ma = tblSanPham.getValueAt(row, 0).toString();
             String ten = tblSanPham.getValueAt(row, 1).toString();
             long dongia = Long.parseLong(tblSanPham.getValueAt(row, 4).toString());
@@ -1313,16 +1319,24 @@ public class BanHangView extends javax.swing.JInternalFrame {
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
         String dateTT = df.format(date);
-
-        hoaDon.setMaHdString("...");
+        //random ma hoa don
+        Random rd = new Random();
+        int hd = rd.nextInt(99); 
+           
+        hoaDon.setMaHdString("HD" + hd + "");
         hoaDon.setNgayTao(dateTT);
         hoaDon.setTienKhachCanTra(Long.parseLong(lblTienKhachCanTra.getText()));
         hoaDon.setTongTien(Long.parseLong(lblTongTien.getText()));
         hoaDon.setTrangThai("Chờ Thanh Toán");
 
-        JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon));
+        JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon),"Tạo Hóa Đơn",JOptionPane.INFORMATION_MESSAGE);
         List<HoaDonViewModel> hds = hoaDonServices.getALlhoaDon();
         loadTableHoaDon(hds);
+        
+      
+        
+      
+    
     }
 
     private void addHoaDonShip() {
@@ -1377,7 +1391,9 @@ public class BanHangView extends javax.swing.JInternalFrame {
     private void loadTableHoaDon(List<HoaDonViewModel> hd) {
         dtbHoaDon.setRowCount(0);
         for (HoaDonViewModel hoaDonViewModel : hd) {
-            dtbHoaDon.addRow(hoaDonViewModel.toDataRow());
+            dtbHoaDon.addRow(
+                    hoaDonViewModel.toDataRow()
+            );
         }
     }
 
@@ -1686,8 +1702,8 @@ public class BanHangView extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
     }
-    
-     public void xuatHoaDonGiao() {
+
+    public void xuatHoaDonGiao() {
         try {
             XWPFDocument document = new XWPFDocument();
             FileOutputStream out = new FileOutputStream(new File("C:\\Users\\ASUS\\OneDrive\\Documents\\PhanMemBanDienThoai\\XuatHoaDon" + lblMaHoaDon.getText() + ".docx"));
@@ -1720,7 +1736,7 @@ public class BanHangView extends javax.swing.JInternalFrame {
             XWPFParagraph paragraph6 = document.createParagraph();
             XWPFRun run6 = paragraph6.createRun();
             run6.setText("Khách hàng: " + txtTenKh.getText());
-            
+
             XWPFParagraph paragraph7 = document.createParagraph();
             XWPFRun run7 = paragraph6.createRun();
             run6.setText("SDT Khách Hàng: " + txtSDT.getText());
@@ -1811,7 +1827,6 @@ public class BanHangView extends javax.swing.JInternalFrame {
             paragraph24.setAlignment(ParagraphAlignment.LEFT);
             XWPFRun run24 = paragraph24.createRun();
             run24.setText(cbbHTTT.getSelectedItem() + ": " + lblTongTienCanTra.getText() + " VNĐ");
-            
 
             XWPFParagraph paragraph23 = document.createParagraph();
             paragraph23.setAlignment(ParagraphAlignment.RIGHT);

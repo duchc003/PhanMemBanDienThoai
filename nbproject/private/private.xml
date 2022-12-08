@@ -11,6 +11,15 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/C:/Users/Admin/Documents/PhanMemBanDienThoai/src/view/KhachHangView.java</file>
+            <file>file:/C:/Users/Admin/Documents/PhanMemBanDienThoai/src/view/BanHangView.java</file>
+            <file>file:/C:/Users/Admin/Documents/PhanMemBanDienThoai/src/Application.java</file>
+            <file>file:/C:/Users/Admin/Documents/PhanMemBanDienThoai/src/viewmodel/HoaDonViewModel.java</file>
+        </group>
+>>>>>>> e71fec13c8f007c87f85b31cb11226a955f6c829
     </open-files>
 </project-private>
