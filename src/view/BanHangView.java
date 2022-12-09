@@ -930,7 +930,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             loadGioHang();
             loadTien();
             capNhapTienKhachPhaiTra();
-//            addhoaDonChiTiet();
+            addhoaDonChiTiet();
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -1291,7 +1291,6 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 spp.getSoLuong(),
                 spp.getGiamGia(),
                 spp.getGiaBan(),
-                spp.getXuatXu()
             });
         }
     }
@@ -1882,12 +1881,12 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 //khong co du lieu
             }
             if (result != null) {
-                System.out.println(result.getText());
-                int index = tblHoaDon.getSelectedRow();
-                if (index == -1) {
-                    JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn trước khi thêm sản phẩm vào giỏ hàng !");
-                    continue;
-                }
+//                System.out.println(result.getText());
+//                int index = tblHoaDon.getSelectedRow();
+//                if (index == -1) {
+//                    JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn trước khi thêm sản phẩm vào giỏ hàng !");
+//                    continue;
+//                }
 //                ChiTietSP c = services.seachbyMa(result.getText());
 //                if (c == null) {
 //                    JOptionPane.showMessageDialog(this, "Mã QRCode/BARCODE không khớp với sản phẩm nào !");
@@ -1902,14 +1901,9 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
 //                }
 //                chiTietSPServices.updateImeiTrangThai(result.getText(), 2);
 //                tbGioHang.getColumn("Ảnh").setCellRenderer(new myTableCellRender());
-//                DefaultTableModel model = (DefaultTableModel) tbGioHang.getModel();
-//                JLabel label = new JLabel();
-//                ImageIcon icon = new ImageIcon(c.getAnh());
-//                Image img = icon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
-//                label.setIcon(new ImageIcon(img));
+//                DefaultTableModel model = (DefaultTableModel) tblGioHang.getModel();
 //                if (c.getTrangThai() == 0) {
 //                    Object[] data = new Object[]{
-//                        label,
 //                        c.getSanPham().getTenSP(),
 //                        c.getMaImei(),
 //                        "1",

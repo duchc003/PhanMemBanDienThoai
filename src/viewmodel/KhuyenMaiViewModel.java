@@ -15,24 +15,24 @@ public class KhuyenMaiViewModel {
     private int id;
     private String maKM;
     private String ten;
+    private String tenHinhThuc;
     private String ngayBD;
     private String ngayKT;
     private float giamGia;
-    private String hinhThuc;
     private String trangThai;
     private String moTa;
 
     public KhuyenMaiViewModel() {
     }
 
-    public KhuyenMaiViewModel(int id, String maKM, String ten, String ngayBD, String ngayKT, float giamGia, String hinhThuc, String trangThai, String moTa) {
+    public KhuyenMaiViewModel(int id, String maKM, String ten, String tenHinhThuc, String ngayBD, String ngayKT, float giamGia, String trangThai, String moTa) {
         this.id = id;
         this.maKM = maKM;
         this.ten = ten;
+        this.tenHinhThuc = tenHinhThuc;
         this.ngayBD = ngayBD;
         this.ngayKT = ngayKT;
         this.giamGia = giamGia;
-        this.hinhThuc = hinhThuc;
         this.trangThai = trangThai;
         this.moTa = moTa;
     }
@@ -85,14 +85,6 @@ public class KhuyenMaiViewModel {
         this.giamGia = giamGia;
     }
 
-    public String getHinhThuc() {
-        return hinhThuc;
-    }
-
-    public void setHinhThuc(String hinhThuc) {
-        this.hinhThuc = hinhThuc;
-    }
-
     public String getTrangThai() {
         return trangThai;
     }
@@ -100,7 +92,7 @@ public class KhuyenMaiViewModel {
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
-    
+
     public String getMoTa() {
         return moTa;
     }
@@ -109,9 +101,13 @@ public class KhuyenMaiViewModel {
         this.moTa = moTa;
     }
 
-    @Override
-    public String toString() {
-        return "KhuyenMaiViewModel{" + "id=" + id + ", maKM=" + maKM + ", ten=" + ten + ", ngayBD=" + ngayBD + ", ngayKT=" + ngayKT + ", giamGia=" + giamGia + ", hinhThuc=" + hinhThuc + ", trangThai=" + trangThai + ", moTa=" + moTa + '}';
+    public String getTenHinhThuc() {
+        return tenHinhThuc;
     }
+
+    public void setTenHinhThuc(String tenHinhThuc) {
+        this.tenHinhThuc = tenHinhThuc;
+    }
+
 
 }

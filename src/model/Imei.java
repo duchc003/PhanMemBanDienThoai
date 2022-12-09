@@ -12,21 +12,21 @@ package model;
 public class Imei {
 
     private int id;
-    private String maImei;
+    private int maImei;
     private String trangThai;
     private int idSanPham;
 
     public Imei() {
     }
 
-    public Imei(int id, String maImei, String trangThai, int idSanPham) {
+    public Imei(int id, int maImei, String trangThai, int idSanPham) {
         this.id = id;
         this.maImei = maImei;
         this.trangThai = trangThai;
         this.idSanPham = idSanPham;
     }
 
-    public Imei(String maImei) {
+    public Imei(int maImei) {
         this.maImei = maImei;
     }
 
@@ -38,11 +38,11 @@ public class Imei {
         this.id = id;
     }
 
-    public String getMaImei() {
+    public int getMaImei() {
         return maImei;
     }
 
-    public void setMaImei(String maImei) {
+    public void setMaImei(int maImei) {
         this.maImei = maImei;
     }
 

@@ -16,7 +16,7 @@ public class ConnectDB {
 
     public static final String HOSTNAME = "localhost";
     public static final String PORT = "1433";
-    public static final String DBNAME = "PhanMemBanDienThoai";
+    public static final String DBNAME = "PhanMemBanHang";
     public static final String USERNAME = "sa";
     public static final String PASSWORD = "123456";
 

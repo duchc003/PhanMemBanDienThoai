@@ -343,7 +343,6 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
                 km.getTen(),
                 km.getNgayBD(),
                 km.getNgayKT(),
-                km.getHinhThuc(),
                 km.getGiamGia(),
                 km.getTrangThai(),
                 km.getMoTa()
@@ -411,7 +410,6 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
                 km.getTen(),
                 km.getNgayBD(),
                 km.getNgayKT(),
-                km.getHinhThuc(),
                 km.getGiamGia(),
                 km.getTrangThai(),
                 km.getMoTa()
@@ -433,7 +431,6 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
                 txt_ngayBD.getText(),
                 txt_ngayKT.getText(),
                 Float.parseFloat(txt_giam.getText()),
-                (String) cbbHinhThuc.getSelectedItem(),
                 trangThai,
                 txt_moTa.getText());
     }

@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>src/view/ThongKeView.java</url>
-            <bookmark id="1">
-                <name/>
-                <line>1163</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-            <file>file:/C:/Users/Admin/Documents/PhanMemBanDienThoai/src/view/KhachHangView.java</file>
-            <file>file:/C:/Users/Admin/Documents/PhanMemBanDienThoai/src/view/BanHangView.java</file>
-            <file>file:/C:/Users/Admin/Documents/PhanMemBanDienThoai/src/Application.java</file>
-            <file>file:/C:/Users/Admin/Documents/PhanMemBanDienThoai/src/viewmodel/HoaDonViewModel.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Documents/PhanMemBanDienThoai/src/view/BanHangView.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Documents/PhanMemBanDienThoai/src/view/SanPhamView.java</file>
         </group>
->>>>>>> e71fec13c8f007c87f85b31cb11226a955f6c829
     </open-files>
 </project-private>

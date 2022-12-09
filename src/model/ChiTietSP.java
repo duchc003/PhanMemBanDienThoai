@@ -49,22 +49,6 @@ public class ChiTietSP {
         this.trangThai = trangThai;
         this.moTa = moTa;
     }
-
-    public ChiTietSP(int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, float giaNhap, float giaBan, String image, String barcodde, String trangThai, String moTa) {
-        this.soLuong = soLuong;
-        this.ram = ram;
-        this.xuatXu = xuatXu;
-        this.camera = camera;
-        this.manHinh = manHinh;
-        this.boNho = boNho;
-        this.mauSac = mauSac;
-        this.giaNhap = giaNhap;
-        this.giaBan = giaBan;
-        this.image = image;
-        this.barcodde = barcodde;
-        this.trangThai = trangThai;
-        this.moTa = moTa;
-    }
     
     public int getIdKm() {
         return idKm;

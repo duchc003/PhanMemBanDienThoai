@@ -15,12 +15,7 @@ import model.Imei;
 public interface ImeiService {
 
     List<Imei> getALL();
-
-    String maTrung(String ma);
-
-    List<String> getList();
     
-    List<String> getListXoa();
-    
-    void setListXoa(List<String> listXoa);
+    String add(Imei imei);
+
 }

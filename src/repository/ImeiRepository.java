@@ -41,19 +41,22 @@ public class ImeiRepository {
         return null;
     }
 
-    public String maTrung(String ma) {
-        String query = "Select MaImei Imei where MaImei = ?";
-        String text = null;
-        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
-            ps.setObject(1, ma);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                text = rs.getString(1);
-            }
-            return text;
+    public boolean add(Imei imei) {
+        String query = "INSERT INTO [dbo].[Imei]\n"
+                + "           ([MaImei]\n"
+                + "           ,[TrangThai]\n"
+                + "           ,[IDSanPham])\n"
+                + "     VALUES\n"
+                + "           (?,?,?)";
+        int check = 0;
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, imei.getMaImei());
+            ps.setObject(2, imei.getTrangThai());
+            ps.setObject(3, imei.getIdSanPham());
+            check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return check > 0;
     }
 }

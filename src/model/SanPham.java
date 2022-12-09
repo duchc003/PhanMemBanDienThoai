@@ -18,7 +18,13 @@ public class SanPham {
     public SanPham() {
     }
 
-    public SanPham(int id,int idHang, String ma, String ten) {
+    public SanPham(int idHang, String ma, String ten) {
+        this.idHang = idHang;
+        this.ma = ma;
+        this.ten = ten;
+    }
+
+    public SanPham(int id, int idHang, String ma, String ten) {
         this.id = id;
         this.idHang = idHang;
         this.ma = ma;
@@ -59,5 +65,10 @@ public class SanPham {
 
     public void setTen(String ten) {
         this.ten = ten;
+    }
+
+    @Override
+    public String toString() {
+        return "SanPham{" + "id=" + id + ", idHang=" + idHang + ", ma=" + ma + ", ten=" + ten + '}';
     }
 }

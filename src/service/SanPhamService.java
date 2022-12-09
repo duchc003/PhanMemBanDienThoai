@@ -1,23 +1,34 @@
 package service;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import model.HangSP;
+import model.HinhThucKhuyenMai;
 import model.KhuyenMai;
+import model.NhaCungCap;
 import model.SanPham;
+import viewmodel.KhuyenMaiViewModel;
 import viewmodel.SanPhamViewModel;
+
 public interface SanPhamService {
+
+    public ArrayList<SanPhamViewModel> getAll();
+
+    public List<HangSP> getID();
+
+    public List<KhuyenMaiViewModel> getIDKm();
+
+    public String addSP(SanPham SP);
+
+    public String updateSP(SanPham SP, int ma);
+
+    List<HinhThucKhuyenMai> getALLHT();
+
+    HangSP getOneHang(String hang);
     
-   public ArrayList<SanPhamViewModel> getAll();
+    KhuyenMaiViewModel getOneKm(String ten);
     
-   public List<HangSP> getID();
-   
-   public List<KhuyenMai> getIDKm();
+    NhaCungCap getOneNCC(String ten);
     
-   public String addSP(SanPham SP);
-    
-   public String updateSP(SanPham SP, int ma);
-    
-   public SanPham getOne(String maSP);
+    SanPham getOneSP(String ten);
 }

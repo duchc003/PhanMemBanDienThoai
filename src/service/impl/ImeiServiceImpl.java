@@ -16,8 +16,6 @@ import service.ImeiService;
  */
 public class ImeiServiceImpl implements ImeiService {
 
-    public static List<String> list;
-    public static List<String> listXoa;
     private ImeiRepository impl = new ImeiRepository();
 
     @Override
@@ -26,29 +24,13 @@ public class ImeiServiceImpl implements ImeiService {
     }
 
     @Override
-    public String maTrung(String ma) {
-        String check = impl.maTrung(ma);
-        if (check != null) {
-            return null;
+    public String add(Imei imei) {
+        boolean add = impl.add(imei);
+        if (add) {
+            return "";
+        } else {
+            return "";
         }
-        return null;
-    }
-
-    @Override
-    public List<String> getList() {
-        return list;
-    }
-    
-    public void setList(List<String> list) {
-        ImeiServiceImpl.list = list;
-    }
-    
-    public List<String> getListXoa() {
-        return listXoa;
-    }
-
-    public void setListXoa(List<String> listXoa) {
-        ImeiServiceImpl.listXoa = listXoa;
     }
 
 }

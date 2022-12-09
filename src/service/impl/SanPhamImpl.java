@@ -3,15 +3,21 @@ package service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import model.HangSP;
+import model.HinhThucKhuyenMai;
 import model.KhuyenMai;
+import model.NhaCungCap;
 import model.SanPham;
+import repository.ChiTietSanPhamRepo;
 import repository.SanPhamRepository;
 import service.SanPhamService;
+import viewmodel.KhuyenMaiViewModel;
 import viewmodel.SanPhamViewModel;
 
 public class SanPhamImpl implements SanPhamService {
 
     SanPhamRepository SP = new SanPhamRepository();
+    
+    private ChiTietSanPhamRepo impl = new ChiTietSanPhamRepo();
 
     @Override
     public ArrayList<SanPhamViewModel> getAll() {
@@ -26,11 +32,6 @@ public class SanPhamImpl implements SanPhamService {
         } else {
             return "That bai";
         }
-    }
-
-    @Override
-    public SanPham getOne(String maSP) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -49,7 +50,32 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
-    public List<KhuyenMai> getIDKm() {
+    public List<KhuyenMaiViewModel> getIDKm() {
         return SP.getALLKM();
+    }
+
+    @Override
+    public List<HinhThucKhuyenMai> getALLHT() {
+        return SP.getALLHT();
+    }
+
+    @Override
+    public HangSP getOneHang(String hang) {
+        return SP.getOneHang(hang);
+    }
+
+    @Override
+    public KhuyenMaiViewModel getOneKm(String ten) {
+        return impl.getOneKm(ten);
+    }
+
+    @Override
+    public NhaCungCap getOneNCC(String ten) {
+        return impl.getOneNCC(ten);
+    }
+
+    @Override
+    public SanPham getOneSP(String ten) {
+        return impl.getOneSP(ten);
     }
 }

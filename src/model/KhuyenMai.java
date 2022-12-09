@@ -18,21 +18,19 @@ public class KhuyenMai {
     private String ngayBD;
     private String ngayKT;
     private float giamGia;
-    private String hinhThuc;
     private String trangThai;
     private String moTa;
 
     public KhuyenMai() {
     }
 
-    public KhuyenMai(int id, String maKM, String ten, String ngayBD, String ngayKT, float giamGia, String hinhThuc, String trangThai, String moTa) {
+    public KhuyenMai(int id, String maKM, String ten, String ngayBD, String ngayKT, float giamGia, String trangThai, String moTa) {
         this.id = id;
         this.maKM = maKM;
         this.ten = ten;
         this.ngayBD = ngayBD;
         this.ngayKT = ngayKT;
         this.giamGia = giamGia;
-        this.hinhThuc = hinhThuc;
         this.trangThai = trangThai;
         this.moTa = moTa;
     }
@@ -83,14 +81,6 @@ public class KhuyenMai {
 
     public void setGiamGia(float giamGia) {
         this.giamGia = giamGia;
-    }
-
-    public String getHinhThuc() {
-        return hinhThuc;
-    }
-
-    public void setHinhThuc(String hinhThuc) {
-        this.hinhThuc = hinhThuc;
     }
 
     public String getTrangThai() {
