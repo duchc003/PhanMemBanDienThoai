@@ -5,6 +5,8 @@
 package service;
 
 import java.util.List;
+import model.HoaDonCT;
+import model.imeiDaBan;
 import viewmodel.hoaDonViewModelHUY;
 
 /**
@@ -24,4 +26,8 @@ public interface hoaDonViewModelServicesHUY {
     List<hoaDonViewModelHUY> timKiemCombobox2(String TenHTGH);
     
     hoaDonViewModelHUY timhoaDon(int TenHTGH);
+    
+    List<imeiDaBan> selectID(int ma);
+    
+    HoaDonCT selectIDHD(int ma);
 }

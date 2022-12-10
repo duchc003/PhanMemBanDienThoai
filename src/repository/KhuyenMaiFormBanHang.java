@@ -19,13 +19,15 @@ import viewmodel.KhuyenMaiBanHang;
 public class KhuyenMaiFormBanHang {
 
     public KhuyenMaiBanHang giamGiaPhanTram(String ma) {
-        String query = "SELECT dbo.SanPham.MaSP, dbo.SanPham.TenSp, dbo.ChiTietSanPham.SoLuong, dbo.GiamGia.MaKM, dbo.GiamGia.Ten, dbo.GiamGia.NgayBD, dbo.GiamGia.NgayKT, dbo.GiamGia.GiamGia, dbo.GiamGia.HinhThuc, dbo.GiamGia.TrangThai\n"
+        String query = "SELECT dbo.SanPham.MaSP, dbo.SanPham.TenSp, dbo.ChiTietSanPham.SoLuong, dbo.GiamGia.MaKM, dbo.GiamGia.Ten, dbo.GiamGia.NgayBD, dbo.GiamGia.NgayKT, dbo.GiamGia.GiamGia, dbo.HinhThucKhuyenMai.TenHinhThucKm, \n"
+                + "                  dbo.GiamGia.TrangThai\n"
                 + "FROM     dbo.ChiTietSanPham INNER JOIN\n"
                 + "                  dbo.GiamGia ON dbo.ChiTietSanPham.IDKM = dbo.GiamGia.ID INNER JOIN\n"
+                + "                  dbo.HinhThucKhuyenMai ON dbo.GiamGia.IDHinhThuc = dbo.HinhThucKhuyenMai.Id INNER JOIN\n"
                 + "                  dbo.SanPham ON dbo.ChiTietSanPham.IDSP = dbo.SanPham.ID\n"
-                + "				  where dbo.GiamGia.TrangThai = N'Hoạt Động' and dbo.SanPham.MaSP = ?";
-        try ( Connection con = ConnectDB.getConnection();  PreparedStatement ps = con.prepareCall(query)) {
-            ps.setObject(1, ma );
+                + "				   where dbo.GiamGia.TrangThai = N'Hoạt Động' and dbo.SanPham.MaSP = ?";
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, ma);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return new KhuyenMaiBanHang(

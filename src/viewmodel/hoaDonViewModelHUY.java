@@ -14,6 +14,8 @@ public class hoaDonViewModelHUY {
     private String maHD;
     private String hoVaTen;
     private String tenKhachHang;
+    private String ngayTao;
+    private String ngayThanhToan;
     private long tongTien;
     private String tenHTTT;
     private String tenHTGH;
@@ -22,11 +24,13 @@ public class hoaDonViewModelHUY {
     public hoaDonViewModelHUY() {
     }
 
-    public hoaDonViewModelHUY(int id, String maHD, String hoVaTen, String tenKhachHang, long tongTien, String tenHTTT, String tenHTGH, String trangThai) {
+    public hoaDonViewModelHUY(int id, String maHD, String hoVaTen, String tenKhachHang, String ngayTao, String ngayThanhToan, long tongTien, String tenHTTT, String tenHTGH, String trangThai) {
         this.id = id;
         this.maHD = maHD;
         this.hoVaTen = hoVaTen;
         this.tenKhachHang = tenKhachHang;
+        this.ngayTao = ngayTao;
+        this.ngayThanhToan = ngayThanhToan;
         this.tongTien = tongTien;
         this.tenHTTT = tenHTTT;
         this.tenHTGH = tenHTGH;
@@ -99,6 +103,22 @@ public class hoaDonViewModelHUY {
 
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
+    }
+
+    public String getNgayTao() {
+        return ngayTao;
+    }
+
+    public void setNgayTao(String ngayTao) {
+        this.ngayTao = ngayTao;
+    }
+
+    public String getNgayThanhToan() {
+        return ngayThanhToan;
+    }
+
+    public void setNgayThanhToan(String ngayThanhToan) {
+        this.ngayThanhToan = ngayThanhToan;
     }
 
     

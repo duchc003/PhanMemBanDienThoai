@@ -11,6 +11,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import model.HinhThucKhuyenMai;
 import model.KhuyenMai;
 import service.impl.khuyenMaiServicesImpl;
 import viewmodel.KhuyenMaiViewModel;
@@ -410,6 +411,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
                 km.getTen(),
                 km.getNgayBD(),
                 km.getNgayKT(),
+                km.getTenHinhThuc(),
                 km.getGiamGia(),
                 km.getTrangThai(),
                 km.getMoTa()
@@ -424,13 +426,16 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         } else {
             trangThai = "Không Hoạt Động";
         }
+        HinhThucKhuyenMai ht = impl.timKiemId((String) cbbHinhThuc.getSelectedItem());
+        int id = ht.getId();
         return new KhuyenMaiViewModel(
                 0,
+                String.valueOf(id),
                 txt_maKM.getText(),
                 txt_tenKM.getText(),
                 txt_ngayBD.getText(),
                 txt_ngayKT.getText(),
-                Float.parseFloat(txt_giam.getText()),
+                Long.parseLong(txt_giam.getText()),
                 trangThai,
                 txt_moTa.getText());
     }
@@ -438,7 +443,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
     private void updateKhuyenMai() {
         int row = tbl_khuyenMai.getSelectedRow();
         KhuyenMaiViewModel km = getFormKhuyenMaiInput();
-        String maKM = (String) tbl_khuyenMai.getValueAt(row, 1);
+        int maKM =  (int) tbl_khuyenMai.getValueAt(row, 0);
         JOptionPane.showMessageDialog(this, impl.updateKhuyenmai(km, maKM));
         list = impl.getAllKhuyenMaiViewModel();
         loadTable(list);

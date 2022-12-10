@@ -6,6 +6,7 @@
 package service;
 
 import java.util.List;
+import model.HinhThucKhuyenMai;
 import model.KhuyenMai;
 import viewmodel.KhuyenMaiViewModel;
 
@@ -21,8 +22,10 @@ public interface khuyenMaiServices {
 
     String addKhuyenMai(KhuyenMaiViewModel km);
 
-    String updateKhuyenmai(KhuyenMaiViewModel km, String maKM);
+    String updateKhuyenmai(KhuyenMaiViewModel km, int maKM);
     
     KhuyenMaiViewModel getOne(String hinhThai);
+    
+    HinhThucKhuyenMai timKiemId(String maKM);
 
 }

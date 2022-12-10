@@ -105,7 +105,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
-        initWebcam();
+//        initWebcam();
         if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
             lblNhanVien.setText("Hoàng Công Đức");
         }
@@ -147,19 +147,19 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     }
     int row = 0;
 
-    private void initWebcam() {
-
-        Dimension size = WebcamResolution.QVGA.getSize();;
-        webcam = Webcam.getWebcams().get(0);
-        webcam.setViewSize(size);
-
-        panel = new WebcamPanel(webcam);
-        panel.setPreferredSize(size);
-        panel.setFPSDisplayed(true);
-        jPanel10.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 150));
-        executor.execute(this);
-
-    }
+//    private void initWebcam() {
+//
+//        Dimension size = WebcamResolution.QVGA.getSize();;
+//        webcam = Webcam.getWebcams().get(0);
+//        webcam.setViewSize(size);
+//
+//        panel = new WebcamPanel(webcam);
+//        panel.setPreferredSize(size);
+//        panel.setFPSDisplayed(true);
+//        jPanel10.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 150));
+//        executor.execute(this);
+//
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -876,9 +876,10 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         tblModelGH.setRowCount(0);
         int row = tblSanPham.getSelectedRow();
         int row1 = tblHoaDon.getSelectedRow();
-        if (row1 < 0) {
-            MsgBox.alert(this, "Vui lòng chọn hóa đơn chờ\nNếu chưa có vui lòng tạo!");
-        } else if (row < 0) {
+//        if (row1 < 0) {
+//            MsgBox.alert(this, "Vui lòng chọn hóa đơn chờ\nNếu chưa có vui lòng tạo!");
+//        } else 
+            if (row < 0) {
             MsgBox.alert(this, "Vui lòng chọn sản phẩm trên table!");
         } else {
 
@@ -930,7 +931,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             loadGioHang();
             loadTien();
             capNhapTienKhachPhaiTra();
-            addhoaDonChiTiet();
+//            addhoaDonChiTiet();
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -983,6 +984,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     private void btnChonKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonKhachActionPerformed
         KhachHangJframe hangJframe = new view.KhachHangJframe();
         hangJframe.setVisible(true);
+        showTTKH();
     }//GEN-LAST:event_btnChonKhachActionPerformed
 
     private void txtTienKhachDuaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachDuaKeyReleased
@@ -990,7 +992,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     }//GEN-LAST:event_txtTienKhachDuaKeyReleased
 
     private void btnChonKhach1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonKhach1ActionPerformed
-        showTTKH();
+        
     }//GEN-LAST:event_btnChonKhach1ActionPerformed
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed

@@ -9,25 +9,20 @@ package model;
  *
  * @author ASUS
  */
-public class Imei {
-
+public class imeiDaBan {
     private int id;
-    private String maImei;
+    private String ma;
     private String trangThai;
-    private int idSanPham;
+    private int idHoaDon;
 
-    public Imei() {
+    public imeiDaBan() {
     }
 
-    public Imei(int id, String maImei, String trangThai, int idSanPham) {
+    public imeiDaBan(int id, String ma, String trangThai, int idHoaDon) {
         this.id = id;
-        this.maImei = maImei;
+        this.ma = ma;
         this.trangThai = trangThai;
-        this.idSanPham = idSanPham;
-    }
-
-    public Imei(String maImei) {
-        this.maImei = maImei;
+        this.idHoaDon = idHoaDon;
     }
 
     public int getId() {
@@ -38,12 +33,12 @@ public class Imei {
         this.id = id;
     }
 
-    public String getMaImei() {
-        return maImei;
+    public String getMa() {
+        return ma;
     }
 
-    public void setMaImei(String maImei) {
-        this.maImei = maImei;
+    public void setMa(String ma) {
+        this.ma = ma;
     }
 
     public String getTrangThai() {
@@ -54,12 +49,16 @@ public class Imei {
         this.trangThai = trangThai;
     }
 
-    public int getIdSanPham() {
-        return idSanPham;
+    public int getIdHoaDon() {
+        return idHoaDon;
     }
 
-    public void setIdSanPham(int idSanPham) {
-        this.idSanPham = idSanPham;
+    public void setIdHoaDon(int idHoaDon) {
+        this.idHoaDon = idHoaDon;
     }
 
+    @Override
+    public String toString() {
+        return "imeiDaBan{" + "id=" + id + ", ma=" + ma + ", trangThai=" + trangThai + ", idHoaDon=" + idHoaDon + '}';
+    }
 }

@@ -6,6 +6,7 @@
 package service.impl;
 
 import java.util.List;
+import model.HinhThucKhuyenMai;
 import model.KhuyenMai;
 import repository.khuyenMaiRepository;
 import service.khuyenMaiServices;
@@ -41,7 +42,7 @@ public class khuyenMaiServicesImpl implements khuyenMaiServices {
     }
 
     @Override
-    public String updateKhuyenmai(KhuyenMaiViewModel km, String maKM) {
+    public String updateKhuyenmai(KhuyenMaiViewModel km, int maKM) {
         int update = KhuyenMaiViewModelReprository.updateKhuyenmai(km, maKM);
         if (update > 0) {
             return "Update thành công ";
@@ -54,6 +55,11 @@ public class khuyenMaiServicesImpl implements khuyenMaiServices {
     @Override
     public KhuyenMaiViewModel getOne(String hinhThai) {
         return KhuyenMaiViewModelReprository.getOne(hinhThai);
+    }
+
+    @Override
+    public HinhThucKhuyenMai timKiemId(String maKM) {
+        return KhuyenMaiViewModelReprository.timKiemId(maKM);
     }
 
 }

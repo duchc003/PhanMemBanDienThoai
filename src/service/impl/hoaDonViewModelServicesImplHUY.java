@@ -5,6 +5,8 @@
 package service.impl;
 
 import java.util.List;
+import model.HoaDonCT;
+import model.imeiDaBan;
 import repository.hoaDonViewModelRepositoryHUY;
 import service.hoaDonViewModelServicesHUY;
 import viewmodel.hoaDonViewModelHUY;
@@ -46,6 +48,16 @@ public class hoaDonViewModelServicesImplHUY implements hoaDonViewModelServicesHU
     @Override
     public hoaDonViewModelHUY timhoaDon(int TenHTGH) {
         return hoaDonViewModelRepositoryHUY.select(TenHTGH);
+    }
+
+    @Override
+    public List<imeiDaBan> selectID(int ma) {
+        return hoaDonViewModelRepositoryHUY.selectID(ma);
+    }
+
+    @Override
+    public HoaDonCT selectIDHD(int ma) {
+        return hoaDonViewModelRepositoryHUY.selectIDHD(ma);
     }
 
 }

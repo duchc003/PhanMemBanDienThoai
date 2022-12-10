@@ -12,6 +12,8 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import model.HoaDonCT;
+import model.imeiDaBan;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -69,7 +71,8 @@ public class HoaDonView extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblImei = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,15 +82,23 @@ public class HoaDonView extends javax.swing.JInternalFrame {
 
         tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "MaHD", "Ten NhanVien", "Tên Khách Hàng", "Tổng Tiền", "tên  HTTT", "Tên HTGH", "Trạng Thái"
+                "STT", "MaHD", "Ten NhanVien", "Tên Khách Hàng", "Ngày Tạo", "Ngày Thanh Toán", "Tổng Tiền", "Tên HTTT", "Ten HTFH", "Trạng Thái"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblHoaDonMouseClicked(evt);
@@ -201,6 +212,11 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblHoaDonChiTiet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblHoaDonChiTietMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblHoaDonChiTiet);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -231,18 +247,29 @@ public class HoaDonView extends javax.swing.JInternalFrame {
         jPanel4.setBackground(new java.awt.Color(0, 204, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblImei.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Imei"
             }
-        ));
-        jScrollPane3.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblImei);
+        if (tblImei.getColumnModel().getColumnCount() > 0) {
+            tblImei.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -262,6 +289,9 @@ public class HoaDonView extends javax.swing.JInternalFrame {
         );
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 500, 330, 300));
+
+        jLabel4.setText("Imei");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 480, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -570,7 +600,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
         dtm.setRowCount(0);
         List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.getAllhoaDonViewModelHUY();
         List<ChiTietHoaDonView> listHoaDon = impl.getAllCt(list.get(tblHoaDon.getSelectedRow()).getId());
-        int i =1;
+        int i = 1;
         for (ChiTietHoaDonView x : listHoaDon) {
             dtm.addRow(new Object[]{
                 i++,
@@ -584,6 +614,19 @@ public class HoaDonView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
+    private void tblHoaDonChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonChiTietMouseClicked
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm = (DefaultTableModel) tblImei.getModel();
+        dtm.setRowCount(0);
+        List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.getAllhoaDonViewModelHUY();
+        List<ChiTietHoaDonView> listHoaDon = impl.getAllCt(list.get(tblHoaDon.getSelectedRow()).getId());
+        HoaDonCT ct = hoaViewModelServicesImplHUY.selectIDHD(listHoaDon.get(tblHoaDonChiTiet.getSelectedRow()).getId());
+        List<imeiDaBan> imei = hoaViewModelServicesImplHUY.selectID(ct.getId());
+        for (imeiDaBan daBan : imei) {
+            dtm.addRow(new Object[]{daBan.getMa()});
+        }
+    }//GEN-LAST:event_tblHoaDonChiTietMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbo_HTGH;
@@ -592,6 +635,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -599,58 +643,11 @@ public class HoaDonView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable tblHoaDon;
     private javax.swing.JTable tblHoaDonChiTiet;
+    private javax.swing.JTable tblImei;
     private javax.swing.JTextField txt_timKiem;
     // End of variables declaration//GEN-END:variables
-
-    private void openFile(String file) {
-        try {
-            File path = new File(file);
-            Desktop.getDesktop().open(path);
-        } catch (IOException ioe) {
-            System.out.println(ioe);
-        }
-    }
-
-    private void xuatExcel() {
-        DefaultTableModel model = (DefaultTableModel) this.tblHoaDon.getModel();
-        JFileChooser jfc = new JFileChooser("documents");
-        int result = jfc.showSaveDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            try {
-                File newFile = jfc.getSelectedFile();
-                newFile = new File(newFile.toString() + ".xlsx");
-                XSSFWorkbook xwb = new XSSFWorkbook();
-                XSSFSheet Diemsheep = xwb.createSheet("Thống kê Hóa Đơn");
-                XSSFRow row = Diemsheep.createRow((short) 0);
-                XSSFCell h;
-                for (int i = 0; i < model.getColumnCount(); i++) {
-                    h = row.createCell((short) i);
-                    h.setCellValue(model.getColumnName(i));
-                }
-
-                XSSFRow row1;
-                XSSFCell a1;
-                for (int i = 0; i < model.getRowCount(); i++) {
-                    row1 = Diemsheep.createRow((short) i + 1);
-                    for (int j = 0; j < model.getColumnCount(); j++) {
-                        a1 = row1.createCell((short) j);
-                        a1.setCellValue(model.getValueAt(i, j).toString());
-                    }
-                }
-                FileOutputStream file = new FileOutputStream(newFile.getAbsoluteFile().getPath());
-                xwb.write(file);
-                xwb.close();
-                file.close();
-                MsgBox.alert(this, "Xuất tệp thành công");
-                openFile(newFile.toString());
-            } catch (Exception e) {
-                MsgBox.alert(this, "Xuất tệp thất bại");
-            }
-        }
-    }
 
     private void loadtable() {
         DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
@@ -663,6 +660,8 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                 hd.getMaHD(),
                 hd.getHoVaTen(),
                 hd.getTenKhachHang(),
+                hd.getNgayTao(),
+                hd.getNgayThanhToan(),
                 hd.getTongTien(),
                 hd.getTenHTTT(),
                 hd.getTenHTGH(),

@@ -100,7 +100,7 @@ public class SanPhamRepository {
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6),
-                        rs.getFloat(7),
+                        rs.getLong(7),
                         rs.getString(8),
                         rs.getString(9)));
             }

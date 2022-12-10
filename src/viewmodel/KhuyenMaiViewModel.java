@@ -13,23 +13,23 @@ import java.util.Date;
 public class KhuyenMaiViewModel {
 
     private int id;
+    private String tenHinhThuc;
     private String maKM;
     private String ten;
-    private String tenHinhThuc;
     private String ngayBD;
     private String ngayKT;
-    private float giamGia;
+    private long giamGia;
     private String trangThai;
     private String moTa;
 
     public KhuyenMaiViewModel() {
     }
 
-    public KhuyenMaiViewModel(int id, String maKM, String ten, String tenHinhThuc, String ngayBD, String ngayKT, float giamGia, String trangThai, String moTa) {
+    public KhuyenMaiViewModel(int id, String tenHinhThuc, String maKM, String ten, String ngayBD, String ngayKT, long giamGia, String trangThai, String moTa) {
         this.id = id;
+        this.tenHinhThuc = tenHinhThuc;
         this.maKM = maKM;
         this.ten = ten;
-        this.tenHinhThuc = tenHinhThuc;
         this.ngayBD = ngayBD;
         this.ngayKT = ngayKT;
         this.giamGia = giamGia;
@@ -77,11 +77,11 @@ public class KhuyenMaiViewModel {
         this.ngayKT = ngayKT;
     }
 
-    public float getGiamGia() {
+    public Long getGiamGia() {
         return giamGia;
     }
 
-    public void setGiamGia(float giamGia) {
+    public void setGiamGia(Long giamGia) {
         this.giamGia = giamGia;
     }
 

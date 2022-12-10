@@ -130,7 +130,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         tblTable.setModel(dtmIMei);
         dtmIMei.setRowCount(0);
         dtmIMei.setColumnIdentifiers(new Object[]{"Imei"});
-        
+
     }
 
     private void cbbKM(List<HinhThucKhuyenMai> list) {
@@ -926,9 +926,9 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
         cbbMauSac.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trắng", "Đỏ", "Đen", "Tím", "Xanh", " " }));
 
-        cbbManHinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2 inch", "3 inch", "4 inch", "6 inch", "8 inch", "10 inch", "12 inch", "16 inch" }));
+        cbbManHinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2 inch", "3 inch", "4 inch", "6 inch", "8 inch", "10 inch", "12 inch", "14 inch" }));
 
-        cbbRam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2G", "4G", "6G", "8G", " " }));
+        cbbRam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2G", "4G", "6G", "8G", "16G", "32G", " " }));
 
         cbbBoNho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8GB", "16GB", "32GB", "125GB", "250GB" }));
 
@@ -1375,17 +1375,20 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSuaCtActionPerformed
 
     private void btnThemCtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemCtActionPerformed
-//        MsgBox.alert(this, impl.add(getDataSp()));
-//        listCt = impl.getALL();
-//        fillCt(listCt);
-        for (int i = 0; i < tblTable.getRowCount(); i++) {
-            SanPham sp = SP.getOneSP((String) cbbSanPham.getSelectedItem());
-            Imei imei = new Imei();;
-            imei.setTrangThai("Còn Hàng");
-            imei.setIdSanPham(sp.getId());
-//            imeiImpl.add(imei);
-        }
-
+        MsgBox.alert(this, impl.add(getDataSp()));
+        listCt = impl.getALL();
+        fillCt(listCt);
+        Imei imei = new Imei();;
+//        for (int i = 0; i < tblTable.getRowCount(); i++) {
+//            SanPham sp = SP.getOneSP((String) cbbSanPham.getSelectedItem());
+//
+//            imei.setMaImei(tblTable.getValueAt(i, 0).toString());
+//            imei.setTrangThai("Còn Hàng");
+//            imei.setIdSanPham(sp.getId());
+//            System.out.println(tblTable.getValueAt(i, 0).toString());
+//             imeiImpl.add(imei);
+//        }
+       
     }//GEN-LAST:event_btnThemCtActionPerformed
 
     private void lblAnhMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnhMousePressed
@@ -1491,12 +1494,12 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExActionPerformed
 
     private void tblCt1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCt1MouseClicked
-        // TODO add your handling code here:
+        int index = tblCt1.getSelectedRow();
+        setData(index);
     }//GEN-LAST:event_tblCt1MouseClicked
 
     private void tblTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTableMouseClicked
-        int index = tblCt1.getSelectedRow();
-        setData(index);
+        
     }//GEN-LAST:event_tblTableMouseClicked
 
 
@@ -1633,13 +1636,8 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                 for (int row = 0; row < excelSheet.getLastRowNum(); row++) {
                     XSSFRow excelRow = excelSheet.getRow(row);
                     XSSFCell excelLineNum = excelRow.getCell(0);
-//                    XSSFCell excelItemName = excelRow.getCell(1);
-//                    XSSFCell excelDescription = excelRow.getCell(2);
-//                    XSSFCell excelServiceDuration = excelRow.getCell(3);
-//                    XSSFCell excelQLA = excelRow.getCell(4);
-//                    XSSFCell excelLJU = excelRow.getCell(5);
-//                    XSSFCell excelLJUf = excelRow.getCell(6);
                     dtmIMei.addRow(new Object[]{excelLineNum});
+                    txtSoLuong.setText(String.valueOf(tblTable.getRowCount()));
                 }
                 JOptionPane.showMessageDialog(null, "Imported Successfully !!.....");
             } catch (IOException iOException) {
