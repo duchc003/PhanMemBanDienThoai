@@ -72,24 +72,31 @@
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtTaiKhoan" pref="250" max="32767" attributes="0"/>
-                          <Component id="txtEmail" pref="250" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtTaiKhoan" pref="250" max="32767" attributes="0"/>
+                                  <Component id="txtEmail" pref="250" max="32767" attributes="0"/>
+                                  <Component id="txtMK" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtNhapLaiMK" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lblTaiKhoan" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Component id="lblMK" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Component id="lblNhaplai" alignment="1" pref="250" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                      <Component id="lblEmail" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="btnDangKi" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="txtMK" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtNhapLaiMK" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblTaiKhoan" alignment="0" pref="250" max="32767" attributes="0"/>
-                          <Component id="lblMK" alignment="0" pref="250" max="32767" attributes="0"/>
-                          <Component id="lblNhaplai" alignment="1" pref="250" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="lblEmail" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jLabel6" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -104,31 +111,34 @@
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblEmail" pref="13" max="32767" attributes="0"/>
+                      <Component id="lblEmail" pref="14" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtTaiKhoan" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lblTaiKhoan" pref="13" max="32767" attributes="0"/>
+                      <Component id="lblTaiKhoan" pref="14" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <Component id="txtMK" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                      <Component id="lblMK" pref="13" max="32767" attributes="0"/>
+                      <Component id="lblMK" pref="14" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtNhapLaiMK" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                      <Component id="lblNhaplai" pref="13" max="32767" attributes="0"/>
+                      <Component id="lblNhaplai" pref="17" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnDangKi" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnDangKi" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="32" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -216,6 +226,17 @@
             <Component class="javax.swing.JLabel" name="lblMK">
             </Component>
             <Component class="javax.swing.JLabel" name="lblNhaplai">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel6">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Sitka Display" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="B&#x1ea1;n &#x111;&#xe3; c&#xf3; t&#xe0;i kho&#x1ea3;n?"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel6MouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

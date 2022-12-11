@@ -253,7 +253,7 @@ public class KhachHangView extends javax.swing.JInternalFrame {
 
         lblngaysinh.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         lblngaysinh.setForeground(new java.awt.Color(0, 255, 153));
-        jPanel1.add(lblngaysinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 670, 300, 20));
+        jPanel1.add(lblngaysinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 670, 300, 20));
         jPanel1.add(txtTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, 610, -1));
 
         jLabel8.setText("Mã KH");
@@ -386,7 +386,12 @@ public class KhachHangView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-           //regex matkhau ^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$
+        lists = khachHangServices.searchKH(txtMaKH.getText());
+        if(lists.size()>0){
+            JOptionPane.showMessageDialog(this, "Mã nhân viên đã tồn tại trong hệ thống");
+            return;
+        }
+        //regex matkhau ^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$
         if (validateForm() == true) {
             //validate ngaysinh
             Pattern p2 = Pattern.compile("^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$");//Năm bắt đầu từ 1900 đến dưới 3000-tháng từ 1 đến 12 -ngày từ 1 đến 31
