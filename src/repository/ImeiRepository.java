@@ -161,7 +161,7 @@ public class ImeiRepository {
 
 
     public static void main(String[] args) {
-        System.out.println(new ImeiRepository().getOneIDHoaDon(5).toString());
+        System.out.println(new ImeiRepository().getOneID("SP01"));
     }
 
 }

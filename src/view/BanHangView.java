@@ -935,7 +935,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             loadGioHang();
             loadTien();
             capNhapTienKhachPhaiTra();
-            addhoaDonChiTiet();
+//            addhoaDonChiTiet();
         }
         addImeiDaBan();
     }//GEN-LAST:event_btnThemActionPerformed
@@ -1728,7 +1728,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     }
 
     private void addImeiDaBan() {
-        SanPham sp = imei.getOneID((String) tblGioHang.getValueAt(tblSanPham.getSelectedRow(), 0));
+        SanPham sp = imei.getOneID((String) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0));
         List<Imei> liss = imei.getALLID(sp.getId());
         HoaDonViewModel list = imei.getOneIDHoaDon((int) tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0));
         System.out.println(list.getId());
