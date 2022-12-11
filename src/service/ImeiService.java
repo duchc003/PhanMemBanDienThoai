@@ -6,7 +6,11 @@
 package service;
 
 import java.util.List;
+import model.HoaDon;
 import model.Imei;
+import model.SanPham;
+import model.imeiDaBan;
+import viewmodel.HoaDonViewModel;
 
 /**
  *
@@ -17,5 +21,15 @@ public interface ImeiService {
     List<Imei> getALL();
     
     String add(Imei imei);
+    
+    String addImei(imeiDaBan imei) ;
+    
+    List<Imei> getALLID(int id);
+    
+    SanPham getOneID(String id);
+    
+    HoaDonViewModel getOneIDHoaDon(int id);
+    
+    HoaDon getOneIDHD(int id);
 
 }

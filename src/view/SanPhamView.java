@@ -1379,16 +1379,13 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         listCt = impl.getALL();
         fillCt(listCt);
         Imei imei = new Imei();;
-//        for (int i = 0; i < tblTable.getRowCount(); i++) {
-//            SanPham sp = SP.getOneSP((String) cbbSanPham.getSelectedItem());
-//
-//            imei.setMaImei(tblTable.getValueAt(i, 0).toString());
-//            imei.setTrangThai("Còn Hàng");
-//            imei.setIdSanPham(sp.getId());
-//            System.out.println(tblTable.getValueAt(i, 0).toString());
-//             imeiImpl.add(imei);
-//        }
-       
+        for (int i = 0; i < tblTable.getRowCount(); i++) {
+            SanPham sp = SP.getOneSP((String) cbbSanPham.getSelectedItem());
+            imei.setMaImei(tblTable.getValueAt(i, 0).toString());
+            imei.setTrangThai("Còn Hàng");
+            imei.setIdSanPham(sp.getId());
+            imeiImpl.add(imei);
+        }
     }//GEN-LAST:event_btnThemCtActionPerformed
 
     private void lblAnhMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnhMousePressed
@@ -1499,7 +1496,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblCt1MouseClicked
 
     private void tblTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTableMouseClicked
-        
+
     }//GEN-LAST:event_tblTableMouseClicked
 
 

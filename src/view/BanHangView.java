@@ -71,6 +71,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import model.Imei;
+import model.SanPham;
+import model.imeiDaBan;
+import service.impl.ImeiServiceImpl;
 import viewmodel.SanPhamViewModel;
 
 public class BanHangView extends javax.swing.JInternalFrame implements Runnable, ThreadFactory {
@@ -99,6 +103,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     private NhanVienImpl nvImpl = new NhanVienImpl();
     private hoaDonViewModelServicesImplHUY hoaViewModelServicesImplHUY = new hoaDonViewModelServicesImplHUY();
     private KhachHangServicesImpl kmImpl = new KhachHangServicesImpl();
+    private ImeiServiceImpl imei = new ImeiServiceImpl();
 
     public BanHangView() {
         initComponents();
@@ -160,7 +165,6 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
 //        executor.execute(this);
 //
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -359,7 +363,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 btnThemActionPerformed(evt);
             }
         });
-        jPanel6.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
+        jPanel6.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, 40));
 
         txtTimKiem.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -558,10 +562,6 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(133, 133, 133))
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -630,7 +630,10 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                                 .addGap(2, 2, 2)
                                 .addComponent(jLabel12)
                                 .addGap(38, 38, 38)
-                                .addComponent(lblNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lblNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(130, 130, 130)
+                                .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel9Layout.setVerticalGroup(
@@ -680,13 +683,13 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbbHTTT, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHuyDon))
-                .addGap(31, 31, 31)
+                .addGap(29, 29, 29)
                 .addComponent(btnThanhToan)
-                .addGap(26, 26, 26))
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -866,6 +869,8 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         if (choice == JOptionPane.YES_OPTION) {
             gioHangViewModels.removeAll(gioHangViewModels);
             loadGioHang();
+            loadSanPham(lst);
+            lamMoiXoaAll();
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -876,10 +881,9 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         tblModelGH.setRowCount(0);
         int row = tblSanPham.getSelectedRow();
         int row1 = tblHoaDon.getSelectedRow();
-//        if (row1 < 0) {
-//            MsgBox.alert(this, "Vui lòng chọn hóa đơn chờ\nNếu chưa có vui lòng tạo!");
-//        } else 
-            if (row < 0) {
+        if (row1 < 0) {
+            MsgBox.alert(this, "Vui lòng chọn hóa đơn chờ\nNếu chưa có vui lòng tạo!");
+        } else if (row < 0) {
             MsgBox.alert(this, "Vui lòng chọn sản phẩm trên table!");
         } else {
 
@@ -890,7 +894,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 return;
             }
             if (Integer.parseInt(choice) == 0) {
-                JOptionPane.showMessageDialog(this, "Bạn chưa chọn số lượng", "warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Vui Lòng Nhập Số Lượng Lớn Hơn 0", "warning", JOptionPane.WARNING_MESSAGE);
                 loadGioHang();
                 return;
             }
@@ -901,7 +905,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 return;
             }
             //Giảm số lượng sản phẩm được chọn
-            //   tblSanPham.setValueAt(Integer.parseInt(tblSanPham.getValueAt(row, 2).toString()) - Integer.parseInt(choice), row, 2);
+            tblSanPham.setValueAt(Integer.parseInt(tblSanPham.getValueAt(row, 2).toString()) - Integer.parseInt(choice), row, 2);
 
             String ma = tblSanPham.getValueAt(row, 0).toString();
             String ten = tblSanPham.getValueAt(row, 1).toString();
@@ -931,8 +935,9 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             loadGioHang();
             loadTien();
             capNhapTienKhachPhaiTra();
-//            addhoaDonChiTiet();
+            addhoaDonChiTiet();
         }
+        addImeiDaBan();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void txtTimKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemCaretUpdate
@@ -984,7 +989,6 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     private void btnChonKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonKhachActionPerformed
         KhachHangJframe hangJframe = new view.KhachHangJframe();
         hangJframe.setVisible(true);
-        showTTKH();
     }//GEN-LAST:event_btnChonKhachActionPerformed
 
     private void txtTienKhachDuaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachDuaKeyReleased
@@ -992,7 +996,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     }//GEN-LAST:event_txtTienKhachDuaKeyReleased
 
     private void btnChonKhach1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonKhach1ActionPerformed
-        
+        showTTKH();
     }//GEN-LAST:event_btnChonKhach1ActionPerformed
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
@@ -1145,7 +1149,9 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         if (tblGioHang.getRowCount() <= 0) {
             lblTongTien.setText("");
         }
-        System.out.println(gioHangViewModels.get(0).toInt());
+        loadSanPham(lst);
+        capNhapTienKhachPhaiTra();
+        capNhatTienThuaTraKhach();
     }//GEN-LAST:event_btnXoa1ActionPerformed
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
@@ -1292,8 +1298,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 spp.getTenSp(),
                 spp.getSoLuong(),
                 spp.getGiamGia(),
-                spp.getGiaBan(),
-            });
+                spp.getGiaBan(),});
         }
     }
 
@@ -1447,6 +1452,18 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         lblTongTienCanTra.setText(util.XMoney.themDauCham(tienKhachCanTraGiao));
     }
 
+    private void capNhapTienKhachPhaiTraXoa() {
+        long thanhToan = util.XMoney.loaiBoDauCham(lblTongTien.getText());
+        long giamGia = util.XMoney.loaiBoDauCham(lblGiamGia.getText().trim());
+        long tienKhachCanTra = thanhToan - giamGia;
+        lblTienKhachCanTra.setText(util.XMoney.themDauCham(tienKhachCanTra));
+
+        long thanhToanGiaohang = util.XMoney.loaiBoDauCham(lblTongTienGiao.getText());
+        long giamGiaGiaohang = util.XMoney.loaiBoDauCham(lblGiamGiaGiao.getText().trim());
+        long tienKhachCanTraGiao = thanhToanGiaohang - giamGiaGiaohang;
+        lblTongTienCanTra.setText(util.XMoney.themDauCham(tienKhachCanTraGiao));
+    }
+
     public void lamMoi() {
         dtbHoaDon.setRowCount(0);
         lblMaHoaDon.setText("null");
@@ -1459,6 +1476,22 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         lblTienThua.setText("");
         bill.setText("");
         dtmGiohang.setRowCount(0);
+        txtTenKh.setText("");
+        txtSDT.setText("");
+        txtDiaChi.setText("");
+        lblTongTienGiao.setText("0");
+        lblGiamGiaGiao.setText("0");
+        lblTienKhachCanTra.setText("0");
+        txtGhiChu.setText("");
+    }
+
+    public void lamMoiXoaAll() {
+        lblTongTien.setText("0");
+        lblGiamGia.setText("0");
+        lblTienKhachCanTra.setText("0");
+        txtTienKhachDua.setText("0");
+        lblTienThua.setText("");
+        bill.setText("");
         txtTenKh.setText("");
         txtSDT.setText("");
         txtDiaChi.setText("");
@@ -1514,7 +1547,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         hdCt.setIdHoaDon(hds.get(tblHoaDon.getSelectedRow()).getId());
         hdCt.setTienThua(XMoney.loaiBoDauCham(lblTienThua.getText()));
         hdCt.setDonGia((long) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 4));
-        hdCt.setTienGiamGia(XMoney.loaiBoDauCham(lblTienKhachCanTra.getText()));
+        hdCt.setTienGiamGia(XMoney.loaiBoDauCham(lblGiamGia.getText()));
         hoaDonServices.addHoaDonCT(hdCt);
     }
 
@@ -1691,6 +1724,20 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             System.out.println("Thành công");
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+
+    private void addImeiDaBan() {
+        SanPham sp = imei.getOneID((String) tblGioHang.getValueAt(tblSanPham.getSelectedRow(), 0));
+        List<Imei> liss = imei.getALLID(sp.getId());
+        HoaDonViewModel list = imei.getOneIDHoaDon((int) tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0));
+        System.out.println(list.getId());
+        for (int i = 0; i < tblGioHang.getRowCount(); i++) {
+            imeiDaBan imeiDaBan = new imeiDaBan();
+            imeiDaBan.setMa(liss.get(i).getMaImei());
+            imeiDaBan.setTrangThai("Đã Bán");
+            imeiDaBan.setIdHoaDon(list.getId());
+            imei.addImei(imeiDaBan);
         }
     }
 

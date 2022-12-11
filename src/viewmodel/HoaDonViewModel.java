@@ -26,6 +26,10 @@ public class HoaDonViewModel {
         this.trangThai = trangThai;
     }
 
+    public HoaDonViewModel(int id) {
+        this.id = id;
+    }
+
     public String getNgayGiaohang() {
         return ngayGiaohang;
     }
@@ -123,7 +127,7 @@ public class HoaDonViewModel {
 
     @Override
     public String toString() {
-        return "HoaDonViewModel{" + "id=" + id + ", maHdString=" + maHdString + ", ngayTao=" + ngayTao + ", trangThai=" + trangThai + '}';
+        return "HoaDonViewModel{" + "id=" + id + '}';
     }
 
     public Object[] toDataRow(){

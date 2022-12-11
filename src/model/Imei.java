@@ -62,4 +62,9 @@ public class Imei {
         this.idSanPham = idSanPham;
     }
 
+    @Override
+    public String toString() {
+        return "Imei{" + "id=" + id + ", maImei=" + maImei + ", trangThai=" + trangThai + ", idSanPham=" + idSanPham + '}';
+    }
+
 }

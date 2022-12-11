@@ -6,9 +6,13 @@
 package service.impl;
 
 import java.util.List;
+import model.HoaDon;
 import model.Imei;
+import model.SanPham;
+import model.imeiDaBan;
 import repository.ImeiRepository;
 import service.ImeiService;
+import viewmodel.HoaDonViewModel;
 
 /**
  *
@@ -31,6 +35,36 @@ public class ImeiServiceImpl implements ImeiService {
         } else {
             return "";
         }
+    }
+
+    @Override
+    public String addImei(imeiDaBan imei) {
+        boolean add = impl.addImei(imei);
+        if (add) {
+            return "";
+        } else {
+            return "";
+        }
+    }
+
+    @Override
+    public List<Imei> getALLID(int id) {
+        return impl.getALLID(id);
+    }
+
+    @Override
+    public SanPham getOneID(String id) {
+        return impl.getOneID(id);
+    }
+
+    @Override
+    public HoaDonViewModel getOneIDHoaDon(int id) {
+        return impl.getOneIDHoaDon(id);
+    }
+
+    @Override
+    public HoaDon getOneIDHD(int id) {
+        return impl.getOneIDHD(id);
     }
 
 }
