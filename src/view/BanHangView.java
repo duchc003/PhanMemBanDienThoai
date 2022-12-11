@@ -255,6 +255,8 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         jLabel27 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtTenKh = new javax.swing.JTextField();
+        txtTienShip = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         btnXoa = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -749,13 +751,13 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
 
         jLabel18.setText("Tổng Tiền");
-        jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
+        jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
 
         jLabel19.setText("Giảm Giá ");
-        jPanel7.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
+        jPanel7.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
 
         jLabel20.setText("Tiền khách cần trả");
-        jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
+        jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, -1));
 
         jLabel21.setText("Ghi Chú");
         jPanel7.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, -1, -1));
@@ -771,22 +773,22 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         txtDiaChi.setRows(5);
         jScrollPane5.setViewportView(txtDiaChi);
 
-        jPanel7.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 236, 210, 90));
+        jPanel7.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 236, 210, 70));
 
         lblHoaDonGiao.setText("null");
         jPanel7.add(lblHoaDonGiao, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 100, -1));
 
         lblGiamGiaGiao.setText("0");
-        jPanel7.add(lblGiamGiaGiao, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, 70, -1));
+        jPanel7.add(lblGiamGiaGiao, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 70, -1));
 
         jLabel26.setText("VND");
-        jPanel7.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 480, -1, -1));
+        jPanel7.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, -1, -1));
 
         lblTongTienCanTra.setText("0");
-        jPanel7.add(lblTongTienCanTra, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, 80, -1));
+        jPanel7.add(lblTongTienCanTra, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 80, -1));
 
         jLabel37.setText("VND");
-        jPanel7.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
+        jPanel7.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, -1, -1));
 
         btnHoaDonShip.setBackground(new java.awt.Color(0, 255, 51));
         btnHoaDonShip.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/invoice.png"))); // NOI18N
@@ -796,17 +798,21 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 btnHoaDonShipActionPerformed(evt);
             }
         });
-        jPanel7.add(btnHoaDonShip, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
+        jPanel7.add(btnHoaDonShip, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, -1, -1));
 
         lblTongTienGiao.setText("0");
-        jPanel7.add(lblTongTienGiao, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 80, -1));
+        jPanel7.add(lblTongTienGiao, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 80, -1));
 
         jLabel27.setText("VND");
-        jPanel7.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, -1, -1));
+        jPanel7.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, -1, -1));
 
         jLabel8.setText("Tên Khách Hàng");
         jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
         jPanel7.add(txtTenKh, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 215, -1));
+        jPanel7.add(txtTienShip, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 490, 220, -1));
+
+        jLabel6.setText("Tiền Ship");
+        jPanel7.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, -1, -1));
 
         jTabbedPane1.addTab("ShipCode", jPanel7);
 
@@ -861,7 +867,11 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
         int row = tblHoaDon.getSelectedRow();
         lblMaHoaDon.setText(tblHoaDon.getValueAt(row, 1).toString());
+        lblHoaDonGiao.setText(tblHoaDon.getValueAt(row, 1).toString());
         lblMaHoaDon.setForeground(Color.red);
+        
+        lblHoaDonGiao.setText(tblHoaDon.getValueAt(row, 1).toString());
+        lblHoaDonGiao.setForeground(Color.red);
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -935,7 +945,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             loadGioHang();
             loadTien();
             capNhapTienKhachPhaiTra();
-            addhoaDonChiTiet();
+//            addhoaDonChiTiet();
         }
         addImeiDaBan();
     }//GEN-LAST:event_btnThemActionPerformed
@@ -1041,6 +1051,8 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                         hoaDonServices.updateHoaDonTienThua(ct, hoaDon.getId());
                         txtTienKhachDua.setBackground(Color.white);
                         MsgBox.alert(this, hoaDonServices.updateHoaDonThanhToan(hoaDon, hoaDon.getId()));
+                        capNhatSoLuong();
+                        loadSanPham(lst);
                         xuatHoaDon();
                         lamMoi();
                     }
@@ -1074,9 +1086,13 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 java.sql.Date date = new java.sql.Date(millis);
                 String dateTT = df.format(date);
                 KhachHangViewModel kh = new KhachHangViewModel();
+                kh.setMa("...");
                 kh.setHoVaTen(txtTenKh.getText());
                 kh.setSoDienThoai(txtSDT.getText());
+                kh.setNgaySinh("...");
                 kh.setDiaChi(txtDiaChi.getText());
+                kh.setGioiTinh("...");
+                kh.setMoTa("Khách hàng");
                 kmImpl.addKhachHang(kh);
                 List<KhachHangViewModel> lisst = new ArrayList<>();
                 lisst = kmImpl.id(kh.getHoVaTen());
@@ -1202,6 +1218,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1243,6 +1260,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTenKh;
     private javax.swing.JTextField txtTienKhachDua;
+    private javax.swing.JTextField txtTienShip;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 
@@ -1292,13 +1310,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         List<SanPhamFormBanHangViewModel> sp = sanPhamFormBanHangServices.Search(txtTimKiem.getText());
         int i = 1;
         for (SanPhamFormBanHangViewModel spp : sp) {
-            tblModel2.addRow(new Object[]{
-                i++,
-                spp.getMaSp(),
-                spp.getTenSp(),
-                spp.getSoLuong(),
-                spp.getGiamGia(),
-                spp.getGiaBan(),});
+            tblModel2.addRow(spp.toDataRow());
         }
     }
 
@@ -1336,22 +1348,26 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     }
 
     private void addHoaDonShip() {
-        HoaDonViewModel hoaDon = new HoaDonViewModel();
+              HoaDonViewModel hoaDon = new HoaDonViewModel();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
         String dateTT = df.format(date);
+        //random ma hoa don
+        Random rd = new Random();
+        int hd1 = rd.nextInt(99);
 
-        hoaDon.setMaHdString("...");
+        hoaDon.setMaHdString("HD" + hd1 + "");
         hoaDon.setNgayTao(dateTT);
         hoaDon.setTienKhachCanTra(Long.parseLong(lblTienKhachCanTra.getText()));
         hoaDon.setTongTien(Long.parseLong(lblTongTien.getText()));
         hoaDon.setTrangThai("Chờ Giao Hàng");
 
-        JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon));
-
+        JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon), "Tạo Hóa Đơn", JOptionPane.INFORMATION_MESSAGE);
         List<HoaDonViewModel> hds = hoaDonServices.getALlhoaDon();
         loadTableHoaDon(hds);
+        lblHoaDonGiao.setText("HD" + hd1 + "");
+        lblMaHoaDon.setText("");
         // update id nhân viên vào hóa đơn
         List<NhanVien> list = nvImpl.getIDNhanVien(lblNV.getText());
         for (int i = 0; i < list.size(); i++) {
@@ -1551,13 +1567,12 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         hoaDonServices.addHoaDonCT(hdCt);
     }
 
-    public void capNhatSoLuongXoaSP() {
+    public void capNhatSoLuong() {
         SanPhamFormBanHangViewModel sp = new SanPhamFormBanHangViewModel();
-        for (int i = 0; i < tblGioHang.getRowCount(); i++) {
-            SanPhamFormBanHangViewModel s = sanPhamFormBanHangServices.soLuong((String) tblGioHang.getValueAt(i, 0));
-            int soLuongMoi = (s.getSoLuong() + Integer.parseInt(tblGioHang.getValueAt(i, 2) + ""));
+        for (int i = 0; i < tblSanPham.getRowCount(); i++) {
+            SanPhamFormBanHangViewModel s = sanPhamFormBanHangServices.soLuong((String) tblSanPham.getValueAt(i, 0));
             int id = s.getId();
-            sp.setSoLuong(soLuongMoi);
+            sp.setSoLuong((int) tblGioHang.getValueAt(i, 2));
             sanPhamFormBanHangServices.updateSoLuong(sp, id);
         }
         loadSanPham(lst);
@@ -1728,7 +1743,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     }
 
     private void addImeiDaBan() {
-        SanPham sp = imei.getOneID((String) tblGioHang.getValueAt(tblSanPham.getSelectedRow(), 0));
+        SanPham sp = imei.getOneID((String) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0));
         List<Imei> liss = imei.getALLID(sp.getId());
         HoaDonViewModel list = imei.getOneIDHoaDon((int) tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0));
         System.out.println(list.getId());

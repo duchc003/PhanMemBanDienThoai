@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/HieuIT/OneDrive/Documents/PhanMemBanDienThoai/src/util/ConnectDB.java</file>
             <file>file:/C:/Users/HieuIT/OneDrive/Documents/PhanMemBanDienThoai/src/view/DashBoard.java</file>
+=======
+            <file>file:/C:/Users/Admin/Documents/PhanMemBanDienThoai/src/view/DangKiView.java</file>
+>>>>>>> 8c44379aa505029f9c1af98cd04854e42a89e045
         </group>
     </open-files>
 </project-private>

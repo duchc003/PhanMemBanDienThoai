@@ -249,7 +249,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         txtBarCode.setText(ct.getBarcode());
         cbbXuatXu.setSelectedItem(ct.getXuatXu());
         cbbBoNho.setSelectedItem(ct.getBoNho());
-        txtMMoTa.setText(ct.getMoTa());
+        txtMoTa.setText(ct.getMoTa());
         lblAnh.setIcon(reSizeImage(String.valueOf(listCt.get(index).getImage())));
     }
 
@@ -274,7 +274,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                 imgName,
                 txtBarCode.getText(),
                 "Còn Hàng",
-                txtMMoTa.getText());
+                txtMoTa.getText());
     }
 
     private void fillDataa(int index) {
@@ -378,8 +378,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         jPanel18 = new javax.swing.JPanel();
         lblAnh = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        txtMMoTa = new javax.swing.JTextArea();
         jScrollPane7 = new javax.swing.JScrollPane();
         tblTable = new javax.swing.JTable();
         jLabel30 = new javax.swing.JLabel();
@@ -396,6 +394,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         txtSoLuong = new javax.swing.JTextField();
         jScrollPane8 = new javax.swing.JScrollPane();
         tblCt1 = new javax.swing.JTable();
+        txtMoTa = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         txtTimKiem = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -976,10 +975,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
         jLabel29.setText("Mô tả");
 
-        txtMMoTa.setColumns(20);
-        txtMMoTa.setRows(5);
-        jScrollPane6.setViewportView(txtMMoTa);
-
         tblTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -1101,7 +1096,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                     .addComponent(txtID, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBarCode)
                     .addComponent(cbbKm, 0, 185, Short.MAX_VALUE)
-                    .addComponent(jScrollPane6))
+                    .addComponent(txtMoTa))
                 .addGap(77, 77, 77)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -1158,7 +1153,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 1266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1232,14 +1227,14 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(txtBarCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel32))
-                                        .addGap(32, 32, 32)
-                                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel29)))
+                                        .addGap(43, 43, 43)
+                                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel29)
+                                            .addComponent(txtMoTa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel4)))))
-                        .addGap(328, 328, 328))))
+                        .addGap(325, 325, 325))))
         );
 
         jTabbedPane1.addTab("Chi Tiết Sản Phẩm", jPanel6);
@@ -1361,30 +1356,47 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         cbbMauSac.setSelectedItem("");
         cbbRam.setSelectedItem("");
         cbbSanPham.setSelectedItem("");
-        txtMMoTa.setText("");
+        txtMoTa.setText("");
         cbbCamera.setSelectedItem("");
         cbbManHinh.setSelectedItem("");
         cbbNCC.setSelectedItem("");
     }//GEN-LAST:event_btnClearCtActionPerformed
 
     private void btnSuaCtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaCtActionPerformed
-        int id = Integer.parseInt(txtID.getText());
-        MsgBox.alert(this, impl.update(id, getDataSp()));
-        listCt = impl.getALL();
-        fillCt(listCt);
+        if (tblCt1.getSelectedRow() < 0) {
+            MsgBox.alert(this, "Vui lòng chọn 1 dòng trên table");
+        } else {
+            int id = Integer.parseInt(txtID.getText());
+            MsgBox.alert(this, impl.update(id, getDataSp()));
+            listCt = impl.getALL();
+            fillCt(listCt);
+        }
+
     }//GEN-LAST:event_btnSuaCtActionPerformed
 
     private void btnThemCtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemCtActionPerformed
-        MsgBox.alert(this, impl.add(getDataSp()));
-        listCt = impl.getALL();
-        fillCt(listCt);
-        Imei imei = new Imei();;
-        for (int i = 0; i < tblTable.getRowCount(); i++) {
-            SanPham sp = SP.getOneSP((String) cbbSanPham.getSelectedItem());
-            imei.setMaImei(tblTable.getValueAt(i, 0).toString());
-            imei.setTrangThai("Còn Hàng");
-            imei.setIdSanPham(sp.getId());
-            imeiImpl.add(imei);
+        if (txtGiaNhap.getText().isEmpty()) {
+            MsgBox.alert(this, "Giá Nhập không được để trống");
+        } else if (txtGiaBan.getText().isEmpty()) {
+            MsgBox.alert(this, "Giá bán không được để trống");
+        } else if (txtBarCode.getText().isEmpty()) {
+            MsgBox.alert(this, "Barcode không được để trống");
+        } else if (txtMoTa.getText().isEmpty()) {
+            MsgBox.alert(this, "Mô tả không được để trống");
+        } else if (lblAnh.getText().isEmpty()) {
+            MsgBox.alert(this, "Vui Lòng chọn ảnh");
+        } else {
+            MsgBox.alert(this, impl.add(getDataSp()));
+            listCt = impl.getALL();
+            fillCt(listCt);
+            Imei imei = new Imei();;
+            for (int i = 0; i < tblTable.getRowCount(); i++) {
+                SanPham sp = SP.getOneSP((String) cbbSanPham.getSelectedItem());
+                imei.setMaImei(tblTable.getValueAt(i, 0).toString());
+                imei.setTrangThai("Còn Hàng");
+                imei.setIdSanPham(sp.getId());
+                imeiImpl.add(imei);
+            }
         }
     }//GEN-LAST:event_btnThemCtActionPerformed
 
@@ -1401,16 +1413,29 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblNhaCungCapMouseClicked
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        int id = Integer.parseInt(txtIdNhaCungCap.getText());
-        JOptionPane.showMessageDialog(this, nccs.sua(id, addNcc()));
-        listncc = nccs.getAll();
-        hienThiTableNcc(listncc);
+        int row = tblNhaCungCap.getSelectedRow();
+        if (row < 0) {
+            MsgBox.alert(this, "Vui Lòng chọn 1 dòng trên table");
+        } else {
+            int id = Integer.parseInt(txtIdNhaCungCap.getText());
+            JOptionPane.showMessageDialog(this, nccs.sua(id, addNcc()));
+            listncc = nccs.getAll();
+            hienThiTableNcc(listncc);
+        }
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        JOptionPane.showMessageDialog(this, nccs.add(addNcc()));
-        listncc = nccs.getAll();
-        hienThiTableNcc(listncc);
+        if (txtMaNhaCungCap.getText().isEmpty()) {
+            MsgBox.alert(this, "Không được để trống mã nhà cung cấp ");
+        } else if (txtTenNhaCungCap.getText().isEmpty()) {
+            MsgBox.alert(this, "Không được để trống tên nhà cung cấp ");
+        } else if (txtSDT.getText().isEmpty()) {
+            MsgBox.alert(this, "Không được để trống sdt nhà cung cấp ");
+        } else {
+            JOptionPane.showMessageDialog(this, nccs.add(addNcc()));
+            listncc = nccs.getAll();
+            hienThiTableNcc(listncc);
+        }
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -1422,16 +1447,27 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblHangSPMouseClicked
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        int id = Integer.parseInt(txtIdHangSp.getText());
-        JOptionPane.showMessageDialog(this, hsps.sua(id, add()));
-        lists = hsps.getAll();
-        hienThiTable(lists);
+        int row = tblHangSP.getSelectedRow();
+        if (row < 0) {
+            MsgBox.alert(this, "Vui Lòng chọn 1 dòng trên table");
+        } else {
+            int id = Integer.parseInt(txtIdHangSp.getText());
+            JOptionPane.showMessageDialog(this, hsps.sua(id, add()));
+            lists = hsps.getAll();
+            hienThiTable(lists);
+        }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        JOptionPane.showMessageDialog(this, hsps.add(add()));
-        lists = hsps.getAll();
-        hienThiTable(lists);
+        if (txtMaHangSp.getText().isEmpty()) {
+            MsgBox.alert(this, "Không được để trống mã hãng sản phẩm ");
+        } else if (txtTenHangSp.getText().isEmpty()) {
+            MsgBox.alert(this, "Không được để trống tên hãng sản phẩm ");
+        } else {
+            JOptionPane.showMessageDialog(this, hsps.add(add()));
+            lists = hsps.getAll();
+            hienThiTable(lists);
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1446,15 +1482,27 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int id = Integer.parseInt(txtIDSanPHam.getText());
-        JOptionPane.showMessageDialog(this, SP.updateSP(getDataSanPham(), id));
-        showDataTable(Spview);
+        int row = tblSanPham.getSelectedRow();
+        if (row < 0) {
+            MsgBox.alert(this, "Vui Lòng chọn 1 dòng trên table");
+        } else {
+            int id = Integer.parseInt(txtIDSanPHam.getText());
+            JOptionPane.showMessageDialog(this, SP.updateSP(getDataSanPham(), id));
+            showDataTable(Spview);
+        }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(this, SP.addSP(getDataSanPham()));
-        Spview = SP.getAll();
-        showDataTable(Spview);
+        if (txtMASANPHAM.getText().isEmpty()) {
+            MsgBox.alert(this, "Không được để trống mã sản phẩm ");
+        } else if (txtTENSANPHAM.getText().isEmpty()) {
+            MsgBox.alert(this, "Không được để trống tên sản phẩm ");
+        } else {
+            JOptionPane.showMessageDialog(this, SP.addSP(getDataSanPham()));
+            Spview = SP.getAll();
+            showDataTable(Spview);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnXoaCtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaCtActionPerformed
@@ -1573,7 +1621,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -1592,9 +1639,9 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtIdHangSp;
     private javax.swing.JTextField txtIdNhaCungCap;
     private javax.swing.JTextField txtMASANPHAM;
-    private javax.swing.JTextArea txtMMoTa;
     private javax.swing.JTextField txtMaHangSp;
     private javax.swing.JTextField txtMaNhaCungCap;
+    private javax.swing.JTextField txtMoTa;
     private javax.swing.JTextField txtSDT;
     public static javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTENSANPHAM;

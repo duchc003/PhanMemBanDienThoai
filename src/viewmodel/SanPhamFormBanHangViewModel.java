@@ -11,18 +11,20 @@ public class SanPhamFormBanHangViewModel {
     private int soLuong;
     private long giamGia;
     private Long giaBan;
+    private String xuatXu;
     private String hinhThuc;
 
     public SanPhamFormBanHangViewModel() {
     }
 
-    public SanPhamFormBanHangViewModel(int id, String maSp, String tenSp, int soLuong, long giamGia, Long giaBan, String hinhThuc) {
+    public SanPhamFormBanHangViewModel(int id, String maSp, String tenSp, int soLuong, long giamGia, Long giaBan, String xuatXu, String hinhThuc) {
         this.id = id;
         this.maSp = maSp;
         this.tenSp = tenSp;
         this.soLuong = soLuong;
         this.giamGia = giamGia;
         this.giaBan = giaBan;
+        this.xuatXu = xuatXu;
         this.hinhThuc = hinhThuc;
     }
 
@@ -81,6 +83,14 @@ public class SanPhamFormBanHangViewModel {
     public void setHinhThuc(String hinhThuc) {
         this.hinhThuc = hinhThuc;
     }
+
+    public String getXuatXu() {
+        return xuatXu;
+    }
+
+    public void setXuatXu(String xuatXu) {
+        this.xuatXu = xuatXu;
+    }
     
     private String giamGia() {
         if (getHinhThuc().equalsIgnoreCase("Giảm Giá %")) {
@@ -91,6 +101,6 @@ public class SanPhamFormBanHangViewModel {
     }
 
     public Object[] toDataRow() {
-        return new Object[]{maSp, tenSp, soLuong, giamGia(), giaBan, hinhThuc};
+        return new Object[]{maSp, tenSp, soLuong, giamGia(), giaBan, xuatXu};
     }
 }
