@@ -43,6 +43,15 @@ public class DashBoard extends javax.swing.JFrame {
         }
         BanHangView banHangView = new BanHangView();
         jDesktopPane1.add(banHangView).setVisible(true);
+        
+        lblBanHang.setBackground(clickColor);
+        lblHoaDon.setBackground(defaultColor);
+        lblKhachHang.setBackground(defaultColor);
+        lblKhuyenMai.setBackground(defaultColor);
+        lblSanPham.setBackground(defaultColor);
+        lblNhanVien.setBackground(defaultColor);
+        lblThoat.setBackground(defaultColor);
+        lblThongKe.setBackground(defaultColor);
     }
 
     /**
