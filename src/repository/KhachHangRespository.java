@@ -25,7 +25,6 @@ public class KhachHangRespository {
         }
         return khachHangViewModels;
     }
-     
 
     public int addKH(KhachHang kh) {
         int row = 0;
@@ -43,8 +42,17 @@ public class KhachHangRespository {
 
     public int addKhachHangGiao(KhachHangViewModel kh) {
         int row = 0;
-        String sql = "INSERT INTO [dbo].[KhachHang]([HoVaTen],[SoDienThoai],[DiaChi]) VALUES (?,?,?)";
-        row = JDBCHelper.executeUpdate(sql, kh.getHoVaTen(), kh.getSoDienThoai(), kh.getDiaChi());
+        String sql = "INSERT INTO [dbo].[KhachHang]\n"
+                + "           ([MaKH]\n"
+                + "           ,[HoVaTen]\n"
+                + "           ,[SoDienThoai]\n"
+                + "           ,[NgaySinh]\n"
+                + "           ,[DiaChi]\n"
+                + "           ,[GioiTinh]\n"
+                + "           ,[MoTa])\n"
+                + "     VALUES\n"
+                + "           (?,?,?,?,?,?,?)";
+        row = JDBCHelper.executeUpdate(sql,kh.getMa(),kh.getHoVaTen(), kh.getSoDienThoai(),kh.getNgaySinh() ,kh.getDiaChi(),kh.getGioiTinh(),kh.getMoTa());
         return row;
     }
 

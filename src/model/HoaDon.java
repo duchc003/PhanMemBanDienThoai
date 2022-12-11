@@ -207,4 +207,9 @@ public class HoaDon {
         this.phanTramGiamGia = phanTramGiamGia;
     }
 
+    @Override
+    public String toString() {
+        return "HoaDon{" + "ngayNhanHang=" + ngayNhanHang + ", tongTien=" + tongTien + '}';
+    }
+
 }
