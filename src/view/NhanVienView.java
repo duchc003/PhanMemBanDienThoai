@@ -28,14 +28,14 @@ public class NhanVienView extends javax.swing.JInternalFrame {
     private List<NhanVienViewmodel> listSearch = new ArrayList<>();
     private List<String> listcbb = new ArrayList<>();
     private DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
-    
+
     public NhanVienView() {
         initComponents();
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
-        
+
         cbbVaiTro.setModel(dcbm);
         listcbb.add("Quản lý");
         listcbb.add("Nhân viên");
@@ -48,7 +48,7 @@ public class NhanVienView extends javax.swing.JInternalFrame {
         lists = nvs.getAll();
         hienThiTable(lists);
     }
-    
+
     private void hienThiTable(List<NhanVienViewmodel> list) {
         dtm.setRowCount(0);
         for (NhanVienViewmodel x : list) {
@@ -68,49 +68,99 @@ public class NhanVienView extends javax.swing.JInternalFrame {
         } else {
             rdoNu.setSelected(true);
         }
-        if (nv.isVaiTro() ==true ) {
+        if (nv.isVaiTro() == true) {
             cbbVaiTro.setSelectedItem("Nhân viên");
-        }else{
+        } else {
             cbbVaiTro.setSelectedItem("Quản lý");
         }
         if (nv.getTrangThai() == 1) {
             rdoHoatDong.setSelected(true);
-        }else{
+        } else {
             rdoNghi.setSelected(true);
         }
     }
 
-    private NhanVienViewmodel add() {
-        String maNv = txtMaNV.getText();
-        if (maNv.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mã nhân viên đang trống!");
-            return null;
+    private boolean validateForm() {
+        if (txtMaNV.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã ");
+            return false;
         }
+        String maNv = txtMaNV.getText();
         if (nvs.checkMa(maNv) != null) {
             JOptionPane.showMessageDialog(this, "Mã nv đã tồn tại");
-            return null;
+            return false;
         }
-        String hoVaTen = txtHoVaTen.getText();
-        if (hoVaTen.isEmpty()) {
+        if (txtHoVaTen.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Họ và Tên đang trống!");
-            return null;
+            return false;
         }
-        String diaChi = txtDiaChi.getText();
-        if (diaChi.isEmpty()) {
+        if (txtDiaChi.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Địa chỉ đang trống!");
-            return null;
+            return false;
         }
-        String sdt = txtSDT.getText();
-        if (sdt.isEmpty()) {
+        if (txtSDT.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "SĐT đang trống!");
-            return null;
+            return false;
         }
-        
-        String email = txtEmail.getText();
-        if (email.isEmpty()) {
+        if (txtEmail.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Email đang trống!");
-            return null;
+            return false;
         }
+        return true;
+    }
+
+    private boolean validateForm2() {
+        if (txtMaNV.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã ");
+            return false;
+        }
+        if (txtHoVaTen.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Họ và Tên đang trống!");
+            return false;
+        }
+        if (txtDiaChi.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Địa chỉ đang trống!");
+            return false;
+        }
+        if (txtSDT.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "SĐT đang trống!");
+            return false;
+        }
+        if (txtEmail.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Email đang trống!");
+            return false;
+        }
+        return true;
+    }
+
+    private NhanVienViewmodel add() {
+        String maNv = txtMaNV.getText();
+
+//        if (nvs.checkMa(maNv) != null) {
+//            JOptionPane.showMessageDialog(this, "Mã nv đã tồn tại");
+//            return null;
+//        }
+        String hoVaTen = txtHoVaTen.getText();
+//        if (hoVaTen.isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Họ và Tên đang trống!");
+//            return null;
+//        }
+        String diaChi = txtDiaChi.getText();
+//        if (diaChi.isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Địa chỉ đang trống!");
+//            return null;
+//        }
+        String sdt = txtSDT.getText();
+//        if (sdt.isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "SĐT đang trống!");
+//            return null;
+//        }
+
+        String email = txtEmail.getText();
+//        if (email.isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Email đang trống!");
+//            return null;
+//        }
         String gioiTinh;
         if (rdoNam.isSelected()) {
             gioiTinh = "Nam";
@@ -119,20 +169,20 @@ public class NhanVienView extends javax.swing.JInternalFrame {
         }
         String SDT = txtSDT.getText();
         boolean vaiTro;
-        if (cbbVaiTro.getSelectedIndex()== 0) {
+        if (cbbVaiTro.getSelectedIndex() == 0) {
             vaiTro = false;
-        }else{
+        } else {
             vaiTro = true;
         }
         int trangThai;
         if (rdoHoatDong.isSelected()) {
             trangThai = 1;
-        }else{
+        } else {
             trangThai = 0;
         }
         return new NhanVienViewmodel(maNv, hoVaTen, diaChi, gioiTinh, SDT, email, vaiTro, trangThai);
     }
-    
+
     private NhanVienViewmodel sua() {
         String maNv = txtMaNV.getText();
         if (maNv.isEmpty()) {
@@ -154,7 +204,7 @@ public class NhanVienView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "SĐT đang trống!");
             return null;
         }
-        
+
         String email = txtEmail.getText();
         if (email.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Email đang trống!");
@@ -168,20 +218,21 @@ public class NhanVienView extends javax.swing.JInternalFrame {
         }
         String SDT = txtSDT.getText();
         boolean vaiTro;
-        if (cbbVaiTro.getSelectedIndex()== 0) {
+        if (cbbVaiTro.getSelectedIndex() == 0) {
             vaiTro = false;
-        }else{
+        } else {
             vaiTro = true;
         }
         int trangThai;
         if (rdoHoatDong.isSelected()) {
             trangThai = 1;
-        }else{
+        } else {
             trangThai = 0;
         }
         return new NhanVienViewmodel(maNv, hoVaTen, diaChi, gioiTinh, SDT, email, vaiTro, trangThai);
     }
-    private void clear(){
+
+    private void clear() {
         txtSearch.setText("");
         txtMaNV.setText("");
         txtDiaChi.setText("");
@@ -491,16 +542,44 @@ public class NhanVienView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblTBMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        JOptionPane.showMessageDialog(this, nvs.add(add()));
-        lists = nvs.getAll();
-        hienThiTable(lists);
+        if (validateForm() == true) {
+            Pattern p = Pattern.compile("^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$");
+            if (p.matcher(txtSDT.getText()).find() == false) {
+                JOptionPane.showMessageDialog(this, "Số điện thoại phải là số và có đúng 10 chữ số \n Nếu đầu khác 0 thì còn 9 số");
+                return;
+            }
+            Pattern p2 = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+            if (!p2.matcher(txtEmail.getText()).find()) {
+                JOptionPane.showMessageDialog(this, "email sai định dạng!");
+                return;
+            }
+            JOptionPane.showMessageDialog(this, nvs.add(add()));
+            lists = nvs.getAll();
+            hienThiTable(lists);
+        } else {
+            return;
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String maNV = txtMaNV.getText();
-        JOptionPane.showMessageDialog(this, nvs.sua(maNV, sua()));
-        lists = nvs.getAll();
-        hienThiTable(lists); 
+        if (validateForm2() == true) {
+            Pattern p = Pattern.compile("^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$");
+            if (p.matcher(txtSDT.getText()).find() == false) {
+                JOptionPane.showMessageDialog(this, "Số điện thoại phải là số và có đúng 10 chữ số \n Nếu đầu khác 0 thì còn 9 số");
+                return;
+            }
+            Pattern p2 = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+            if (!p2.matcher(txtEmail.getText()).find()) {
+                JOptionPane.showMessageDialog(this, "email sai định dạng!");
+                return;
+            }
+            String maNV = txtMaNV.getText();
+            JOptionPane.showMessageDialog(this, nvs.sua(maNV, add()));
+            lists = nvs.getAll();
+            hienThiTable(lists);
+        } else {
+            return;
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -511,12 +590,12 @@ public class NhanVienView extends javax.swing.JInternalFrame {
 
     private void txtSDTCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSDTCaretUpdate
         Pattern p = Pattern.compile("^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$");
-         if(p.matcher(txtSDT.getText()).find()==false){
-             lblsdt.setText("sai định dạng!");
-             lblsdt.setForeground(Color.red);
-         }else{
-             lblsdt.setText("");
-         }
+        if (p.matcher(txtSDT.getText()).find() == false) {
+            lblsdt.setText("sai định dạng!");
+            lblsdt.setForeground(Color.red);
+        } else {
+            lblsdt.setText("");
+        }
     }//GEN-LAST:event_txtSDTCaretUpdate
 
     private void txtEmailCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtEmailCaretUpdate
