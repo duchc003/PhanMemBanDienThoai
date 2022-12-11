@@ -19,7 +19,7 @@ private DangKiRespository dangki = new DangKiRespository();
         int row =0;
         row = dangki.addAccount(taikhoan, matkhau, email);
           if(row>0){
-            return "Đăng kí thành công \n"
+            return "\t \tĐăng kí thành công \n"
                     + "Tài khoản và mật khẩu của bạn đã được gửi về email";
         }else{
             return "Đăng kí thất bại";

@@ -862,6 +862,9 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         int row = tblHoaDon.getSelectedRow();
         lblMaHoaDon.setText(tblHoaDon.getValueAt(row, 1).toString());
         lblMaHoaDon.setForeground(Color.red);
+        
+        lblHoaDonGiao.setText(tblHoaDon.getValueAt(row, 1).toString());
+        lblHoaDonGiao.setForeground(Color.red);
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -1336,22 +1339,26 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     }
 
     private void addHoaDonShip() {
-        HoaDonViewModel hoaDon = new HoaDonViewModel();
+              HoaDonViewModel hoaDon = new HoaDonViewModel();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
         String dateTT = df.format(date);
+        //random ma hoa don
+        Random rd = new Random();
+        int hd1 = rd.nextInt(99);
 
-        hoaDon.setMaHdString("...");
+        hoaDon.setMaHdString("HD" + hd1 + "");
         hoaDon.setNgayTao(dateTT);
         hoaDon.setTienKhachCanTra(Long.parseLong(lblTienKhachCanTra.getText()));
         hoaDon.setTongTien(Long.parseLong(lblTongTien.getText()));
         hoaDon.setTrangThai("Chờ Giao Hàng");
 
-        JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon));
-
+        JOptionPane.showMessageDialog(this, hoaDonServices.addHoaDon(hoaDon), "Tạo Hóa Đơn", JOptionPane.INFORMATION_MESSAGE);
         List<HoaDonViewModel> hds = hoaDonServices.getALlhoaDon();
         loadTableHoaDon(hds);
+        lblHoaDonGiao.setText("HD" + hd1 + "");
+        lblMaHoaDon.setText("");
         // update id nhân viên vào hóa đơn
         List<NhanVien> list = nvImpl.getIDNhanVien(lblNV.getText());
         for (int i = 0; i < list.size(); i++) {
