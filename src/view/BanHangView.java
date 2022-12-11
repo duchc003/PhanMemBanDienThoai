@@ -1353,18 +1353,11 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
         String dateTT = df.format(date);
-<<<<<<< HEAD
-        Random rd = new Random();
-        int hdShip = rd.nextInt(99);
-
-        hoaDon.setMaHdString("HD" + hdShip + "");
-=======
         //random ma hoa don
         Random rd = new Random();
         int hd1 = rd.nextInt(99);
 
         hoaDon.setMaHdString("HD" + hd1 + "");
->>>>>>> 23f4985caf319229baaf96630e80fc497c5d4a2b
         hoaDon.setNgayTao(dateTT);
         hoaDon.setTienKhachCanTra(Long.parseLong(lblTienKhachCanTra.getText()));
         hoaDon.setTongTien(Long.parseLong(lblTongTien.getText()));
