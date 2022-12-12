@@ -869,7 +869,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         lblMaHoaDon.setText(tblHoaDon.getValueAt(row, 1).toString());
         lblHoaDonGiao.setText(tblHoaDon.getValueAt(row, 1).toString());
         lblMaHoaDon.setForeground(Color.red);
-        
+
         lblHoaDonGiao.setText(tblHoaDon.getValueAt(row, 1).toString());
         lblHoaDonGiao.setForeground(Color.red);
     }//GEN-LAST:event_tblHoaDonMouseClicked
@@ -974,10 +974,15 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         int index = hd.get(tblHoaDon.getSelectedRow()).getId();
 //        String mota = JOptionPane.showInputDialog("");
         String mota = MsgBox.prompt(this, "Lý do hủy");
-        JOptionPane.showMessageDialog(this, hoaDonServices.huyDon(index, mota));
-        hd = hoaDonServices.getALlhoaDon();
-        loadTableHoaDon(hd);
-        lamMoi();
+        if (mota.equals("")) {
+            JOptionPane.showMessageDialog(this, "Nhập lí do mới được hủy đơn!");
+            return;
+        } else {
+            JOptionPane.showMessageDialog(this, hoaDonServices.huyDon(index, mota));
+            hd = hoaDonServices.getALlhoaDon();
+            loadTableHoaDon(hd);
+            lamMoi();
+        }
     }//GEN-LAST:event_btnHuyDonActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -990,10 +995,15 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         List<HoaDonViewModel> hd = hoaDonServices.getALlhoaDon();
         int index = hd.get(tblHoaDon.getSelectedRow()).getId();
         String mota = JOptionPane.showInputDialog("Lý do hủy");
-        JOptionPane.showMessageDialog(this, hoaDonServices.huyDonShip(index, mota));
-        hd = hoaDonServices.getALlhoaDon();
-        loadTableHoaDon(hd);
-        lamMoi();
+        if (mota.equals("")) {
+            JOptionPane.showMessageDialog(this, "Nhập lí do mới được hủy đơn!");
+            return ;
+        } else {
+            JOptionPane.showMessageDialog(this, hoaDonServices.huyDonShip(index, mota));
+            hd = hoaDonServices.getALlhoaDon();
+            loadTableHoaDon(hd);
+            lamMoi();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnChonKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonKhachActionPerformed
@@ -1348,7 +1358,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     }
 
     private void addHoaDonShip() {
-              HoaDonViewModel hoaDon = new HoaDonViewModel();
+        HoaDonViewModel hoaDon = new HoaDonViewModel();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
