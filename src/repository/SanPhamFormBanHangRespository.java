@@ -71,11 +71,12 @@ public class SanPhamFormBanHangRespository {
     }
 
     public SanPhamFormBanHangViewModel soLuong(String ma) {
-        String sql = "SELECT dbo.ChiTietSanPham.ID,dbo.SanPham.MaSP, dbo.SanPham.TenSp, dbo.ChiTietSanPham.SoLuong, dbo.GiamGia.GiamGia, dbo.ChiTietSanPham.GiaBan, dbo.ChiTietSanPham.XuatXu, dbo.GiamGia.HinhThuc\n"
+        String sql = "SELECT dbo.ChiTietSanPham.ID, dbo.SanPham.MaSP, dbo.SanPham.TenSp, dbo.ChiTietSanPham.SoLuong, dbo.GiamGia.GiamGia, dbo.ChiTietSanPham.GiaBan,dbo.ChiTietSanPham.XuatXu ,dbo.HinhThucKhuyenMai.TenHinhThucKm\n"
                 + "FROM     dbo.ChiTietSanPham INNER JOIN\n"
                 + "                  dbo.GiamGia ON dbo.ChiTietSanPham.IDKM = dbo.GiamGia.ID INNER JOIN\n"
+                + "                  dbo.HinhThucKhuyenMai ON dbo.GiamGia.IDHinhThuc = dbo.HinhThucKhuyenMai.Id INNER JOIN\n"
                 + "                  dbo.SanPham ON dbo.ChiTietSanPham.IDSP = dbo.SanPham.ID\n"
-                + "				  where MaSp = ? and ChiTietSanPham.TrangThai = N'Còn Hàng'";
+                + "			  where MaSp = ? and ChiTietSanPham.TrangThai = N'Còn Hàng'";
         ResultSet rs = JDBCHelper.executeQuery(sql, ma);
         try {
             while (rs.next()) {

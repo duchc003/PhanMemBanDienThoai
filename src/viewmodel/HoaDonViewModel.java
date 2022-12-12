@@ -77,6 +77,16 @@ public class HoaDonViewModel {
         this.trangThai = trangThai;
     }
 
+    public HoaDonViewModel(String maHdString, String sdt) {
+        this.maHdString = maHdString;
+        this.sdt = sdt;
+    }
+
+    public HoaDonViewModel(long tienKhachCanTra, long tongTien) {
+        this.tienKhachCanTra = tienKhachCanTra;
+        this.tongTien = tongTien;
+    }
+
     public int getId() {
         return id;
     }

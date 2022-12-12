@@ -914,7 +914,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 loadGioHang();
                 return;
             }
-            //Giảm số lượng sản phẩm được chọn
+//            Giảm số lượng sản phẩm được chọn
             tblSanPham.setValueAt(Integer.parseInt(tblSanPham.getValueAt(row, 2).toString()) - Integer.parseInt(choice), row, 2);
 
             String ma = tblSanPham.getValueAt(row, 0).toString();
@@ -945,7 +945,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             loadGioHang();
             loadTien();
             capNhapTienKhachPhaiTra();
-//            addhoaDonChiTiet();
+            addhoaDonChiTiet();
         }
         addImeiDaBan();
     }//GEN-LAST:event_btnThemActionPerformed
@@ -997,7 +997,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         String mota = JOptionPane.showInputDialog("Lý do hủy");
         if (mota.equals("")) {
             JOptionPane.showMessageDialog(this, "Nhập lí do mới được hủy đơn!");
-            return ;
+            return;
         } else {
             JOptionPane.showMessageDialog(this, hoaDonServices.huyDonShip(index, mota));
             hd = hoaDonServices.getALlhoaDon();
@@ -1579,19 +1579,20 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
 
     public void capNhatSoLuong() {
         SanPhamFormBanHangViewModel sp = new SanPhamFormBanHangViewModel();
-        for (int i = 0; i < tblSanPham.getRowCount(); i++) {
-            SanPhamFormBanHangViewModel s = sanPhamFormBanHangServices.soLuong((String) tblSanPham.getValueAt(i, 0));
+        SanPhamFormBanHangViewModel s = sanPhamFormBanHangServices.soLuong((String) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0));
+        for (int i = 0; i < tblGioHang.getRowCount(); i++) {
+            int soLuongMoi = (s.getSoLuong() - Integer.parseInt(tblGioHang.getValueAt(i, 2) + ""));
             int id = s.getId();
-            sp.setSoLuong((int) tblGioHang.getValueAt(i, 2));
+            sp.setSoLuong(soLuongMoi);
             sanPhamFormBanHangServices.updateSoLuong(sp, id);
+            loadSanPham(lst);
         }
-        loadSanPham(lst);
     }
 
     public void xuatHoaDon() {
         try {
             XWPFDocument document = new XWPFDocument();
-            FileOutputStream out = new FileOutputStream(new File("C:\\Users\\ASUS\\OneDrive\\Documents\\PhanMemBanDienThoai\\XuatHoaDon" + lblMaHoaDon.getText() + ".docx"));
+            FileOutputStream out = new FileOutputStream(new File("C:\\Users\\ASUS\\OneDrive\\Máy tính\\PhanMemBanDienThoai" + lblMaHoaDon.getText() + ".docx"));
 
             XWPFParagraph paragraph = document.createParagraph();
             XWPFRun run = paragraph.createRun();
@@ -1755,8 +1756,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     private void addImeiDaBan() {
         SanPham sp = imei.getOneID((String) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0));
         List<Imei> liss = imei.getALLID(sp.getId());
-        HoaDonViewModel list = imei.getOneIDHoaDon((int) tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0));
-        System.out.println(list.getId());
+        HoaDonViewModel list = imei.getOneIDHoaDon(sp.getId());
         for (int i = 0; i < tblGioHang.getRowCount(); i++) {
             imeiDaBan imeiDaBan = new imeiDaBan();
             imeiDaBan.setMa(liss.get(i).getMaImei());

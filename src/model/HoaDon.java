@@ -18,17 +18,21 @@ public class HoaDon {
     private int idHinhThucTT;
     private int idHinhThucGH;
     private String maHD;
+    private String maNV;
     private String ngayTao;
     private String ngayThanhToan;
     private String ngayNhanHang;
     private String ngayGiaoHang;
     private String ngayKhachNhanhang;
-    private long tienKhachCanTra;
     private long tongTien;
+    private long tienKhachCanTra;
+    private Long tienShip;
     private String soDienThoai;
+    private String sdtNgShip;
     private String phanTramGiamGia;
     private String trangThai;
     private String moTa;
+    private String tenKhack;
 
     public HoaDon() {
     }
@@ -59,6 +63,62 @@ public class HoaDon {
         this.phanTramGiamGia = phanTramGiamGia;
         this.trangThai = trangThai;
         this.moTa = moTa;
+    }
+
+    public HoaDon(int id, int idKhachHang, int idNhanVien, int idHinhThucTT, int idHinhThucGH, String maHD, String maNV, String ngayTao, String ngayThanhToan, String ngayNhanHang, String ngayGiaoHang, String ngayKhachNhanhang, long tongTien, long tienKhachCanTra, Long tienShip, String soDienThoai, String sdtNgShip, String phanTramGiamGia, String trangThai, String moTa, String tenKhack) {
+        this.id = id;
+        this.idKhachHang = idKhachHang;
+        this.idNhanVien = idNhanVien;
+        this.idHinhThucTT = idHinhThucTT;
+        this.idHinhThucGH = idHinhThucGH;
+        this.maHD = maHD;
+        this.maNV = maNV;
+        this.ngayTao = ngayTao;
+        this.ngayThanhToan = ngayThanhToan;
+        this.ngayNhanHang = ngayNhanHang;
+        this.ngayGiaoHang = ngayGiaoHang;
+        this.ngayKhachNhanhang = ngayKhachNhanhang;
+        this.tongTien = tongTien;
+        this.tienKhachCanTra = tienKhachCanTra;
+        this.tienShip = tienShip;
+        this.soDienThoai = soDienThoai;
+        this.sdtNgShip = sdtNgShip;
+        this.phanTramGiamGia = phanTramGiamGia;
+        this.trangThai = trangThai;
+        this.moTa = moTa;
+        this.tenKhack = tenKhack;
+    }
+
+    public String getMaNV() {
+        return maNV;
+    }
+
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
+    }
+
+    public Long getTienShip() {
+        return tienShip;
+    }
+
+    public void setTienShip(Long tienShip) {
+        this.tienShip = tienShip;
+    }
+
+    public String getSdtNgShip() {
+        return sdtNgShip;
+    }
+
+    public void setSdtNgShip(String sdtNgShip) {
+        this.sdtNgShip = sdtNgShip;
+    }
+
+    public String getTenKhack() {
+        return tenKhack;
+    }
+
+    public void setTenKhack(String tenKhack) {
+        this.tenKhack = tenKhack;
     }
 
     public HoaDon(String ngayTao, long tongTien) {
@@ -209,7 +269,6 @@ public class HoaDon {
 
     @Override
     public String toString() {
-        return "HoaDon{" + "ngayNhanHang=" + ngayNhanHang + ", tongTien=" + tongTien + '}';
+        return "HoaDon{" + "id=" + id + ", idKhachHang=" + idKhachHang + ", idNhanVien=" + idNhanVien + ", idHinhThucTT=" + idHinhThucTT + ", idHinhThucGH=" + idHinhThucGH + ", maHD=" + maHD + ", maNV=" + maNV + ", ngayTao=" + ngayTao + ", ngayThanhToan=" + ngayThanhToan + ", ngayNhanHang=" + ngayNhanHang + ", ngayGiaoHang=" + ngayGiaoHang + ", ngayKhachNhanhang=" + ngayKhachNhanhang + ", tongTien=" + tongTien + ", tienKhachCanTra=" + tienKhachCanTra + ", tienShip=" + tienShip + ", soDienThoai=" + soDienThoai + ", sdtNgShip=" + sdtNgShip + ", phanTramGiamGia=" + phanTramGiamGia + ", trangThai=" + trangThai + ", moTa=" + moTa + ", tenKhack=" + tenKhack + '}';
     }
-
 }

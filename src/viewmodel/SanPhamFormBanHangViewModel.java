@@ -100,6 +100,11 @@ public class SanPhamFormBanHangViewModel {
         }
     }
 
+    @Override
+    public String toString() {
+        return "SanPhamFormBanHangViewModel{" + "id=" + id + ", maSp=" + maSp + ", tenSp=" + tenSp + ", soLuong=" + soLuong + ", giamGia=" + giamGia + ", giaBan=" + giaBan + ", xuatXu=" + xuatXu + ", hinhThuc=" + hinhThuc + '}';
+    }
+
     public Object[] toDataRow() {
         return new Object[]{maSp, tenSp, soLuong, giamGia(), giaBan, xuatXu};
     }
