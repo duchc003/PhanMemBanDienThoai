@@ -103,7 +103,7 @@ public class ChiTietSanPhamRepo {
                 sp.setBarcodde(rs.getString(1));
                 sp.setBoNho(rs.getString(2));
                 sp.setSoLuong(rs.getInt(3));
-                sp.setGiaNhap(rs.getLong(4));
+                sp.setGiaBan(rs.getLong(4));
                 return sp;
             }
         } catch (Exception e) {
@@ -283,6 +283,6 @@ public class ChiTietSanPhamRepo {
     }
 
     public static void main(String[] args) {
-        System.out.println(new ChiTietSanPhamRepo().getBarcode("1234567890111"));
+        System.out.println(new ChiTietSanPhamRepo().getBarcode("1234567890112").toString());
     }
 }

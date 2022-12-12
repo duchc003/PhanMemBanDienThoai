@@ -255,9 +255,200 @@ public class hoaDonViewModelRepositoryHUY {
         }
         return null;
     }
-    
+
+    public List<hoaDonViewModelHUY> getAllHoaDonTienMat() {
+        List<hoaDonViewModelHUY> listHD = new ArrayList<>();
+        String sql = "SELECT dbo.HoaDon.ID,dbo.HoaDon.MaHD, dbo.NhanVien.HoVaTen, dbo.KhachHang.HoVaTen AS Expr1, dbo.HoaDon.NgayTao, dbo.HoaDon.NgayThanhToan, dbo.HoaDon.TongTien, dbo.HinhThucThanhToan.TenHTTT, dbo.HinhThucGiaoHang.TenHTGH, \n"
+                + "dbo.HoaDon.TrangThai\n"
+                + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
+                + "dbo.HinhThucThanhToan ON dbo.HinhThucGiaoHang.ID = dbo.HinhThucThanhToan.ID INNER JOIN\n"
+                + "dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH AND dbo.HinhThucThanhToan.ID = dbo.HoaDon.IDHinhTTT INNER JOIN\n"
+                + "dbo.KhachHang ON dbo.HoaDon.IDKhachHang = dbo.KhachHang.ID INNER JOIN\n"
+                + "dbo.NhanVien ON dbo.HoaDon.IDNhanVien = dbo.NhanVien.ID\n"
+                + "where HinhThucThanhToan.TenHTTT = N'Tiền Mặt'";
+        ResultSet rs = JDBCHelper.executeQuery(sql);
+        try {
+            while (rs.next()) {
+                listHD.add(new hoaDonViewModelHUY(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getLong(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listHD;
+    }
+
+    public List<hoaDonViewModelHUY> getAllHoaDonChuyenKhoan() {
+        List<hoaDonViewModelHUY> listHD = new ArrayList<>();
+        String sql = "SELECT dbo.HoaDon.ID,dbo.HoaDon.MaHD, dbo.NhanVien.HoVaTen, dbo.KhachHang.HoVaTen AS Expr1, dbo.HoaDon.NgayTao, dbo.HoaDon.NgayThanhToan, dbo.HoaDon.TongTien, dbo.HinhThucThanhToan.TenHTTT, dbo.HinhThucGiaoHang.TenHTGH, \n"
+                + "dbo.HoaDon.TrangThai\n"
+                + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
+                + "dbo.HinhThucThanhToan ON dbo.HinhThucGiaoHang.ID = dbo.HinhThucThanhToan.ID INNER JOIN\n"
+                + "dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH AND dbo.HinhThucThanhToan.ID = dbo.HoaDon.IDHinhTTT INNER JOIN\n"
+                + "dbo.KhachHang ON dbo.HoaDon.IDKhachHang = dbo.KhachHang.ID INNER JOIN\n"
+                + "dbo.NhanVien ON dbo.HoaDon.IDNhanVien = dbo.NhanVien.ID\n"
+                + "where HinhThucThanhToan.TenHTTT = N'Chuyển Khoản'";
+        ResultSet rs = JDBCHelper.executeQuery(sql);
+        try {
+            while (rs.next()) {
+                listHD.add(new hoaDonViewModelHUY(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getLong(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listHD;
+    }
+
+    public List<hoaDonViewModelHUY> getAllHoaDonQuetThe() {
+        List<hoaDonViewModelHUY> listHD = new ArrayList<>();
+        String sql = "SELECT dbo.HoaDon.ID,dbo.HoaDon.MaHD, dbo.NhanVien.HoVaTen, dbo.KhachHang.HoVaTen AS Expr1, dbo.HoaDon.NgayTao, dbo.HoaDon.NgayThanhToan, dbo.HoaDon.TongTien, dbo.HinhThucThanhToan.TenHTTT, dbo.HinhThucGiaoHang.TenHTGH, \n"
+                + "dbo.HoaDon.TrangThai\n"
+                + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
+                + "dbo.HinhThucThanhToan ON dbo.HinhThucGiaoHang.ID = dbo.HinhThucThanhToan.ID INNER JOIN\n"
+                + "dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH AND dbo.HinhThucThanhToan.ID = dbo.HoaDon.IDHinhTTT INNER JOIN\n"
+                + "dbo.KhachHang ON dbo.HoaDon.IDKhachHang = dbo.KhachHang.ID INNER JOIN\n"
+                + "dbo.NhanVien ON dbo.HoaDon.IDNhanVien = dbo.NhanVien.ID\n"
+                + "where HinhThucThanhToan.TenHTTT = N'Quẹt Thẻ'";
+        ResultSet rs = JDBCHelper.executeQuery(sql);
+        try {
+            while (rs.next()) {
+                listHD.add(new hoaDonViewModelHUY(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getLong(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listHD;
+    }
+
+    public List<hoaDonViewModelHUY> getAllHoaDonQuetMa() {
+        List<hoaDonViewModelHUY> listHD = new ArrayList<>();
+        String sql = "SELECT dbo.HoaDon.ID,dbo.HoaDon.MaHD, dbo.NhanVien.HoVaTen, dbo.KhachHang.HoVaTen AS Expr1, dbo.HoaDon.NgayTao, dbo.HoaDon.NgayThanhToan, dbo.HoaDon.TongTien, dbo.HinhThucThanhToan.TenHTTT, dbo.HinhThucGiaoHang.TenHTGH, \n"
+                + "dbo.HoaDon.TrangThai\n"
+                + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
+                + "dbo.HinhThucThanhToan ON dbo.HinhThucGiaoHang.ID = dbo.HinhThucThanhToan.ID INNER JOIN\n"
+                + "dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH AND dbo.HinhThucThanhToan.ID = dbo.HoaDon.IDHinhTTT INNER JOIN\n"
+                + "dbo.KhachHang ON dbo.HoaDon.IDKhachHang = dbo.KhachHang.ID INNER JOIN\n"
+                + "dbo.NhanVien ON dbo.HoaDon.IDNhanVien = dbo.NhanVien.ID\n"
+                + "where HinhThucThanhToan.TenHTTT = N'Quét Mã'";
+        ResultSet rs = JDBCHelper.executeQuery(sql);
+        try {
+            while (rs.next()) {
+                listHD.add(new hoaDonViewModelHUY(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getLong(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listHD;
+    }
+
+    public List<hoaDonViewModelHUY> getAllHoaDonTaiQuay() {
+        List<hoaDonViewModelHUY> listHD = new ArrayList<>();
+        String sql = "SELECT dbo.HoaDon.ID,dbo.HoaDon.MaHD, dbo.NhanVien.HoVaTen, dbo.KhachHang.HoVaTen AS Expr1, dbo.HoaDon.NgayTao, dbo.HoaDon.NgayThanhToan, dbo.HoaDon.TongTien, dbo.HinhThucThanhToan.TenHTTT, dbo.HinhThucGiaoHang.TenHTGH, \n"
+                + "dbo.HoaDon.TrangThai\n"
+                + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
+                + "dbo.HinhThucThanhToan ON dbo.HinhThucGiaoHang.ID = dbo.HinhThucThanhToan.ID INNER JOIN\n"
+                + "dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH AND dbo.HinhThucThanhToan.ID = dbo.HoaDon.IDHinhTTT INNER JOIN\n"
+                + "dbo.KhachHang ON dbo.HoaDon.IDKhachHang = dbo.KhachHang.ID INNER JOIN\n"
+                + "dbo.NhanVien ON dbo.HoaDon.IDNhanVien = dbo.NhanVien.ID\n"
+                + "where HinhThucGiaoHang.TenHTGH = N'Tại Quầy'";
+        ResultSet rs = JDBCHelper.executeQuery(sql);
+        try {
+            while (rs.next()) {
+                listHD.add(new hoaDonViewModelHUY(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getLong(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listHD;
+    }
+
+    public List<hoaDonViewModelHUY> getAllHoaDonKhac() {
+        List<hoaDonViewModelHUY> listHD = new ArrayList<>();
+        String sql = "SELECT dbo.HoaDon.ID,dbo.HoaDon.MaHD, dbo.NhanVien.HoVaTen, dbo.KhachHang.HoVaTen AS Expr1, dbo.HoaDon.NgayTao, dbo.HoaDon.NgayThanhToan, dbo.HoaDon.TongTien, dbo.HinhThucThanhToan.TenHTTT, dbo.HinhThucGiaoHang.TenHTGH, \n"
+                + "dbo.HoaDon.TrangThai\n"
+                + "FROM     dbo.HinhThucGiaoHang INNER JOIN\n"
+                + "dbo.HinhThucThanhToan ON dbo.HinhThucGiaoHang.ID = dbo.HinhThucThanhToan.ID INNER JOIN\n"
+                + "dbo.HoaDon ON dbo.HinhThucGiaoHang.ID = dbo.HoaDon.IDHinhTGH AND dbo.HinhThucThanhToan.ID = dbo.HoaDon.IDHinhTTT INNER JOIN\n"
+                + "dbo.KhachHang ON dbo.HoaDon.IDKhachHang = dbo.KhachHang.ID INNER JOIN\n"
+                + "dbo.NhanVien ON dbo.HoaDon.IDNhanVien = dbo.NhanVien.ID\n"
+                + "where HinhThucGiaoHang.TenHTGH = N'Khác'";
+        ResultSet rs = JDBCHelper.executeQuery(sql);
+        try {
+            while (rs.next()) {
+                listHD.add(new hoaDonViewModelHUY(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getLong(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(hoaDonViewModelRepositoryHUY.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listHD;
+    }
 
     public static void main(String[] args) {
-        System.out.println(new hoaDonViewModelRepositoryHUY().selectID(1).toString());
+        System.out.println(new hoaDonViewModelRepositoryHUY().getAllHoaDonKhac());
     }
 }

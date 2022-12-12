@@ -72,7 +72,7 @@ public class ThongKeView extends javax.swing.JInternalFrame {
 
     private DefaultTableModel dtmSanPham = new DefaultTableModel();
     private DefaultTableModel dtmDoanhThu = new DefaultTableModel();
-    private ThongKeSPservice tk = new ThongKeImpl();
+    private ThongKeImpl tk = new ThongKeImpl();
     private List<ThongkeSanPhamViewModel> listt = new ArrayList<>();
     private List<ThongKeDoanhThuViewModel> listtt = new ArrayList<>();
     private DefaultComboBoxModel dcbm = new DefaultComboBoxModel();

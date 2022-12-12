@@ -130,7 +130,7 @@ public class ThongKeSanPhamRepository {
 
     public List<HoaDon> TongDoanhThuNam() {
         List<HoaDon> listt = new ArrayList<>();
-        String query = " select sum(TongTien) from HoaDon where Year(NgayThanhToan) = Year(GETDATE())";
+        String query = " select sum(TongTien) from HoaDon where Year(NgayTao) = Year(GETDATE())";
         try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

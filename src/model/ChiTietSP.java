@@ -192,7 +192,8 @@ public class ChiTietSP {
 
     @Override
     public String toString() {
-        return "ChiTietSP{" + "id=" + id + ", idSP=" + idSP + ", nhaCungCap=" + nhaCungCap + ", soLuong=" + soLuong + ", ram=" + ram + ", xuatXu=" + xuatXu + ", camera=" + camera + ", manHinh=" + manHinh + ", boNho=" + boNho + ", mauSac=" + mauSac + ", giaNhap=" + giaNhap + ", giaBan=" + giaBan + ", image=" + image + ", barcodde=" + barcodde + ", trangThai=" + trangThai + ", moTa=" + moTa + '}';
+        return "ChiTietSP{" + "soLuong=" + soLuong + ", boNho=" + boNho + ", giaBan=" + giaBan + ", barcodde=" + barcodde + '}';
     }
+
 
 }

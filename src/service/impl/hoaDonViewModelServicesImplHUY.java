@@ -60,4 +60,34 @@ public class hoaDonViewModelServicesImplHUY implements hoaDonViewModelServicesHU
         return hoaDonViewModelRepositoryHUY.selectIDHD(ma);
     }
 
+    @Override
+    public List<hoaDonViewModelHUY> getAllHoaDonTienMat() {
+        return hoaDonViewModelRepositoryHUY.getAllHoaDonTienMat();
+    }
+
+    @Override
+    public List<hoaDonViewModelHUY> getAllHoaDonChuyenKhoan() {
+        return hoaDonViewModelRepositoryHUY.getAllHoaDonChuyenKhoan();
+    }
+
+    @Override
+    public List<hoaDonViewModelHUY> getAllHoaDonQuetThe() {
+        return hoaDonViewModelRepositoryHUY.getAllHoaDonQuetThe();
+    }
+
+    @Override
+    public List<hoaDonViewModelHUY> getAllHoaDonQuetMa() {
+        return hoaDonViewModelRepositoryHUY.getAllHoaDonQuetMa();
+    }
+
+    @Override
+    public List<hoaDonViewModelHUY> getAllHoaDonTaiQuay() {
+        return hoaDonViewModelRepositoryHUY.getAllHoaDonTaiQuay();
+    }
+
+    @Override
+    public List<hoaDonViewModelHUY> getAllHoaDonKhac() {
+        return hoaDonViewModelRepositoryHUY.getAllHoaDonKhac();
+    }
+
 }

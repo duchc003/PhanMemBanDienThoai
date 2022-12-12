@@ -20,14 +20,26 @@ public interface hoaDonViewModelServicesHUY {
     List<hoaDonViewModelHUY> timKiemHoaDonViewModelHUY(String maHD);
 
     List<hoaDonViewModelHUY> timKiemCombobox(String trangThai);
-    
+
     List<hoaDonViewModelHUY> timKiemCombobox1(String TenHTTT);
-    
+
     List<hoaDonViewModelHUY> timKiemCombobox2(String TenHTGH);
-    
+
     hoaDonViewModelHUY timhoaDon(int TenHTGH);
-    
+
     List<imeiDaBan> selectID(int ma);
-    
+
     HoaDonCT selectIDHD(int ma);
+
+    List<hoaDonViewModelHUY> getAllHoaDonTienMat();
+
+    List<hoaDonViewModelHUY> getAllHoaDonChuyenKhoan();
+
+    List<hoaDonViewModelHUY> getAllHoaDonQuetThe();
+
+    List<hoaDonViewModelHUY> getAllHoaDonQuetMa();
+
+    List<hoaDonViewModelHUY> getAllHoaDonTaiQuay();
+
+    List<hoaDonViewModelHUY> getAllHoaDonKhac();
 }

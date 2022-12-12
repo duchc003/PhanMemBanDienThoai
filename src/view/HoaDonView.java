@@ -163,24 +163,23 @@ public class HoaDonView extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(cbo_HTTT, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(198, 198, 198)
-                            .addComponent(cbo_HTGH, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(168, 168, 168))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1)
-                            .addGap(101, 101, 101)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cbo_trangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1238, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel1)
+                        .addGap(97, 97, 97)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(cbo_trangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(205, 205, 205)
+                                .addComponent(cbo_HTTT, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(195, 195, 195)
+                                .addComponent(cbo_HTGH, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(44, 44, 44))
         );
         jPanel2Layout.setVerticalGroup(
@@ -188,9 +187,9 @@ public class HoaDonView extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel1)
+                    .addComponent(txt_timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbo_trangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbo_HTTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -344,6 +343,8 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                 hd.getMaHD(),
                 hd.getHoVaTen(),
                 hd.getTenKhachHang(),
+                hd.getNgayTao(),
+                hd.getNgayThanhToan(),
                 hd.getTongTien(),
                 hd.getTenHTTT(),
                 hd.getTenHTGH(),
@@ -367,6 +368,8 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getMaHD(),
                     hd.getHoVaTen(),
                     hd.getTenKhachHang(),
+                    hd.getNgayTao(),
+                    hd.getNgayThanhToan(),
                     hd.getTongTien(),
                     hd.getTenHTTT(),
                     hd.getTenHTGH(),
@@ -389,6 +392,8 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getMaHD(),
                     hd.getHoVaTen(),
                     hd.getTenKhachHang(),
+                    hd.getNgayTao(),
+                    hd.getNgayThanhToan(),
                     hd.getTongTien(),
                     hd.getTenHTTT(),
                     hd.getTenHTGH(),
@@ -411,6 +416,8 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getMaHD(),
                     hd.getHoVaTen(),
                     hd.getTenKhachHang(),
+                    hd.getNgayTao(),
+                    hd.getNgayThanhToan(),
                     hd.getTongTien(),
                     hd.getTenHTTT(),
                     hd.getTenHTGH(),
@@ -433,6 +440,8 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getMaHD(),
                     hd.getHoVaTen(),
                     hd.getTenKhachHang(),
+                    hd.getNgayTao(),
+                    hd.getNgayThanhToan(),
                     hd.getTongTien(),
                     hd.getTenHTTT(),
                     hd.getTenHTGH(),
@@ -455,6 +464,8 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getMaHD(),
                     hd.getHoVaTen(),
                     hd.getTenKhachHang(),
+                    hd.getNgayTao(),
+                    hd.getNgayThanhToan(),
                     hd.getTongTien(),
                     hd.getTenHTTT(),
                     hd.getTenHTGH(),
@@ -478,7 +489,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
             DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
-            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.getAllHoaDonTienMat();
             int i = 1;
             for (hoaDonViewModelHUY hd : list) {
                 model.addRow(new Object[]{
@@ -486,6 +497,8 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getMaHD(),
                     hd.getHoVaTen(),
                     hd.getTenKhachHang(),
+                    hd.getNgayTao(),
+                    hd.getNgayThanhToan(),
                     hd.getTongTien(),
                     hd.getTenHTTT(),
                     hd.getTenHTGH(),
@@ -500,7 +513,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
             DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
-            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.getAllHoaDonQuetThe();
             int i = 1;
             for (hoaDonViewModelHUY hd : list) {
                 model.addRow(new Object[]{
@@ -508,6 +521,8 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getMaHD(),
                     hd.getHoVaTen(),
                     hd.getTenKhachHang(),
+                    hd.getNgayTao(),
+                    hd.getNgayThanhToan(),
                     hd.getTongTien(),
                     hd.getTenHTTT(),
                     hd.getTenHTGH(),
@@ -522,7 +537,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
             DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
-            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.getAllHoaDonChuyenKhoan();
             int i = 1;
             for (hoaDonViewModelHUY hd : list) {
                 model.addRow(new Object[]{
@@ -530,6 +545,8 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getMaHD(),
                     hd.getHoVaTen(),
                     hd.getTenKhachHang(),
+                    hd.getNgayTao(),
+                    hd.getNgayThanhToan(),
                     hd.getTongTien(),
                     hd.getTenHTTT(),
                     hd.getTenHTGH(),
@@ -544,7 +561,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
             DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
-            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.getAllHoaDonQuetMa();
             int i = 1;
             for (hoaDonViewModelHUY hd : list) {
                 model.addRow(new Object[]{
@@ -552,6 +569,8 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getMaHD(),
                     hd.getHoVaTen(),
                     hd.getTenKhachHang(),
+                    hd.getNgayTao(),
+                    hd.getNgayThanhToan(),
                     hd.getTongTien(),
                     hd.getTenHTTT(),
                     hd.getTenHTGH(),
@@ -572,7 +591,7 @@ public class HoaDonView extends javax.swing.JInternalFrame {
             String tranThai = cbo_trangThai.getSelectedItem().toString();
             DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
-            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.getAllHoaDonTaiQuay();
             int i = 1;
             for (hoaDonViewModelHUY hd : list) {
                 model.addRow(new Object[]{
@@ -580,6 +599,8 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getMaHD(),
                     hd.getHoVaTen(),
                     hd.getTenKhachHang(),
+                    hd.getNgayTao(),
+                    hd.getNgayThanhToan(),
                     hd.getTongTien(),
                     hd.getTenHTTT(),
                     hd.getTenHTGH(),
@@ -591,11 +612,10 @@ public class HoaDonView extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (cbo_HTGH.getSelectedIndex() == 0) {
-            String tranThai = cbo_trangThai.getSelectedItem().toString();
+        if (cbo_HTGH.getSelectedIndex() == 1) {
             DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
             model.setRowCount(0);
-            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.timKiemCombobox(tranThai);
+            List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.getAllHoaDonKhac();
             int i = 1;
             for (hoaDonViewModelHUY hd : list) {
                 model.addRow(new Object[]{
@@ -603,6 +623,8 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                     hd.getMaHD(),
                     hd.getHoVaTen(),
                     hd.getTenKhachHang(),
+                    hd.getNgayTao(),
+                    hd.getNgayThanhToan(),
                     hd.getTongTien(),
                     hd.getTenHTTT(),
                     hd.getTenHTGH(),
@@ -689,5 +711,5 @@ public class HoaDonView extends javax.swing.JInternalFrame {
         }
 
     }
-    
+
 }

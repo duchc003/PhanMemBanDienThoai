@@ -156,13 +156,14 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     int row = 0;
 
     private void initWebcam() {
+        Dimension size = WebcamResolution.QVGA.getSize();
+        webcam = Webcam.getWebcams().get(0); //0 is default webcam
+//        webcam.setViewSize(size);
 
-        Dimension dimension = WebcamResolution.QVGA.getSize();
-        webcam = Webcam.getWebcams().get(0);
-        webcam.setViewSize(dimension);
         panel = new WebcamPanel(webcam);
-        panel.setPreferredSize(dimension);
+        panel.setPreferredSize(size);
         panel.setFPSDisplayed(true);
+
         jPanel10.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 150));
         executor.execute(this);
 
@@ -1996,8 +1997,13 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                     MsgBox.alert(this, "Mã Barcode không tồn tại");
                 } else {
                     dtm.setRowCount(0);
-                    dtm.addRow(new Object[]{ct.getBarcodde(), ct.getBoNho(), ct.getSoLuong(), ct.getGiaBan()});
-//                    loadTien();
+                    String soLuong = JOptionPane.showInputDialog("Nhập Số Lượng");
+                    int soLuongMoi = ct.getSoLuong() - Integer.parseInt(soLuong);
+                    dtm.addRow(new Object[]{ct.getBarcodde(), ct.getBoNho(), soLuongMoi, ct.getGiaBan()});
+                    loadTien();
+                    capNhapTienKhachPhaiTra();
+                    addhoaDonChiTiet();
+                    loadTien();
                 }
             }
         } while (rootPaneCheckingEnabled);

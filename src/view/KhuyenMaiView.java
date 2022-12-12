@@ -337,7 +337,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
         if (jTextField6.getText().isEmpty()) {
             MsgBox.alert(this, "Vui lòng nhập mã để tìm kiếm");
         } else {
-            String maKM = txt_maKM.getText();
+            String maKM = jTextField6.getText();
             DefaultTableModel model = (DefaultTableModel) tbl_khuyenMai.getModel();
             model.setRowCount(0);
             List<KhuyenMaiViewModel> listKM = impl.timKiemViewModel(maKM);
@@ -348,6 +348,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
                     km.getTen(),
                     km.getNgayBD(),
                     km.getNgayKT(),
+                    km.getTenHinhThuc(),
                     km.getGiamGia(),
                     km.getTrangThai(),
                     km.getMoTa()

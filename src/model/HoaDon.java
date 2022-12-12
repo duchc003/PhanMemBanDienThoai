@@ -269,6 +269,7 @@ public class HoaDon {
 
     @Override
     public String toString() {
-        return "HoaDon{" + "id=" + id + ", idKhachHang=" + idKhachHang + ", idNhanVien=" + idNhanVien + ", idHinhThucTT=" + idHinhThucTT + ", idHinhThucGH=" + idHinhThucGH + ", maHD=" + maHD + ", maNV=" + maNV + ", ngayTao=" + ngayTao + ", ngayThanhToan=" + ngayThanhToan + ", ngayNhanHang=" + ngayNhanHang + ", ngayGiaoHang=" + ngayGiaoHang + ", ngayKhachNhanhang=" + ngayKhachNhanhang + ", tongTien=" + tongTien + ", tienKhachCanTra=" + tienKhachCanTra + ", tienShip=" + tienShip + ", soDienThoai=" + soDienThoai + ", sdtNgShip=" + sdtNgShip + ", phanTramGiamGia=" + phanTramGiamGia + ", trangThai=" + trangThai + ", moTa=" + moTa + ", tenKhack=" + tenKhack + '}';
+        return "HoaDon{" + "tongTien=" + tongTien + '}';
     }
+
 }
