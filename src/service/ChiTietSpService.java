@@ -26,4 +26,6 @@ public interface ChiTietSpService {
     
     String update(int id,ChiTietSP sp);
     
+    ChiTietSP getBarcode(String bar);
+    
 }

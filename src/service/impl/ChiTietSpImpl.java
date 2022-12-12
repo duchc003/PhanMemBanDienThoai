@@ -55,4 +55,9 @@ public class ChiTietSpImpl implements ChiTietSpService {
         return impl.getIDNCC();
     }
 
+    @Override
+    public ChiTietSP getBarcode(String bar) {
+        return impl.getBarcode(bar);
+    }
+
 }

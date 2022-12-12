@@ -90,6 +90,28 @@ public class ChiTietSanPhamRepo {
         return null;
     }
 
+    public ChiTietSP getBarcode(String bar) {
+        String query = "SELECT dbo.SanPham.MaSP, dbo.SanPham.TenSp, dbo.ChiTietSanPham.SoLuong, dbo.ChiTietSanPham.GiaNhap\n"
+                + "FROM     dbo.ChiTietSanPham INNER JOIN\n"
+                + "                  dbo.SanPham ON dbo.ChiTietSanPham.IDSP = dbo.SanPham.ID\n"
+                + "				  where Barcode = ?";
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, bar);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ChiTietSP sp = new ChiTietSP();
+                sp.setBarcodde(rs.getString(1));
+                sp.setBoNho(rs.getString(2));
+                sp.setSoLuong(rs.getInt(3));
+                sp.setGiaNhap(rs.getLong(4));
+                return sp;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public SanPham getOneSP(String ten) {
         String query = "select * from SanPham where tenSP = ?";
         try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
@@ -261,6 +283,6 @@ public class ChiTietSanPhamRepo {
     }
 
     public static void main(String[] args) {
-        System.out.println(new ChiTietSanPhamRepo().getOneSP("Iphone 5").toString());
+        System.out.println(new ChiTietSanPhamRepo().getBarcode("1234567890111"));
     }
 }

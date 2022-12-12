@@ -71,17 +71,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import model.ChiTietSP;
 import model.Imei;
 import model.SanPham;
 import model.imeiDaBan;
+import repository.ChiTietSanPhamRepo;
+import service.ChiTietSpService;
+import service.impl.ChiTietSpImpl;
 import service.impl.ImeiServiceImpl;
 import viewmodel.SanPhamViewModel;
 
 public class BanHangView extends javax.swing.JInternalFrame implements Runnable, ThreadFactory {
 
     private DefaultTableModel dtmGiohang = new DefaultTableModel();
-    private final Dimension ds = new Dimension(250, 150);
-    private final Dimension cs = WebcamResolution.VGA.getSize();
     private WebcamPanel panel = null;
     private Webcam webcam = null;
     private Executor executor = Executors.newSingleThreadExecutor(this);
@@ -104,13 +106,14 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     private hoaDonViewModelServicesImplHUY hoaViewModelServicesImplHUY = new hoaDonViewModelServicesImplHUY();
     private KhachHangServicesImpl kmImpl = new KhachHangServicesImpl();
     private ImeiServiceImpl imei = new ImeiServiceImpl();
+    private static final long serialVersionUID = 6441489157408381878L;
 
     public BanHangView() {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
-//        initWebcam();
+        initWebcam();
         if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
             lblNhanVien.setText("Hoàng Công Đức");
         }
@@ -152,19 +155,19 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     }
     int row = 0;
 
-//    private void initWebcam() {
-//
-//        Dimension size = WebcamResolution.QVGA.getSize();;
-//        webcam = Webcam.getWebcams().get(0);
-//        webcam.setViewSize(size);
-//
-//        panel = new WebcamPanel(webcam);
-//        panel.setPreferredSize(size);
-//        panel.setFPSDisplayed(true);
-//        jPanel10.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 150));
-//        executor.execute(this);
-//
-//    }
+    private void initWebcam() {
+
+        Dimension dimension = WebcamResolution.QVGA.getSize();
+        webcam = Webcam.getWebcams().get(0);
+        webcam.setViewSize(dimension);
+        panel = new WebcamPanel(webcam);
+        panel.setPreferredSize(dimension);
+        panel.setFPSDisplayed(true);
+        jPanel10.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 150));
+        executor.execute(this);
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -227,7 +230,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         jLabel35 = new javax.swing.JLabel();
         lblTienKhachCanTra = new javax.swing.JLabel();
         btnTaoHoaDon = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
+        jpl = new javax.swing.JPanel();
         jComboBox6 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         btnGiaoHang = new javax.swing.JButton();
@@ -257,6 +260,8 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         txtTenKh = new javax.swing.JTextField();
         txtTienShip = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        txtNgaySinh = new javax.swing.JTextField();
         btnXoa = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -707,11 +712,12 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
 
         jTabbedPane1.addTab("Tại quầy", jPanel8);
 
-        jPanel7.setBackground(new java.awt.Color(0, 204, 255));
-        jPanel7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jpl.setBackground(new java.awt.Color(0, 204, 255));
+        jpl.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jpl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel7.add(jComboBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 640, 150, 39));
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiền Mặt", "Chuyển Khoản", "Quẹt khẻ", "Quét Mã" }));
+        jpl.add(jComboBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 640, 150, 39));
 
         jButton2.setBackground(new java.awt.Color(102, 255, 102));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -722,7 +728,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel7.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 640, 153, -1));
+        jpl.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 640, 153, -1));
 
         btnGiaoHang.setBackground(new java.awt.Color(102, 255, 102));
         btnGiaoHang.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -733,62 +739,62 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 btnGiaoHangActionPerformed(evt);
             }
         });
-        jPanel7.add(btnGiaoHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 700, 163, -1));
+        jpl.add(btnGiaoHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 700, 163, -1));
 
         jLabel25.setText("Tên Nhân Viên");
-        jPanel7.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 23, 92, -1));
+        jpl.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 23, 92, -1));
 
         lblNV.setText("jLabel24");
-        jPanel7.add(lblNV, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 210, -1));
+        jpl.add(lblNV, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 210, -1));
 
         jLabel2.setText("Mã Hóa Đơn");
-        jPanel7.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 65, -1, -1));
+        jpl.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 65, -1, -1));
 
         jLabel15.setText("Số Điện thoại");
-        jPanel7.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+        jpl.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         jLabel17.setText("Địa Chỉ");
-        jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
+        jpl.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
 
         jLabel18.setText("Tổng Tiền");
-        jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
+        jpl.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
 
         jLabel19.setText("Giảm Giá ");
-        jPanel7.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
+        jpl.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
 
         jLabel20.setText("Tiền khách cần trả");
-        jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, -1));
+        jpl.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, -1, -1));
 
         jLabel21.setText("Ghi Chú");
-        jPanel7.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, -1, -1));
+        jpl.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, -1, -1));
 
         txtGhiChu.setColumns(20);
         txtGhiChu.setRows(5);
         jScrollPane6.setViewportView(txtGhiChu);
 
-        jPanel7.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 540, 220, 70));
-        jPanel7.add(txtSDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 215, -1));
+        jpl.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 550, 220, 70));
+        jpl.add(txtSDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 215, -1));
 
         txtDiaChi.setColumns(20);
         txtDiaChi.setRows(5);
         jScrollPane5.setViewportView(txtDiaChi);
 
-        jPanel7.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 236, 210, 70));
+        jpl.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 210, 70));
 
         lblHoaDonGiao.setText("null");
-        jPanel7.add(lblHoaDonGiao, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 100, -1));
+        jpl.add(lblHoaDonGiao, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 100, -1));
 
         lblGiamGiaGiao.setText("0");
-        jPanel7.add(lblGiamGiaGiao, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 70, -1));
+        jpl.add(lblGiamGiaGiao, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, 70, -1));
 
         jLabel26.setText("VND");
-        jPanel7.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, -1, -1));
+        jpl.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 460, -1, -1));
 
         lblTongTienCanTra.setText("0");
-        jPanel7.add(lblTongTienCanTra, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 80, -1));
+        jpl.add(lblTongTienCanTra, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 80, -1));
 
         jLabel37.setText("VND");
-        jPanel7.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, -1, -1));
+        jpl.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, -1, -1));
 
         btnHoaDonShip.setBackground(new java.awt.Color(0, 255, 51));
         btnHoaDonShip.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/invoice.png"))); // NOI18N
@@ -798,23 +804,27 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 btnHoaDonShipActionPerformed(evt);
             }
         });
-        jPanel7.add(btnHoaDonShip, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, -1, -1));
+        jpl.add(btnHoaDonShip, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, -1, -1));
 
         lblTongTienGiao.setText("0");
-        jPanel7.add(lblTongTienGiao, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 80, -1));
+        jpl.add(lblTongTienGiao, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 80, -1));
 
         jLabel27.setText("VND");
-        jPanel7.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, -1, -1));
+        jpl.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, -1, -1));
 
         jLabel8.setText("Tên Khách Hàng");
-        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
-        jPanel7.add(txtTenKh, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 215, -1));
-        jPanel7.add(txtTienShip, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 490, 220, -1));
+        jpl.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        jpl.add(txtTenKh, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 215, -1));
+        jpl.add(txtTienShip, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, 220, -1));
 
         jLabel6.setText("Tiền Ship");
-        jPanel7.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, -1, -1));
+        jpl.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, -1, -1));
 
-        jTabbedPane1.addTab("ShipCode", jPanel7);
+        jLabel29.setText("Ngày Sinh");
+        jpl.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
+        jpl.add(txtNgaySinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 210, -1));
+
+        jTabbedPane1.addTab("ShipCode", jpl);
 
         jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 0, 440, 790));
 
@@ -975,8 +985,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
 //        String mota = JOptionPane.showInputDialog("");
         String mota = MsgBox.prompt(this, "Lý do hủy");
         if (mota.equals("")) {
-            JOptionPane.showMessageDialog(this, "Nhập lí do mới được hủy đơn!");
-            return;
+            MsgBox.alert(this, "Mời nhập lý do hủy");
         } else {
             JOptionPane.showMessageDialog(this, hoaDonServices.huyDon(index, mota));
             hd = hoaDonServices.getALlhoaDon();
@@ -990,14 +999,11 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        int id = list.get(tblHoaDon.getSelectedRow()).getId();
-//        JOptionPane.showMessageDialog(this, hoaDonServices.huyDonShip(id));
         List<HoaDonViewModel> hd = hoaDonServices.getALlhoaDon();
         int index = hd.get(tblHoaDon.getSelectedRow()).getId();
         String mota = JOptionPane.showInputDialog("Lý do hủy");
         if (mota.equals("")) {
             JOptionPane.showMessageDialog(this, "Nhập lí do mới được hủy đơn!");
-            return;
         } else {
             JOptionPane.showMessageDialog(this, hoaDonServices.huyDonShip(index, mota));
             hd = hoaDonServices.getALlhoaDon();
@@ -1007,8 +1013,12 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnChonKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonKhachActionPerformed
-        KhachHangJframe hangJframe = new view.KhachHangJframe();
-        hangJframe.setVisible(true);
+        if (tblHoaDon.getSelectedRow() < 0) {
+            MsgBox.alert(this, "Vui lòng chọn hóa đơn nếu chưa có vui lòng tạo");
+        } else {
+            KhachHangJframe hangJframe = new view.KhachHangJframe();
+            hangJframe.setVisible(true);
+        }
     }//GEN-LAST:event_btnChonKhachActionPerformed
 
     private void txtTienKhachDuaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachDuaKeyReleased
@@ -1021,11 +1031,17 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         try {
-            if (lblMaHoaDon.getText().equals("Vui lòng tạo!")) {
-                MsgBox.alert(this, "Vui lòng chọn hóa đơn trước khi nhấn thanh toán");
+            if (tblHoaDon.getSelectedRow() < 0) {
+                MsgBox.alert(this, "Vui lòng chọn hóa đơn trước khi nhấn thanh toán nếu chưa có vui lòng tạo");
                 return;
             } else if (tblGioHang.getRowCount() == 0) {
                 MsgBox.alert(this, "Vui lòng chọn sản phẩm trước khi nhấn thanh toán");
+                return;
+            } else if (txtTienKhachDua.getText().isEmpty()) {
+                MsgBox.alert(this, "Vui lòng nhập tiền khách đưa mới thanh toán");
+                return;
+            } else if (bill.getText().isEmpty()) {
+                MsgBox.alert(this, "Vui lòng nhập mô tả");
                 return;
             } else {
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -1062,8 +1078,8 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                         txtTienKhachDua.setBackground(Color.white);
                         MsgBox.alert(this, hoaDonServices.updateHoaDonThanhToan(hoaDon, hoaDon.getId()));
                         capNhatSoLuong();
-                        loadSanPham(lst);
                         xuatHoaDon();
+                        loadSanPham(lst);
                         lamMoi();
                     }
                 }
@@ -1080,12 +1096,24 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     }//GEN-LAST:event_btnHoaDonShipActionPerformed
 
     private void btnGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaoHangActionPerformed
-        if (txtDiaChi.getText().isEmpty() || txtGhiChu.getText().isEmpty() || txtTenKh.getText().isEmpty() || txtSDT.getText().isEmpty()) {
-            MsgBox.alert(this, "Không Được Để Trống");
-        }
         try {
-            if (lblMaHoaDon.getText().equals("Vui lòng tạo!")) {
+            if (tblHoaDon.getSelectedRow() < 0) {
                 MsgBox.alert(this, "Vui lòng chọn hóa đơn trước khi nhấn thanh toán");
+                return;
+            } else if (txtTenKh.getText().isEmpty()) {
+                MsgBox.alert(this, "Không Được Để Trống tên khách");
+                return;
+            } else if (txtSDT.getText().isEmpty()) {
+                MsgBox.alert(this, "Không được để trống số điện thoại");
+                return;
+            } else if (txtDiaChi.getText().isEmpty()) {
+                MsgBox.alert(this, "Không được để trống địa chỉ");
+                return;
+            } else if (txtTienShip.getText().isEmpty()) {
+                MsgBox.alert(this, "Không được để trống tiền ship");
+                return;
+            } else if (txtGhiChu.getText().isEmpty()) {
+                MsgBox.alert(this, "Không được để trống GhiChu");
                 return;
             } else if (tblGioHang.getRowCount() == 0) {
                 MsgBox.alert(this, "Vui lòng chọn sản phẩm trước khi nhấn thanh toán");
@@ -1099,7 +1127,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 kh.setMa("...");
                 kh.setHoVaTen(txtTenKh.getText());
                 kh.setSoDienThoai(txtSDT.getText());
-                kh.setNgaySinh("...");
+                kh.setNgaySinh(txtNgaySinh.getText());
                 kh.setDiaChi(txtDiaChi.getText());
                 kh.setGioiTinh("...");
                 kh.setMoTa("Khách hàng");
@@ -1120,13 +1148,13 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                     hoaDon.setTongTien(XMoney.loaiBoDauCham(lblTongTienGiao.getText()));
                     hoaDon.setSdt(txtSDT.getText());
                     hoaDon.setTrangThai("Đang Giao Hàng");
-
                 }
-
                 if (MsgBox.confirm(this, "Bạn chắc chắn muốn Giao Hàng hóa đơn này chứ?")) {
                     MsgBox.alert(this, hoaDonServices.updateHoaDonGiaoHang(hoaDon, hoaDon.getId()));
-                    xuatHoaDonGiao();
                     loadTableHoaDon(hd);
+                    capNhatSoLuong();
+                    loadSanPham(lst);
+                    xuatHoaDonGiao();
                     lamMoi();
                 }
             }
@@ -1220,6 +1248,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel32;
@@ -1239,7 +1268,6 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1249,6 +1277,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JPanel jpl;
     private javax.swing.JLabel lblGiamGia;
     private javax.swing.JLabel lblGiamGiaGiao;
     private javax.swing.JLabel lblHoaDonGiao;
@@ -1267,6 +1296,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     private javax.swing.JTable tblSanPham;
     private javax.swing.JTextArea txtDiaChi;
     private javax.swing.JTextArea txtGhiChu;
+    private javax.swing.JTextField txtNgaySinh;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTenKh;
     private javax.swing.JTextField txtTienKhachDua;
@@ -1934,8 +1964,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         do {
             try {
                 Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(BanHangView.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception e) {
             }
             Result result = null;
             BufferedImage image = null;
@@ -1955,83 +1984,28 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 //khong co du lieu
             }
             if (result != null) {
-//                System.out.println(result.getText());
-//                int index = tblHoaDon.getSelectedRow();
-//                if (index == -1) {
-//                    JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn trước khi thêm sản phẩm vào giỏ hàng !");
-//                    continue;
-//                }
-//                ChiTietSP c = services.seachbyMa(result.getText());
-//                if (c == null) {
-//                    JOptionPane.showMessageDialog(this, "Mã QRCode/BARCODE không khớp với sản phẩm nào !");
-//                    continue;
-//                }
-//
-//                String maHd = tbHoaDon.getValueAt(index, 0).toString();
-//                ChiTietSP c1 = chiTietSPServices.seachbyMa(result.getText());
-//                if (c1.getTrangThai() == 2) {
-//                    JOptionPane.showMessageDialog(this, "Imei này đã tồn tại trên Hóa đơn !");
-//                    continue;
-//                }
-//                chiTietSPServices.updateImeiTrangThai(result.getText(), 2);
-//                tbGioHang.getColumn("Ảnh").setCellRenderer(new myTableCellRender());
-//                DefaultTableModel model = (DefaultTableModel) tblGioHang.getModel();
-//                if (c.getTrangThai() == 0) {
-//                    Object[] data = new Object[]{
-//                        c.getSanPham().getTenSP(),
-//                        c.getMaImei(),
-//                        "1",
-//                        c.getGiaBan(),};
-//
-//                    model.addRow(data);
-//                    JOptionPane.showMessageDialog(this, "Thêm sản phẩm vào giỏ hàng thành công !");
-//                }
-//                HoaDonChiTiet hdct = new HoaDonChiTiet();
-//                HoaDon hd = null;
-//                List<HoaDon> hoaDons = hoaDonServices.getALL();
-//                for (HoaDon hoaDon : hoaDons) {
-//                    if (hoaDon.getMaHD().equals(maHd)) {
-//                        hd = hoaDon;
-//                    }
-//                }
-//                ChiTietSP chiTietSP = null;
-//                List<ChiTietSP> chiTietSPs = chiTietSPServices.getImei();
-//                for (ChiTietSP chiTietSP1 : chiTietSPs) {
-//                    if (chiTietSP1.getMaImei().equals(result.getText())) {
-//                        chiTietSP = chiTietSP1;
-//                    }
-//                }
-//                hdct.setMaHD(hd);
-//                hdct.setMaImei(chiTietSP);
-//                hdct.setSoLuong(1);
-//                hdct.setDonGia(c.getGiaBan());
-//                List<HoaDonChiTiet> list = hoaDonChiTietServies.getALL(maHd);
-//                for (HoaDonChiTiet hoaDonChiTiet : list) {
-//                    if (result.getText().equals(hoaDonChiTiet.getMaImei().getMaImei())) {
-//                        return;
-//                    }
-//                }
-//                hoaDonChiTietServies.add(hdct);
-//
-//                Integer tongTien = 0;
-//                String tongTienstr = "";
-//                List<HoaDonChiTiet> hdcts = hoaDonChiTietServies.getALL(maHd);
-//                for (HoaDonChiTiet hdct1 : hdcts) {
-//                    tongTienstr = String.valueOf(hdct1.getDonGia());
-//                    tongTien += Integer.parseInt(tongTienstr);
-//                }
-//                txtTongTien.setText(String.valueOf(tongTien));
-//
-//                hienThiSanPham();
-
+                DefaultTableModel dtm = (DefaultTableModel) tblGioHang.getModel();
+                System.out.println(result.getText());
+                ChiTietSpImpl repo = new ChiTietSpImpl();
+                ChiTietSP ct = repo.getBarcode(result.getText());
+                int index = tblHoaDon.getSelectedRow();
+                if (index == -1) {
+                    JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn trước khi thêm sản phẩm vào giỏ hàng !");
+                    continue;
+                } else if (ct == null) {
+                    MsgBox.alert(this, "Mã Barcode không tồn tại");
+                } else {
+                    dtm.setRowCount(0);
+                    dtm.addRow(new Object[]{ct.getBarcodde(), ct.getBoNho(), ct.getSoLuong(), ct.getGiaBan()});
+//                    loadTien();
+                }
             }
-
-        } while (true);
+        } while (rootPaneCheckingEnabled);
     }
 
     @Override
     public Thread newThread(Runnable r) {
-        Thread t = new Thread(r);
+        Thread t = new Thread(r, "My Thread");
         t.setDaemon(true);
         return t;
     }
