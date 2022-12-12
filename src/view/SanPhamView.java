@@ -98,7 +98,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
         //3 nhà cung cấp
         tblNhaCungCap.setModel(dtmNcc);
-        Object[] tieuDeNcc = {"ID", "Mã Hãng", "Tên Hãng"};
+        Object[] tieuDeNcc = {"ID", "Mã Nhà Cung Cấp", "Tên nhà cung cấp", "Số điện thoại"};
         dtmNcc.setColumnIdentifiers(tieuDeNcc);
         listncc = nccs.getAll();
         hienThiTableNcc(listncc);
@@ -289,6 +289,12 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         HangSP sp = SP.getOneHang((String) cbbHang.getSelectedItem());
         return new SanPham(
                 sp.getId(),
+                txtMASANPHAM.getText(),
+                txtTENSANPHAM.getText());
+    }
+    
+    private SanPham getDataSanPhamUD() {
+        return new SanPham(
                 txtMASANPHAM.getText(),
                 txtTENSANPHAM.getText());
     }
@@ -1330,13 +1336,17 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
     private void btnKhoiPhucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucActionPerformed
         int index = tblHetHang.getSelectedRow();
-        SanPhamHetHang sp = spHetHang.get(index);
-        int id = sp.getId();
-        String soLuong = JOptionPane.showInputDialog("Số Lượng", "0");
-        SanPhamHetHang spUpdate = new SanPhamHetHang(Integer.parseInt(soLuong), "Còn Hàng");
-        MsgBox.alert(this, implHetHang.update(spUpdate, id));
-        spHetHang = implHetHang.getALL();
-        showTTableHetHang(spHetHang);
+        if (index < 0) {
+            MsgBox.alert(this, "Vui lòng chọn 1 dòng trên table");
+        } else {
+            SanPhamHetHang sp = spHetHang.get(index);
+            int id = sp.getId();
+            String soLuong = JOptionPane.showInputDialog("Số Lượng", "0");
+            SanPhamHetHang spUpdate = new SanPhamHetHang(Integer.parseInt(soLuong), "Còn Hàng");
+            MsgBox.alert(this, implHetHang.update(spUpdate, id));
+            spHetHang = implHetHang.getALL();
+            showTTableHetHang(spHetHang);
+        }
     }//GEN-LAST:event_btnKhoiPhucActionPerformed
 
     private void txtTimKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemCaretUpdate
@@ -1370,6 +1380,20 @@ public class SanPhamView extends javax.swing.JInternalFrame {
             MsgBox.alert(this, impl.update(id, getDataSp()));
             listCt = impl.getALL();
             fillCt(listCt);
+            txtBarCode.setText("");
+            txtID.setText("");
+            txtGiaBan.setText("");
+            txtGiaNhap.setText("");
+            txtSoLuong.setText("");
+            cbbXuatXu.setSelectedItem("");
+            cbbBoNho.setSelectedItem("");
+            cbbMauSac.setSelectedItem("");
+            cbbRam.setSelectedItem("");
+            cbbSanPham.setSelectedItem("");
+            txtMoTa.setText("");
+            cbbCamera.setSelectedItem("");
+            cbbManHinh.setSelectedItem("");
+            cbbNCC.setSelectedItem("");
         }
 
     }//GEN-LAST:event_btnSuaCtActionPerformed
@@ -1397,6 +1421,20 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                 imei.setIdSanPham(sp.getId());
                 imeiImpl.add(imei);
             }
+            txtBarCode.setText("");
+            txtID.setText("");
+            txtGiaBan.setText("");
+            txtGiaNhap.setText("");
+            txtSoLuong.setText("");
+            cbbXuatXu.setSelectedItem("");
+            cbbBoNho.setSelectedItem("");
+            cbbMauSac.setSelectedItem("");
+            cbbRam.setSelectedItem("");
+            cbbSanPham.setSelectedItem("");
+            txtMoTa.setText("");
+            cbbCamera.setSelectedItem("");
+            cbbManHinh.setSelectedItem("");
+            cbbNCC.setSelectedItem("");
         }
     }//GEN-LAST:event_btnThemCtActionPerformed
 
@@ -1421,6 +1459,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, nccs.sua(id, addNcc()));
             listncc = nccs.getAll();
             hienThiTableNcc(listncc);
+            clearNcc();
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
@@ -1435,6 +1474,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, nccs.add(addNcc()));
             listncc = nccs.getAll();
             hienThiTableNcc(listncc);
+            clearNcc();
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 
@@ -1455,6 +1495,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, hsps.sua(id, add()));
             lists = hsps.getAll();
             hienThiTable(lists);
+            clear();
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
@@ -1467,6 +1508,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, hsps.add(add()));
             lists = hsps.getAll();
             hienThiTable(lists);
+            clear();
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -1487,8 +1529,12 @@ public class SanPhamView extends javax.swing.JInternalFrame {
             MsgBox.alert(this, "Vui Lòng chọn 1 dòng trên table");
         } else {
             int id = Integer.parseInt(txtIDSanPHam.getText());
-            JOptionPane.showMessageDialog(this, SP.updateSP(getDataSanPham(), id));
-            showDataTable(Spview);
+            JOptionPane.showMessageDialog(this, SP.updateSP(id,getDataSanPham()));
+            showDataTable(SP.getAll());
+            txtIDSanPHam.setText("");
+            txtMASANPHAM.setText("");
+            txtTENSANPHAM.setText("");
+            cbbHang.setSelectedItem(null);
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -1502,6 +1548,10 @@ public class SanPhamView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, SP.addSP(getDataSanPham()));
             Spview = SP.getAll();
             showDataTable(Spview);
+            txtIDSanPHam.setText("");
+            txtMASANPHAM.setText("");
+            txtTENSANPHAM.setText("");
+            cbbHang.setSelectedItem(0);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

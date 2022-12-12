@@ -40,8 +40,8 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
-    public String updateSP(SanPham SP, int ma) {
-        boolean update = this.SP.update(SP, ma);
+    public String updateSP(int ma, SanPham sp) {
+        boolean update = this.SP.sua( ma,sp);
         if (update) {
             return "Update thanh cong";
         } else {

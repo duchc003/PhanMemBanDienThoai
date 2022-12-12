@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import model.HinhThucKhuyenMai;
 import model.KhuyenMai;
 import service.impl.khuyenMaiServicesImpl;
+import util.MsgBox;
 import viewmodel.KhuyenMaiViewModel;
 
 /**
@@ -333,35 +334,57 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbl_khuyenMaiMouseClicked
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        String maKM = txt_maKM.getText();
-        DefaultTableModel model = (DefaultTableModel) tbl_khuyenMai.getModel();
-        model.setRowCount(0);
-        List<KhuyenMaiViewModel> listKM = impl.timKiemViewModel(maKM);
-        for (KhuyenMaiViewModel km : listKM) {
-            model.addRow(new Object[]{
-                km.getId(),
-                km.getMaKM(),
-                km.getTen(),
-                km.getNgayBD(),
-                km.getNgayKT(),
-                km.getGiamGia(),
-                km.getTrangThai(),
-                km.getMoTa()
-            });
+        if (jTextField6.getText().isEmpty()) {
+            MsgBox.alert(this, "Vui lòng nhập mã để tìm kiếm");
+        } else {
+            String maKM = txt_maKM.getText();
+            DefaultTableModel model = (DefaultTableModel) tbl_khuyenMai.getModel();
+            model.setRowCount(0);
+            List<KhuyenMaiViewModel> listKM = impl.timKiemViewModel(maKM);
+            for (KhuyenMaiViewModel km : listKM) {
+                model.addRow(new Object[]{
+                    km.getId(),
+                    km.getMaKM(),
+                    km.getTen(),
+                    km.getNgayBD(),
+                    km.getNgayKT(),
+                    km.getGiamGia(),
+                    km.getTrangThai(),
+                    km.getMoTa()
+                });
+            }
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        KhuyenMaiViewModel km = getFormKhuyenMaiInput();
-        JOptionPane.showMessageDialog(this, impl.addKhuyenMai(km));
-        list = impl.getAllKhuyenMaiViewModel();
-        loadTable(list);
-        cleaForm();
+        if (txt_maKM.getText().isEmpty()) {
+            MsgBox.alert(this, "Mã Không được để trống");
+        } else if (txt_tenKM.getText().isEmpty()) {
+            MsgBox.alert(this, "Tên không được để trống");
+        } else if (txt_ngayBD.getText().isEmpty()) {
+            MsgBox.alert(this, "ngày bắt đầu không được để trống");
+        } else if (txt_ngayKT.getText().isEmpty()) {
+            MsgBox.alert(this, "Ngày kết thúc không được để trống");
+        } else if (txt_giam.getText().isEmpty()) {
+            MsgBox.alert(this, "Mức giảm giá không được để trống");
+        } else if (txt_moTa.getText().isEmpty()) {
+            MsgBox.alert(this, "Mô tả không được để trống");
+        } else {
+            KhuyenMaiViewModel km = getFormKhuyenMaiInput();
+            JOptionPane.showMessageDialog(this, impl.addKhuyenMai(km));
+            list = impl.getAllKhuyenMaiViewModel();
+            loadTable(list);
+            cleaForm();
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        updateKhuyenMai();
-        cleaForm();
+        if (tbl_khuyenMai.getSelectedRow() < 0) {
+            MsgBox.alert(this, "Vui lòng chọn 1 dòng trên table");
+        } else {
+            updateKhuyenMai();
+            cleaForm();
+        }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -443,7 +466,7 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
     private void updateKhuyenMai() {
         int row = tbl_khuyenMai.getSelectedRow();
         KhuyenMaiViewModel km = getFormKhuyenMaiInput();
-        int maKM =  (int) tbl_khuyenMai.getValueAt(row, 0);
+        int maKM = (int) tbl_khuyenMai.getValueAt(row, 0);
         JOptionPane.showMessageDialog(this, impl.updateKhuyenmai(km, maKM));
         list = impl.getAllKhuyenMaiViewModel();
         loadTable(list);

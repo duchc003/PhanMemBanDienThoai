@@ -20,7 +20,7 @@ public interface SanPhamService {
 
     public String addSP(SanPham SP);
 
-    public String updateSP(SanPham SP, int ma);
+    public String updateSP(int ma, SanPham sp);
 
     List<HinhThucKhuyenMai> getALLHT();
 

@@ -130,19 +130,19 @@ public class SanPhamRepository {
         return check > 0;
     }
 
-    public boolean update(SanPham SP, int viTri) {
+    public boolean sua(int id, SanPham SP) {
         String query = "UPDATE [dbo].[SanPham]\n"
-                + "      ,[IDHang] ?\n"
+                + "   SET [IDHang] = ?\n"
                 + "      ,[MaSP] = ?\n"
                 + "      ,[TenSp] = ?\n"
-                + " WHERE ID =?";
+                + " WHERE ID = ?";
         int check = 0;
-        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
-            check = ps.executeUpdate();
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, SP.getIdHang());
             ps.setObject(2, SP.getMa());
             ps.setObject(3, SP.getTen());
-            ps.setObject(4, viTri);
+            ps.setObject(4, id);
+            check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }

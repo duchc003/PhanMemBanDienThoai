@@ -48,6 +48,7 @@ public class NhaCungCapRepository {
         try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, ncc.getMa());
             ps.setObject(2, ncc.getTen());
+            ps.setObject(3, ncc.getSdt());
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
