@@ -5,6 +5,7 @@
 package service;
 
 import java.util.List;
+import model.HoaDon;
 import model.HoaDonCT;
 import model.imeiDaBan;
 import viewmodel.hoaDonViewModelHUY;
@@ -29,7 +30,7 @@ public interface hoaDonViewModelServicesHUY {
 
     List<imeiDaBan> selectID(int ma);
 
-    HoaDonCT selectIDHD(int ma);
+    HoaDon selectIDHD(String ma);
 
     List<hoaDonViewModelHUY> getAllHoaDonTienMat();
 

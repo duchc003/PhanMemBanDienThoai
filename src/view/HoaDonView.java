@@ -653,19 +653,18 @@ public class HoaDonView extends javax.swing.JInternalFrame {
                 x.getTienGiamGia()
             });
         }
-    }//GEN-LAST:event_tblHoaDonMouseClicked
-
-    private void tblHoaDonChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonChiTietMouseClicked
         DefaultTableModel dtm = new DefaultTableModel();
         dtm = (DefaultTableModel) tblImei.getModel();
         dtm.setRowCount(0);
-        List<hoaDonViewModelHUY> list = hoaViewModelServicesImplHUY.getAllhoaDonViewModelHUY();
-        List<ChiTietHoaDonView> listHoaDon = impl.getAllCt(list.get(tblHoaDon.getSelectedRow()).getId());
-        HoaDonCT ct = hoaViewModelServicesImplHUY.selectIDHD(listHoaDon.get(tblHoaDonChiTiet.getSelectedRow()).getId());
+        HoaDon ct = hoaViewModelServicesImplHUY.selectIDHD((String) tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 1));
         List<imeiDaBan> imei = hoaViewModelServicesImplHUY.selectID(ct.getId());
         for (imeiDaBan daBan : imei) {
             dtm.addRow(new Object[]{daBan.getMa()});
         }
+    }//GEN-LAST:event_tblHoaDonMouseClicked
+
+    private void tblHoaDonChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonChiTietMouseClicked
+        
     }//GEN-LAST:event_tblHoaDonChiTietMouseClicked
 
 

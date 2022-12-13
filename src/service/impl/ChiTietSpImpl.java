@@ -6,11 +6,13 @@ package service.impl;
 
 import java.util.List;
 import model.ChiTietSP;
+import model.Imei;
 import model.NhaCungCap;
 import model.SanPham;
 import repository.ChiTietSanPhamRepo;
 import service.ChiTietSpService;
 import viewmodel.ChiTietSPView;
+import viewmodel.SanPhamFormBanHangViewModel;
 
 /**
  *
@@ -56,8 +58,13 @@ public class ChiTietSpImpl implements ChiTietSpService {
     }
 
     @Override
-    public ChiTietSP getBarcode(String bar) {
+    public SanPhamFormBanHangViewModel getBarcode(String bar) {
         return impl.getBarcode(bar);
+    }
+
+    @Override
+    public List<Imei> getALLID(int id) {
+        return impl.getALLID(id);
     }
 
 }

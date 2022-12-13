@@ -155,7 +155,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
 
     private void cbbHang(List<HangSP> list) {
         for (HangSP hangSP : list) {
-            box3.addElement(hangSP.getTen());
+            box3.addElement(hangSP.getId());
         }
     }
 
@@ -218,6 +218,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         txtMaNhaCungCap.setText(h.getMa());
         txtTenNhaCungCap.setText(h.getTen());
         txtIdNhaCungCap.setText(h.getId() + "");
+        txtSDT.setText(h.getSdt());
     }
 
     private void clearNcc() {
@@ -286,13 +287,12 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }
 
     private SanPham getDataSanPham() {
-        HangSP sp = SP.getOneHang((String) cbbHang.getSelectedItem());
         return new SanPham(
-                sp.getId(),
+                (int) cbbHang.getSelectedItem(),
                 txtMASANPHAM.getText(),
                 txtTENSANPHAM.getText());
     }
-    
+
     private SanPham getDataSanPhamUD() {
         return new SanPham(
                 txtMASANPHAM.getText(),
@@ -408,6 +408,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         tblHetHang = new javax.swing.JTable();
 
+        jPanel1.setBackground(new java.awt.Color(0, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 255));
@@ -1380,6 +1381,14 @@ public class SanPhamView extends javax.swing.JInternalFrame {
             MsgBox.alert(this, impl.update(id, getDataSp()));
             listCt = impl.getALL();
             fillCt(listCt);
+            Imei imei = new Imei();;
+            for (int i = 0; i < tblTable.getRowCount(); i++) {
+                SanPham sp = SP.getOneSP((String) cbbSanPham.getSelectedItem());
+                imei.setMaImei(tblTable.getValueAt(i, 0).toString());
+                imei.setTrangThai("Còn Hàng");
+                imei.setIdSanPham(sp.getId());
+                imeiImpl.add(imei);
+            }
             txtBarCode.setText("");
             txtID.setText("");
             txtGiaBan.setText("");
@@ -1529,7 +1538,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
             MsgBox.alert(this, "Vui Lòng chọn 1 dòng trên table");
         } else {
             int id = Integer.parseInt(txtIDSanPHam.getText());
-            JOptionPane.showMessageDialog(this, SP.updateSP(id,getDataSanPham()));
+            JOptionPane.showMessageDialog(this, SP.updateSP(id, getDataSanPham()));
             showDataTable(SP.getAll());
             txtIDSanPHam.setText("");
             txtMASANPHAM.setText("");
@@ -1576,15 +1585,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblAnhMouseClicked
 
     private void btnExActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExActionPerformed
-//        ImeiServiceImpl services = new ImeiServiceImpl();
-//        List<String> list = new ArrayList();
-//        String imei = "";
-//        for (int i = 0; i < cbbImei.getItemCount(); i++) {
-//            imei = cbbImei.getItemAt(i);
-//            list.add(imei);
-//            services.setList(list);
-//        }
-//        new ImeiForm().setVisible(true);
         importExcelToJtableJava();
     }//GEN-LAST:event_btnExActionPerformed
 

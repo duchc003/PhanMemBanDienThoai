@@ -10,11 +10,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.ChiTietSP;
+import model.Imei;
 import model.NhaCungCap;
 import model.SanPham;
 import util.ConnectDB;
 import viewmodel.ChiTietSPView;
 import viewmodel.KhuyenMaiViewModel;
+import viewmodel.SanPhamFormBanHangViewModel;
 
 /**
  *
@@ -23,25 +25,12 @@ import viewmodel.KhuyenMaiViewModel;
 public class ChiTietSanPhamRepo {
 
     public List<ChiTietSPView> getALL() {
-        String query = "SELECT [ID]\n"
-                + "      ,[IDSP]\n"
-                + "      ,[IDNCC]\n"
-                + "      ,[IDKM]\n"
-                + "      ,[SoLuong]\n"
-                + "      ,[Ram]\n"
-                + "      ,[XuatXu]\n"
-                + "      ,[Camera]\n"
-                + "      ,[ManHinh]\n"
-                + "      ,[BoNho]\n"
-                + "      ,[MauSac]\n"
-                + "      ,[GiaNhap]\n"
-                + "      ,[GiaBan]\n"
-                + "      ,[Image]\n"
-                + "      ,[Barcode]\n"
-                + "      ,[TrangThai]\n"
-                + "      ,[MoTa]\n"
-                + "  FROM [dbo].[ChiTietSanPham]\n"
-                + "  where TrangThai = N'Còn Hàng'";
+        String query = "SELECT dbo.ChiTietSanPham.ID, dbo.ChiTietSanPham.IDSP, dbo.ChiTietSanPham.IDNCC, dbo.ChiTietSanPham.IDKM, dbo.ChiTietSanPham.SoLuong, dbo.ChiTietSanPham.Ram, dbo.ChiTietSanPham.XuatXu, dbo.ChiTietSanPham.Camera, \n"
+                + "                  dbo.ChiTietSanPham.ManHinh, dbo.ChiTietSanPham.BoNho, dbo.ChiTietSanPham.MauSac, dbo.ChiTietSanPham.GiaNhap, dbo.ChiTietSanPham.GiaBan, dbo.ChiTietSanPham.Image, dbo.ChiTietSanPham.Barcode, \n"
+                + "                  dbo.ChiTietSanPham.TrangThai, dbo.ChiTietSanPham.MoTa, dbo.Imei.MaImei\n"
+                + "FROM     dbo.Imei INNER JOIN\n"
+                + "                  dbo.SanPham ON dbo.Imei.IDSanPham = dbo.SanPham.ID INNER JOIN\n"
+                + "                  dbo.ChiTietSanPham ON dbo.SanPham.ID = dbo.ChiTietSanPham.IDSP";
         try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
             List<ChiTietSPView> list = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
@@ -63,7 +52,8 @@ public class ChiTietSanPhamRepo {
                         rs.getString(14),
                         rs.getString(15),
                         rs.getString(16),
-                        rs.getString(17)));
+                        rs.getString(17),
+                        rs.getString(18)));
             }
             return list;
         } catch (Exception e) {
@@ -90,21 +80,26 @@ public class ChiTietSanPhamRepo {
         return null;
     }
 
-    public ChiTietSP getBarcode(String bar) {
-        String query = "SELECT dbo.SanPham.MaSP, dbo.SanPham.TenSp, dbo.ChiTietSanPham.SoLuong, dbo.ChiTietSanPham.GiaNhap\n"
+    public SanPhamFormBanHangViewModel getBarcode(String bar) {
+        String query = "SELECT dbo.ChiTietSanPham.ID, dbo.SanPham.MaSP, dbo.SanPham.TenSp, dbo.ChiTietSanPham.SoLuong, dbo.GiamGia.GiamGia, dbo.ChiTietSanPham.GiaBan,dbo.ChiTietSanPham.XuatXu ,dbo.HinhThucKhuyenMai.TenHinhThucKm\n"
                 + "FROM     dbo.ChiTietSanPham INNER JOIN\n"
-                + "                  dbo.SanPham ON dbo.ChiTietSanPham.IDSP = dbo.SanPham.ID\n"
-                + "				  where Barcode = ?";
+                + "dbo.GiamGia ON dbo.ChiTietSanPham.IDKM = dbo.GiamGia.ID INNER JOIN\n"
+                + "dbo.HinhThucKhuyenMai ON dbo.GiamGia.IDHinhThuc = dbo.HinhThucKhuyenMai.Id INNER JOIN\n"
+                + "dbo.SanPham ON dbo.ChiTietSanPham.IDSP = dbo.SanPham.ID\n"
+                + "where ChiTietSanPham.TrangThai = N'Còn Hàng' and Barcode = ?";
         try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
             ps.setObject(1, bar);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                ChiTietSP sp = new ChiTietSP();
-                sp.setBarcodde(rs.getString(1));
-                sp.setBoNho(rs.getString(2));
-                sp.setSoLuong(rs.getInt(3));
-                sp.setGiaBan(rs.getLong(4));
-                return sp;
+                return new SanPhamFormBanHangViewModel(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getLong(5),
+                        rs.getLong(6),
+                        rs.getString(7),
+                        rs.getString(8));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -282,7 +277,30 @@ public class ChiTietSanPhamRepo {
         return check > 0;
     }
 
+    public List<Imei> getALLID(int id) {
+        String query = "SELECT dbo.Imei.Id, dbo.Imei.MaImei, dbo.Imei.TrangThai, dbo.Imei.IDSanPham\n"
+                + "FROM     dbo.Imei INNER JOIN\n"
+                + "                  dbo.SanPham ON dbo.Imei.IDSanPham = dbo.SanPham.ID\n"
+                + "				  where SanPham.ID = ?";
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, id);
+            List<Imei> list = new ArrayList<>();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Imei(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4)));
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
-        System.out.println(new ChiTietSanPhamRepo().getBarcode("1234567890112").toString());
+        System.out.println(new ChiTietSanPhamRepo().getBarcode("1234567890111"));
     }
 }

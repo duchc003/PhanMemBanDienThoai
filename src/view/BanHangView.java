@@ -129,21 +129,6 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         if (Auth.user.getTaiKhoan().equalsIgnoreCase("huyhmph22668")) {
             lblNhanVien.setText("Hoàng Minh Huy");
         }
-        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
-            lblNV.setText("Hoàng Công Đức");
-        }
-        if (Auth.user.getTaiKhoan().equalsIgnoreCase("namndph22694")) {
-            lblNV.setText("Nguyễn Đức Nam");
-        }
-        if (Auth.user.getTaiKhoan().equalsIgnoreCase("hieunmph22569")) {
-            lblNV.setText("Nguyễn Minh Hiếu");
-        }
-        if (Auth.user.getTaiKhoan().equalsIgnoreCase("huybqph22581")) {
-            lblNV.setText("Bùi Quang Huy");
-        }
-        if (Auth.user.getTaiKhoan().equalsIgnoreCase("huyhmph22668")) {
-            lblNV.setText("Hoàng Minh Huy");
-        }
         dtmSanPham = (DefaultTableModel) tblSanPham.getModel();
         tblHoaDon.setModel(dtbHoaDon);
         dtbHoaDon.setColumnIdentifiers(new Object[]{"ID", "Mã Hóa Đơn", "Ngày Tạo", "Trạng Thái"});
@@ -896,7 +881,6 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-
         DefaultTableModel tblModelGH = new DefaultTableModel();
         tblModelGH = (DefaultTableModel) tblGioHang.getModel();
         tblModelGH.setRowCount(0);
@@ -907,7 +891,6 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         } else if (row < 0) {
             MsgBox.alert(this, "Vui lòng chọn sản phẩm trên table!");
         } else {
-
             String choice = JOptionPane.showInputDialog("Nhập vào số lượng : ", "0");
             if (Integer.parseInt(choice) < 0) {
                 JOptionPane.showMessageDialog(this, "Số lượng phải là số dương", "warning", JOptionPane.WARNING_MESSAGE);
@@ -1166,47 +1149,51 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     }//GEN-LAST:event_btnGiaoHangActionPerformed
 
     private void btnXoa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa1ActionPerformed
-        int row = tblGioHang.getSelectedRow();
-        String soluong = JOptionPane.showInputDialog("Nhập số lượng", "0");
-        if (Integer.parseInt(soluong) > Integer.parseInt(tblGioHang.getValueAt(row, 2).toString())) {
-            JOptionPane.showMessageDialog(this, "Bạn đã nhập quá số lượng\n Vui lòng nhập lại");
-            return;
-        }
-
-        if (Integer.parseInt(soluong) < 0) {
-            JOptionPane.showMessageDialog(this, "Số lượng phải là số dương", "warning", JOptionPane.WARNING_MESSAGE);
-            loadGioHang();
-            return;
-        }
-
-        if (Integer.parseInt(tblGioHang.getValueAt(row, 2).toString()) == Integer.parseInt(soluong)) {
-            gioHangViewModels.remove(row);
-
-            loadGioHang();
-
+        if (tblGioHang.getSelectedRow() < 0) {
+            MsgBox.alert(this, "GIỏ hàng trống không thể xóa");
         } else {
+            int row = tblGioHang.getSelectedRow();
+            String soluong = JOptionPane.showInputDialog("Nhập số lượng", "0");
+            if (Integer.parseInt(soluong) > Integer.parseInt(tblGioHang.getValueAt(row, 2).toString())) {
+                JOptionPane.showMessageDialog(this, "Bạn đã nhập quá số lượng\n Vui lòng nhập lại");
+                return;
+            }
 
-            String ma = tblSanPham.getValueAt(row, 0).toString();
-            String ten = tblSanPham.getValueAt(row, 1).toString();
-            long dongia = Long.parseLong(tblSanPham.getValueAt(row, 4).toString());
+            if (Integer.parseInt(soluong) < 0) {
+                JOptionPane.showMessageDialog(this, "Số lượng phải là số dương", "warning", JOptionPane.WARNING_MESSAGE);
+                loadGioHang();
+                return;
+            }
 
-            GioHangViewModel gh = new GioHangViewModel();
-            gh.setMa(ma);
-            gh.setTen(ten);
-            gh.setDonGia(dongia);
-            gh.setSoLuong(Integer.parseInt(tblGioHang.getValueAt(row, 2).toString()) - Integer.parseInt(soluong));
+            if (Integer.parseInt(tblGioHang.getValueAt(row, 2).toString()) == Integer.parseInt(soluong)) {
+                gioHangViewModels.remove(row);
 
-            gioHangViewModels.set(row, gh);
-            loadGioHang();
-            //
+                loadGioHang();
+
+            } else {
+
+                String ma = tblSanPham.getValueAt(row, 0).toString();
+                String ten = tblSanPham.getValueAt(row, 1).toString();
+                long dongia = Long.parseLong(tblSanPham.getValueAt(row, 4).toString());
+
+                GioHangViewModel gh = new GioHangViewModel();
+                gh.setMa(ma);
+                gh.setTen(ten);
+                gh.setDonGia(dongia);
+                gh.setSoLuong(Integer.parseInt(tblGioHang.getValueAt(row, 2).toString()) - Integer.parseInt(soluong));
+
+                gioHangViewModels.set(row, gh);
+                loadGioHang();
+                //
+                loadTien();
+            }
+            if (tblGioHang.getRowCount() <= 0) {
+                lblTongTien.setText("");
+            }
+            loadSanPham(lst);
+            capNhatTienThuaTraKhach();
             loadTien();
         }
-        if (tblGioHang.getRowCount() <= 0) {
-            lblTongTien.setText("");
-        }
-        loadSanPham(lst);
-        capNhapTienKhachPhaiTra();
-        capNhatTienThuaTraKhach();
     }//GEN-LAST:event_btnXoa1ActionPerformed
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
@@ -1476,6 +1463,10 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         lblTongTien.setText(util.XMoney.themDauCham(tongTien));
         lblGiamGia.setText(util.XMoney.themDauCham(giamGia));
         lblGiamGiaGiao.setText(util.XMoney.themDauCham(giamGia));
+        if (lblTongTien.getText().trim().equalsIgnoreCase("0")) {
+            lblTienKhachCanTra.setText("0");
+            lblTongTienCanTra.setText("0");
+        }
     }
 
     public void capNhatTienThuaTraKhach() {
@@ -1707,7 +1698,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 table.getRow(i + 1).getCell(1).setText(tblGioHang.getValueAt(i, 1).toString());
                 table.getRow(i + 1).getCell(2).setText(tblGioHang.getValueAt(i, 2).toString());
                 table.getRow(i + 1).getCell(3).setText(XMoney.themDauCham((long) tblGioHang.getValueAt(i, 3)));
-                table.getRow(i + 1).getCell(4).setText(XMoney.themDauCham(XMoney.loaiBoVND(tblGioHang.getValueAt(i, 3) + "") * Integer.parseInt(tblGioHang.getValueAt(i, 2) + "")) + " VNĐ");
+                table.getRow(i + 1).getCell(4).setText(XMoney.themDauCham(Long.parseLong(tblGioHang.getValueAt(i, 3) + "") * Integer.parseInt(tblGioHang.getValueAt(i, 2) + "")) + " VNĐ");
             }
 
             int tongSL = 0;
@@ -1761,7 +1752,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             XWPFParagraph paragraph17 = document.createParagraph();
             paragraph17.setAlignment(ParagraphAlignment.RIGHT);
             XWPFRun run17 = paragraph17.createRun();
-            run17.setText(lblNV.getText());
+            run17.setText(lblNhanVien.getText());
             run17.setTextPosition(80);
 
             XWPFParagraph paragraph18 = document.createParagraph();
@@ -1823,7 +1814,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             XWPFParagraph paragraph4 = document.createParagraph();
             XWPFRun run4 = paragraph4.createRun();
             paragraph4.setAlignment(ParagraphAlignment.CENTER);
-            run4.setText("HÓA ĐƠN BÁN HÀNG");
+            run4.setText("HÓA ĐƠN GIAO HÀNG");
             run4.setFontSize(30);
             run4.setBold(true);
 
@@ -1888,7 +1879,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 table.getRow(i + 1).getCell(1).setText(tblGioHang.getValueAt(i, 1).toString());
                 table.getRow(i + 1).getCell(2).setText(tblGioHang.getValueAt(i, 2).toString());
                 table.getRow(i + 1).getCell(3).setText(XMoney.themDauCham((long) tblGioHang.getValueAt(i, 3)));
-                table.getRow(i + 1).getCell(4).setText(XMoney.themDauCham(XMoney.loaiBoVND(tblGioHang.getValueAt(i, 3) + "") * Integer.parseInt(tblGioHang.getValueAt(i, 2) + "")) + " VNĐ");
+                table.getRow(i + 1).getCell(4).setText(XMoney.themDauCham(Long.parseLong(tblGioHang.getValueAt(i, 3) + "") * Integer.parseInt(tblGioHang.getValueAt(i, 2) + "")) + " VNĐ");
             }
 
             int tongSL = 0;
@@ -1975,7 +1966,6 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                     continue;
                 }
             }
-
             LuminanceSource source = new BufferedImageLuminanceSource(image);
             BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 
@@ -1988,7 +1978,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 DefaultTableModel dtm = (DefaultTableModel) tblGioHang.getModel();
                 System.out.println(result.getText());
                 ChiTietSpImpl repo = new ChiTietSpImpl();
-                ChiTietSP ct = repo.getBarcode(result.getText());
+                SanPhamFormBanHangViewModel ct = repo.getBarcode(result.getText());
                 int index = tblHoaDon.getSelectedRow();
                 if (index == -1) {
                     JOptionPane.showMessageDialog(this, "Vui lòng chọn hóa đơn trước khi thêm sản phẩm vào giỏ hàng !");
@@ -1997,13 +1987,33 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                     MsgBox.alert(this, "Mã Barcode không tồn tại");
                 } else {
                     dtm.setRowCount(0);
-                    String soLuong = JOptionPane.showInputDialog("Nhập Số Lượng");
-                    int soLuongMoi = ct.getSoLuong() - Integer.parseInt(soLuong);
-                    dtm.addRow(new Object[]{ct.getBarcodde(), ct.getBoNho(), soLuongMoi, ct.getGiaBan()});
+                    dtm.addRow(new Object[]{ct.getMaSp(), ct.getTenSp(), 1, ct.getGiaBan()});
                     loadTien();
                     capNhapTienKhachPhaiTra();
-                    addhoaDonChiTiet();
-                    loadTien();
+                    //add hdct
+                    List<HoaDonViewModel> hds = hoaDonServices.getALlhoaDon();
+                    HoaDonCT ctc = hoaDonServices.getIDSP(ct.getMaSp());
+                    HoaDonCT hdCt = new HoaDonCT();
+                    for (int i = 0; i < tblGioHang.getRowCount(); i++) {
+                        hdCt.setSoLuong((int) tblGioHang.getValueAt(i, 2));
+                    }
+                    hdCt.setIdSP(ctc.getIdSP());
+                    hdCt.setIdHoaDon(hds.get(tblHoaDon.getSelectedRow()).getId());
+                    hdCt.setTienThua(XMoney.loaiBoDauCham(lblTienThua.getText()));
+                    hdCt.setDonGia((long) ct.getGiaBan());
+                    hdCt.setTienGiamGia(XMoney.loaiBoDauCham(lblGiamGia.getText()));
+                    hoaDonServices.addHoaDonCT(hdCt);
+                    //add imei ct
+                    SanPham sp = imei.getOneID(ct.getMaSp());
+                    List<Imei> liss = imei.getALLID(sp.getId());
+                    HoaDonViewModel list = imei.getOneIDHoaDon(sp.getId());
+                    for (int i = 0; i < tblGioHang.getRowCount(); i++) {
+                        imeiDaBan imeiDaBan = new imeiDaBan();
+                        imeiDaBan.setMa(liss.get(i).getMaImei());
+                        imeiDaBan.setTrangThai("Đã Bán");
+                        imeiDaBan.setIdHoaDon(list.getId());
+                        imei.addImei(imeiDaBan);
+                    }
                 }
             }
         } while (rootPaneCheckingEnabled);

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.HoaDon;
 import model.HoaDonCT;
 import model.Imei;
 import model.imeiDaBan;
@@ -235,20 +236,14 @@ public class hoaDonViewModelRepositoryHUY {
         return null;
     }
 
-    public HoaDonCT selectIDHD(int ma) {
-        String query = "select * from HoaDonChiTiet where ID = ?";
+    public HoaDon selectIDHD(String ma) {
+        String query = "select * from HoaDon where MaHD = ?";
         try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
             ps.setObject(1, ma);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return new HoaDonCT(
-                        rs.getInt(1),
-                        rs.getInt(2),
-                        rs.getInt(3),
-                        rs.getInt(4),
-                        rs.getLong(5),
-                        rs.getLong(6),
-                        rs.getLong(7));
+                return new HoaDon(
+                        rs.getInt(1));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -449,6 +444,6 @@ public class hoaDonViewModelRepositoryHUY {
     }
 
     public static void main(String[] args) {
-        System.out.println(new hoaDonViewModelRepositoryHUY().getAllHoaDonKhac());
+        System.out.println(new hoaDonViewModelRepositoryHUY().selectIDHD("HD01").toString());
     }
 }

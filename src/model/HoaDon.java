@@ -269,7 +269,7 @@ public class HoaDon {
 
     @Override
     public String toString() {
-        return "HoaDon{" + "tongTien=" + tongTien + '}';
+        return "HoaDon{" + "id=" + id + '}';
     }
 
 }

@@ -6,9 +6,11 @@ package service;
 
 import java.util.List;
 import model.ChiTietSP;
+import model.Imei;
 import model.NhaCungCap;
 import model.SanPham;
 import viewmodel.ChiTietSPView;
+import viewmodel.SanPhamFormBanHangViewModel;
 
 /**
  *
@@ -26,6 +28,7 @@ public interface ChiTietSpService {
     
     String update(int id,ChiTietSP sp);
     
-    ChiTietSP getBarcode(String bar);
+    SanPhamFormBanHangViewModel getBarcode(String bar);
     
+    List<Imei> getALLID(int id);
 }
