@@ -47,6 +47,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import util.Auth;
 import viewmodel.KhuyenMaiViewModel;
 
 /**
@@ -240,7 +241,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         SanPham sp = impl.getOneSPID((int) tblCt1.getValueAt(tblCt1.getSelectedRow(), 1));
         List<Imei> imei = imeiImpl.getALLID(sp.getId());
         for (Imei imei1 : imei) {
-            dtmIMei.addRow(new Object[] {imei1.getMaImei()});
+            dtmIMei.addRow(new Object[]{imei1.getMaImei()});
         }
         ChiTietSPView ct = listCt.get(index);
         txtID.setText(String.valueOf(ct.getId()));
@@ -1342,17 +1343,21 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblHetHangMouseClicked
 
     private void btnKhoiPhucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucActionPerformed
-        int index = tblHetHang.getSelectedRow();
-        if (index < 0) {
-            MsgBox.alert(this, "Vui lòng chọn 1 dòng trên table");
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            int index = tblHetHang.getSelectedRow();
+            if (index < 0) {
+                MsgBox.alert(this, "Vui lòng chọn 1 dòng trên table");
+            } else {
+                SanPhamHetHang sp = spHetHang.get(index);
+                int id = sp.getId();
+                String soLuong = JOptionPane.showInputDialog("Số Lượng", "0");
+                SanPhamHetHang spUpdate = new SanPhamHetHang(Integer.parseInt(soLuong), "Còn Hàng");
+                MsgBox.alert(this, implHetHang.update(spUpdate, id));
+                spHetHang = implHetHang.getALL();
+                showTTableHetHang(spHetHang);
+            }
         } else {
-            SanPhamHetHang sp = spHetHang.get(index);
-            int id = sp.getId();
-            String soLuong = JOptionPane.showInputDialog("Số Lượng", "0");
-            SanPhamHetHang spUpdate = new SanPhamHetHang(Integer.parseInt(soLuong), "Còn Hàng");
-            MsgBox.alert(this, implHetHang.update(spUpdate, id));
-            spHetHang = implHetHang.getALL();
-            showTTableHetHang(spHetHang);
+            MsgBox.alert(this, "Bạn Không có quyền khôi phục sản phẩm");
         }
     }//GEN-LAST:event_btnKhoiPhucActionPerformed
 
@@ -1380,76 +1385,83 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnClearCtActionPerformed
 
     private void btnSuaCtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaCtActionPerformed
-        if (tblCt1.getSelectedRow() < 0) {
-            MsgBox.alert(this, "Vui lòng chọn 1 dòng trên table");
-        } else {
-            int id = Integer.parseInt(txtID.getText());
-            MsgBox.alert(this, impl.update(id, getDataSp()));
-            listCt = impl.getALL();
-            fillCt(listCt);
-            Imei imei = new Imei();;
-            for (int i = 0; i < tblTable.getRowCount(); i++) {
-                SanPham sp = SP.getOneSP((String) cbbSanPham.getSelectedItem());
-                imei.setMaImei(tblTable.getValueAt(i, 0).toString());
-                imei.setTrangThai("Còn Hàng");
-                imei.setIdSanPham(sp.getId());
-                imeiImpl.add(imei);
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            if (tblCt1.getSelectedRow() < 0) {
+                MsgBox.alert(this, "Vui lòng chọn 1 dòng trên table");
+            } else {
+                int id = Integer.parseInt(txtID.getText());
+                MsgBox.alert(this, impl.update(id, getDataSp()));
+                listCt = impl.getALL();
+                fillCt(listCt);
+                Imei imei = new Imei();;
+                for (int i = 0; i < tblTable.getRowCount(); i++) {
+                    SanPham sp = SP.getOneSP((String) cbbSanPham.getSelectedItem());
+                    imei.setMaImei(tblTable.getValueAt(i, 0).toString());
+                    imei.setTrangThai("Còn Hàng");
+                    imei.setIdSanPham(sp.getId());
+                    imeiImpl.add(imei);
+                }
+                txtBarCode.setText("");
+                txtID.setText("");
+                txtGiaBan.setText("");
+                txtGiaNhap.setText("");
+                txtSoLuong.setText("");
+                cbbXuatXu.setSelectedItem("");
+                cbbBoNho.setSelectedItem("");
+                cbbMauSac.setSelectedItem("");
+                cbbRam.setSelectedItem("");
+                cbbSanPham.setSelectedItem("");
+                txtMoTa.setText("");
+                cbbCamera.setSelectedItem("");
+                cbbManHinh.setSelectedItem("");
+                cbbNCC.setSelectedItem("");
             }
-            txtBarCode.setText("");
-            txtID.setText("");
-            txtGiaBan.setText("");
-            txtGiaNhap.setText("");
-            txtSoLuong.setText("");
-            cbbXuatXu.setSelectedItem("");
-            cbbBoNho.setSelectedItem("");
-            cbbMauSac.setSelectedItem("");
-            cbbRam.setSelectedItem("");
-            cbbSanPham.setSelectedItem("");
-            txtMoTa.setText("");
-            cbbCamera.setSelectedItem("");
-            cbbManHinh.setSelectedItem("");
-            cbbNCC.setSelectedItem("");
+        } else {
+            MsgBox.alert(this, "Bạn Không có quyền sửa chi tiết sản phẩm");
         }
-
     }//GEN-LAST:event_btnSuaCtActionPerformed
 
     private void btnThemCtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemCtActionPerformed
-        if (txtGiaNhap.getText().isEmpty()) {
-            MsgBox.alert(this, "Giá Nhập không được để trống");
-        } else if (txtGiaBan.getText().isEmpty()) {
-            MsgBox.alert(this, "Giá bán không được để trống");
-        } else if (txtBarCode.getText().isEmpty()) {
-            MsgBox.alert(this, "Barcode không được để trống");
-        } else if (txtMoTa.getText().isEmpty()) {
-            MsgBox.alert(this, "Mô tả không được để trống");
-        } else if (lblAnh.getText().isEmpty()) {
-            MsgBox.alert(this, "Vui Lòng chọn ảnh");
-        } else {
-            MsgBox.alert(this, impl.add(getDataSp()));
-            listCt = impl.getALL();
-            fillCt(listCt);
-            Imei imei = new Imei();;
-            for (int i = 0; i < tblTable.getRowCount(); i++) {
-                SanPham sp = SP.getOneSP((String) cbbSanPham.getSelectedItem());
-                imei.setMaImei(tblTable.getValueAt(i, 0).toString());
-                imei.setTrangThai("Còn Hàng");
-                imei.setIdSanPham(sp.getId());
-                imeiImpl.add(imei);
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            if (txtGiaNhap.getText().isEmpty()) {
+                MsgBox.alert(this, "Giá Nhập không được để trống");
+            } else if (txtGiaBan.getText().isEmpty()) {
+                MsgBox.alert(this, "Giá bán không được để trống");
+            } else if (txtBarCode.getText().isEmpty()) {
+                MsgBox.alert(this, "Barcode không được để trống");
+            } else if (txtMoTa.getText().isEmpty()) {
+                MsgBox.alert(this, "Mô tả không được để trống");
+            } else if (lblAnh.getText().isEmpty()) {
+                MsgBox.alert(this, "Vui Lòng chọn ảnh");
+            } else {
+                MsgBox.alert(this, impl.add(getDataSp()));
+                listCt = impl.getALL();
+                fillCt(listCt);
+                Imei imei = new Imei();;
+                for (int i = 0; i < tblTable.getRowCount(); i++) {
+                    SanPham sp = SP.getOneSP((String) cbbSanPham.getSelectedItem());
+                    imei.setMaImei(tblTable.getValueAt(i, 0).toString());
+                    imei.setTrangThai("Còn Hàng");
+                    imei.setIdSanPham(sp.getId());
+                    imeiImpl.add(imei);
+                }
+                txtBarCode.setText("");
+                txtID.setText("");
+                txtGiaBan.setText("");
+                txtGiaNhap.setText("");
+                txtSoLuong.setText("");
+                cbbXuatXu.setSelectedItem("");
+                cbbBoNho.setSelectedItem("");
+                cbbMauSac.setSelectedItem("");
+                cbbRam.setSelectedItem("");
+                cbbSanPham.setSelectedItem("");
+                txtMoTa.setText("");
+                cbbCamera.setSelectedItem("");
+                cbbManHinh.setSelectedItem("");
+                cbbNCC.setSelectedItem("");
             }
-            txtBarCode.setText("");
-            txtID.setText("");
-            txtGiaBan.setText("");
-            txtGiaNhap.setText("");
-            txtSoLuong.setText("");
-            cbbXuatXu.setSelectedItem("");
-            cbbBoNho.setSelectedItem("");
-            cbbMauSac.setSelectedItem("");
-            cbbRam.setSelectedItem("");
-            cbbSanPham.setSelectedItem("");
-            txtMoTa.setText("");
-            cbbCamera.setSelectedItem("");
-            cbbManHinh.setSelectedItem("");
-            cbbNCC.setSelectedItem("");
+        } else {
+            MsgBox.alert(this, "Bạn Không có quyền thêm chi tiết sản phẩm");
         }
     }//GEN-LAST:event_btnThemCtActionPerformed
 
@@ -1466,30 +1478,38 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblNhaCungCapMouseClicked
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        int row = tblNhaCungCap.getSelectedRow();
-        if (row < 0) {
-            MsgBox.alert(this, "Vui Lòng chọn 1 dòng trên table");
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            int row = tblNhaCungCap.getSelectedRow();
+            if (row < 0) {
+                MsgBox.alert(this, "Vui Lòng chọn 1 dòng trên table");
+            } else {
+                int id = Integer.parseInt(txtIdNhaCungCap.getText());
+                JOptionPane.showMessageDialog(this, nccs.sua(id, addNcc()));
+                listncc = nccs.getAll();
+                hienThiTableNcc(listncc);
+                clearNcc();
+            }
         } else {
-            int id = Integer.parseInt(txtIdNhaCungCap.getText());
-            JOptionPane.showMessageDialog(this, nccs.sua(id, addNcc()));
-            listncc = nccs.getAll();
-            hienThiTableNcc(listncc);
-            clearNcc();
+            MsgBox.alert(this, "Bạn Không có quyền sửa nhà cung cấp");
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        if (txtMaNhaCungCap.getText().isEmpty()) {
-            MsgBox.alert(this, "Không được để trống mã nhà cung cấp ");
-        } else if (txtTenNhaCungCap.getText().isEmpty()) {
-            MsgBox.alert(this, "Không được để trống tên nhà cung cấp ");
-        } else if (txtSDT.getText().isEmpty()) {
-            MsgBox.alert(this, "Không được để trống sdt nhà cung cấp ");
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            if (txtMaNhaCungCap.getText().isEmpty()) {
+                MsgBox.alert(this, "Không được để trống mã nhà cung cấp ");
+            } else if (txtTenNhaCungCap.getText().isEmpty()) {
+                MsgBox.alert(this, "Không được để trống tên nhà cung cấp ");
+            } else if (txtSDT.getText().isEmpty()) {
+                MsgBox.alert(this, "Không được để trống sdt nhà cung cấp ");
+            } else {
+                JOptionPane.showMessageDialog(this, nccs.add(addNcc()));
+                listncc = nccs.getAll();
+                hienThiTableNcc(listncc);
+                clearNcc();
+            }
         } else {
-            JOptionPane.showMessageDialog(this, nccs.add(addNcc()));
-            listncc = nccs.getAll();
-            hienThiTableNcc(listncc);
-            clearNcc();
+            MsgBox.alert(this, "Bạn Không có quyền thêm nhà cung cấp");
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 
@@ -1502,28 +1522,36 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblHangSPMouseClicked
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        int row = tblHangSP.getSelectedRow();
-        if (row < 0) {
-            MsgBox.alert(this, "Vui Lòng chọn 1 dòng trên table");
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            int row = tblHangSP.getSelectedRow();
+            if (row < 0) {
+                MsgBox.alert(this, "Vui Lòng chọn 1 dòng trên table");
+            } else {
+                int id = Integer.parseInt(txtIdHangSp.getText());
+                JOptionPane.showMessageDialog(this, hsps.sua(id, add()));
+                lists = hsps.getAll();
+                hienThiTable(lists);
+                clear();
+            }
         } else {
-            int id = Integer.parseInt(txtIdHangSp.getText());
-            JOptionPane.showMessageDialog(this, hsps.sua(id, add()));
-            lists = hsps.getAll();
-            hienThiTable(lists);
-            clear();
+            MsgBox.alert(this, "Bạn Không có quyền sửa hãng");
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        if (txtMaHangSp.getText().isEmpty()) {
-            MsgBox.alert(this, "Không được để trống mã hãng sản phẩm ");
-        } else if (txtTenHangSp.getText().isEmpty()) {
-            MsgBox.alert(this, "Không được để trống tên hãng sản phẩm ");
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            if (txtMaHangSp.getText().isEmpty()) {
+                MsgBox.alert(this, "Không được để trống mã hãng sản phẩm ");
+            } else if (txtTenHangSp.getText().isEmpty()) {
+                MsgBox.alert(this, "Không được để trống tên hãng sản phẩm ");
+            } else {
+                JOptionPane.showMessageDialog(this, hsps.add(add()));
+                lists = hsps.getAll();
+                hienThiTable(lists);
+                clear();
+            }
         } else {
-            JOptionPane.showMessageDialog(this, hsps.add(add()));
-            lists = hsps.getAll();
-            hienThiTable(lists);
-            clear();
+            MsgBox.alert(this, "Bạn Không có quyền thêm hãng");
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -1539,34 +1567,42 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int row = tblSanPham.getSelectedRow();
-        if (row < 0) {
-            MsgBox.alert(this, "Vui Lòng chọn 1 dòng trên table");
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            int row = tblSanPham.getSelectedRow();
+            if (row < 0) {
+                MsgBox.alert(this, "Vui Lòng chọn 1 dòng trên table");
+            } else {
+                int id = Integer.parseInt(txtIDSanPHam.getText());
+                JOptionPane.showMessageDialog(this, SP.updateSP(id, getDataSanPham()));
+                showDataTable(SP.getAll());
+                txtIDSanPHam.setText("");
+                txtMASANPHAM.setText("");
+                txtTENSANPHAM.setText("");
+                cbbHang.setSelectedItem(null);
+            }
         } else {
-            int id = Integer.parseInt(txtIDSanPHam.getText());
-            JOptionPane.showMessageDialog(this, SP.updateSP(id, getDataSanPham()));
-            showDataTable(SP.getAll());
-            txtIDSanPHam.setText("");
-            txtMASANPHAM.setText("");
-            txtTENSANPHAM.setText("");
-            cbbHang.setSelectedItem(null);
+            MsgBox.alert(this, "Bạn Không có quyền sửa sản phẩm");
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (txtMASANPHAM.getText().isEmpty()) {
-            MsgBox.alert(this, "Không được để trống mã sản phẩm ");
-        } else if (txtTENSANPHAM.getText().isEmpty()) {
-            MsgBox.alert(this, "Không được để trống tên sản phẩm ");
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            if (txtMASANPHAM.getText().isEmpty()) {
+                MsgBox.alert(this, "Không được để trống mã sản phẩm ");
+            } else if (txtTENSANPHAM.getText().isEmpty()) {
+                MsgBox.alert(this, "Không được để trống tên sản phẩm ");
+            } else {
+                JOptionPane.showMessageDialog(this, SP.addSP(getDataSanPham()));
+                Spview = SP.getAll();
+                showDataTable(Spview);
+                txtIDSanPHam.setText("");
+                txtMASANPHAM.setText("");
+                txtTENSANPHAM.setText("");
+                cbbHang.setSelectedItem(0);
+            }
         } else {
-            JOptionPane.showMessageDialog(this, SP.addSP(getDataSanPham()));
-            Spview = SP.getAll();
-            showDataTable(Spview);
-            txtIDSanPHam.setText("");
-            txtMASANPHAM.setText("");
-            txtTENSANPHAM.setText("");
-            cbbHang.setSelectedItem(0);
+            MsgBox.alert(this, "Bạn Không có quyền thêm sản phẩm");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

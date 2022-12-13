@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import model.HinhThucKhuyenMai;
 import model.KhuyenMai;
 import service.impl.khuyenMaiServicesImpl;
+import util.Auth;
 import util.MsgBox;
 import viewmodel.KhuyenMaiViewModel;
 
@@ -358,33 +359,41 @@ public class KhuyenMaiView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        if (txt_maKM.getText().isEmpty()) {
-            MsgBox.alert(this, "Mã Không được để trống");
-        } else if (txt_tenKM.getText().isEmpty()) {
-            MsgBox.alert(this, "Tên không được để trống");
-        } else if (txt_ngayBD.getText().isEmpty()) {
-            MsgBox.alert(this, "ngày bắt đầu không được để trống");
-        } else if (txt_ngayKT.getText().isEmpty()) {
-            MsgBox.alert(this, "Ngày kết thúc không được để trống");
-        } else if (txt_giam.getText().isEmpty()) {
-            MsgBox.alert(this, "Mức giảm giá không được để trống");
-        } else if (txt_moTa.getText().isEmpty()) {
-            MsgBox.alert(this, "Mô tả không được để trống");
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            if (txt_maKM.getText().isEmpty()) {
+                MsgBox.alert(this, "Mã Không được để trống");
+            } else if (txt_tenKM.getText().isEmpty()) {
+                MsgBox.alert(this, "Tên không được để trống");
+            } else if (txt_ngayBD.getText().isEmpty()) {
+                MsgBox.alert(this, "ngày bắt đầu không được để trống");
+            } else if (txt_ngayKT.getText().isEmpty()) {
+                MsgBox.alert(this, "Ngày kết thúc không được để trống");
+            } else if (txt_giam.getText().isEmpty()) {
+                MsgBox.alert(this, "Mức giảm giá không được để trống");
+            } else if (txt_moTa.getText().isEmpty()) {
+                MsgBox.alert(this, "Mô tả không được để trống");
+            } else {
+                KhuyenMaiViewModel km = getFormKhuyenMaiInput();
+                JOptionPane.showMessageDialog(this, impl.addKhuyenMai(km));
+                list = impl.getAllKhuyenMaiViewModel();
+                loadTable(list);
+                cleaForm();
+            }
         } else {
-            KhuyenMaiViewModel km = getFormKhuyenMaiInput();
-            JOptionPane.showMessageDialog(this, impl.addKhuyenMai(km));
-            list = impl.getAllKhuyenMaiViewModel();
-            loadTable(list);
-            cleaForm();
+            MsgBox.alert(this, "Bạn Không có quyền thêm khuyến mãi");
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        if (tbl_khuyenMai.getSelectedRow() < 0) {
-            MsgBox.alert(this, "Vui lòng chọn 1 dòng trên table");
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            if (tbl_khuyenMai.getSelectedRow() < 0) {
+                MsgBox.alert(this, "Vui lòng chọn 1 dòng trên table");
+            } else {
+                updateKhuyenMai();
+                cleaForm();
+            }
         } else {
-            updateKhuyenMai();
-            cleaForm();
+            MsgBox.alert(this, "Bạn Không có quyền sửa khuyến mãi");
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 

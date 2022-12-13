@@ -130,6 +130,22 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         if (Auth.user.getTaiKhoan().equalsIgnoreCase("huyhmph22668")) {
             lblNhanVien.setText("Hoàng Minh Huy");
         }
+        
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            lblNV.setText("Hoàng Công Đức");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("namndph22694")) {
+            lblNV.setText("Nguyễn Đức Nam");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("hieunmph22569")) {
+            lblNV.setText("Nguyễn Minh Hiếu");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("huybqph22581")) {
+            lblNV.setText("Bùi Quang Huy");
+        }
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("huyhmph22668")) {
+            lblNV.setText("Hoàng Minh Huy");
+        }
         dtmSanPham = (DefaultTableModel) tblSanPham.getModel();
         tblHoaDon.setModel(dtbHoaDon);
         dtbHoaDon.setColumnIdentifiers(new Object[]{"ID", "Mã Hóa Đơn", "Ngày Tạo", "Trạng Thái"});
@@ -726,7 +742,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 btnGiaoHangActionPerformed(evt);
             }
         });
-        jpl.add(btnGiaoHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 700, 163, -1));
+        jpl.add(btnGiaoHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 680, 163, -1));
 
         jLabel25.setText("Tên Nhân Viên");
         jpl.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 23, 92, -1));

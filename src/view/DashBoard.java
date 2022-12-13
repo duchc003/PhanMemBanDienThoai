@@ -43,7 +43,7 @@ public class DashBoard extends javax.swing.JFrame {
         }
         BanHangView banHangView = new BanHangView();
         jDesktopPane1.add(banHangView).setVisible(true);
-        
+
         lblBanHang.setBackground(clickColor);
         lblHoaDon.setBackground(defaultColor);
         lblKhachHang.setBackground(defaultColor);
@@ -413,8 +413,12 @@ public class DashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_lblKhachHangMouseClicked
 
     private void lblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNhanVienMouseClicked
-        NhanVienView nhanVienView = new NhanVienView();
-        jDesktopPane1.add(nhanVienView).setVisible(true);
+        if (Auth.user.getTaiKhoan().equalsIgnoreCase("duchcph22577")) {
+            NhanVienView nhanVienView = new NhanVienView();
+            jDesktopPane1.add(nhanVienView).setVisible(true);
+        } else {
+            MsgBox.alert(this, "Bạn Không có quyền xem nhân viên");
+        }
     }//GEN-LAST:event_lblNhanVienMouseClicked
 
     private void lblThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblThongKeMouseClicked
