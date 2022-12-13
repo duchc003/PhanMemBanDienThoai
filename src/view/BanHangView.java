@@ -69,6 +69,7 @@ import java.awt.Image;
 import java.awt.print.PrinterException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import model.ChiTietSP;
@@ -940,7 +941,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             loadTien();
             capNhapTienKhachPhaiTra();
             addhoaDonChiTiet();
-            addImeiDaBan();
+        addImeiDaBan();
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -1081,6 +1082,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
 
     private void btnGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaoHangActionPerformed
         try {
+            Pattern p = Pattern.compile("^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$");
             if (tblHoaDon.getSelectedRow() < 0) {
                 MsgBox.alert(this, "Vui lòng chọn hóa đơn trước khi nhấn thanh toán");
                 return;
@@ -1101,6 +1103,9 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
                 return;
             } else if (tblGioHang.getRowCount() == 0) {
                 MsgBox.alert(this, "Vui lòng chọn sản phẩm trước khi nhấn thanh toán");
+                return;
+            } else if (p.matcher(txtSDT.getText()).find() == false) {
+                JOptionPane.showMessageDialog(this, "Số điện thoại phải là số và có đúng 10 chữ số \n Nếu đầu khác 0 thì còn 9 số");
                 return;
             } else {
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -1782,11 +1787,12 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
         for (int i = 0; i < tblGioHang.getRowCount(); i++) {
             imeiDaBan imeiDaBan = new imeiDaBan();
             imeiDaBan.setMa(liss.get(i).getMaImei());
-            imeiDaBan.setTrangThai("Đã Bán");
-            imeiDaBan.setIdHoaDon(list.getId());
-            imei.addImei(imeiDaBan);
+            System.out.println(liss.get(i).getMaImei());
+//            imeiDaBan.setTrangThai("Đã Bán");
+//            imeiDaBan.setIdHoaDon(list.getId());
+//            imei.addImei(imeiDaBan);
         }
-        imei.delete(sp.getId());
+//        imei.delete(sp.getId());
     }
 
     public void xuatHoaDonGiao() {
@@ -1881,7 +1887,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             run14.setText("Thành tiền");
             run14.setBold(true);
             run14.setTextPosition(20);
-            
+
             for (int i = 0; i < tblGioHang.getRowCount(); i++) {
                 imeiDaBan imeiDaBan = new imeiDaBan();
                 table.getRow(i + 1).getCell(0).setText(tblGioHang.getValueAt(i, 0).toString());

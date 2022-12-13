@@ -173,7 +173,7 @@ public class ImeiRepository {
     }
 
     public static void main(String[] args) {
-        System.out.println(new ImeiRepository().getOneID("SP01"));
+        System.out.println(new ImeiRepository().getALLID(4).toString());
     }
 
 }

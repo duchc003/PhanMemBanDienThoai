@@ -170,6 +170,41 @@ public class ChiTietSanPhamRepo {
         return null;
     }
 
+    public NhaCungCap getOneNCCID(int id) {
+        String query = "select * from NhaCungCap where id = ?";
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return new NhaCungCap(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public SanPham getOneSPID(int id) {
+        String query = "select * from SanPham where id = ?";
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return new SanPham(
+                        rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getString(3),
+                        rs.getString(4));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public NhaCungCap getOneNCC(String ten) {
         String query = "select * from NhaCungCap where tenNCC = ?";
         try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {

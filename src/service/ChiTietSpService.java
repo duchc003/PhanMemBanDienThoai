@@ -31,4 +31,8 @@ public interface ChiTietSpService {
     SanPhamFormBanHangViewModel getBarcode(String bar);
     
     List<Imei> getALLID(int id);
+    
+    NhaCungCap getOneNCCID(int id);
+    
+    SanPham getOneSPID(int id);
 }

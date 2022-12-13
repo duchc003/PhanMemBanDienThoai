@@ -236,10 +236,16 @@ public class SanPhamView extends javax.swing.JInternalFrame {
     }
 
     private void setData(int index) {
+        NhaCungCap ncc = impl.getOneNCCID((int) tblCt1.getValueAt(tblCt1.getSelectedRow(), 2));
+        SanPham sp = impl.getOneSPID((int) tblCt1.getValueAt(tblCt1.getSelectedRow(), 1));
+        List<Imei> imei = imeiImpl.getALLID(sp.getId());
+        for (Imei imei1 : imei) {
+            dtmIMei.addRow(new Object[] {imei1.getMaImei()});
+        }
         ChiTietSPView ct = listCt.get(index);
         txtID.setText(String.valueOf(ct.getId()));
-        cbbSanPham.setSelectedItem(ct.getIdSP());
-        cbbNCC.setSelectedItem(ct.getIdNcc());
+        cbbSanPham.setSelectedItem(sp.getTen());
+        cbbNCC.setSelectedItem(ncc.getTen());
         txtSoLuong.setText(String.valueOf(ct.getSoLuong()));
         cbbRam.setSelectedItem(ct.getRam());
         cbbCamera.setSelectedItem(ct.getCamera());

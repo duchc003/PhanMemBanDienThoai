@@ -67,4 +67,14 @@ public class ChiTietSpImpl implements ChiTietSpService {
         return impl.getALLID(id);
     }
 
+    @Override
+    public NhaCungCap getOneNCCID(int id) {
+        return impl.getOneNCCID(id);
+    }
+
+    @Override
+    public SanPham getOneSPID(int id) {
+        return impl.getOneSPID(id);
+    }
+
 }
