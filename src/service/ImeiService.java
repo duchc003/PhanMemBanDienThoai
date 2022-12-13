@@ -33,5 +33,7 @@ public interface ImeiService {
     HoaDon getOneIDHD(int id);
     
     String delete(int id);
+    
+    List<Imei> getALL(int id);
 
 }

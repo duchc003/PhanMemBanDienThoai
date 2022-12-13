@@ -77,4 +77,9 @@ public class ImeiServiceImpl implements ImeiService {
         }
     }
 
+    @Override
+    public List<Imei> getALL(int id) {
+        return impl.getALL();
+    }
+
 }

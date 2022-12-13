@@ -941,7 +941,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             loadTien();
             capNhapTienKhachPhaiTra();
             addhoaDonChiTiet();
-        addImeiDaBan();
+            addImeiDaBan();
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -1782,17 +1782,16 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
 
     private void addImeiDaBan() {
         SanPham sp = imei.getOneID((String) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0));
-        List<Imei> liss = imei.getALLID(sp.getId());
+        List<Imei> liss = imei.getALL(sp.getId());
         HoaDonViewModel list = imei.getOneIDHoaDon((int) tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0));
         for (int i = 0; i < tblGioHang.getRowCount(); i++) {
             imeiDaBan imeiDaBan = new imeiDaBan();
             imeiDaBan.setMa(liss.get(i).getMaImei());
-            System.out.println(liss.get(i).getMaImei());
-//            imeiDaBan.setTrangThai("Đã Bán");
-//            imeiDaBan.setIdHoaDon(list.getId());
-//            imei.addImei(imeiDaBan);
+            imeiDaBan.setTrangThai("Đã Bán");
+            imeiDaBan.setIdHoaDon(list.getId());
+            imei.addImei(imeiDaBan);
         }
-//        imei.delete(sp.getId());
+        imei.delete(sp.getId());
     }
 
     public void xuatHoaDonGiao() {

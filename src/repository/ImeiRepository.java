@@ -99,6 +99,22 @@ public class ImeiRepository {
         }
         return null;
     }
+    
+    public List<Imei> getALL(int id) {
+        String query = "select * from Imei where IDSanPham = ?";
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
+            ps.setObject(1, id);
+            List<Imei> list = new ArrayList<>();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Imei(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public Imei getOne() {
         String query = "SELECT [Id]\n"
