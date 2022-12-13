@@ -132,7 +132,7 @@ public class ImeiRepository {
     }
 
     public HoaDonViewModel getOneIDHoaDon(int id) {
-        String query = "select id from HoaDonChiTiet where IDHoaDon = ?";
+        String query = "select id from HoaDon where ID = ?";
         try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
             ps.setObject(1, id);
             ResultSet rs = ps.executeQuery();
@@ -144,8 +144,8 @@ public class ImeiRepository {
         }
         return null;
     }
-    
-     public HoaDon getOneIDHD(int id) {
+
+    public HoaDon getOneIDHD(int id) {
         String query = "select id from HoaDon where ID = ?";
         try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
             ps.setObject(1, id);
@@ -159,6 +159,18 @@ public class ImeiRepository {
         return null;
     }
 
+    public boolean delete(int id) {
+        String query = "DELETE FROM [dbo].[Imei]\n"
+                + "      WHERE IDSanPham = ?";
+        int check = 0;
+        try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
 
     public static void main(String[] args) {
         System.out.println(new ImeiRepository().getOneID("SP01"));

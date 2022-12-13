@@ -31,5 +31,7 @@ public interface ImeiService {
     HoaDonViewModel getOneIDHoaDon(int id);
     
     HoaDon getOneIDHD(int id);
+    
+    String delete(int id);
 
 }

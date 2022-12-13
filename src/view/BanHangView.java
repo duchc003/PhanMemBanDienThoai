@@ -940,8 +940,8 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             loadTien();
             capNhapTienKhachPhaiTra();
             addhoaDonChiTiet();
+            addImeiDaBan();
         }
-        addImeiDaBan();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void txtTimKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemCaretUpdate
@@ -1778,7 +1778,7 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
     private void addImeiDaBan() {
         SanPham sp = imei.getOneID((String) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0));
         List<Imei> liss = imei.getALLID(sp.getId());
-        HoaDonViewModel list = imei.getOneIDHoaDon(sp.getId());
+        HoaDonViewModel list = imei.getOneIDHoaDon((int) tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0));
         for (int i = 0; i < tblGioHang.getRowCount(); i++) {
             imeiDaBan imeiDaBan = new imeiDaBan();
             imeiDaBan.setMa(liss.get(i).getMaImei());
@@ -1786,12 +1786,13 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             imeiDaBan.setIdHoaDon(list.getId());
             imei.addImei(imeiDaBan);
         }
+        imei.delete(sp.getId());
     }
 
     public void xuatHoaDonGiao() {
         try {
             XWPFDocument document = new XWPFDocument();
-            FileOutputStream out = new FileOutputStream(new File("C:\\Users\\ASUS\\OneDrive\\Documents\\PhanMemBanDienThoai\\XuatHoaDon" + lblMaHoaDon.getText() + ".docx"));
+            FileOutputStream out = new FileOutputStream(new File("C:\\Users\\ASUS\\OneDrive\\Máy tính\\PhanMemBanDienThoai" + lblMaHoaDon.getText() + ".docx"));
 
             XWPFParagraph paragraph = document.createParagraph();
             XWPFRun run = paragraph.createRun();
@@ -1823,13 +1824,12 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             run6.setText("Khách hàng: " + txtTenKh.getText());
 
             XWPFParagraph paragraph7 = document.createParagraph();
-            XWPFRun run7 = paragraph6.createRun();
-            run6.setText("SDT Khách Hàng: " + txtSDT.getText());
+            XWPFRun run7 = paragraph7.createRun();
+            run7.setText("SDT Khách Hàng: " + txtSDT.getText());
 
-            XWPFParagraph paragraph9 = document.createParagraph();
-            XWPFRun run9 = paragraph9.createRun();
-            run9.setText("Ngày lập: " + tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 2).toString());
-            run9.setTextPosition(20);
+            XWPFParagraph paragraph8 = document.createParagraph();
+            XWPFRun run8 = paragraph8.createRun();
+            run8.setText("Địa Chỉ: " + txtDiaChi.getText());
 
             XWPFTable table = document.createTable(tblGioHang.getRowCount() + 2, 5);
             table.setWidth("100%");
@@ -1849,6 +1849,14 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             run11.setText("Tên sản phẩm");
             run11.setBold(true);
             run11.setTextPosition(20);
+
+            XWPFTableRow row12 = table.getRow(0);
+            XWPFParagraph paragraph29 = row.getCell(1).addParagraph();
+            paragraph29.setAlignment(ParagraphAlignment.CENTER);
+            XWPFRun run29 = paragraph11.createRun();
+            run29.setText("Imei");
+            run29.setBold(true);
+            run29.setTextPosition(20);
 
             XWPFTableRow row3 = table.getRow(0);
             XWPFParagraph paragraph12 = row.getCell(2).addParagraph();
@@ -1873,8 +1881,9 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             run14.setText("Thành tiền");
             run14.setBold(true);
             run14.setTextPosition(20);
-
+            
             for (int i = 0; i < tblGioHang.getRowCount(); i++) {
+                imeiDaBan imeiDaBan = new imeiDaBan();
                 table.getRow(i + 1).getCell(0).setText(tblGioHang.getValueAt(i, 0).toString());
                 table.getRow(i + 1).getCell(1).setText(tblGioHang.getValueAt(i, 1).toString());
                 table.getRow(i + 1).getCell(2).setText(tblGioHang.getValueAt(i, 2).toString());
@@ -1902,12 +1911,19 @@ public class BanHangView extends javax.swing.JInternalFrame implements Runnable,
             run21.setText("GIẢM GIÁ: " + lblGiamGiaGiao.getText() + " VNĐ");
             run21.setBold(true);
 
+            XWPFParagraph paragraph28 = document.createParagraph();
+            paragraph28.setAlignment(ParagraphAlignment.LEFT);
+            XWPFRun run28 = paragraph28.createRun();
+            run28.setText("Tiền Ship: " + XMoney.themDauCham(Long.parseLong(txtTienShip.getText())) + " VNĐ");
+            run28.setBold(true);
+
             XWPFParagraph paragraph15 = document.createParagraph();
             paragraph15.setAlignment(ParagraphAlignment.LEFT);
             XWPFRun run20 = paragraph15.createRun();
-            run20.setText("TỔNG TIỀN THANH TOÁN: " + lblTongTienCanTra.getText() + " VNĐ");
+            run20.setText("TIỀN GIAO HÀNG: " + lblTongTienCanTra.getText() + " VNĐ");
             run20.setBold(true);
 
+            String tongTien = lblTongTienCanTra.getText() + txtTienShip.getText();
             XWPFParagraph paragraph24 = document.createParagraph();
             paragraph24.setAlignment(ParagraphAlignment.LEFT);
             XWPFRun run24 = paragraph24.createRun();

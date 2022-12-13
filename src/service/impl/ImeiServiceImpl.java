@@ -67,4 +67,14 @@ public class ImeiServiceImpl implements ImeiService {
         return impl.getOneIDHD(id);
     }
 
+    @Override
+    public String delete(int id) {
+        boolean delete = impl.delete(id);
+        if (delete) {
+            return "";
+        } else {
+            return "";
+        }
+    }
+
 }
