@@ -27,12 +27,11 @@ public class ChiTietSPView {
     private String barcode;
     private String trangThai;
     private String moTa;
-    private String maImei;
 
     public ChiTietSPView() {
     }
 
-    public ChiTietSPView(int id, int idSP, int idNcc, int idKM, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, long giaNhap, long giaBan, String image, String barcode, String trangThai, String moTa, String maImei) {
+    public ChiTietSPView(int id, int idSP, int idNcc, int idKM, int soLuong, String ram, String xuatXu, String camera, String manHinh, String boNho, String mauSac, long giaNhap, long giaBan, String image, String barcode, String trangThai, String moTa) {
         this.id = id;
         this.idSP = idSP;
         this.idNcc = idNcc;
@@ -50,15 +49,6 @@ public class ChiTietSPView {
         this.barcode = barcode;
         this.trangThai = trangThai;
         this.moTa = moTa;
-        this.maImei = maImei;
-    }
-
-    public String getMaImei() {
-        return maImei;
-    }
-
-    public void setMaImei(String maImei) {
-        this.maImei = maImei;
     }
 
     public int getId() {

@@ -105,7 +105,7 @@ public class SanPhamView extends javax.swing.JInternalFrame {
         hienThiTableNcc(listncc);
         //4 chi tiết sp
         tblCt1.setModel(dtmCT);
-        dtmCT.setColumnIdentifiers(new Object[]{"Id", "Sản Phẩm", "Nhà Cung Cấp", "Khuến mãi", "Số Lượng", "Ram", "Xuất Xứ", "Camera", "Màn Hình", "Bộ Nhớ", "Màu Sắc", "Giá Nhập", "Giá Bán", "Image", "BarCode", "Trạng Thái", "Mô tả"});
+        dtmCT.setColumnIdentifiers(new Object[]{"Id", "Sản Phẩm", "Nhà Cung Cấp", "Khuyến mãi", "Số Lượng", "Ram", "Xuất Xứ", "Camera", "Màn Hình", "Bộ Nhớ", "Màu Sắc", "Giá Nhập", "Giá Bán", "Image", "BarCode", "Trạng Thái", "Mô tả"});
         listCt = impl.getALL();
         fillCt(listCt);
         //5 sản phẩm
@@ -1393,14 +1393,6 @@ public class SanPhamView extends javax.swing.JInternalFrame {
                 MsgBox.alert(this, impl.update(id, getDataSp()));
                 listCt = impl.getALL();
                 fillCt(listCt);
-                Imei imei = new Imei();;
-                for (int i = 0; i < tblTable.getRowCount(); i++) {
-                    SanPham sp = SP.getOneSP((String) cbbSanPham.getSelectedItem());
-                    imei.setMaImei(tblTable.getValueAt(i, 0).toString());
-                    imei.setTrangThai("Còn Hàng");
-                    imei.setIdSanPham(sp.getId());
-                    imeiImpl.add(imei);
-                }
                 txtBarCode.setText("");
                 txtID.setText("");
                 txtGiaBan.setText("");

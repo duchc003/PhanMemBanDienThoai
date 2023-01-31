@@ -25,12 +25,25 @@ import viewmodel.SanPhamFormBanHangViewModel;
 public class ChiTietSanPhamRepo {
 
     public List<ChiTietSPView> getALL() {
-        String query = "SELECT dbo.ChiTietSanPham.ID, dbo.ChiTietSanPham.IDSP, dbo.ChiTietSanPham.IDNCC, dbo.ChiTietSanPham.IDKM, dbo.ChiTietSanPham.SoLuong, dbo.ChiTietSanPham.Ram, dbo.ChiTietSanPham.XuatXu, dbo.ChiTietSanPham.Camera, \n"
-                + "                  dbo.ChiTietSanPham.ManHinh, dbo.ChiTietSanPham.BoNho, dbo.ChiTietSanPham.MauSac, dbo.ChiTietSanPham.GiaNhap, dbo.ChiTietSanPham.GiaBan, dbo.ChiTietSanPham.Image, dbo.ChiTietSanPham.Barcode, \n"
-                + "                  dbo.ChiTietSanPham.TrangThai, dbo.ChiTietSanPham.MoTa, dbo.Imei.MaImei\n"
-                + "FROM     dbo.Imei INNER JOIN\n"
-                + "                  dbo.SanPham ON dbo.Imei.IDSanPham = dbo.SanPham.ID INNER JOIN\n"
-                + "                  dbo.ChiTietSanPham ON dbo.SanPham.ID = dbo.ChiTietSanPham.IDSP";
+        String query = "SELECT [ID]\n"
+                + "      ,[IDSP]\n"
+                + "      ,[IDNCC]\n"
+                + "      ,[IDKM]\n"
+                + "      ,[SoLuong]\n"
+                + "      ,[Ram]\n"
+                + "      ,[XuatXu]\n"
+                + "      ,[Camera]\n"
+                + "      ,[ManHinh]\n"
+                + "      ,[BoNho]\n"
+                + "      ,[MauSac]\n"
+                + "      ,[GiaNhap]\n"
+                + "      ,[GiaBan]\n"
+                + "      ,[Image]\n"
+                + "      ,[Barcode]\n"
+                + "      ,[TrangThai]\n"
+                + "      ,[MoTa]\n"
+                + "  FROM [dbo].[ChiTietSanPham]"
+                + "where TrangThai = N'Còn Hàng'";
         try (Connection con = ConnectDB.getConnection(); PreparedStatement ps = con.prepareCall(query)) {
             List<ChiTietSPView> list = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
@@ -52,8 +65,7 @@ public class ChiTietSanPhamRepo {
                         rs.getString(14),
                         rs.getString(15),
                         rs.getString(16),
-                        rs.getString(17),
-                        rs.getString(18)));
+                        rs.getString(17)));
             }
             return list;
         } catch (Exception e) {
@@ -336,6 +348,6 @@ public class ChiTietSanPhamRepo {
     }
 
     public static void main(String[] args) {
-        System.out.println(new ChiTietSanPhamRepo().getBarcode("1234567890111"));
+        System.out.println(new ChiTietSanPhamRepo().getALL().toString());
     }
 }
